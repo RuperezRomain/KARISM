@@ -2,4 +2,14 @@
 {% block title %}
     {{parent()}} - Login
 {% endblock %}
-{% block body %}Login{% endblock %}
+{% block body %}Login 
+
+    <form method="POST" action="{{path('loginCheck')}}">
+
+        <input type="text" id="username" name="_username">
+        <input type="password" id="password" name="_password">
+        <input type="submit" value="Soumettre a loginCheck">
+
+    </form>
+
+{% endblock %}
