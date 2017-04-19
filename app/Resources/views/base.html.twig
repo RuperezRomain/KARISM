@@ -2,12 +2,22 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}Kar:sm{% endblock %}</title>
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('/script/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/script/css/main.css') }}" />
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}        
+        <script src="{{ asset('script/jquery/jquery.js') }}"></script>
+        <script src="{{ asset('script/js/bootstrap.js') }}"></script>
+        <script src="{{ asset('script/js/angular.min.js') }}"></script>
+        {% endblock %}
+        {% block footer %}
+            <footer class="foot">Ceci est un magnifique footer</footer>
+        {% endblock %}
     </body>
 </html>
