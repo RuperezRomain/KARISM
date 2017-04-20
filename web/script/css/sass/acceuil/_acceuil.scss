@@ -1,3 +1,18 @@
+
+.sizeScreen{
+    background-color: $colorMid ;
+    background-image: url('https://lh3.google.com/u/0/d/0B7a-buqq3ksYcWp5YXkxbXVKT3c=w1301-h678-iv1');
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+.titelHeader > h1{
+    text-align: center
+}> h2{
+    text-align: center
+}
+
 .profil{
     height: 200px !important;
     /*width: 200px !important;*/
@@ -7,9 +22,11 @@
     /*padding: 10px;*/
 }
 
-.containerThumb > .thumbnail > .caption{
+.containerThumb > .thumbnail {
+    border: none;
+}> .caption{
     padding:0px 50px 0px 50px;
 }
-.sizeScreen{
-    background-color: $colorMid 
+iframe{
+    border: none;
 }
