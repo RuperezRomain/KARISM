@@ -1,5 +1,151 @@
 {% extends "base.html.twig" %}
-{% block title %}
-    {{parent()}} - Accueil
+
+{% block stylesheets %}
+    {{parent()}} 
+    {#<link rel="stylesheet" href="{{ asset('/script/slickCarousel/slick-theme.css') }}" />#}
+    <link rel="stylesheet" href="{{ asset('/script/slickCarousel/slick.css') }}" />
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
 {% endblock %}
-{% block body %}Acceuil{% endblock %}
+
+{% block title %}
+    {{parent()}}
+    Accueil
+{% endblock %}
+
+{% block body %}
+    <header>
+        <div  class=" sizeScreen container-fluid">
+            <div class="col-sm-offset-3 col-md-6">
+                <h1>Devenez MÉCÈNE d'un soir</h1>
+                <h2>Blablablablabla</h2>
+            </div>
+        </div>
+    </header>
+    {#    Section catousel#}
+    <section class="container-fluid">
+
+        <article>
+            <h3>Les Expos de la semaine</h3>
+            <div class="  your-class">
+
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>
+
+
+            </div>
+        </article>
+
+        <article>
+            <h3>Les Expos de la semaine</h3>
+            <div class="  your-class">
+
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>
+
+
+            </div>
+        </article>
+
+    </section>
+    {#    Section Video #}
+    <section>
+
+        <h3>Manifestation Kar:ms</h3>
+        <div  class="sizeScreen ">
+
+
+            <iframe class="vid col-md-offset-2 col-md-8 col-xs-12"  src="//www.youtube.com/embed/GAQ8PePmN6w" allowfullscreen=""></iframe>
+
+
+
+        </div>
+    </section>
+    {#   Dernier Section:  Les expo selon nous  #}
+    <section>
+        <div class="container-fluid">
+            <h3>Les expo selon nous</h3>
+            <div class="containerThumb">
+                <div class="thumbnail  col-md-4">
+                    <img src="https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97250&w=200&h=250" alt="...">
+                    <div class="caption">
+                        <h4>Thumbnail label</h4>
+                        <p>...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras bibendum congue enim, vitae euimdod ex tincidunt sit amet. Fusce et lorem quis arcu egestas vehicula. </p>
+
+                    </div>
+                </div>
+                <div class="thumbnail  col-md-4">
+                    <img src="https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97250&w=200&h=250" alt="...">
+                    <div class="caption">
+                        <h4>Thumbnail label</h4>
+                        <p>...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras bibendum congue enim, vitae euimdod ex tincidunt sit amet. Fusce et lorem quis arcu egestas vehicula. </p>
+
+                    </div>
+                </div>
+                <div class="thumbnail  col-md-4">
+                    <img src="https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97250&w=200&h=250" alt="...">
+                    <div class="caption">
+                        <h4>Thumbnail label</h4>
+                        <p>...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras bibendum congue enim, vitae euimdod ex tincidunt sit amet. Fusce et lorem quis arcu egestas vehicula. </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block javascripts %}  
+    {{ parent() }}
+    <script src="{{asset('script/slickCarousel/slick.js') }}"></script>
+    <script src="{{asset('script/js/home.js')}}"></script>
+{% endblock %}
