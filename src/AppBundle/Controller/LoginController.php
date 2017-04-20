@@ -13,8 +13,21 @@ class LoginController extends Controller
      * @Route("/login", name="login")
      */
     public function loginAction() {
+    $authenticationUtils = $this->get('security.authentication_utils');
 
-        return $this->render('default/login.html.twig');
+    // get the login error if there is one
+    $error = $authenticationUtils->getLastAuthenticationError();
+
+    // last username entered by the user
+    $lastUsername = $authenticationUtils->getLastUsername();
+    $usercourant = $this->getUser();
+
+    return $this->render('default/login.html.twig', array(
+        'last_username' => $lastUsername,
+        'error'         => $error,
+        'usercourant'         => $usercourant,
+    ));
+
     }    
     
     /**

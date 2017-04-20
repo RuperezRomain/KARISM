@@ -3,6 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
+use Serializable;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,8 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
-{
+class User implements UserInterface, Serializable {
+
     /**
      * @var int
      *
@@ -50,7 +53,7 @@ class User
     private $lastname;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(name="birthday", type="date")
      */
@@ -120,7 +123,7 @@ class User
     private $connected;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(name="lastconnect", type="date")
      */
@@ -147,14 +150,12 @@ class User
      */
     private $hoteValidate;
 
-
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -165,8 +166,7 @@ class User
      *
      * @return User
      */
-    public function setGenre($genre)
-    {
+    public function setGenre($genre) {
         $this->genre = $genre;
 
         return $this;
@@ -177,8 +177,7 @@ class User
      *
      * @return string
      */
-    public function getGenre()
-    {
+    public function getGenre() {
         return $this->genre;
     }
 
@@ -189,8 +188,7 @@ class User
      *
      * @return User
      */
-    public function setRoles($roles)
-    {
+    public function setRoles($roles) {
         $this->roles = $roles;
 
         return $this;
@@ -201,9 +199,8 @@ class User
      *
      * @return array
      */
-    public function getRoles()
-    {
-        return $this->roles;
+    public function getRoles() {
+        return array("ROLE_USER");
     }
 
     /**
@@ -213,8 +210,7 @@ class User
      *
      * @return User
      */
-    public function setFirstname($firstname)
-    {
+    public function setFirstname($firstname) {
         $this->firstname = $firstname;
 
         return $this;
@@ -225,8 +221,7 @@ class User
      *
      * @return string
      */
-    public function getFirstname()
-    {
+    public function getFirstname() {
         return $this->firstname;
     }
 
@@ -237,8 +232,7 @@ class User
      *
      * @return User
      */
-    public function setLastname($lastname)
-    {
+    public function setLastname($lastname) {
         $this->lastname = $lastname;
 
         return $this;
@@ -249,20 +243,18 @@ class User
      *
      * @return string
      */
-    public function getLastname()
-    {
+    public function getLastname() {
         return $this->lastname;
     }
 
     /**
      * Set birthday
      *
-     * @param \DateTime $birthday
+     * @param DateTime $birthday
      *
      * @return User
      */
-    public function setBirthday($birthday)
-    {
+    public function setBirthday($birthday) {
         $this->birthday = $birthday;
 
         return $this;
@@ -271,10 +263,9 @@ class User
     /**
      * Get birthday
      *
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getBirthday()
-    {
+    public function getBirthday() {
         return $this->birthday;
     }
 
@@ -285,8 +276,7 @@ class User
      *
      * @return User
      */
-    public function setUsername($username)
-    {
+    public function setUsername($username) {
         $this->username = $username;
 
         return $this;
@@ -297,8 +287,7 @@ class User
      *
      * @return string
      */
-    public function getUsername()
-    {
+    public function getUsername() {
         return $this->username;
     }
 
@@ -309,8 +298,7 @@ class User
      *
      * @return User
      */
-    public function setPassword($password)
-    {
+    public function setPassword($password) {
         $this->password = $password;
 
         return $this;
@@ -321,8 +309,7 @@ class User
      *
      * @return string
      */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
 
@@ -333,8 +320,7 @@ class User
      *
      * @return User
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
 
         return $this;
@@ -345,8 +331,7 @@ class User
      *
      * @return string
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -357,8 +342,7 @@ class User
      *
      * @return User
      */
-    public function setPhone($phone)
-    {
+    public function setPhone($phone) {
         $this->phone = $phone;
 
         return $this;
@@ -369,8 +353,7 @@ class User
      *
      * @return int
      */
-    public function getPhone()
-    {
+    public function getPhone() {
         return $this->phone;
     }
 
@@ -381,8 +364,7 @@ class User
      *
      * @return User
      */
-    public function setBio($bio)
-    {
+    public function setBio($bio) {
         $this->bio = $bio;
 
         return $this;
@@ -393,8 +375,7 @@ class User
      *
      * @return string
      */
-    public function getBio()
-    {
+    public function getBio() {
         return $this->bio;
     }
 
@@ -405,8 +386,7 @@ class User
      *
      * @return User
      */
-    public function setProfilPicture($profilPicture)
-    {
+    public function setProfilPicture($profilPicture) {
         $this->profilPicture = $profilPicture;
 
         return $this;
@@ -417,8 +397,7 @@ class User
      *
      * @return string
      */
-    public function getProfilPicture()
-    {
+    public function getProfilPicture() {
         return $this->profilPicture;
     }
 
@@ -429,8 +408,7 @@ class User
      *
      * @return User
      */
-    public function setAdress($adress)
-    {
+    public function setAdress($adress) {
         $this->adress = $adress;
 
         return $this;
@@ -441,8 +419,7 @@ class User
      *
      * @return string
      */
-    public function getAdress()
-    {
+    public function getAdress() {
         return $this->adress;
     }
 
@@ -453,8 +430,7 @@ class User
      *
      * @return User
      */
-    public function setCity($city)
-    {
+    public function setCity($city) {
         $this->city = $city;
 
         return $this;
@@ -465,8 +441,7 @@ class User
      *
      * @return int
      */
-    public function getCity()
-    {
+    public function getCity() {
         return $this->city;
     }
 
@@ -477,8 +452,7 @@ class User
      *
      * @return User
      */
-    public function setConnected($connected)
-    {
+    public function setConnected($connected) {
         $this->connected = $connected;
 
         return $this;
@@ -489,20 +463,18 @@ class User
      *
      * @return bool
      */
-    public function getConnected()
-    {
+    public function getConnected() {
         return $this->connected;
     }
 
     /**
      * Set lastconnect
      *
-     * @param \DateTime $lastconnect
+     * @param DateTime $lastconnect
      *
      * @return User
      */
-    public function setLastconnect($lastconnect)
-    {
+    public function setLastconnect($lastconnect) {
         $this->lastconnect = $lastconnect;
 
         return $this;
@@ -511,10 +483,9 @@ class User
     /**
      * Get lastconnect
      *
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getLastconnect()
-    {
+    public function getLastconnect() {
         return $this->lastconnect;
     }
 
@@ -525,8 +496,7 @@ class User
      *
      * @return User
      */
-    public function setNbrExpo($nbrExpo)
-    {
+    public function setNbrExpo($nbrExpo) {
         $this->nbrExpo = $nbrExpo;
 
         return $this;
@@ -537,8 +507,7 @@ class User
      *
      * @return int
      */
-    public function getNbrExpo()
-    {
+    public function getNbrExpo() {
         return $this->nbrExpo;
     }
 
@@ -549,8 +518,7 @@ class User
      *
      * @return User
      */
-    public function setArtistValidate($artistValidate)
-    {
+    public function setArtistValidate($artistValidate) {
         $this->artistValidate = $artistValidate;
 
         return $this;
@@ -561,8 +529,7 @@ class User
      *
      * @return bool
      */
-    public function getArtistValidate()
-    {
+    public function getArtistValidate() {
         return $this->artistValidate;
     }
 
@@ -573,8 +540,7 @@ class User
      *
      * @return User
      */
-    public function setHoteValidate($hoteValidate)
-    {
+    public function setHoteValidate($hoteValidate) {
         $this->hoteValidate = $hoteValidate;
 
         return $this;
@@ -585,9 +551,31 @@ class User
      *
      * @return bool
      */
-    public function getHoteValidate()
-    {
+    public function getHoteValidate() {
         return $this->hoteValidate;
     }
-}
 
+    public function eraseCredentials() {
+    }
+
+    public function getSalt() {
+return null;
+    }
+
+    public function serialize() {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password,
+        ));
+    }
+
+    public function unserialize($serialized) {
+        list (
+                $this->id,
+                $this->email,
+                $this->password,
+                ) = unserialize($serialized);
+    }
+
+}
