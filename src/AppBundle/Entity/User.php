@@ -27,42 +27,42 @@ class User implements UserInterface, Serializable {
     /**
      * @var string
      *
-     * @ORM\Column(name="genre", type="string", length=255)
+     * @ORM\Column(name="genre", type="string", length=255, nullable=true)
      */
     private $genre;
 
     /**
      * @var array
      *
-     * @ORM\Column(name="roles", type="array")
+     * @ORM\Column(name="roles", type="array", nullable=true)
      */
     private $roles;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=255)
+     * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
      */
     private $firstname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastname", type="string", length=255)
+     * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
      */
     private $lastname;
 
     /**
      * @var DateTime
      *
-     * @ORM\Column(name="birthday", type="date")
+     * @ORM\Column(name="birthday", type="date", nullable=true)
      */
     private $birthday;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=255)
+     * @ORM\Column(name="username", type="string", length=255, nullable=true)
      */
     private $username;
 
@@ -83,70 +83,70 @@ class User implements UserInterface, Serializable {
     /**
      * @var int
      *
-     * @ORM\Column(name="phone", type="integer")
+     * @ORM\Column(name="phone", type="integer", nullable=true)
      */
     private $phone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="bio", type="string", length=255)
+     * @ORM\Column(name="bio", type="string", length=255, nullable=true)
      */
     private $bio;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="profilPicture", type="string", length=255)
+     * @ORM\Column(name="profilPicture", type="string", length=255, nullable=true)
      */
     private $profilPicture;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adress", type="string", length=255)
+     * @ORM\Column(name="adress", type="string", length=255, nullable=true)
      */
     private $adress;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="city", type="integer")
+     * @ORM\Column(name="city", type="integer", nullable=true)
      */
     private $city;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="connected", type="boolean")
+     * @ORM\Column(name="connected", type="boolean", nullable=true)
      */
     private $connected;
 
     /**
      * @var DateTime
      *
-     * @ORM\Column(name="lastconnect", type="date")
+     * @ORM\Column(name="lastconnect", type="date", nullable=true)
      */
     private $lastconnect;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="nbrExpo", type="integer")
+     * @ORM\Column(name="nbrExpo", type="integer", nullable=true)
      */
     private $nbrExpo;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="artistValidate", type="boolean")
+     * @ORM\Column(name="artistValidate", type="boolean", nullable=true)
      */
     private $artistValidate;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="hoteValidate", type="boolean")
+     * @ORM\Column(name="hoteValidate", type="boolean", nullable=true)
      */
     private $hoteValidate;
 
@@ -200,7 +200,7 @@ class User implements UserInterface, Serializable {
      * @return array
      */
     public function getRoles() {
-        return array("ROLE_USER");
+        return $this->roles;
     }
 
     /**
