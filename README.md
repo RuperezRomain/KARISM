@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Karism - Projet AlterIncub
 ======
 
@@ -10,3 +11,6 @@ Emilie Letailleur
 Vivien Kimbidima
 Romain Ruperez
 Maddison Weppe
+=======
+# Karism
+>>>>>>> 9eb8c70c449838cacfaf53e5f3e6b613c94f6ca8
