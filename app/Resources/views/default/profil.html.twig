@@ -1,0 +1,130 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    {{parent()}} 
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    {#<link rel="stylesheet" href="{{ asset('/script/slickCarousel/slick-theme.css') }}" />#}
+    <link rel="stylesheet" href="{{ asset('/script/slickCarousel/slick.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/script/css/profil.css') }}" />
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+{% endblock %}
+
+{% block title %}
+    {{parent()}}
+    Accueil
+{% endblock %}
+
+{% block body %}
+    <nav>
+    <p class="userNav">
+        <span class="glyphicon glyphicon-home pull-left"></span>
+        bonjour Robert
+        <span class="glyphicon glyphicon-user pull-right"></span>
+    </p>
+    </nav>
+    <div class="container-fluid">
+        <div class="col-md-12">
+      <div class="descriptionProfil col-md-6">
+                <p class="pull-left descriptionProfil" >
+  <img src="data:image/jpeg;base64,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" class="img-responsive" alt="Cinque Terre"> 
+      <h4> Jean-Sébastien Le valeureux</h4>
+      <p class="textProfil">
+       Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов,
+       но это не совсем так. Его корни уходят в один фрагмент классической латыни 45 года н.э.,
+       то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney,
+  </div>
+            <div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+   
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src="//www.youtube.com/embed/LdNDIGry9fA"></iframe>
+</div>
+    </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="prestation">
+            <div class="col-md-12 herisson">
+                <h1>Mes séries</h1>
+
+
+            </div>
+            <div class="col-md-6 col-md-offset-0 item">
+
+              <h2 class="creveto">Série sur le kqfj</h2>
+                <a href="#"><img class="imagePresta" src="http://weppe.fr/bge/assets/img/desk.jpg"></a>
+              <p>Bcp de texte pour pas grand chose mais il en faut<br>
+                Ma série blabla elle consisteà  blabla je sais pas pk on mets du texte ici blabla
+              </p>
+            </div>
+            <div class="col-md-6 item">
+
+ <h2 class="creveto">Série sur le kqfj</h2>
+                      <a href="#"><img class="imagePresta" src="http://weppe.fr/bge/assets/img/desk.jpg"></a>
+            <p>
+            -Oeuvre blabla<br>
+            -XXXX <br>
+            -Un tour de manège<br>
+            -Blabllalblabla<br>
+            -Glouglou
+          	</p>
+
+            </div>
+            <div class="col-md-3 item">
+
+<h2 class="creveto2">Série</h2>
+           <a href="#"><img class="imagePresta" src="http://weppe.fr/bge/assets/img/desk.jpg"></a>
+              <h3>Dessin</h3>
+            <p>
+              - Sur toile xoxoxodi<br>
+              - Pour 5 balle<br>
+              - HDskjfj
+            </p>
+
+
+            </div>
+
+            <div class="col-md-3">
+</br></br></br></br></br>
+</br></br></br></br></br></br></br></br>
+<h3>Street-Art</h3>
+            <p>
+              - Oeuvre blabla<br>
+              - Avec bllabla<br>
+              - Skill blabla
+            </p>
+            </div>
+
+            <div class="col-md-6 item">
+
+            <h2 class="creveto">Série</h2>
+              <a href="#"><img class="imagePresta" src="http://weppe.fr/bge/assets/img/desk.jpg"></a>
+            <p>
+            -Oeuvre blabla<br>
+            -XXXX <br>
+            -Un tour de manège<br>
+            -Blabllalblabla<br>
+            -Glouglou
+          </p>
+
+            </div>
+            <div class="col-md-12 item">
+
+<h2 class="creveto">MES EXPOSITIONS PREVUES</h2>
+                     <a href="#"><img class="imagePresta2" src="http://weppe.fr/bge/assets/img/desk.jpg"></a>
+<p>ici on raconte notre vieici on raconte notre vieici on raconte notre vieici on raconte notre vieici on raconte notre vieici on raconte notre vieici on raconte notre vieici on raconte notre vie</p>
+
+            </div>
+
+            </div>
+
+</div>
+        </div>
+{% endblock %}
+{% block javascripts %}  
+    {{ parent() }}
+    <script src="{{asset('script/slickCarousel/slick.js') }}"></script>
+    <script src="{{asset('script/js/home.js')}}"></script>
+{% endblock %}
