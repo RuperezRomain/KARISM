@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 Karism - Projet AlterIncub
 ======
 
