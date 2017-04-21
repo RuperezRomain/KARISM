@@ -1,0 +1,108 @@
+AppBundle\Entity\User:
+    type: entity
+    table: user
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        genre:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        roles:
+            type: array
+            nullable: false
+            length: null
+            options:
+                fixed: false
+        firstname:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        lastname:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        birthday:
+            type: date
+            nullable: false
+        username:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        password:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        phone:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        bio:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        profilpicture:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: profilPicture
+        adress:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        city:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        connected:
+            type: boolean
+            nullable: false
+        lastconnect:
+            type: date
+            nullable: false
+        nbrexpo:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: nbrExpo
+        artistvalidate:
+            type: boolean
+            nullable: false
+            column: artistValidate
+        hotevalidate:
+            type: boolean
+            nullable: false
+            column: hoteValidate
+    lifecycleCallbacks: {  }

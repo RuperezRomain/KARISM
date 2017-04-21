@@ -1,0 +1,30 @@
+AppBundle\Entity\CheckListeUser:
+    type: entity
+    table: check_liste_user
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        user:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        model:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

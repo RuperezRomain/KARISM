@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{parent()}} - Charte
+{% endblock %}
+
+{% block body %}
+<article class="img">
+    {% for charte in chartes %}
+        {{charte.picture}}
+    {% endfor %}
+</article>
+
+<article class="titre">
+    {% for charte in chartes %}
+        {{charte.titre}}
+    {% endfor %}
+</article>
+
+<article class="contenu">
+    {% for charte in chartes %}
+        {{charte.contenu}}
+    {% endfor %}
+</article>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

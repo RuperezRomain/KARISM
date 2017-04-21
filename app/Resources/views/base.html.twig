@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Karism{% endblock %}</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        {% block stylesheets %}
+            <link href="{{ asset('css/master.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+        <div id='page'>
+            <div id='containertop'>
+            </div>
+            <div id='caroussel'>
+
+            </div>
+        </div>
+        {% endblock %}
+        {% block footer %}
+            &copy; Copyright 2017 - Karism
+        {% endblock %}
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

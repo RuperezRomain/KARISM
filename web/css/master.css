@@ -1,0 +1,13 @@
+html, body
+{
+    background-color: rgba(163,8,132,0.5);
+    font-family: 'Roboto', sans-serif;
+}
+#carouselExampleControls
+{
+    background-color: rgba(0,0,0,0.3);
+}
+img
+{
+
+}
