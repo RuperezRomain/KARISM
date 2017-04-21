@@ -34,7 +34,10 @@ class User implements UserInterface, Serializable {
     /**
      * @var array
      *
-     * @ORM\Column(name="roles", type="array", nullable=true)
+     * @ORM\ManyToMany(targetEntity="Role")
+     * @ORM\JoinTable(name="user_role",
+     *      joinColumns={@ORM\JoinColumn(name="user_id",referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="role_id",referencedColumnName="id")})
      */
     private $roles;
 
