@@ -3,7 +3,7 @@ AppBundle\Entity\Charte:
     table: charte
     id:
         id:
-            type: integer
+            type: smallint
             nullable: false
             options:
                 unsigned: true
@@ -11,12 +11,6 @@ AppBundle\Entity\Charte:
             generator:
                 strategy: IDENTITY
     fields:
-        picture:
-            type: string
-            nullable: true
-            length: 255
-            options:
-                fixed: false
         titre:
             type: string
             nullable: false
@@ -29,4 +23,13 @@ AppBundle\Entity\Charte:
             length: 65535
             options:
                 fixed: false
+        image:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        position:
+            type: boolean
+            nullable: false
     lifecycleCallbacks: {  }

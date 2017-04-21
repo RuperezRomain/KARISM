@@ -7,7 +7,19 @@ html, body
 {
     background-color: rgba(0,0,0,0.3);
 }
-img
+.container
 {
-
+    height: 100%;
+    width: 100%;
+}
+#imgexpo
+{
+    height: 100%;
+    width: 100%;
+}
+h2
+{
+    position: static;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
 }

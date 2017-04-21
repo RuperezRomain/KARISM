@@ -2,46 +2,35 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Charte
- *
- * @ORM\Table(name="charte")
- * @ORM\Entity
  */
 class Charte
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
-     */
-    private $picture;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="titre", type="string", length=255, nullable=false)
      */
     private $titre;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="contenu", type="text", length=65535, nullable=false)
      */
     private $contenu;
 
+    /**
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @var boolean
+     */
+    private $position;
 
 
     /**
@@ -52,30 +41,6 @@ class Charte
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set picture
-     *
-     * @param string $picture
-     *
-     * @return Charte
-     */
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
-    /**
-     * Get picture
-     *
-     * @return string
-     */
-    public function getPicture()
-    {
-        return $this->picture;
     }
 
     /**
@@ -125,4 +90,53 @@ class Charte
     {
         return $this->contenu;
     }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Charte
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set position
+     *
+     * @param boolean $position
+     *
+     * @return Charte
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return boolean
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
 }
+

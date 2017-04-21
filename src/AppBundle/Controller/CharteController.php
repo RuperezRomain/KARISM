@@ -18,6 +18,7 @@ class CharteController extends Controller
         //appelle entity manager
         $em = $this->getDoctrine()->getManager();
         // récupère toutes les infos dans la table
+        /*
         $chartes = $em->getRepository('AppBundle:Charte')->findAll();
         $titres = $em->getRepository('AppBundle:Charte')->findOneById(3);
         $contenus = $em->getRepository('AppBundle:Charte')->find(2);
@@ -27,7 +28,13 @@ class CharteController extends Controller
             'chartes' => $chartes,
             'titres' => $titres,
             'contenus' => $contenus,
-        ));
+        ));*/
 
+        // Liste d'articles recup depuis la bdd en tenant compte de la position (ordre ascendant)
+        $chartes = $em->getRepository('AppBundle:Charte')->findBy(array(), array('position'=>'asc'));
+        // Appel de la vue
+        return $this->render('default/charte.html.twig', array(
+        'chartes' => $chartes,
+    ));
     }
 }

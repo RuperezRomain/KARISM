@@ -5,23 +5,18 @@
 {% endblock %}
 
 {% block body %}
-<article class="img">
-    {% for charte in chartes %}
-        {{charte.picture}}
-    {% endfor %}
-</article>
+<div class="container">
+    <article id="imgexpo">
+        <img src="{{ asset('img/expo.png')}}" alt="expo">
+    </article>
+</div>
 
-<article class="titre">
     {% for charte in chartes %}
-        {{charte.titre}}
-    {% endfor %}
-</article>
-
-<article class="contenu">
-    {% for charte in chartes %}
+    <article class="titre">
+        <h2>{{charte.titre}}</h2><br>
         {{charte.contenu}}
+    </article>
     {% endfor %}
-</article>
 {% endblock %}
 
 {% block javascripts %}{% endblock %}
