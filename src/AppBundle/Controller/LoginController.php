@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\AppBundle;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -60,12 +61,14 @@ class LoginController extends Controller
         //handle the submit
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
+            //Recupertation de l'object role 
+            $em = $this->getDoctrine()->getManager();
+            $roleUser = $em->getRepository("AppBundle:Role")->findByName("ROLE_USER");
             //Encode the password
             $password = $this->get('security.password_encoder')
                 ->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
-            $user->setRoles(array("ROLE_USER"));
+            $user->setRoles($roleUser);
             $user->setArtistValidate(0);
             $user->setHoteValidate(0);
 

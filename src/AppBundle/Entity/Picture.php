@@ -24,9 +24,9 @@ class Picture
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="img", type="string", length=255)
      */
-    private $url;
+    private $img;
 
     /**
      * @var int
@@ -34,6 +34,65 @@ class Picture
      * @ORM\Column(name="style", type="integer")
      */
     private $style;
+
+     
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="techniques", type="integer")
+     */
+    private $techniques;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="genres", type="integer")
+     */
+    private $genres;
+    
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="size", type="integer")
+     */
+    private $size;
+   
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="prix", type="integer")
+     */
+    private $prix;
+    
+    
+    ///Le champ expo correspond aux exposition où l’œuvre à été visible
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="expos", type="integer")
+     */
+    private $expos;
+    
+    ///Le champ -commentaire correspond a la description de l'oeuvre
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="commentaire", type="integer")
+     */
+    private $commentaire;
+    
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="fk_serie", type="integer")
+     */
+    private $fk_serie;
+    
+    
+
+    
 
 
     /**
@@ -47,27 +106,27 @@ class Picture
     }
 
     /**
-     * Set url
+     * Set img
      *
-     * @param string $url
+     * @param string $img
      *
      * @return Picture
      */
-    public function setUrl($url)
+    public function setUrl($img)
     {
-        $this->url = $url;
+        $this->img = $img;
 
         return $this;
     }
 
     /**
-     * Get url
+     * Get img
      *
      * @return string
      */
     public function getUrl()
     {
-        return $this->url;
+        return $this->img;
     }
 
     /**
@@ -93,5 +152,63 @@ class Picture
     {
         return $this->style;
     }
+    
+    function getTechniques() {
+        return $this->techniques;
+    }
+
+    function getGenres() {
+        return $this->genres;
+    }
+
+    function getSize() {
+        return $this->size;
+    }
+
+    function getPrix() {
+        return $this->prix;
+    }
+
+    function getExpos() {
+        return $this->expos;
+    }
+
+    function getCommentaire() {
+        return $this->commentaire;
+    }
+
+    function getFk_serie() {
+        return $this->fk_serie;
+    }
+
+    function setTechniques($techniques) {
+        $this->techniques = $techniques;
+    }
+
+    function setGenres($genres) {
+        $this->genres = $genres;
+    }
+
+    function setSize($size) {
+        $this->size = $size;
+    }
+
+    function setPrix($prix) {
+        $this->prix = $prix;
+    }
+
+    function setExpos($expos) {
+        $this->expos = $expos;
+    }
+
+    function setCommentaire($commentaire) {
+        $this->commentaire = $commentaire;
+    }
+
+    function setFk_serie($fk_serie) {
+        $this->fk_serie = $fk_serie;
+    }
+
+
 }
 
