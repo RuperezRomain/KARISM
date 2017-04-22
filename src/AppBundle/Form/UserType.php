@@ -6,6 +6,7 @@ use AppBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,6 +24,7 @@ class UserType extends AbstractType {
                     'first_options' => array('label' => 'Password'),
                     'second_options' => array('label' => 'Repeat Password'),
                 ))
+                ->add('profilPicture',FileType::class,array('data_class'=> null))
                 ->add('genre', ChoiceType::class, array(
                     'choices' => array(
                         'Homme' => 'Homme',

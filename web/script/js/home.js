@@ -8,25 +8,24 @@ $(document).ready(function () {
     });
 
 //    Init SlickCarousel
-$(".titelHeader").css({
-    
-}); 
 
     $('.your-class').slick({
 
         infinite: true,
         speed: 300,
         slidesToShow: 7,
-        slidesToScroll: 7,
-        arrows: false,
+        slidesToScroll: 2,
+   
+        
 
         responsive: [
             {
-                breakpoint: 1000,
+                breakpoint: 1050,
                 settings: {
                     slidesToShow: 3,
-                    slidesToScroll: 3,
-                    infinite: true
+                    slidesToScroll: 2,
+                    infinite: true,
+                    arrows : false
 
                 }
             },
@@ -34,14 +33,16 @@ $(".titelHeader").css({
                 breakpoint: 600,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 2
+                    slidesToScroll: 2,
+                     arrows : false
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
                     slidesToShow: 1,
-                    slidesToScroll: 1
+                    slidesToScroll: 1,
+                     arrows : false
                 }
             }
             // You can unslick at a given breakpoint now by adding:
@@ -50,7 +51,9 @@ $(".titelHeader").css({
         ]
 
     });
-
+    
+    
+  
     /*******Video****/
     $(".vid").css({
       position:'relative',

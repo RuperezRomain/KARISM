@@ -57,19 +57,25 @@ class Place
     private $city;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="userid", type="integer")
-     */
-    private $userid;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="available", type="datetime")
      */
     private $available;
-
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="expos", type="integer")
+     */
+    private $expos;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="fk_user", type="integer")
+     */
+    private $fk_user;
 
     /**
      * Get id
