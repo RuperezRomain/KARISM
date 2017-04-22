@@ -4,7 +4,7 @@
 {% endblock %}
 {% block body %}Inscription
 
-{{ form_start(form) }}
+    {{ form_start(form) }}
     {{ form_row(form.username) }}
     {{ form_row(form.email) }}
     {{ form_row(form.password.first) }}
@@ -15,8 +15,14 @@
     {{ form_row(form.phone) }}
     {{ form_row(form.bio) }}
     {{ form_row(form.adress) }}
+    {{ form_row(form.profilPicture)}}
+    <img id="previewPicture" src="#" alt="your image" width="350px" />
 
-    <button type="submit">S'enregistrer</button>
-{{ form_end(form) }}
-
+    <button type="submit" class="btn btn-primary">S'enregistrer</button>
+    {{ form_end(form) }}
 {% endblock %}
+{% block javascripts %}        
+    {{ parent () }}
+    <script src="script/js/previewImage.js"></script>
+{% endblock %}
+

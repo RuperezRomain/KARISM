@@ -8,6 +8,7 @@ use AppBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class LoginController extends Controller
@@ -64,6 +65,11 @@ class LoginController extends Controller
             //Recupertation de l'object role 
             $em = $this->getDoctrine()->getManager();
             $roleUser = $em->getRepository("AppBundle:Role")->findByName("ROLE_USER");
+
+            $nomDuFichier = md5(uniqid()) . '.' . $user->getProfilPicture()->getClientOriginalExtension();
+            $user->getProfilPicture()->move('../web/images/profilPictures', $nomDuFichier);
+            $user->setProfilPicture($nomDuFichier);
+            
             //Encode the password
             $password = $this->get('security.password_encoder')
                 ->encodePassword($user, $user->getPassword());
