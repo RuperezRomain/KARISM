@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Role\RoleInterface;
 
 /**
  * Role
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="role")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\RoleRepository")
  */
-class Role
+class Role implements RoleInterface
 {
     /**
      * @var int
@@ -29,6 +31,21 @@ class Role
     private $name;
 
 
+    /**
+     * @ORM\Column(name="role", type="string", length=20, unique=true)
+     */
+    private $role;
+    
+     /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="roles")
+     */
+    private $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -62,5 +79,13 @@ class Role
     {
         return $this->name;
     }
+    
+     /**
+     * @see RoleInterface
+     */
+    public function getRole() {
+          return $this->role;
+    }
+
 }
 

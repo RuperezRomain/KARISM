@@ -2,8 +2,9 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 use Serializable;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -197,13 +198,14 @@ class User implements UserInterface, Serializable {
         return $this;
     }
 
-    /**
-     * Get roles
-     *
-     * @return array
-     */
+  
+     public function __construct()
+    {
+        $this->roles = new ArrayCollection();
+    }
+    
     public function getRoles() {
-        return $this->roles;
+        return $this->roles->toArray();
     }
 
     /**
