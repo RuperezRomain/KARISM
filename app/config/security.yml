@@ -46,6 +46,7 @@ security:
      
         - { path: ^/admin, roles: [ROLE_ADMIN] } 
         - { path: ^/user, roles: [ROLE_USER] } 
+        
             # activate different ways to authenticate
 
             # http_basic: ~
