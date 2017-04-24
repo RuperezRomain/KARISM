@@ -64,7 +64,7 @@ class LoginController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             //Recupertation de l'object role 
             $em = $this->getDoctrine()->getManager();
-            $roleUser = $em->getRepository("AppBundle:Role")->findByName("ROLE_USER");
+            $roleUser = $em->getRepository("AppBundle:Role")->findByRole("ROLE_USER");
 
             $nomDuFichier = md5(uniqid()) . '.' . $user->getProfilPicture()->getClientOriginalExtension();
             $user->getProfilPicture()->move('../web/images/profilPictures', $nomDuFichier);
