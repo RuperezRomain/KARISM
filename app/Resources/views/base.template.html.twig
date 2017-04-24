@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Kar:sm{% endblock %}</title>
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('/script/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/script/css/main.css') }}" />
+        
+        {% endblock %}
+        
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        
+    <div class="container-fluid">       
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row navigation">
+            <div class="col-xs-2 col-sm-4 col-md-5 col-lg-5 ">
+                <a href="http://placehold.it"><img src="http://placehold.it/60x35"></a></div>
+              
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-5 "><h4>Bonjour user </h4></div>
+           
+       <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 dropdown"><a href="http://placehold.it"><img class="roundedimg" src="http://placehold.it/60x60"></a>
+              <button class="btn btn-default dropdown-toggle btn btn-link text-left " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Romain Duris <span class="caret"> </span>
+              </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% block navbar    %}
+       {% endblock   %}
+       
+        {% block content%}  
+        {% endblock %}
+        
+         <div class="row footerr pull-left degrade"> 
+
+           
+                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                     A propos <br> Les EXPOS à la MAISON est une plateforme de mise en relation entre artistes et particuliers qui s’articule autour d’une galerie d’art en ligne.
+ Ce projet d’art, fondé par Sellah Alidor (collectif FROM PARIS) et Thibault Chazal
+                 </div>
+                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <p> En savoir plus <br> 
+                          Charte <br> FAQ <br></p>
+                 </div>
+                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                     <p> Contact <br>
+                     <span class="glyphicon glyphicon-phone">07 81 02 72 15</span>
+                     <br>
+                      <span class="glyphicon glyphicon-envelope"> contact@karism.fr</span>
+                     </p>
+                 </div>
+                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <a href="http://placehold.it"><img src="http://placehold.it/60x35"></a>
+                     icone resaux sociaux <br> O <br> O <br>
+                     
+                 </div>
+            </div>
+     </div> 
+        
+        
+        
+          
+        {% block body %}{% endblock %}
+        {% block javascripts %}        
+        <script src="{{ asset('script/jquery/jquery.js') }}"></script>
+        <script src="{{ asset('script/js/bootstrap.js') }}"></script>
+        <script src="{{ asset('script/js/angular.min.js') }}"></script>
+        {% endblock %}
+        {% block footer %}
+
+        {% endblock %}
+    </body>
+</html>
