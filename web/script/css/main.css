@@ -51,5 +51,45 @@ iframe {
     width:100%;
     background-color: white;
 }*/
+/*.foot{
+    position : fixed;
+    padding: 3%;
+    bottom : 0;
+    width:100%;
+    background-color: white;
+}*/
+.row {
+  background-color: white;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em; }
+
+.navigation {
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); }
+
+.roundedimg {
+  overflow: hidden;
+  border-radius: 50px;
+  border-radius: 50px;
+  width: 40px;
+  height: 40px; }
+
+.btn-link {
+  color: black; }
+
+.footerr {
+  background-color: gray;
+  position: fixed;
+  height: 125px;
+  bottom: 0;
+  padding-bottom: 3em; }
+
+body {
+  background-color: pink; }
+
+.contentLEFT {
+  background-color: yellow; }
+
+.contentRIGHT {
+  background-color: yellowgreen; }
 
 /*# sourceMappingURL=main.css.map */
