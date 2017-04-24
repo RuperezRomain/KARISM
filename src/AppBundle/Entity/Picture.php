@@ -21,6 +21,13 @@ class Picture
      */
     private $id;
 
+   /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255)
+     */
+    private $nom;
+    
     /**
      * @var string
      *
@@ -83,15 +90,7 @@ class Picture
     private $commentaire;
     
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="fk_serie", type="integer")
-     */
-    private $fk_serie;
-    
-    
-
+  
     
 
 
@@ -177,10 +176,7 @@ class Picture
         return $this->commentaire;
     }
 
-    function getFk_serie() {
-        return $this->fk_serie;
-    }
-
+    
     function setTechniques($techniques) {
         $this->techniques = $techniques;
     }
@@ -205,9 +201,22 @@ class Picture
         $this->commentaire = $commentaire;
     }
 
-    function setFk_serie($fk_serie) {
-        $this->fk_serie = $fk_serie;
+    function getNom() {
+        return $this->nom;
     }
+
+    function getImg() {
+        return $this->img;
+    }
+
+    function setNom($nom) {
+        $this->nom = $nom;
+    }
+
+    function setImg($img) {
+        $this->img = $img;
+    }
+
 
 
 }
