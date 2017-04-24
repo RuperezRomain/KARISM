@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    {{parent()}} 
+    {#<link rel="stylesheet" href="{{ asset('/script/slickCarousel/slick-theme.css') }}" />#}
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+{% endblock %}
+
+{% block title %}
+    {{parent()}}
+    - Edition Profil
+{% endblock %}
+
+{% block body %}
+
+    <div id="editProfil" class="col-lg-6 profil">
+        <p>First</p><input id="firstname" class="col-lg-6"/>
+        <p>last</p><input id="lastname" class="col-lg-6"/>
+        <p>usern</p><input id="username" class="col-lg-6" placeholder="adresse"/>
+        <p>phone</p><input id="phone" class="col-lg-6"/>
+        <p>bio</p><input id="bio" class="col-lg-6"/>
+        <p>adress</p><input id="adress" class="col-lg-6"/>
+        <select id="genre">
+            <option value="">Sexe</option>
+            <option value="Homme">Homme</option>
+            <option value="Femme">Femme</option></select>
+        <input type="file" id="user_profilPicture"/>
+        <img id="previewPicture" src="#" alt="your image" width="350px" />
+
+        <div class="col-lg-9">
+            <input id="validEditProfil" type="submit" value="Editer"/>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}  
+    {{ parent() }}
+    <script src="{{ asset('script/js/editProfil.js') }}"></script>
+    <script src="{{ asset('script/js/previewImage.js')}}"></script>
+{% endblock %}

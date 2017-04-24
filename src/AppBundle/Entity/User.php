@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 use Serializable;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -14,7 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User implements UserInterface, Serializable {
+class User implements UserInterface, Serializable, JsonSerializable {
 
     /**
      * @var int
@@ -581,6 +582,19 @@ return null;
                 $this->email,
                 $this->password,
                 ) = unserialize($serialized);
+    }
+
+    public function jsonSerialize() {
+                return array(
+            "firstname" => $this->firstname,
+            "lastname" => $this->lastname,
+            "username" => $this->username,
+            "phone" => $this->phone,
+            "bio" => $this->bio,
+            "adress" => $this->adress,
+            "genre" => $this->genre,
+            "user_profilPicture" => $this->profilPicture,
+        );
     }
 
 }
