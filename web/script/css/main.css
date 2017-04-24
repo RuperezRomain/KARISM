@@ -44,6 +44,12 @@
 iframe {
   border: none; }
 
+.pop {
+  display: box;
+  background-color: red;
+  width: 400px;
+  height: 400px; }
+
 /*.foot{
     position : fixed;
     padding: 3%;
@@ -77,14 +83,15 @@ iframe {
   color: black; }
 
 .footerr {
-  background-color: gray;
+  background-color: grey;
   position: fixed;
   height: 125px;
   bottom: 0;
-  padding-bottom: 3em; }
+  padding: 15px 50px 15px 50px; }
 
-body {
-  background-color: pink; }
+.footTEXT {
+  font-family: Arial;
+  font-size: 13px; }
 
 .contentLEFT {
   background-color: yellow; }
