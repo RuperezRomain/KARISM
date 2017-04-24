@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * Serie
@@ -10,8 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="serie")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SerieRepository")
  */
-class Serie
-{
+class Serie {
+
     /**
      * @var int
      *
@@ -22,39 +24,46 @@ class Serie
     private $id;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="name", type="integer")
+     * @ORM\Column(name="name", type="string")
      */
     private $name;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="userid", type="integer")
+     * Many Users have One Address.
+     * @ManyToOne(targetEntity="User")
+     * @JoinColumn(name="userid", referencedColumnName="id")
      */
     private $userid;
 
+    /**
+     * @var array
+     *
+     * @ORM\ManyToMany(targetEntity="Picture")
+     * @ORM\JoinTable(name="serie_picture",
+     *      joinColumns={@ORM\JoinColumn(name="serie_id",referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="picture_id",referencedColumnName="id")})
+     */
+    private $fk_picture;
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
     /**
      * Set name
      *
-     * @param integer $name
+     * @param string $name
      *
      * @return Serie
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -63,10 +72,9 @@ class Serie
     /**
      * Get name
      *
-     * @return int
+     * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -77,8 +85,7 @@ class Serie
      *
      * @return Serie
      */
-    public function setUserid($userid)
-    {
+    public function setUserid($userid) {
         $this->userid = $userid;
 
         return $this;
@@ -89,9 +96,16 @@ class Serie
      *
      * @return int
      */
-    public function getUserid()
-    {
+    public function getUserid() {
         return $this->userid;
     }
-}
 
+    function getFk_picture() {
+        return $this->fk_picture;
+    }
+
+    function setFk_picture($fk_picture) {
+        $this->fk_picture = $fk_picture;
+    }
+
+}
