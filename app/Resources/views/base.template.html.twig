@@ -35,13 +35,13 @@
             </div>
           </div>
         </div>
+        </div>
         {% block navbar    %}
        {% endblock   %}
        
-        {% block content%}  
-        {% endblock %}
+         {% block body %}{% endblock %}
         
-         <div class="row footerr pull-left degrade"> 
+         <footer class="footerr pull-left degrade"> 
 
            
                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
@@ -64,13 +64,13 @@
                      icone resaux sociaux <br> O <br> O <br>
                      
                  </div>
-            </div>
-     </div> 
+            </footer>
+      
         
         
         
           
-        {% block body %}{% endblock %}
+       
         {% block javascripts %}        
         <script src="{{ asset('script/jquery/jquery.js') }}"></script>
         <script src="{{ asset('script/js/bootstrap.js') }}"></script>
