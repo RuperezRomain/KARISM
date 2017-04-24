@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Lun 24 Avril 2017 à 00:01
+-- Généré le :  Lun 24 Avril 2017 à 11:19
 -- Version du serveur :  5.7.17-0ubuntu0.16.04.1
 -- Version de PHP :  7.0.15-0ubuntu0.16.04.4
 
@@ -190,7 +190,8 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`id`, `name`, `role`) VALUES
-(1, 'a:1:{i:0;s:9:"ROLE_USER";}', 'ROLE_USER');
+(1, 'a:1:{i:0;s:9:"ROLE_USER";}', 'ROLE_USER'),
+(2, 'a:1:{i:0;s:12:"ROLE_ARTISTE";}', 'ROLE_ARTISTE');
 
 -- --------------------------------------------------------
 
@@ -297,7 +298,11 @@ INSERT INTO `user` (`id`, `genre`, `firstname`, `lastname`, `birthday`, `usernam
 (5, 'Homme', NULL, NULL, NULL, 'a', 'a', 'a@a', NULL, NULL, '8178af5924688b1058486c952d8b5d6e.png', NULL, NULL, NULL, NULL, NULL, 0, 0),
 (6, 'Homme', NULL, NULL, NULL, 'b', 'b', 'b@b', NULL, NULL, 'bfff55b76a33dfdd96afa8a6dfb44c55.png', NULL, NULL, NULL, NULL, NULL, 0, 0),
 (7, NULL, NULL, NULL, NULL, 'x', 'x', 'x@x', NULL, NULL, '0f11098f24e64aea151c7792d99328b8.png', NULL, NULL, NULL, NULL, NULL, 0, 0),
-(8, NULL, NULL, NULL, NULL, 'w', 'w', 'w@w', NULL, NULL, 'b13044495469d769facb9180df63343b.png', NULL, NULL, NULL, NULL, NULL, 0, 0);
+(8, NULL, NULL, NULL, NULL, 'w', 'w', 'w@w', NULL, NULL, 'b13044495469d769facb9180df63343b.png', NULL, NULL, NULL, NULL, NULL, 0, 0),
+(9, NULL, NULL, NULL, NULL, 't', 't', 't@t', NULL, NULL, '281dcb51f01444e009caa839a46af02a.png', NULL, NULL, NULL, NULL, NULL, 0, 0),
+(10, NULL, NULL, NULL, NULL, 'dd', 'dd', 'dd@dd', NULL, NULL, '69432b8c5867a2e96ad557d943ae959b.png', NULL, NULL, NULL, NULL, NULL, 0, 0),
+(11, NULL, NULL, NULL, NULL, 'mm', 'mm', 'mm@mm', NULL, NULL, '602377cbad6a9588e0785e65fbb495c3.png', NULL, NULL, NULL, NULL, NULL, 0, 0),
+(12, NULL, NULL, NULL, NULL, 'l', 'l', 'l@l', NULL, NULL, '879d6f0f52861e25f6b6b83595ef95b7.png', NULL, NULL, NULL, NULL, NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -319,7 +324,10 @@ INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
 (5, 1),
 (6, 1),
 (7, 1),
-(8, 1);
+(8, 1),
+(11, 1),
+(11, 2),
+(12, 1);
 
 -- --------------------------------------------------------
 
@@ -529,7 +537,7 @@ ALTER TABLE `place_type`
 -- AUTO_INCREMENT pour la table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `serie`
 --
@@ -564,7 +572,7 @@ ALTER TABLE `style_user`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT pour la table `wishlist`
 --
