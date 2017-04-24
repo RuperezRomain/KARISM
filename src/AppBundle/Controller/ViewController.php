@@ -31,4 +31,11 @@ class ViewController extends Controller {
         return $this->render('default/interrogation.html.twig');
     }
 
+        /**
+     * @Route("/profil", name="profilTest")
+     */
+    public function profilAction() {
+
+        return $this->render('default/profil.html.twig');
+    }
 }
