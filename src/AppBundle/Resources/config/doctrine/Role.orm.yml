@@ -1,0 +1,30 @@
+AppBundle\Entity\Role:
+    type: entity
+    table: role
+    uniqueConstraints:
+        UNIQ_57698A6A57698A6A:
+            columns:
+                - role
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        role:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

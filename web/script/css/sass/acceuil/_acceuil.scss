@@ -1,0 +1,41 @@
+
+.sizeScreen{
+    background-color: $colorMid ;
+    background-image: url('https://lh3.google.com/u/0/d/0B7a-buqq3ksYcWp5YXkxbXVKT3c=w1301-h678-iv1');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+} .video {
+    max-height: 700px;
+}
+/****header*****/
+.titelHeader > h1{
+    text-align: center;
+}> h2{
+    text-align: center;
+}
+/****Carousel*****/
+.profil{
+    height: 200px !important;
+    /*width: 200px !important;*/
+    background-image: url('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRhCzI7HPbx-c1ukD80OYVy-7VNmuNxaZfD-Juf9SalOHeOV_P18A');
+    background-position: center;
+    background-repeat: no-repeat;
+    /*padding: 10px;*/
+}
+//Fleche carousel//
+.slick-prev {
+    position: relative;
+    top: 223px;
+    left: 50px;
+} 
+/****Section : les expo selon nous ******/
+.containerThumb > .thumbnail {
+    border: none;
+}> .caption{
+    padding:0px 50px 0px 50px;
+}
+iframe{
+    border: none;
+
+}

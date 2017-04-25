@@ -1,0 +1,24 @@
+AppBundle\Entity\StylePicture:
+    type: entity
+    table: style_picture
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        picture:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        style:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

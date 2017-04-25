@@ -1,0 +1,26 @@
+AppBundle\Entity\UserRole:
+    type: entity
+    table: user_role
+    indexes:
+        IDX_2DE8C6A3A76ED395:
+            columns:
+                - user_id
+        IDX_2DE8C6A3D60322AC:
+            columns:
+                - role_id
+    id:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: user_id
+        roleId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: role_id
+    lifecycleCallbacks: {  }

@@ -1,0 +1,25 @@
+AppBundle\Entity\Note:
+    type: entity
+    table: note
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        url:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        userid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

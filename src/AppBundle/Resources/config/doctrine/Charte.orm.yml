@@ -1,0 +1,35 @@
+AppBundle\Entity\Charte:
+    type: entity
+    table: charte
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        titre:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        contenu:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        image:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        position:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,25 @@
+AppBundle\Entity\City:
+    type: entity
+    table: city
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        city:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        country:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

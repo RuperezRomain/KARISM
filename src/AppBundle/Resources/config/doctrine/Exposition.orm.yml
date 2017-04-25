@@ -1,0 +1,53 @@
+AppBundle\Entity\Exposition:
+    type: entity
+    table: exposition
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        placehote:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        artiste:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        date:
+            type: datetime
+            nullable: false
+        listinvite:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        status:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        artistviewed:
+            type: boolean
+            nullable: false
+        hoteviewed:
+            type: boolean
+            nullable: false
+        checklistehote:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        checklisteartist:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,23 @@
+
+{% extends 'base.template.html.twig' %}
+
+{% block title %}
+    {{parent()}} - Charte
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <article id="imgexpo">
+        <img src="{{ asset('script/img/expo.jpg')}}" alt="expo">
+    </article>
+</div>
+
+    {% for charte in chartes %}
+    <article class="titre">
+        <h2>{{charte.titre}}</h2><br>
+        {{charte.contenu}}
+    </article><br><br><br><br>
+    {% endfor %}
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

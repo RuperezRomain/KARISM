@@ -1,0 +1,48 @@
+AppBundle\Entity\Place:
+    type: entity
+    table: place
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        placetype:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        size:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        capacity:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        adress:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        city:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        userid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        available:
+            type: datetime
+            nullable: false
+    lifecycleCallbacks: {  }
