@@ -1,16 +1,11 @@
-.videox{
-    margin: 15px;
-    margin-top: 20px;
-}
-
 .red {
      background-color: red;
-     height: 360px;
+     height: 300px;
 }
 
 .blue {
      background-color: blue;
-     height: 360px;
+     height: 300px;
 }
 
 .reda {
@@ -28,81 +23,15 @@
      height: 300px;
 }
 
+body {
+    
+}
+
 .avatar {
-    margin : 50px;
-    margin-top: 70px;
+    margin : 30px;
+    margin-top: 40px;
 }
 
 .presentation {
     margin: 50px;
-}
-
-/* test */
-
-blockquote{
-    border-left:none
-}
-
-.quote-badge{
-    background-color: rgba(0, 0, 0, 0.2);   
-}
-
-.quote-box{
-    
-    overflow: hidden;
-    margin-top: -50px;
-    padding-top: -100px;
-    border-radius: 17px;
-    background-color: #4ADFCC;
-    margin-top: 55px;
-    color:white;
-    width: 325px;
-    box-shadow: 2px 2px 2px 2px #E0E0E0;
-    
-}
-
-.quotation-mark{
-    
-    margin-top: -10px;
-    font-weight: bold;
-    font-size:100px;
-    color:white;
-    font-family: "Times New Roman", Georgia, Serif;
-    
-}
-
-.quote-text{
-    
-    font-size: 19px;
-    margin-top: -65px;
-}
-
-
-
-.box > .icon { text-align: center; position: relative; }
-.box > .icon > .image { position: relative; z-index: 2; margin: auto; width: 88px; height: 88px; border: 8px solid white; line-height: 88px; border-radius: 50%; background: #63B76C; vertical-align: middle; }
-.box > .icon:hover > .image { background: #333; }
-.box > .icon > .image > i { font-size: 36px !important; color: #fff !important; }
-.box > .icon:hover > .image > i { color: white !important; }
-.box > .icon > .info { margin-top: -24px; background: rgba(0, 0, 0, 0.04); border: 1px solid #e0e0e0; padding: 15px 0 10px 0; }
-.box > .icon:hover > .info { background: rgba(0, 0, 0, 0.04); border-color: #e0e0e0; color: white; }
-.box > .icon > .info > h3.title { font-family: "Roboto",sans-serif !important; font-size: 16px; color: #222; font-weight: 500; }
-.box > .icon > .info > p { font-family: "Roboto",sans-serif !important; font-size: 13px; color: #666; line-height: 1.5em; margin: 20px;}
-.box > .icon:hover > .info > h3.title, .box > .icon:hover > .info > p, .box > .icon:hover > .info > .more > a { color: #222; }
-.box > .icon > .info > .more a { font-family: "Roboto",sans-serif !important; font-size: 12px; color: #222; line-height: 12px; text-transform: uppercase; text-decoration: none; }
-.box > .icon:hover > .info > .more > a { color: #fff; padding: 6px 8px; background-color: #63B76C; }
-.box .space { height: 30px; }
-
-.ligneBlanche {
-    border: 3px solid white;
-}
-
-.calendar {
-    background-color: green;
-    height : 300px;
-}
-
-.info {
-    background-color: orange;
-    height : 300px;
 }
