@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Gestion de la page Charte
+ *
+ * @package Kar:sm
+ * @author Emilie Letailleur
+ * @copyright 2017- Kar:sm
+ *
+ */
+
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
