@@ -106,3 +106,34 @@ blockquote{
     background-color: orange;
     height : 300px;
 }
+
+.collaboration {
+    background-color: lime;
+    height: 400px;
+    border: 2px solid black;
+}
+
+.itemUn{
+        background-color: lightsalmon;
+    height: 200px;
+}
+
+.itemDeux{
+       background-color: grey;
+    height: 200px; 
+}
+
+/* test section */
+
+.gallery-title
+{
+    font-size: 36px;
+    color: #42B32F;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 70px;
+}
+.gallery_product
+{
+    margin-bottom: 30px;
+}
