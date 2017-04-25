@@ -18,21 +18,41 @@
 
 {% block body %}
 <div class="container">
-<div class="row">
-<div class="col-md-12 col-xs-12">
-    <div class="col-md-3 col-xs-3 red">
-        <img class="img-thumbnail img-responsive avatar" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAADMCAMAAAAI/LzAAAABGlBMVEX///8wa//50qArKzxCQVj2vY4rKTN2doEwafgtQ4gjIzYrKzv/16MbIDcsLCyahG4lJzrGxsgRESpYSkv/w5IrKjcfHzMvLkAiJDk4OEwiJTkZGS/29vf/2qUrKC/x8fI2NUnyzZ3OztLY2Nvo6OorLkUNGjYAACKnp6znw5dcUlIwZu/f3+I6OkqdnaPWpX9paXOFhY0sMlIuUbO4uL0vYN5BOkTcupE2NEJ7e4RPT1xpXFhLS1kuVsAsOGa9vcEtR5UtP3ySkphJQ0vLrIi6n4F+dGZfWVIcICTJnHuFa165kXWPcmKMgnUqMjkLGCOlgmwvXdSqknlMSkcsOmyIbF8tTKRdXWkrJSIrM1hxZF03Oz6/o4NkU1A4oJSvAAARb0lEQVR4nO1dDVvayBauRFETUgaUJCVU5EMLCBQqAgJKBXFrtV2lXWnd+v//xk3mzECABDBkktz73Hefp1ttCHlzPufMmZk3bxggkcxGytVKq9TkNMilTqty3stFitlsMplITF+ZzGZy251WLWF1My+RyETKlVI0qvI84ggQ4iVJ1X4nd0bb1XKu1u1GIpFuN6cx7iDtUg6pZa8ffB6Z8nmLVyc0ZoF4XlJVNapqf2rkVIleimSvH30GiVylhCRLIovxIev14xuQKFbVKG+PiI5ozWsGE0SqsmT2jIL2H/nLYvjHaDLV5jQVgZPlw8N3BIcaZFn7rWDCivws9bwmAUj0StOWIh++2zSFzkvWadELdcabss5HqnpNQ0eiK6tGIrIFEWsAGT9Iplg1SsVKJIvJYJvJec1EM/wRvyaVzU38WR94sxw35iIc2mKiGRL++Ieix1SS5ypVMdkulc3NQ/3znmcAxe2xP7ZPhWgZX/GWS3Y05mLPVgCgZajkqc0Ux1zkNagQx6zrWc+7UUCmJZEAvo6KUcFg51zxygeM5fL6GDkjmIlnl1ppb8gQLsK6XCaC0b1AqesFl3OawaxHZYaMZjge5AFl3gnTx2RkSB0om6jrbiBSQqBja3MBNoeUlJ7WlN1lk2zx64cXAx34H2WD3GVzLjnJZYxD6gbc1LT0h/VTmIVsou6NoBMVng2XiWtzbzhQ4xwzfis2qORS9MwSwThsMNNs+JE7mU1NcijCLGSjnrvhBBJMBbM59gKulAQyEjuLAZB4g1wo15LBJTPBbNIBjrTNngxbi8EgZtNknkFHVOaCoWYjbScZk6lKzAWzOTabCFsuCSj5ORf8ZdMXA4rGV9i650wHOaplVjoLPkDNMCVTazpqMoeCRZYHopHOmZIpO2sydAgzf0MQjcKSSwLbv2MRk6b8JmxANCpL70ySTKfs31Blmivy4H/jWepZseWk/U8EY3LTQ0ieGfqzTAcnZg4N/cH643QeYVrewLTDcFyTxsIXHOFClEx57itmhkNyGoa5cxreoiNc4NXH9/KNgikbzFViWA2ISI6RocP9YSDUeB6zMSgwmYJmZzQkzXSOi9JOBQKB1M3xvBsAD1BhN6qJRB0iQwsX9UZIIxN4P2zG4TeTiVF8Ceqwy2gMZA7XmcygtVhlgLkEAqE/e1TVKBvs7FiWaSZk9Pcm2A04lIsYDowx7waw55bdICObRroVuZCnFp/zEzKBfIEYDp3ywT/wLpKxM/dPA7/ynA8FjAjL4PmJxPHfVXYDNAMZ2pv0ajY0IRMLM1wCqWGdZAM4x8B/i7pChvrSV7qBQ/oWxEJjhouGa+rUZI/IvEo444+J7cYcFc2pNUhu4x2Zlf3AOE1G6D41LxedTf457gGZ6X6+FXTt3STjV5phMyaYTVjkyPDPbcnEiYrrXYyLlc1ARTOXP1ZcCBkv1Cx+8yyiCR1L8bw7NGglmg4vviCjq5kYfj8cj0b0dlLBpDlTC/cGlURc4c97ay4eqpkYDoUaN80JHW6qbZa0zBoh9sOz0cUPkiFkAqHU9fOxwq0EUQ6bOWTvyQiETECn00bKsqZ5hBSdykKxeK1m8ATvG98KzUV84kq9PVzKxAvJCNTRUjL6Q+QH9wUkxk2IIFFstsPX5lHSgozehyu4I5lxrhg2PGAo1bgetpvHx6KCECKapYjHSv9+0MiHVqIyIUO/hD0ZzoyM/iSBVKoxCD8X+vUm12z2C883w0YqlVpFv+bIcB6TgccJhd6PsapA/EpmPfyfjD3A9Ixm2XWBLRmhCT6EYUkzDYKJ1++39hBLMmhv674Obl5lVdGA2dl4/XZrnzWZ/f1bYMOP2HBJ4+Isat7uu0Bma/+2iRiKBroZ0d3WlhtktrbuMBk2s7RZPG0Wf95aSia0PLxYXWIks4XrAajFonZO+n8f9peQCV0PhgOTOpLxkoZ2ybXphw1k9h+wCyix8M45fGvN+peQGf54++X7j8EiMoMf37+8/TFcJpnbOtZrFrNnOd1kUH9rCZnhW8ACNoPvcIkJmykyEAAkFmTKKkSAxWQaf33BD/rlL8uyRX58yfy4c4oMfAuTpbU4/C8jE7omb/3td8sRcmN8ybzZmEmGBZkcj9Xs4xIyf5Mn/duaDL3kyxIyH/v6t/As1AyagJp3i71Z41/ypP9ak1lwyZQ3u4NvZNGxDe1Z8a+LbSZ1QwziW8qKTOobueRm/pIpyXzFcYbNtCZunEHYNy/wZuABzIx7lUuMZG7xdA2jNY8wAIi/LIkz+Zvvf3//tqAEq13yTbvkxuwSI5mXOMNBQALGGErBndzsRYGxE6O2hjL0NIgvt1svjMgEgMzL1u0LDDmZbeCQrEh0dNbHrO4d5xK4xxz6dGwmVZj1A6dLZH0WfJPy1dJj2UXqq2L4Ao5nufakWzLuXxJfNNNiD2QakKNcmHadR0qGjT9QYVlR/9VoFAwVa4lJ9m9AujLZMAP1nSfTn5BRK8zXNyVzaLJ9kekAaw2Erul74lWUY70WACM36kCz9vHCIZgdDKGBptkZubcuuNjFiZpikl2thdSNgtOxrruL6asw7nSaDDYZ1/fT6eLqpuiwb25gLYu6vZA+OzUR6BBo2dzt3cGSMCDoO0sGhpbsUhgr5HC8URyNNA2cy3iw0VEa1wSV8KJ+i1fi/T0mIzOO+yZIbmM923PQBTT2PNIyTc9gtwazuqRNDCH4e7EFXRHrWbztmGjybZwxl9iuNLMALKZVHEtpBthi3Fg5a4Iijpuo7pBo8jC5FPVoWyAQjXXgNJmEsZ66Cd2IME72hsubDKTrgvlkTKgRvp9p/gkFhuGwxdUk+Uce7XD0JlFVYfRslm6GGnVF4drXE1GEQtdtTlHqpmxSYP0qwwUzS1CEDWgU02bYtm7Pitj+k09pPAKp/HVbxL9qm10dxtbPtzxxZQCINahp4tHyZDQfP+7fhIfD8E2fNAyigonHGMBoj+Uas6UgC7dR30R12rTZESmihnFvnYlkNJXE/8p0KeNygHvmlL05swn9EU1bNxXxzyzxUAp6cJFXbpkiB4U0ZV53QtcFbq4zEHGF+SJIniwE4r3eSjNRJWzmC4Kh/LAwLZ24WBjOtwLnyWpA3jtPRpElBWilbdKxnB+048eKPnuAkHIcbw9M5sryxLhYrvxbGcUOkc2eWQBJ5Qc3hbog1As3g7xJPAo1yNI5vuT1FqcYRVKAVuqmOSdtczRPZAZ1X3F58yZCZIOaS5rj53imwpBdcnzH/eGlBSgbzQ28pmA7WQjsIy5ayjmeuGmGV64LamIZT8N4mMXMIzvetllsDlYa4OQHTbr4hh/5wI8Zka3SdAWJbZNgMqNg+WF7vI4IVX3GRT/hQKLCiXMFbdRiySekjXQmyQHP5zyPlSbQAg592XHULIR1bZthpP+YDxeaiFJBfMcnLnkWiXJnMkkYF7Xcf9Bo5PMp7BJSqXy+0RhoIwHDWg6p4/IWoK9BpooMM7haBoP01Q1hjJvnQh8dG1fZ8KjqKy82i0S6Mn2gBorj0Qwe0cSR8V+kaCXtX7EQZCorHQ/CV3wtlTE+rELmg9dPuRoSQEYxXbSlOQZIYT74XsUwgIx49wCLtuKIQLOe4+Nm++FO/C8ik8RkjnEz5+3D1/beXr9e7+/tPf/zgJuiP+KJyw8eTFy8DolsJl2DfQOBzNb+FLYmZKReN1PM+lY82W6uOipJUQichIwJgIzmmpVOpZrr+i4x03Srdj4q8dLkHK2lZDg9mZH40ujcnb6SVZHsVhDPT4eXVchAwNEw6vqETyLTK5kco3V8Z0Xm7njuYj5a6mW855PoVg/VqTSFg5/EBysyD6LhsjFU+dzrI/Vqo6bxlCPEq9FoqYSD44sVGWjxLelH7k19VpJHHpY0E5GWNK1fne2clnH1wDdbkcFapva0LC633ZnaWISXWhGPpJOpqJMzjvCfhzDQgj3dxPt9Myr70B8rQTmm2DR8HBuPJ/lntjxp1xQO4HHIzkqwqSOqm/ozWHqBWoS3ClwOxnSkUs/1yNNtIbqxUuzg6OmMM55V1oNFkF/NyHyFNX70SrzLqHD2dHQQE6jdtdw1neQ5dcZCjLu82NjYuIrpzyGDxqdhv934vYkrw9aPyJ6SCewrYlfaDS4uOUqHj5676KYj4xOOYsLP050N/VkO9B/puuoeUI3PuWfgwvFEMLDy++BUv8PO6c9YjOpay7UKZ5nWL4WD3xcnGxhnR/prpetDkiUSbP75aPAC+x//IdOaJWIWeFAqHJ3BPU4uflPb4UvudNAk6Pl5QjD4mVDRHmQ3qP+ObnsXIaNNtPewBcmy9ufDHjGzD6RvETYZDV5N7vL5IEjOo2K56+QYxZFKNezqbGOCCw5EQx4hR49jFcWXh9uPH28fXkRSw0R05WUCt3gI3IXhNmc/qeWoI+ZOOk0P0Qr+Pt0w4uQnVni6QixRHucrcW2AeTypliGO1spqWDCxnydTN3o6ilHDYdytQddpCMGrx41pnOKjP3m6FDmRm0nZKFRajoViuyCcztzo4jJIDYcpGzoRI/z6vDPzCBs7n/AbnbRYdRV1nookjoMI9BHFPs3d6eTql0DYMHRqXRm4xD5dzD3BxsYjuKLo+JTPZHXmBFQklarjCNKDHXkOZiWsvxeqajxiFj+7h/BosUuTB9AADs24sjpd7UgkF9XPoW5VJ3pTg3sFd01vdQFi5hCrcxvo9Fjw8sz0ATbOLvEToJKhAybT7el1gaj0btTrGtxTDSJR7LfFvR4JG0aTakWYHBOCRyfm36+9T9gqEMnGiKcfZ57Fp5wbflmWyeFiF1b3OjsgbFg0OpEDJ4XYTxNzoTglQSK6+ByM5Da03AixWU9mZPMb2EjOTxImzgmXK0u56PhM8hFpwbHyiS49WPDg86J7Ea3lJMdPCYLRo2YvC7ls7FA2vHxuESTS58QnalwWCFlnQ+xGdfgU5AjxycJiLjqbID0iu7RtQie9Tcd0QnAJF43NW/JmHA03pD8m9snC9xhxStMRxEflXjpLDT+RzKZ7cpSWCWNHC+yFAhI+ztGJT9KHJRxZ+p6pJ/hNhaNFyWhpVC3narVcuToqRccxVEvtVrrXE2HjoNmQc9qEp1W+X9OO3SAdZeFgqWIYSrdcLLi7gow17OySOzmWCZChVvDnaly0R7g4Csamd6c1QIgFj8zSIVOc/CaB2KmBNMkIj1Z9AB1Pl1zQlI4QFC5XlDDGI9zGqU70NEQYYSUln7zS06tJxWUilIOjq9NlHnHmtRyAc3TEo8HqMm65I52j83h6Fft1oCkcRix48Ct2dfr4Oir6qA/nr86sEQLrj1lllwuxc/L4tHv56UgQjj5d7j49nrz2heh4PBKc8gFW48FXMCKwfYPPWFudaOSCUxoXppesQTza+ps2JSD2/zIfjrmEU+wDUGfdyFmLvi7EsAFkSGuf5oqrxgJnx/odxAUONqizHpcIxP5dDy1GBynKofVizTkUg18XLxkAhrDrHRUGm03FrjwWDB11rrcJFV5QInD2Y4xjeMKiWcc7w/pl4dNrMxAGIFMmaxwYWsRVP4s6ncsgdXn7elZTvQ+YFDA1t8ZeAZCWHXnNA2OHJGh2uSQVyP295gG4ggTNrtGQ6VNfaNnsFPCrAUeB+sGX6QB/ZntPmhbyQypDcQKtBi17XJJ4CVXQBxETgIsBqGnPaNK4BGE96eA2LvCkKWdvnhPPflvOBrmPx094HGAv0uCa7OzEtoeAcQBvzwPgxMwfuQwAz5nytjYMgXpZzCchU8fnmO36WUb3zL5I/ymedA+AbM1xpjv+cmZ0/tfW8ceREs4yfZLM6IDSpq2uja7MGXrB/ABIaGQ7bQ64hULLzHZ8gxMINHaqZzU4cX7XR4CznO2QycG0TNBHEGyXnHMmDVZ+gK2R8/8Uma68/MZewJY30xuxfQibDdyJ2rYPsWiRzX8A1sacQ4rRASYAAAAASUVORK5CYII="/>
-        
-      </div>
-        <div class="col-md-4 col-xs-4 red">
-       <p class="presentation"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-             when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-             It has survived not only five centuries, but also the leap into electronic typesetting,
-         </p>
-    </div>
-    <div class="col-md-5 col-xs-5 blue"></div>
-    </div>
+	<div class="row">
+        <!-- Boxes de Acoes -->
+    	<div class="col-xs-12 col-sm-6 col-lg-4">
+			<div class="box">							
+				<div class="icon">
+					<div class="image"><i class="fa fa-thumbs-o-up"></i></div>
+					<div class="info">
+						<h3 class="title">Romain Farge</h3>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien. Phasellus ultrices gravida massa luctus ornare. Suspendisse blandit quam elit, eu imperdiet neque semper.
+						</p>
+                                                <span> <b>#Lol #Peinture #Voila</b> </span>
+                                                </br>
+						<div class="more">
+							<a href="#" title="Title Link">
+								Ajouter à ma wishlist <i class="fa fa-angle-double-right"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="space"></div>
+		</div> 
+		</div>
+
+			
+		<!-- /Boxes de Acoes -->
+                <div class="container">
+                    <div class="col-xs-12 col-sm-12 col-lg-6 pull-right">
+                                            <div class="embed-responsive embed-responsive-16by9">
+               
+                                                <iframe class="embed-responsive-item" src="//www.youtube.com/embed/PQnDwKxDo9k"></iframe>
+                        </div>
+                    </div>
+                </div>
+	</div>
 </div>
 <div class="container">
     <div class="row">
@@ -46,7 +66,7 @@
                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
                                 when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
                                 It has survived not only five centuries, but also the leap into electronic typesetting,
-                                simply dummy text of the printing and typesetting industry. 
+                                simply dummy textd of the printing and typesetting industry. 
                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
                                 when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
                                 It has survived not only five centuries, but also the leap into electronic typesetting,<
