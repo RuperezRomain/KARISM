@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
@@ -100,8 +101,13 @@ class Serie {
         return $this->userid;
     }
 
+ public function __construct()
+    {
+        $this->fk_picture = new ArrayCollection();
+    }
+    
     function getFk_picture() {
-        return $this->fk_picture;
+        return $this->fk_picture->toArray();
     }
 
     function setFk_picture($fk_picture) {
@@ -109,3 +115,4 @@ class Serie {
     }
 
 }
+

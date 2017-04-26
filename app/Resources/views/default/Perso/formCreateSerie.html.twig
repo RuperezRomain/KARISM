@@ -1,11 +1,29 @@
-{#{% extends "base.template.html.twig" %}
-#}
+{% extends "base.template.html.twig" %}
+
 {% block body %}
-<div>
-<input type="text">
-</div>
+    <div>
+    <div>
+        Nom de la serie <input type="text">
+    </div>
+    <div>Nom<input type="texte"   name="nom"></div>
+    <div>Style<input type="texte"   name="style"></div>
+    <div>Tech<input type="texte"    name="tech"></div>
+    <div>Genre<input type="texte"    name="genre"></div>
+    <div>Size<input type="number"    name="size"></div>
+    <div>Prix<input type="number"    name="prix"></div>
+    <div>Expo<input type="texte"    name="expo"></div>
+    <div>Comme<input type="texte"    name="comm"></div>
+    <div>Img<input type="texte"    name="img"></div>
+    
+    <div>
+        <input class="validSerie" type="button" value="Valide Serie">
+        <input class="validPicture" type="button" value="Ajou picture">
+    </div>
+    </div>
+     
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{asset('script/js/artiste.js')}}">
-{% endblock %}
+    {{parent()}}
+    <script src="{{asset('script/js/artiste.js')}}"></script>
+    {% endblock %}
