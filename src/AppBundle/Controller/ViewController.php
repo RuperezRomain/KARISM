@@ -38,4 +38,12 @@ class ViewController extends Controller {
 
         return $this->render('default/profil.html.twig');
     }
+    
+        /**
+     * @Route("/listeartiste", name="listeartisteTest")
+     */
+    public function listeartisteAction() {
+
+        return $this->render('default/listeArtiste.html.twig');
+    }
 }
