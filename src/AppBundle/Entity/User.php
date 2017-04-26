@@ -7,7 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JsonSerializable;
 use Serializable;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\File;
 
 /**
  * User
@@ -100,9 +102,10 @@ class User implements UserInterface, Serializable, JsonSerializable {
     private $bio;
 
     /**
-     * @var string
+     * @var UploadedFile
      *
      * @ORM\Column(name="profilPicture", type="string", length=255, nullable=true)
+     * @File(mimeTypes={ "image/png" })
      */
     private $profilPicture;
 
