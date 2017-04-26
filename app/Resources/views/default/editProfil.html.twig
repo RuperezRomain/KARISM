@@ -14,8 +14,8 @@
 
 {% block body %}
 
-    <div id="editProfil" class="col-lg-6 profil">
-        <p>First</p><input id="firstname" class="col-lg-6"/>
+    <form id="editProfil" class="col-lg-6 profil">
+        <p>First</p><input type="text" id="firstname" name="caca" class="col-lg-6"/>
         <p>last</p><input id="lastname" class="col-lg-6"/>
         <p>usern</p><input id="username" class="col-lg-6" placeholder="adresse"/>
         <p>phone</p><input id="phone" class="col-lg-6"/>
@@ -26,13 +26,13 @@
             <option value="">Sexe</option>
             <option value="Homme">Homme</option>
             <option value="Femme">Femme</option></select>
-        <input type="file" id="user_profilPicture" class="col-lg-6"/>
+        <input type="file" id="user_profilPicture" name="user[profilPicture]" class="col-lg-6"/>
         <img id="previewPicture" src="" alt="your image" width="350px" class="col-lg-6"/>
 
         <div class="col-lg-9">
             <input id="validEditProfil" type="submit" value="Editer" class="col-lg-6"/>
         </div>
-    </div>
+    </form>
 
 {% endblock %}
 {% block javascripts %}  

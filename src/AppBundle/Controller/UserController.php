@@ -26,19 +26,20 @@ class UserController extends Controller {
      * @param Request $request
      */
     public function updateAction(Request $request) {
+//        $u = $this->getUser();
+//        $em = $this->getDoctrine()->getManager();
+//        $utilisateur = $em->getRepository(User::class)->find($u);
+//       
+//        $f = $this->createForm($utilisateur);
+//        $f->handleRequest($request);
+//        $nomDuFichier = md5(uniqid()) . '.' . $utilisateur->getProfilPicture()->getClientOriginalExtension();
+//        $utilisateur->getProfilPicture()->move('../web/images/profilPictures', $nomDuFichier);
+//        //$u->setProfilPicture($nomDuFichier);
+//        
+//        $em->merge($utilisateur);
+//        $em->flush();
 
-        $u = $this->getUser();
-        $f = $this->createForm($u);
-        $f->handleRequest($request);
-        $nomDuFichier = md5(uniqid()) . '.' . $u->getProfilPicture()->getClientOriginalExtension();
-        $u->getProfilPicture()->move('../web/images/profilPictures', $nomDuFichier);
-        $u->setProfilPicture($nomDuFichier);
-        $em = $this->getDoctrine()->getManager();
-        $utilisateur = $em->getRepository(User::class)->find($u);
-        $em->merge($utilisateur);
-        $em->flush();
-
-//        $users = $this->getUser();
+        $users = $this->getUser();
 //        $userId = $users->getId();
 //        $em = $this->getDoctrine()->getManager();
 //        $util = $em->getRepository(User::class)->find($userId);
@@ -58,7 +59,15 @@ class UserController extends Controller {
 ////        $util->setProfilPicture($request->get("previewPicture"));
 //        $em->merge($util);
 //        $em->flush();
-        return new Response("ok");
+        $utilisateur = new User();
+        $f = $this->createForm(\AppBundle\Form\UserType::class,$utilisateur);
+        $f->handleRequest($request);
+        
+        $retour = array(
+            "image"=>$request->get("user[profilPicture]"),
+            "username"=>$utilisateur->getFirstname()
+        );
+        return new JsonResponse($retour);
     }
 
     /**
