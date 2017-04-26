@@ -38,4 +38,11 @@ class ViewController extends Controller {
 
         return $this->render('default/profil.html.twig');
     }
+        /**
+     * @Route("/admin", name="admin")
+     */
+    public function adminHome() {
+
+        return $this->render('default/admin.html.twig');
+    }
 }
