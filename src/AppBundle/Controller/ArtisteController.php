@@ -104,5 +104,12 @@ class ArtisteController extends Controller {
         json_encode($listePic);
         return new JsonResponse($listePic);
     }
-
+    
+    /**
+     * @Route("delete/cache/pictures")
+     */
+    public function deleteCachePpictures(){
+        $this->get('session')->remove('serieDefault');
+         return new JsonResponse();
+    }
 }

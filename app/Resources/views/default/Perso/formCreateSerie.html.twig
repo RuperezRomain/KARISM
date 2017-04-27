@@ -9,18 +9,15 @@
 {% block body %}
     <div>
 
+        <div>
+            <a href="{{path('accueilTest')}}" id="exitSerie"><button type="button">Valider Serie</button></a>
+        </div>
         {{form_start(formPicture)}}
-        <button class="validPicture" ></button>
+        <button class="validPicture" >Validation Picture </button>
         {{form_end(formPicture)}}
 
-        <div>
-            <input class="validSerie" type="button" value="Valide Serie">
-        </div>
     </div>
     <div class="container">
-
-
-
         <div class="row" id="contentPicture">
 
         </div>
