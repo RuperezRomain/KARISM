@@ -1,0 +1,382 @@
+{% extends "base.template.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/script/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/script/css/mainAdmin.css') }}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+{% endblock %}
+
+{% block title %}
+    {{parent()}}
+    - Admin
+{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Administrateur</strong>
+                                    </span> <span class="text-muted text-xs block">Admin <b class="caret"></b></span> </span> </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="{{path('accueilTest')}}">Accueil KARISM</a></li>
+                                <li><a href="{{path('logout')}}">Logout</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            KAR:SM
+                        </div>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Vue d'enssemble</span></a>
+                    </li>
+                    <li class="active">
+                        <a href="{{ path('adminDemande')}}"><span class="label label-info pull-right">4</span><i class="fa fa-edit"></i><span class="nav-label">Demande de validation</span></a>
+                    </li>
+                    <li>
+                        <a href="{{ path('adminListUsers')}}"><i class="fa fa-users"></i> <span class="nav-label">Liste des membres</span> </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('adminListSeries')}}"><i class="fa fa-picture-o"></i> <span class="nav-label">Liste des séries</span> </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('adminListPlaces')}}"><i class="fa fa-map-marker"></i> <span class="nav-label">Liste des lieux</span> </a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div id="page-wrapper" class="gray-bg">
+                <div class="row border-bottom">
+                    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                        <div class="navbar-header">
+                            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                            <form role="search" class="navbar-form-custom" method="post" action="#">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                                </div>
+                            </form>
+                        </div>
+                        <ul class="nav navbar-top-links navbar-right">
+                            <li>
+                                <a href="{{path('accueilTest')}}">
+                                    <i class="fa fa-home"></i>Acceuil
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{path('logout')}}">
+                                    <i class="fa fa-sign-out"></i> Log out
+                                </a>
+                            </li>
+                        </ul>
+
+                    </nav>
+                </div>
+                <div class="wrapper wrapper-content animated fadeInRight">
+                    <div class="col-lg-12">
+                        <div class="text-center m-t-lg">
+                            <h1>
+                                Demande de validation
+                            </h1>
+                            <small>
+                                Pour qu'une série ou un lieu soit posté, un utilisateur à besoin en premier temps d'une vérification de l'administrateur pour valider son rôle, et le permettre de poster du contenu.<br><br>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="pull-right">
+                        <strong>KARISM</strong> Project
+                    </div>
+                    <div>
+                        <strong>Copyright</strong> Example Company &copy; 2014-2017
+                    </div>
+                </div>
+                <div class="wrapper wrapper-content animated fadeInRight">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h3 class="text-center">Validation d'artiste</h3>
+                                    <div class="ibox-tools">
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-user">
+                                            <li><a href="#">Config option 1</a>
+                                            </li>
+                                            <li><a href="#">Config option 2</a>
+                                            </li>
+                                        </ul>
+                                        <a class="close-link">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ibox-content">
+
+                                    <div class="table-responsive">
+                                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                            <div class="dataTables_length" id="DataTables_Table_0_length">
+                                                <label>Show <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control input-sm">
+                                                        <option value="10">10</option>
+                                                        <option value="25">25</option>
+                                                        <option value="50">50</option>
+                                                        <option value="100">100</option>
+                                                    </select> entries
+                                                </label>
+                                            </div>
+                                            <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                                <label>Search:
+                                                    <input type="search" class="form-control input-sm" placeholder="" aria-controls="DataTables_Table_0">
+                                                </label>
+                                            </div>
+                                            <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+                                                Showing 1 to 25 of 57 entries
+                                            </div>
+                                            <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 162px;">
+                                                            Username
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">
+                                                            Série
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 182px;">
+                                                            Nombre d'images
+                                                        </th>
+                                                        <th class="sorting text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="2" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">
+                                                            Actions
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="gradeA odd" role="row">
+                                                        <td class="sorting_1">Gecko</td>
+                                                        <td>serie.nom</td>
+                                                        <td>serie.fkpicture.counter</td>
+                                                        <td><button class="btn bg-primary btn-block" type="button"><i class="fa fa-check-circle"></i></button></td>
+                                                        <td><button class="btn bg-danger btn-block" type="button"><i class="fa fa-times-circle"></i></button></td>
+                                                    </tr>
+                                                    <tr class="gradeA odd" role="row">
+                                                        <td class="sorting_1">blabla</td>
+                                                        <td>serie.nom</td>
+                                                        <td>serie.fkpicture.counter</td>
+                                                        <td><button class="btn bg-primary btn-block" type="button"><i class="fa fa-check-circle"></i></button></td>
+                                                        <td><button class="btn bg-danger btn-block" type="button"><i class="fa fa-times-circle"></i></button></td>
+                                                    </tr></tbody>
+                                                <tfoot>
+                                                    <tr><th rowspan="1" colspan="1">
+                                                            Username
+                                                        </th>
+                                                        <th rowspan="1" colspan="1">
+                                                            Série
+                                                        </th>
+                                                        <th rowspan="1" colspan="1">
+                                                            Nombre d'images
+                                                        </th>
+                                                        <th class="text-center" rowspan="1" colspan="2">
+                                                            Actions
+                                                        </th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                                <ul class="pagination">
+                                                    <li class="paginate_button previous disabled" id="DataTables_Table_0_previous">
+                                                        <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">
+                                                            Previous
+                                                        </a>
+                                                    </li>
+                                                    <li class="paginate_button active">
+                                                        <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">
+                                                            1
+                                                        </a>
+                                                    </li>
+                                                    <li class="paginate_button ">
+                                                        <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0">
+                                                            2
+                                                        </a>
+                                                    </li>
+                                                    <li class="paginate_button ">
+                                                        <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0">
+                                                            3
+                                                        </a>
+                                                    </li>
+                                                    <li class="paginate_button next" id="DataTables_Table_0_next">
+                                                        <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="4" tabindex="0">
+                                                            Next
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--HOTE VALIDATE-->
+                    <div class="wrapper wrapper-content animated fadeInRight">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h3 class="text-center">Validation d'hôte</h3>
+                                        <div class="ibox-tools">
+                                            <a class="collapse-link">
+                                                <i class="fa fa-chevron-up"></i>
+                                            </a>
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                                                <i class="fa fa-wrench"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-user">
+                                                <li><a href="#">Config option 1</a>
+                                                </li>
+                                                <li><a href="#">Config option 2</a>
+                                                </li>
+                                            </ul>
+                                            <a class="close-link">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content">
+
+                                        <div class="table-responsive">
+                                            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                <div class="dataTables_length" id="DataTables_Table_0_length">
+                                                    <label>Show <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control input-sm">
+                                                            <option value="10">10</option>
+                                                            <option value="25">25</option>
+                                                            <option value="50">50</option>
+                                                            <option value="100">100</option>
+                                                        </select> entries
+                                                    </label>
+                                                </div>
+                                                <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                                    <label>Search:
+                                                        <input type="search" class="form-control input-sm" placeholder="" aria-controls="DataTables_Table_0">
+                                                    </label>
+                                                </div>
+                                                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+                                                    Showing 1 to 25 of 57 entries
+                                                </div>
+                                                <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 162px;">
+                                                                Username
+                                                            </th>
+                                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">
+                                                                Lieu
+                                                            </th>
+                                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 182px;">
+                                                                blabla
+                                                            </th>
+                                                            <th class="sorting text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="2" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">
+                                                                Actions
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="gradeA odd" role="row">
+                                                            <td class="sorting_1">Gecko</td>
+                                                            <td>place.nom</td>
+                                                            <td>blabla</td>
+                                                        <td><button class="btn bg-primary btn-block" type="button"><i class="fa fa-check-circle"></i></button></td>
+                                                        <td><button class="btn bg-danger btn-block" type="button"><i class="fa fa-times-circle"></i></button></td>
+                                                        </tr>
+                                                        <tr class="gradeA odd" role="row">
+                                                            <td class="sorting_1">blabla</td>
+                                                            <td>place.nom</td>
+                                                            <td>blabla</td>
+                                                        <td><button class="btn bg-primary btn-block" type="button"><i class="fa fa-check-circle"></i></button></td>
+                                                        <td><button class="btn bg-danger btn-block" type="button"><i class="fa fa-times-circle"></i></button></td>
+                                                        </tr></tbody>
+                                                    <tfoot>
+                                                        <tr><th rowspan="1" colspan="1">
+                                                                Username
+                                                            </th>
+                                                            <th rowspan="1" colspan="1">
+                                                                Rôle
+                                                            </th>
+                                                            <th rowspan="1" colspan="1">
+                                                                blabla
+                                                            </th>
+                                                            <th class="text-center" rowspan="1" colspan="2">
+                                                                Actions
+                                                            </th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                                    <ul class="pagination">
+                                                        <li class="paginate_button previous disabled" id="DataTables_Table_0_previous">
+                                                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">
+                                                                Previous
+                                                            </a>
+                                                        </li>
+                                                        <li class="paginate_button active">
+                                                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">
+                                                                1
+                                                            </a>
+                                                        </li>
+                                                        <li class="paginate_button ">
+                                                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0">
+                                                                2
+                                                            </a>
+                                                        </li>
+                                                        <li class="paginate_button ">
+                                                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0">
+                                                                3
+                                                            </a>
+                                                        </li>
+                                                        <li class="paginate_button next" id="DataTables_Table_0_next">
+                                                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="4" tabindex="0">
+                                                                Next
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            {% endblock %}
+            {% block javascripts %}  
+                {{ parent() }}
+                <!-- Mainly scripts -->
+                <script src="{{asset('script/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
+                <script src="{{asset('script/js/plugins/slimscroll/jquery.slimscroll.js')}}"></script>
+                <script src="{{asset('script/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
+                <script src="{{asset('script/js/plugins/flot/jquery.flot.js')}}"></script>
+                <script src="{{asset('script/js/plugins/flot/jquery.flot.pie.js')}}"></script>
+
+                <!-- Custom and plugin javascript -->
+                <script src="{{asset('script/js/inspinia.js')}}"></script>
+                <script src="{{asset('script/js/plugins/pace/pace.min.js')}}"></script>
+            {% endblock %}
+

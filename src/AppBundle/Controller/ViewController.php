@@ -43,6 +43,34 @@ class ViewController extends Controller {
      */
     public function adminHome() {
 
-        return $this->render('default/admin.html.twig');
+        return $this->render('admin/adminHome.html.twig');
+    }
+        /**
+     * @Route("/admin/demande", name="adminDemande")
+     */
+    public function adminDemandeValidation() {
+
+        return $this->render('admin/demandeValidation.html.twig');
+    }
+        /**
+     * @Route("/admin/list/series", name="adminListSeries")
+     */
+    public function adminListSeries() {
+
+        return $this->render('admin/listSeries.html.twig');
+    }
+        /**
+     * @Route("/admin/list/places", name="adminListPlaces")
+     */
+    public function adminListPlaces() {
+
+        return $this->render('admin/listPlaces.html.twig');
+    }
+        /**
+     * @Route("/admin/list/users", name="adminListUsers")
+     */
+    public function adminListUsers() {
+
+        return $this->render('admin/listUsers.html.twig');
     }
 }
