@@ -3,7 +3,7 @@ $(document).ready(function () {
     getPicture();
     $(".validPicture").click(function () {
 
-        
+
         // init input Picture
         $nomInput = $("input[name='nom']");
         $styleInput = $("input[name$='style']");
@@ -27,8 +27,8 @@ $(document).ready(function () {
 
 function getPicture() {
 /// Recuperation entity picture
-    $.ajax({
-        url: '/web/get/user/serie/pictures',
+$.ajax({
+url: '/web/get/user/serie/pictures',
         type: 'Get',
         dataType: 'json',
         async: true,
@@ -36,23 +36,29 @@ function getPicture() {
 
 
 
-            $($listePic).each(function () {
+        $($listePic).each(function () {
 
 
 
-                $("#contentPicture").append("\
-<div class='col-sm-4 contact-box'>\n\
-        <a href=''>\n\
-            <div class='col-lg-6'>\n\
-                <img alt='" + this.image + "' class='img-responsive' src='/web/images/oeuvrePictures/"+this.img+"'>\n\
-            </div>\n\
-            <div col-lg->\n\
-                <h3><strong>"+this.style+"</strong></h3><p><i class='fa fa-map-marker'></i>" + this.genres + "</p><div><br>"+this.genres+"<br>" + this.nom + "<br></div></div></div>\n\
-            </div>\n\
-        </a>\n\
+
+$("#contentPicture").append("\
+<div class='col-sm-6 col-md-4'>\n\
+<div class='thumbnail'>\n\
+    <a href=''>\n\
+        <img src='/web/images/oeuvrePictures/"+this.img+"' alt=''>\n\
+    </a>\n\
+    <div class='caption'>\n\
+        <h3>"+this.nom+"</h3>\n\
+        <h4>"+this.commentaire+"</h>\n\
+        <div>\n\
+            <p>"+this.style+"</p>\n\
+            <p>"+this.cgenresommentaire+"</p>\n\
+        </div>\n\
+    </div>\n\
+    </div>\n\
 </div>");
 //
-            });
-        }
-    });
+});
+}
+});
 }

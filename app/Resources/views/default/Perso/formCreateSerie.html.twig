@@ -1,14 +1,14 @@
 {% extends "base.template.html.twig" %}
 
- {% block stylesheets %}
-     {{parent()}}
-         <meta name="viewport" content="width=device-width, user-scalable=no">
+{% block stylesheets %}
+    {{parent()}}
+    <meta name="viewport" content="width=device-width, user-scalable=no">
 
-     {% endblock %}
+{% endblock %}
 
 {% block body %}
     <div>
-       
+
         {{form_start(formPicture)}}
         <button class="validPicture" ></button>
         {{form_end(formPicture)}}
@@ -17,19 +17,15 @@
             <input class="validSerie" type="button" value="Valide Serie">
         </div>
     </div>
-    <div class="wrapper wrapper-content animated fadeInRight">
-        
-            <div id="contentPicture" class="container"></div>
-        
-            
+    <div class="container">
+
+
+
+        <div class="row" id="contentPicture">
+
+        </div>
     </div>
-    <style>
-        .contact-box{ background-color: #ffffff;
-    border: 1px solid #e7eaec;
-    padding: 10px;
-        }
-   
-    </style>
+
 {% endblock %}
 
 {% block javascripts %}
