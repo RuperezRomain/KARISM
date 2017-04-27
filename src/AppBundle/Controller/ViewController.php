@@ -46,4 +46,11 @@ class ViewController extends Controller {
 
         return $this->render('default/listeArtiste.html.twig');
     }
+        /**
+     * @Route("/testAfficherArtiste", name="listeartisteTestsdfsd")
+     */
+    public function artisteAction() {
+
+        return $this->render('default/testAfficherArtiste.html.twig');
+    }
 }
