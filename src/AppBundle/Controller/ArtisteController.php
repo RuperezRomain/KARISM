@@ -26,10 +26,11 @@ class ArtisteController extends Controller {
     /**
      * @Route("user/edit/role/role_artiste")
      */
-    public function userAddrole_artiste() {
+    public function userAddrole_artiste(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
 
         // Recup id user courante
-        $em = $this->getDoctrine()->getManager();
         $userId = $this->getUser()->getId();
         $user = $this->getDoctrine()->getRepository(User::class)->find($userId);
 
@@ -57,63 +58,51 @@ class ArtisteController extends Controller {
 
         $this->get('session')->set('serieDefault', $serieDefault);
 
+        $picture = new Picture();
+        // on lie notre formulaire a notre entity
+        $f =  $this->createForm('AppBundle\Form\PictureType', $picture);
+        // et on retourne le formulaire dans notre vue
+         $f->handleRequest($request);
+         
+         
+         
+        if ($f->isSubmitted() && $f->isValid()) {
+            
+            // on recupere le nom du fichier, on genere un nom numerique aleatoire et on creer un dossier uploads/images 
+            $nomDuFichier = md5(uniqid()) . "." . $picture->getImg()->getClientOriginalExtension();
+            $picture->getImg()->move('images/oeuvrePictures', $nomDuFichier);
+            $picture->setImg($nomDuFichier);
+            
+            $em->persist($picture);
+            $em->flush($picture);
+            //Edition de la serie 
+
+            $idSerie = $this->get('session')->get('serieDefault')->getId();
+            $courantSerie = $this->getDoctrine()->getRepository(Serie::class)->find($idSerie);
+
+            $em->merge($courantSerie);
+            $arrayPicture = $courantSerie->getFk_picture();
+            array_push($arrayPicture, $picture);
+            $courantSerie->setFk_picture($arrayPicture);
+
+            $em->flush($courantSerie);
+        }
 
 
-//           
-//////////////////test Vue///////////////////
-        return $this->render('default/Perso/formCreateSerie.html.twig');
+        return $this->render('default/Perso/formCreateSerie.html.twig', array("formPicture" => $f->createView()));
     }
 
-    //////////////////Save picture///////////////////
+
     /**
-     * @Route("user/create/picture")
+     * @Route("get/user/serie/pictures")
      */
-    public function createPicturs(Request $request) {
+    public function getPicture() {
 
+        $serie = $this->getDoctrine()->getRepository(Serie::class)->find($this->get('session')->get('serieDefault')->getId());
+        $listePic = $serie->getFk_picture();
 
-        //Récuperation de la requet ajax
-        $picNom = $request->get('nom');
-        $picStyle = $request->get('style');
-        $picTech = $request->get('tech');
-        $picGenre = $request->get('genre');
-        $picSize = $request->get('size');
-        $picPrix = $request->get('prix');
-        $picExpo = $request->get('expo');
-        $picComm = $request->get('comm');
-        $picImg = $request->get('img');
-
-        //Creation entity Picture
-        $em = $this->getDoctrine()->getManager();
-
-        $picture = new Picture();
-        $picture->setNom($picNom);
-        $picture->setStyle($picStyle);
-        $picture->setTechniques($picTech);
-        $picture->setGenres($picGenre);
-        $picture->setSize($picSize);
-        $picture->setPrix($picPrix);
-        $picture->setExpos($picExpo);
-        $picture->setCommentaire($picComm);
-        $picture->setImg($picImg);
-
-        $em->persist($picture);
-        
-       
-
-        //Récuperation de mon object serie sous session
-        $idSerie = $this->get('session')->get('serieDefault')->getId();
-        $courantSerie = $this->getDoctrine()->getRepository(Serie::class)->find($idSerie);
-        //Edition de la serie 
-        $em->merge($courantSerie);
-        $arrayPicture =  $courantSerie->getFk_picture();
-        array_push($arrayPicture, $picture);        
-        $courantSerie->setFk_picture($arrayPicture);
-
-        $em->flush();
-        
-        
-        $this->get('session')->clear();
-        return new JsonResponse();
+        json_encode($listePic);
+        return new JsonResponse($listePic);
     }
 
 }

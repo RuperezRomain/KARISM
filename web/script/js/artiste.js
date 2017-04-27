@@ -1,11 +1,9 @@
 
 $(document).ready(function () {
-
+    getPicture();
     $(".validPicture").click(function () {
 
-        // $tblEreur = new Array();
-        $textInput = $("input[name='text']");
-
+        
         // init input Picture
         $nomInput = $("input[name='nom']");
         $styleInput = $("input[name$='style']");
@@ -17,30 +15,44 @@ $(document).ready(function () {
         $commInput = $("input[name$='comm']");
         $imgInput = $("input[name$='img']");
 
-        // Requet ajax envoie les infos du formulaire
-        $.ajax({
-            url: '/web/user/create/picture',
-            type: 'Get',
-            async: true,
-            dataType: "json",
-            data: {
-                "nom": $nomInput.val(),
-                "style": $styleInput.val(),
-                "tech": $techInput.val(),
-                "genre": $genreInput.val(),
-                "size": $sizeInput.val(),
-                "prix": $prixInput.val(),
-                "expo": $expoInput.val(),
-                "comm": $commInput.val(),
-                "img": $imgInput.val()
-            },
+        getPicture();
 
-            success: function () {
-                
-            }
-        });
+
+        $("#contentPicture").empty();
 
     });
 
 
 });
+
+function getPicture() {
+/// Recuperation entity picture
+    $.ajax({
+        url: '/web/get/user/serie/pictures',
+        type: 'Get',
+        dataType: 'json',
+        async: true,
+        success: function ($listePic) {
+
+
+
+            $($listePic).each(function () {
+
+
+
+                $("#contentPicture").append("\
+<div class='col-sm-4 contact-box'>\n\
+        <a href=''>\n\
+            <div class='col-lg-6'>\n\
+                <img alt='" + this.image + "' class='img-responsive' src='/web/images/oeuvrePictures/"+this.img+"'>\n\
+            </div>\n\
+            <div col-lg->\n\
+                <h3><strong>"+this.style+"</strong></h3><p><i class='fa fa-map-marker'></i>" + this.genres + "</p><div><br>"+this.genres+"<br>" + this.nom + "<br></div></div></div>\n\
+            </div>\n\
+        </a>\n\
+</div>");
+//
+            });
+        }
+    });
+}

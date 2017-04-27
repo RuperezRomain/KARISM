@@ -113,6 +113,13 @@ class Serie {
     function setFk_picture($fk_picture) {
         $this->fk_picture = $fk_picture;
     }
+    
+    
+     public function jsonSerialize() {
+        return array(
+            "fk_picture" => $this->fk_picture
+);}
+                
 
 }
 
