@@ -89,7 +89,7 @@ class ArtisteController extends Controller {
         }
 
 
-        return $this->render('default/Perso/formCreateSerie.html.twig', array("formPicture" => $f->createView()));
+        return $this->render('default/formCreateSerie.html.twig', array("formPicture" => $f->createView()));
     }
 
 
