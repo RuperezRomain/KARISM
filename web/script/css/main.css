@@ -28,17 +28,41 @@
 .btn-link {
   color: black; }
 
+.navUSER {
+  color: #f79f24;
+  padding-top: 1em; }
+
 .footerr {
-  background-color: gray;
+  overflow: hidden;
+  background-color: #191970;
+  color: white;
   height: 125px;
   bottom: 0;
-  padding-bottom: 3em; }
+  padding-bottom: 3em;
+  padding-top: 0,5em;
+  padding-left: 1em;
+  line-height: 1;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.3); }
 
 .contentLEFT {
   background-color: yellow; }
 
 .contentRIGHT {
   background-color: yellowgreen; }
+
+.pad {
+  color: white;
+  padding-right: 1em; }
+
+.orange {
+  color: #f79f24; }
+
+.d1 {
+  font-weight: bold; }
+
+h5 {
+  padding-bottom: -1em;
+  color: white; }
 
 .sizeScreen {
   background-color: #f79f24;
@@ -80,13 +104,5 @@
 
 iframe {
   border: none; }
-
-/*.foot{
-    position : fixed;
-    padding: 3%;
-    bottom : 0;
-    width:100%;
-    background-color: white;
-}*/
 
 /*# sourceMappingURL=main.css.map */

@@ -14,6 +14,7 @@
 
  .navigation{
       box-shadow:2px 2px 2px 1px rgba(0, 0, 0, 0.3);
+     
  //    position: fixed;
  //     top:0;
 
@@ -34,14 +35,24 @@
     color:black;
 }
 
-.footerr {
-    
-    background-color: gray;
+.navUSER {
+    color: $colorMid;
+    padding-top: 1em;
+}
 
+
+.footerr {
+    overflow: hidden;
+    background-color: #191970;
+    color: white;
     height:  125px;
     bottom : 0;
     padding-bottom: 3em;
-
+    padding-top: 0,5em;
+    padding-left: 1em;
+    line-height: 1;
+     box-shadow:2px 2px 2px 1px rgba(0, 0, 0, 0.3);
+   
 }
 
 .contentLEFT{
@@ -52,6 +63,25 @@
     background-color: yellowgreen;
 }
 
+.pad {
+  color: white; 
+  padding-right: 1em; 
+}
+
+
+.orange {
+    color: $colorMid;
+}
+
+.d1 {
+   font-weight: bold;
+}
+
+h5 {
+    padding-bottom: -1em;
+    color: white;
+   
+}
 //.degrade {  
 //background-color:linear-gradient(grey, black);
 //}
