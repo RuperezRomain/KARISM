@@ -11,6 +11,12 @@ function readURL(input) {
     }
 }
 
-$("#user_profilPicture").change(function(){
+$("#user_profilPicture").change(function () {
     readURL(this);
+});
+
+$(document).ready(function () {
+        readURL("#user_profilPicture");
+
+
 });
