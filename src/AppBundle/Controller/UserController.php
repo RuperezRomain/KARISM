@@ -5,8 +5,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +15,6 @@ class UserController extends Controller {
      * @Route("/profil/edit", name="profilEdit")
      */
     public function profilEdit() {
-
         return $this->render('default/editProfil.html.twig');
     }
 
@@ -26,48 +23,21 @@ class UserController extends Controller {
      * @param Request $request
      */
     public function updateAction(Request $request) {
-//        $u = $this->getUser();
-//        $em = $this->getDoctrine()->getManager();
-//        $utilisateur = $em->getRepository(User::class)->find($u);
-//       
-//        $f = $this->createForm($utilisateur);
-//        $f->handleRequest($request);
-//        $nomDuFichier = md5(uniqid()) . '.' . $utilisateur->getProfilPicture()->getClientOriginalExtension();
-//        $utilisateur->getProfilPicture()->move('../web/images/profilPictures', $nomDuFichier);
-//        //$u->setProfilPicture($nomDuFichier);
-//        
-//        $em->merge($utilisateur);
-//        $em->flush();
-
         $users = $this->getUser();
-//        $userId = $users->getId();
-//        $em = $this->getDoctrine()->getManager();
-//        $util = $em->getRepository(User::class)->find($userId);
-//        $util->setFirstname($request->get("firstname"));
-//        $util->setLastname($request->get("lastname"));
-//        $util->setUsername($request->get("username"));
-//        $util->setPhone($request->get("phone"));
-//        $util->setAdress($request->get("adress"));
-//        $util->setBio($request->get("bio"));
-//        $util->setGenre($request->get("genre"));
-//        $UploadedFile = new UploadedFile($request->get("previewPicture"), "nom");
-//        $file = new File($UploadedFile);
-//        $nomDuFichier = md5(uniqid()) . '.' . $file->getClientOriginalExtension();
-//        $file->move('../web/profil', $nomDuFichier);
-//        $util->setProfilPicture($file);
-////        $image = base64_decode($request->get("previewPicture"));
-////        $util->setProfilPicture($request->get("previewPicture"));
-//        $em->merge($util);
-//        $em->flush();
-        $utilisateur = new User();
-        $f = $this->createForm(\AppBundle\Form\UserType::class,$utilisateur);
-        $f->handleRequest($request);
-        
-        $retour = array(
-            "image"=>$request->get("user[profilPicture]"),
-            "username"=>$utilisateur->getFirstname()
-        );
-        return new JsonResponse($retour);
+        $userId = $users->getId();
+        $em = $this->getDoctrine()->getManager();
+        $util = $em->getRepository(User::class)->find($userId);
+        $util->setFirstname($request->get("firstname"));
+        $util->setLastname($request->get("lastname"));
+        $util->setUsername($request->get("username"));
+        $util->setPhone($request->get("phone"));
+        $util->setAdress($request->get("adress"));
+        $util->setBio($request->get("bio"));
+        $util->setGenre($request->get("genre"));
+        $util->setProfilPicture($request->get("user_profilPicture"));
+        $em->merge($util);
+        $em->flush();
+        return new Response("ok");
     }
 
     /**
