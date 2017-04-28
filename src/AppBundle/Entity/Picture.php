@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="picture")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PictureRepository")
  */
-class Picture
-{
+class Picture implements \JsonSerializable{
+
     /**
      * @var int
      *
@@ -21,13 +21,13 @@ class Picture
      */
     private $id;
 
-   /**
+    /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
-    
+
     /**
      * @var string
      *
@@ -42,37 +42,33 @@ class Picture
      */
     private $style;
 
-     
     /**
      * @var int
      *
      * @ORM\Column(name="techniques", type="integer")
      */
     private $techniques;
-    
+
     /**
      * @var int
      *
      * @ORM\Column(name="genres", type="integer")
      */
     private $genres;
-    
-    
+
     /**
      * @var int
      *
      * @ORM\Column(name="size", type="integer")
      */
     private $size;
-   
+
     /**
      * @var int
      *
      * @ORM\Column(name="prix", type="integer")
      */
     private $prix;
-    
-    
     ///Le champ expo correspond aux exposition où l’œuvre à été visible
     /**
      * @var int
@@ -80,7 +76,6 @@ class Picture
      * @ORM\Column(name="expos", type="integer")
      */
     private $expos;
-    
     ///Le champ -commentaire correspond a la description de l'oeuvre
     /**
      * @var int
@@ -88,19 +83,13 @@ class Picture
      * @ORM\Column(name="commentaire", type="integer")
      */
     private $commentaire;
-    
-
-  
-    
-
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -111,8 +100,7 @@ class Picture
      *
      * @return Picture
      */
-    public function setUrl($img)
-    {
+    public function setUrl($img) {
         $this->img = $img;
 
         return $this;
@@ -123,8 +111,7 @@ class Picture
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->img;
     }
 
@@ -135,8 +122,7 @@ class Picture
      *
      * @return Picture
      */
-    public function setStyle($style)
-    {
+    public function setStyle($style) {
         $this->style = $style;
 
         return $this;
@@ -147,11 +133,10 @@ class Picture
      *
      * @return int
      */
-    public function getStyle()
-    {
+    public function getStyle() {
         return $this->style;
     }
-    
+
     function getTechniques() {
         return $this->techniques;
     }
@@ -176,7 +161,6 @@ class Picture
         return $this->commentaire;
     }
 
-    
     function setTechniques($techniques) {
         $this->techniques = $techniques;
     }
@@ -217,7 +201,19 @@ class Picture
         $this->img = $img;
     }
 
-
+    public function jsonSerialize() {
+       
+        return array(
+            "nom" => $this->nom,
+            "style" => $this->style,
+            "techniques" => $this->techniques,
+            "genres" => $this->genres,
+            "size" => $this->size,
+            "prix" => $this->prix,
+            "expos" => $this->expos,
+            "commentaire" => $this->commentaire,
+            "img" => $this->img
+        );
+    }
 
 }
-
