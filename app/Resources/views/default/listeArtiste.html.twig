@@ -1,0 +1,81 @@
+{% extends "base.template.html.twig" %}
+
+{% block stylesheets %}
+    {{parent()}} 
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('/script/css/recherche.css') }}" />
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+{% endblock %}
+
+{% block title %}
+    {{parent()}}
+    Accueil
+{% endblock %}
+
+{% block body %}
+    
+  
+    <div id="member-container">
+  <div class="member">
+    <img src="http://www.touch-arts.com/performance/wp-content/uploads/2014/09/jm-robert-artiste-peintre-6.jpg">
+    <h2>Vivien Kimbibi</h2>
+    <p class="who">Street-Art</p>
+    <p class="member-text">Id cibo omnium perfecto sed, vel eius rationibus ea. Ea postea ocurreret reformidans eam, vix ea iudico.</p>
+    
+
+  </div>
+        <div class="member">
+    <img src="http://www.chaddek.com/wp-content/uploads/2011/09/Peinture-%C3%A0-lhuile.jpg">
+    <h2>La maison de Bernard</h2>
+    <p class="who">MARSEILLE</p>
+    <p class="member-text">30 places, 10mcarré bla vel eius rationibus ea. Ea postea ocurreret reformidans eam, vix ea iudico.</p>
+    
+
+  </div>
+        <div class="member">
+    <img src="http://www.touch-arts.com/performance/wp-content/uploads/2014/09/jm-robert-artiste-peintre-6.jpg">
+    <h2>Chez Jean-Mich</h2>
+    <p class="who">30 Février</p>
+    <p class="member-text">Id cibo omnium perfecto sed, vel eius rationibus ea. Ea postea ocurreret reformidans eam, vix ea iudico.</p>
+    
+
+  </div>
+        <div class="member">
+    <img src="http://www.chaddek.com/wp-content/uploads/2011/09/Peinture-%C3%A0-lhuile.jpg">
+    <h2>Marie Urbaba</h2>
+    <p class="who">Sculpture</p>
+    <p class="member-text">Id cibo omnium perfecto sed, vel eius rationibus ea. Ea postea ocurreret reformidans eam, vix ea iudico.</p>
+    
+
+  </div>
+        <div class="member">
+    <img src="http://www.touch-arts.com/performance/wp-content/uploads/2014/09/jm-robert-artiste-peintre-6.jpg">
+    <h2>Jean  Celestion</h2>
+    <p class="who">Art abstrait</p>
+    <p class="member-text">Id cibo omnium perfecto sed, vel eius rationibus ea. Ea postea ocurreret reformidans eam, vix ea iudico.</p>
+    
+
+  </div>
+        <div class="member">
+    <img src="http://www.chaddek.com/wp-content/uploads/2011/09/Peinture-%C3%A0-lhuile.jpg">
+    <h2>Jean Marien</h2>
+    <p class="who">Toile</p>
+    <p class="member-text">Id cibo omnium perfecto sed, vel eius rationibus ea. Ea postea ocurreret reformidans eam, vix ea iudico.</p>
+    
+        </div>
+        <div class="member">
+    <img src="http://www.touch-arts.com/performance/wp-content/uploads/2014/09/jm-robert-artiste-peintre-6.jpg">
+    <h2>Loic Derriere</h2>
+    <p class="who">Tableau</p>
+    <p class="member-text">Id cibo omnium perfecto sed, vel eius rationibus ea. Ea postea ocurreret reformidans eam, vix ea iudico.</p>
+    
+  </div>
+</div>
+{% endblock %}
+{% block javascripts %}  
+    {{ parent() }}
+    <script src="{{asset('script/slickCarousel/slick.js') }}"></script>
+    <script src="{{asset('script/js/home.js')}}"></script>
+{% endblock %}
