@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www.karism.fr$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.karism.fr$
+RewriteCond %{REQUEST_URI} !web/
+RewriteRule (.*) /web/$1 [L]
