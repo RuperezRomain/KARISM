@@ -72,5 +72,19 @@ class ViewController extends Controller {
     public function adminListUsers() {
 
         return $this->render('admin/listUsers.html.twig');
+    
+        /**
+     * @Route("/listeartiste", name="listeartisteTest")
+     */
+    public function listeartisteAction() {
+
+        return $this->render('default/listeArtiste.html.twig');
+    }
+        /**
+     * @Route("/testAfficherArtiste", name="listeartisteTestsdfsd")
+     */
+    public function artisteAction() {
+
+        return $this->render('default/testAfficherArtiste.html.twig');
     }
 }
