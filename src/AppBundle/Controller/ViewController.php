@@ -45,13 +45,8 @@ public function adminHome() {
 
 return $this->render('admin/adminHome.html.twig');
 }
-/**
- * @Route("/admin/demande", name="adminDemande")
- */
-public function adminDemandeValidation() {
 
-return $this->render('admin/demandeValidation.html.twig');
-}
+
 /**
  * @Route("/admin/list/series", name="adminListSeries")
  */
