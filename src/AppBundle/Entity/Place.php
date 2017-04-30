@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * Place
@@ -22,11 +24,11 @@ class Place
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="placetype", type="integer")
+     * Many Place have One fk_place_type.
+     * @ManyToOne(targetEntity="Place_type")
+     * @JoinColumn(name="place_type_id", referencedColumnName="id")
      */
-    private $placetype;
+    private $fk_placetype;
 
     /**
      * @var int
@@ -50,11 +52,11 @@ class Place
     private $adress;
 
     /**
-     * @var int
      *
-     * @ORM\Column(name="city", type="integer")
+     * @ManyToOne(targetEntity="City")
+     * @JoinColumn(name="city_id", referencedColumnName="id")
      */
-    private $city;
+    private $fk_city;
 
     /**
      * @var \DateTime
@@ -65,15 +67,8 @@ class Place
     
     /**
      * @var int
-     *
-     * @ORM\Column(name="expos", type="integer")
-     */
-    private $expos;
-    
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="fk_user", type="integer")
+     * @ManyToOne(targetEntity="User")
+     * @JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $fk_user;
 
@@ -88,29 +83,28 @@ class Place
     }
 
     /**
-     * Set placetype
+     * Set fk_place_type
      *
-     * @param integer $placetype
+     * @param integer $fk_place_type
      *
      * @return Place
      */
-    public function setPlacetype($placetype)
+    public function setFkPlaceType($fk_place_type)
     {
-        $this->placetype = $placetype;
+        $this->fk_place_type = $fk_place_type;
 
         return $this;
     }
 
     /**
-     * Get placetype
+     * Get fk_place_type
      *
      * @return int
      */
-    public function getPlacetype()
+    public function getFkPlaceType()
     {
-        return $this->placetype;
+        return $this->fk_placetype;
     }
-
     /**
      * Set size
      *
@@ -184,51 +178,52 @@ class Place
     }
 
     /**
-     * Set city
+     * Set fk_city
      *
-     * @param integer $city
+     * @param integer $fk_city
      *
      * @return Place
      */
-    public function setCity($city)
+    public function setFkCity($fk_city)
     {
-        $this->city = $city;
+        $this->fk_city = $fk_city;
 
         return $this;
     }
 
     /**
-     * Get city
+     * Get fk_city
      *
      * @return int
      */
-    public function getCity()
+    public function getFkcity()
     {
-        return $this->city;
+        return $this->fk_city;
     }
+    
 
     /**
-     * Set userid
+     * Set fk_user
      *
-     * @param integer $userid
+     * @param integer $fk_user
      *
      * @return Place
      */
-    public function setUserid($userid)
+    public function setUserid($fk_user)
     {
-        $this->userid = $userid;
+        $this->fk_user = $fk_user;
 
         return $this;
     }
 
     /**
-     * Get userid
+     * Get fk_user
      *
      * @return int
      */
-    public function getUserid()
+    public function getFkUserid()
     {
-        return $this->userid;
+        return $this->fk_user;
     }
 
     /**

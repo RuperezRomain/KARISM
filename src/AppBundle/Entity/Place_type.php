@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="place_type")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\Place_typeRepository")
  */
-class Place_type
+class Place_type 
 {
     /**
      * @var int
@@ -61,6 +61,10 @@ class Place_type
     public function getNom()
     {
         return $this->nom;
+    }
+    
+        public function __toString() {
+        return $this->id;
     }
 }
 
