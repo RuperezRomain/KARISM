@@ -128,6 +128,144 @@
 
                                     <div class="table-responsive">
                                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                            {#<div class="dataTables_length" id="DataTables_Table_0_length">
+                                                <label>Show <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control input-sm">
+                                                        <option value="10">10</option>
+                                                        <option value="25">25</option>
+                                                        <option value="50">50</option>
+                                                        <option value="100">100</option>
+                                                    </select> entries
+                                                </label>
+                                            </div>
+                                            <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                                <label>Search:
+                                                    <input type="search" class="form-control input-sm" placeholder="" aria-controls="DataTables_Table_0">
+                                                </label>
+                                            </div>
+                                            <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+                                                Showing 1 to 25 of 57 entries
+                                            </div>#}
+                                            <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 162px;">
+                                                            Nom
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">
+                                                            Email
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 182px;">
+                                                            N°Tel
+                                                       </th>                 
+                                                        <th class="sorting text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="2" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">
+                                                            Actions
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="contentArtisteRequest">
+                                                    
+{#                                                  Insertion object User 
+#}                                                    {% for user in users %}
+                                                        <tr class=' gradeA odd'  id="{{user.id}}" role='row'>
+                                                            <td class='sorting_1'>{{user.firstname}}</td>
+                                                            <td>{{user.email}}</td>
+                                                            <td>"{{user.phone}}</td>
+                                                            <td>                                                                
+                                                                <button class=' validArtiste btn bg-primary btn-block' type='button'>
+                                                                    <i class='fa fa-check-circle'></i>
+                                                                </button>
+                                                            </td>
+                                                            <td>
+                                                                <button  class=' refuseArtiste btn bg-danger btn-block' type='button'>
+                                                                    <i class='fa fa-times-circle'></i></button>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                                     
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 162px;">
+                                                            Nom
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">
+                                                            Email
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 182px;">
+                                                            N°Tel
+                                                       </th>                 
+                                                        <th class="sorting text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="2" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">
+                                                            Actions
+                                                        </th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            {#<div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                                <ul class="pagination">
+                                                    <li class="paginate_button previous disabled" id="DataTables_Table_0_previous">
+                                                        <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">
+                                                            Previous
+                                                        </a>
+                                                    </li>
+                                                    <li class="paginate_button active">
+                                                        <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">
+                                                            1
+                                                        </a>
+                                                    </li>
+                                                    <li class="paginate_button ">
+                                                        <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0">
+                                                            2
+                                                        </a>
+                                                    </li>
+                                                    <li class="paginate_button ">
+                                                        <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0">
+                                                            3
+                                                        </a>
+                                                    </li>
+                                                    <li class="paginate_button next" id="DataTables_Table_0_next">
+                                                        <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="4" tabindex="0">
+                                                            Next
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>#}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--HOTE VALIDATE-->
+                <div class="wrapper wrapper-content animated fadeInRight">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h3 class="text-center">Validation d'hôte</h3>
+                                    <div class="ibox-tools">
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-user">
+                                            <li><a href="#">Config option 1</a>
+                                            </li>
+                                            <li><a href="#">Config option 2</a>
+                                            </li>
+                                        </ul>
+                                        <a class="close-link">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ibox-content">
+
+                                    <div class="table-responsive">
+                                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                                             <div class="dataTables_length" id="DataTables_Table_0_length">
                                                 <label>Show <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control input-sm">
                                                         <option value="10">10</option>
@@ -152,10 +290,10 @@
                                                             Username
                                                         </th>
                                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">
-                                                            Série
+                                                            Lieu
                                                         </th>
                                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 182px;">
-                                                            Nombre d'images
+                                                            blabla
                                                         </th>
                                                         <th class="sorting text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="2" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">
                                                             Actions
@@ -165,15 +303,15 @@
                                                 <tbody>
                                                     <tr class="gradeA odd" role="row">
                                                         <td class="sorting_1">Gecko</td>
-                                                        <td>serie.nom</td>
-                                                        <td>serie.fkpicture.counter</td>
+                                                        <td>place.nom</td>
+                                                        <td>blabla</td>
                                                         <td><button class="btn bg-primary btn-block" type="button"><i class="fa fa-check-circle"></i></button></td>
                                                         <td><button class="btn bg-danger btn-block" type="button"><i class="fa fa-times-circle"></i></button></td>
                                                     </tr>
                                                     <tr class="gradeA odd" role="row">
                                                         <td class="sorting_1">blabla</td>
-                                                        <td>serie.nom</td>
-                                                        <td>serie.fkpicture.counter</td>
+                                                        <td>place.nom</td>
+                                                        <td>blabla</td>
                                                         <td><button class="btn bg-primary btn-block" type="button"><i class="fa fa-check-circle"></i></button></td>
                                                         <td><button class="btn bg-danger btn-block" type="button"><i class="fa fa-times-circle"></i></button></td>
                                                     </tr></tbody>
@@ -182,10 +320,10 @@
                                                             Username
                                                         </th>
                                                         <th rowspan="1" colspan="1">
-                                                            Série
+                                                            Rôle
                                                         </th>
                                                         <th rowspan="1" colspan="1">
-                                                            Nombre d'images
+                                                            blabla
                                                         </th>
                                                         <th class="text-center" rowspan="1" colspan="2">
                                                             Actions
@@ -230,153 +368,22 @@
                         </div>
                     </div>
                 </div>
-                <!--HOTE VALIDATE-->
-                    <div class="wrapper wrapper-content animated fadeInRight">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="ibox float-e-margins">
-                                    <div class="ibox-title">
-                                        <h3 class="text-center">Validation d'hôte</h3>
-                                        <div class="ibox-tools">
-                                            <a class="collapse-link">
-                                                <i class="fa fa-chevron-up"></i>
-                                            </a>
-                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                                                <i class="fa fa-wrench"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown-user">
-                                                <li><a href="#">Config option 1</a>
-                                                </li>
-                                                <li><a href="#">Config option 2</a>
-                                                </li>
-                                            </ul>
-                                            <a class="close-link">
-                                                <i class="fa fa-times"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="ibox-content">
-
-                                        <div class="table-responsive">
-                                            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                                                <div class="dataTables_length" id="DataTables_Table_0_length">
-                                                    <label>Show <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control input-sm">
-                                                            <option value="10">10</option>
-                                                            <option value="25">25</option>
-                                                            <option value="50">50</option>
-                                                            <option value="100">100</option>
-                                                        </select> entries
-                                                    </label>
-                                                </div>
-                                                <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                                    <label>Search:
-                                                        <input type="search" class="form-control input-sm" placeholder="" aria-controls="DataTables_Table_0">
-                                                    </label>
-                                                </div>
-                                                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
-                                                    Showing 1 to 25 of 57 entries
-                                                </div>
-                                                <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">
-                                                    <thead>
-                                                        <tr role="row">
-                                                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 162px;">
-                                                                Username
-                                                            </th>
-                                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">
-                                                                Lieu
-                                                            </th>
-                                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 182px;">
-                                                                blabla
-                                                            </th>
-                                                            <th class="sorting text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="2" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">
-                                                                Actions
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr class="gradeA odd" role="row">
-                                                            <td class="sorting_1">Gecko</td>
-                                                            <td>place.nom</td>
-                                                            <td>blabla</td>
-                                                        <td><button class="btn bg-primary btn-block" type="button"><i class="fa fa-check-circle"></i></button></td>
-                                                        <td><button class="btn bg-danger btn-block" type="button"><i class="fa fa-times-circle"></i></button></td>
-                                                        </tr>
-                                                        <tr class="gradeA odd" role="row">
-                                                            <td class="sorting_1">blabla</td>
-                                                            <td>place.nom</td>
-                                                            <td>blabla</td>
-                                                        <td><button class="btn bg-primary btn-block" type="button"><i class="fa fa-check-circle"></i></button></td>
-                                                        <td><button class="btn bg-danger btn-block" type="button"><i class="fa fa-times-circle"></i></button></td>
-                                                        </tr></tbody>
-                                                    <tfoot>
-                                                        <tr><th rowspan="1" colspan="1">
-                                                                Username
-                                                            </th>
-                                                            <th rowspan="1" colspan="1">
-                                                                Rôle
-                                                            </th>
-                                                            <th rowspan="1" colspan="1">
-                                                                blabla
-                                                            </th>
-                                                            <th class="text-center" rowspan="1" colspan="2">
-                                                                Actions
-                                                            </th>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
-                                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                                                    <ul class="pagination">
-                                                        <li class="paginate_button previous disabled" id="DataTables_Table_0_previous">
-                                                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">
-                                                                Previous
-                                                            </a>
-                                                        </li>
-                                                        <li class="paginate_button active">
-                                                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">
-                                                                1
-                                                            </a>
-                                                        </li>
-                                                        <li class="paginate_button ">
-                                                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0">
-                                                                2
-                                                            </a>
-                                                        </li>
-                                                        <li class="paginate_button ">
-                                                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0">
-                                                                3
-                                                            </a>
-                                                        </li>
-                                                        <li class="paginate_button next" id="DataTables_Table_0_next">
-                                                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="4" tabindex="0">
-                                                                Next
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
+        </div>
 
 
-            {% endblock %}
-            {% block javascripts %}  
-                {{ parent() }}
-                <!-- Mainly scripts -->
-                <script src="{{asset('script/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
-                <script src="{{asset('script/js/plugins/slimscroll/jquery.slimscroll.js')}}"></script>
-                <script src="{{asset('script/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
-                <script src="{{asset('script/js/plugins/flot/jquery.flot.js')}}"></script>
-                <script src="{{asset('script/js/plugins/flot/jquery.flot.pie.js')}}"></script>
+    {% endblock %}
+    {% block javascripts %}  
+        {{ parent() }}
+        <!-- Mainly scripts -->
+        <script src="{{asset('script/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
+        <script src="{{asset('script/js/plugins/slimscroll/jquery.slimscroll.js')}}"></script>
+        <script src="{{asset('script/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
+        <script src="{{asset('script/js/plugins/flot/jquery.flot.js')}}"></script>
+        <script src="{{asset('script/js/plugins/flot/jquery.flot.pie.js')}}"></script>
 
-                <!-- Custom and plugin javascript -->
-                <script src="{{asset('script/js/inspinia.js')}}"></script>
-                <script src="{{asset('script/js/plugins/pace/pace.min.js')}}"></script>
-            {% endblock %}
+        <!-- Custom and plugin javascript -->
+        <script src="{{asset('script/js/inspinia.js')}}"></script>
+        <script src="{{asset('script/js/plugins/pace/pace.min.js')}}"></script>
+    {% endblock %}
 

@@ -52,24 +52,50 @@ function getPicture() {
             $($listePic).each(function () {
                 //Parce mes object picture
                 $("#contentPicture").append("\
-                <div class='col-sm-6 col-md-4'>\n\
-                    <div class='thumbnail'>\n\
-                        <a href=''>\n\
-                            <img src='/web/images/oeuvrePictures/" + this.img + "' alt=''>\n\
-                        </a>\n\
-                        <div class='caption'>\n\
-                            <h3>" + this.nom + "</h3>\n\
-                            <h4>" + this.commentaire + "</h>\n\
-                            <div>\n\
-                                <p>" + this.style + "</p>\n\
-                                <p>" + this.genres + "</p>\n\
+                    <div class='col-lg-4'>\n\
+                        <div class='widget-head-color-box navy-bg p-lg text-center'>\n\
+                            <div class='m-b-md'>\n\
+                            <h2 class='font-bold no-margins'>\n\
+                                " + this.nom + "\n\
+                            </h2>\n\
+                                <small>Founder of Groupeq</small>\n\
                             </div>\n\
+                            <img src='/web/images/oeuvrePictures/" + this.img + "'class='img-responsive m-b-md'>\n\
                         </div>\n\
-                    </div>\n\
-                </div>");
+                        <div class='widget-text-box'>\n\
+                            <h4 class='media-heading'>Alex Smith</h4>\n\
+                            <p>"+ this.commentaire +"</p>\n\
+                        </div>\n\
+                </div>\n\
+                ");
 //
             });
         }
     });
 
 }
+
+
+
+
+    // <div class='text-right'>
+      //                          <i class='fa fa-thumbs-up'></i>" + this.style + "\n\
+        //                        <i class='fa fa-heart'></i> " + this.genres + "\n\
+          //                  </div>
+
+
+// <div class='col-sm-6 col-md-4'>\n\
+//                    <div class='thumbnail'>\n\
+//                        <a href=''>\n\
+//                            <img src='/web/images/oeuvrePictures/' + this.img + '' alt=''>\n\
+//                        </a>\n\
+//                        <div class='caption'>\n\
+//                            <h3>" + this.nom + "</h3>\n\
+//                            <h4>" + this.commentaire + "</h>\n\
+//                           <div>\n\
+//                                <p>" + this.style + "</p>\n\
+//                                <p>" + this.genres + "</p>\n\
+ //                           </div>\n\
+//                        </div>\n\
+//                    </div>\n\
+//                </div>

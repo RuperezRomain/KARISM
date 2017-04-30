@@ -1,4 +1,4 @@
-{% extends "base.template.html.twig" %}
+{% extends "admin/adminTemplate.html.twig" %}
 
 {% block stylesheets %}
     {{parent()}}
@@ -7,21 +7,57 @@
 {% endblock %}
 
 {% block body %}
-    <div>
-
-        <div>
-            <a href="{{path('accueilTest')}}" id="exitSerie"><button type="button">Valider Serie</button></a>
+   
+    <div class="container-fluid " >
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Basic form <small>Simple login form example</small></h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                   
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-6 b-r"><h3 class="m-t-none m-b">Sign in</h3>
+                        <p>Sign in today for more expirience.</p>
+                        {{form_start(formPicture,{ 'attr': {'class': 'form-horizontal'}})}}
+                        {{ form_widget(formPicture.nom, { 'attr': {'class': 'form-control','placeholder':'Votre nom '}})}}
+                        {{ form_widget(formPicture.style, { 'attr': {'class': 'form-control'} })}}
+                        {{ form_widget(formPicture.techniques, { 'attr': {'class': 'form-control'} })}}
+                        {{ form_widget(formPicture.genres, { 'attr': {'class': 'form-control'} })}}
+                        {{ form_widget(formPicture.size, { 'attr': {'class': 'form-control'} })}}
+                        {{ form_widget(formPicture.prix, { 'attr': {'class': 'form-control'} })}}
+                        {{ form_widget(formPicture.expos, { 'attr': {'class': 'form-control'} })}}
+                        {{ form_widget(formPicture.commentaire, { 'attr': {'class': 'form-control','placeholder':'Commentaire'} })}}
+                        {{ form_widget(formPicture.img, { 'attr': {'class': 'btn btn-default btn-file'}})}}
+                        <button class="validPicture" >Validation Picture </button>
+                        <div>
+                            <a href="{{path('accueilTest')}}" id="exitSerie"><button type="button">Valider Serie</button></a>
+                        </div>
+                        {{form_end(formPicture)}}   
+                        {#              <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Log in</strong></button>
+                                      <label> <div class="icheckbox_square-green" style="position: relative;"><input type="checkbox" class="i-checks" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Remember me </label>
+                          #}</div>
+                    <div class="col-sm-6"><h4>Envie de rejoindre notre cercle d'artiste ?</h4>
+                        <p>You can create an account:</p>
+                       
+                    </div>
+                </div>
+            </div>
         </div>
-        {{form_start(formPicture)}}
-        <button class="validPicture" >Validation Picture </button>
-        {{form_end(formPicture)}}
-
     </div>
-    <div class="container">
+    </div>
+    <div class="container gray-bg">
         <div class="row" id="contentPicture">
 
         </div>
     </div>
+
+
 
 {% endblock %}
 

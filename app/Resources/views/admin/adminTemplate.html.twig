@@ -1,0 +1,28 @@
+{% extends "base.template.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/script/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/script/css/main.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/script/css/templateInspinia.css') }}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+{% endblock %}
+
+
+
+
+    
+{% block javascripts %}  
+    {{ parent() }}
+    <!-- Mainly scripts -->
+    <script src="{{asset('script/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
+    <script src="{{asset('script/js/plugins/slimscroll/jquery.slimscroll.js')}}"></script>
+    <script src="{{asset('script/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{asset('script/js/plugins/flot/jquery.flot.js')}}"></script>
+    <script src="{{asset('script/js/plugins/flot/jquery.flot.pie.js')}}"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="{{asset('script/js/inspinia.js')}}"></script>
+    <script src="{{asset('script/js/plugins/pace/pace.min.js')}}"></script>
+{% endblock %}

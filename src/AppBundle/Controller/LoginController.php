@@ -75,8 +75,8 @@ class LoginController extends Controller
                 ->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
             $user->setRoles($roleUser);
-            $user->setArtistValidate(0);
-            $user->setHoteValidate(0);
+            $user->setArtistValidate(null);
+            $user->setHoteValidate(null);
 
             //save the User
             $em = $this->getDoctrine()->getManager();

@@ -5,15 +5,51 @@
  *
  */
 
-
+///Apel ajax pour validation Positive 
 $(document).ready(function () {
+       
+    $(".validArtiste").click(function () {
+
+        $idUser = $(this).parents("tr").attr('id');
+        $.ajax({
+            url: "./remote/user/" + $idUser + "/artiste/valid",
+            type: "Get",
+            dataType: "json",
+            async: true,
+            success: function () {
+                $('#' + $idUser).css({
+                    'display': 'none'
+                });
+            }
+        });
+    });
+    
+
+///Apel ajax pour validation Positive 
+    $(".refuseArtiste").click(function () {
+
+        $idUser = $(this).parents("tr").attr('id');
+        $.ajax({
+            url: "./remote/user/" + $idUser + "/artiste/refuse",
+            type: "Get",
+            dataType: "json",
+            async: true,
+            success: function () {
+                $('#' + $idUser).css({
+                    'display': 'none'
+                });
+            }
+        });
+    });
+                
+        
 
 
     // Add body-small class if window less than 768px
     if ($(this).width() < 769) {
-        $('body').addClass('body-small')
+        $('body').addClass('body-small');
     } else {
-        $('body').removeClass('body-small')
+        $('body').removeClass('body-small');
     }
 
     // MetsiMenu
@@ -171,16 +207,16 @@ $(document).ready(function () {
     // Add slimscroll to element
     $('.full-height-scroll').slimscroll({
         height: '100%'
-    })
+    });
 });
 
 
 // Minimalize menu when screen is less than 768px
 $(window).bind("resize", function () {
     if ($(this).width() < 769) {
-        $('body').addClass('body-small')
+        $('body').addClass('body-small');
     } else {
-        $('body').removeClass('body-small')
+        $('body').removeClass('body-small');
     }
 });
 
@@ -235,7 +271,7 @@ $(document).ready(function () {
 
 // check if browser support HTML5 local storage
 function localStorageSupport() {
-    return (('localStorage' in window) && window['localStorage'] !== null)
+    return (('localStorage' in window) && window['localStorage'] !== null);
 }
 
 // For demo purpose - animation css script
@@ -289,3 +325,4 @@ function WinMove() {
         })
         .disableSelection();
 }
+

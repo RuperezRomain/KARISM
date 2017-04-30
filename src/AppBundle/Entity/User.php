@@ -589,6 +589,7 @@ return null;
 
     public function jsonSerialize() {
                 return array(
+            "id" => $this->id,
             "firstname" => $this->firstname,
             "lastname" => $this->lastname,
             "username" => $this->username,
@@ -597,6 +598,7 @@ return null;
             "adress" => $this->adress,
             "genre" => $this->genre,
             "user_profilPicture" => $this->profilPicture,
+            "email" => $this->email,
         );
     }
 
