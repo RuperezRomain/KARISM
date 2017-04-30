@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -37,7 +38,7 @@ class UserType extends AbstractType {
                 ->add('firstname', TextType::class, array('required' => false))
                 ->add('lastname', TextType::class, array('required' => false))
                 ->add('phone', TextType::class, array('required' => false))
-                ->add('bio', TextType::class, array('required' => false))
+                ->add('bio', TextareaType::class, array('required' => false))
                 ->add('adress', TextType::class, array('required' => false))
 
         ;
