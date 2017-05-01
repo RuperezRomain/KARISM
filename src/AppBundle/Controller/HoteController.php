@@ -39,18 +39,21 @@ class HoteController extends Controller {
             // Creating Place
             $lieu = new Place();
             $lieu->setUserid($user);
+                        print_r('iff');
+
         } 
         else {
             // Ou merge si il exsiste
+            print_r('else');
+        $lieu = $em->getRepository(Place::class)->findBy(array('fk_user' => $userId));
             $placeDefault = $placeDefault[0];
             $em->merge($placeDefault);
             $em->flush($placeDefault);
         }
         
-        
-        
+
         // on lie notre formulaire a notre entity
-        $f = $this->createForm('AppBundle\Form\PlaceType', $lieu);
+        $f = $this->createForm('AppBundle\Form\PlaceFormType', $lieu);
         // et on retourne le formulaire dans notre vue
         $f->handleRequest($request);
         if ($f->isSubmitted() && $f->isValid()) {
@@ -58,7 +61,7 @@ class HoteController extends Controller {
 //            $nomDuFichier = md5(uniqid()) . "." . $lieu->getImg()->getClientOriginalExtension();
 //            $lieu->getImg()->move('images/oeuvrePictures', $nomDuFichier);
 //            $lieu->setImg($nomDuFichier);
-            $lieu->setAdress("test");
+//            $lieu->setAdress("test");
             $em->persist($lieu);
             $em->flush($lieu);
         }

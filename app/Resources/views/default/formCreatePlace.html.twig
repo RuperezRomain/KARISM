@@ -1,4 +1,5 @@
-{% extends "base.template.html.twig" %}
+{% extends "admin/adminTemplate.html.twig" %}
+
 
 {% block stylesheets %}
     {{parent()}}
@@ -7,19 +8,38 @@
 {% endblock %}
 
 {% block body %}
-    <div>
+    <div class="container-fluid " >
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Devenez hôte<small> en proposant un lieu</small></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-6 b-r"><h3 class="m-t-none m-b">Sign in</h3>
+                            <p>Sign in today for more expirience.</p>
+                            {{form_start(PlaceType,{ 'attr': {'class': 'form-horizontal'}})}}
+                            {{ form_widget(PlaceType.size, { 'attr': {'class': 'form-control','placeholder':'Dimensions '}})}}
+                            {{ form_widget(PlaceType.capacity, { 'attr': {'class': 'form-control','placeholder':"Capacité d'acceuil"}})}}
+                            {{ form_widget(PlaceType.adress, { 'attr': {'class': 'form-control','placeholder':"Adresse du lieu"}})}}
+                            {{ form_widget(PlaceType.fk_city, { 'attr': {'class': 'form-control'}})}}
+                            {{ form_widget(PlaceType.available)}}
+                            <button class="validPlace" >Valider mon lieu</button>
+                            {{form_end(PlaceType)}}
 
-        <div>
-            <a href="{{path('accueilTest')}}" id="exitPlace"><button type="button">Valider Serie</button></a>
-        </div>
-        {{form_start(PlaceType)}}
-        <button class="validPlace" >Valider mon lieu</button>
-        {{form_end(PlaceType)}}
+                        </div>
+                        <div class="col-sm-6"><h4>Envie de rejoindre notre cercle d'hôtes ?</h4>
+                            <p>You can create an account:</p>
 
-    </div>
-    <div class="container">
-        <div class="row" id="contentPicture">
-
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -27,5 +47,5 @@
 
 {% block javascripts %}
     {{parent()}}
-{#    <script src="{{asset('script/js/artiste.js')}}"></script>#}
+    {#    <script src="{{asset('script/js/artiste.js')}}"></script>#}
 {% endblock %}
