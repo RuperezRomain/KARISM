@@ -27,12 +27,12 @@ class ArtisteController extends Controller {
      * 
      * @Route("user/edit/role/role_artiste/{id}")
      */
-    public function user_artisteGestion(Request $request, $id) {
+    public function GestionSerie(Request $request, $id) {
 
         $em = $this->getDoctrine()->getManager();
         // cheek du parametre $id
         if ($id === 'Default') {
-            $serieDefault = $this->gestionSerie($id);
+            $serieDefault = $this->SelecteSerie($id);
         } else {
             $serieDefault = $this->getDoctrine()->getRepository(Serie::class)->find($id);
         }
@@ -80,7 +80,7 @@ class ArtisteController extends Controller {
     }
 
 
-    public function gestionSerie($nomSerie) {
+    public function SelecteSerie($nomSerie) {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUserSetion();
 
