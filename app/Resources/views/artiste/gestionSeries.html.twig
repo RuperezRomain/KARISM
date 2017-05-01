@@ -1,0 +1,19 @@
+{% extends "admin/adminTemplate.html.twig" %}
+
+{% block body %}
+
+    <form>
+        <input type="text" placeholder="Nom de la nouvelle serie">
+        <input type="submit">
+    </form>
+    {% for serie in series %}
+        <div class="col-sm-6 col-md-2">
+            <div class="thumbnail">
+                <a href="/user/edit/role/role_artiste/{{serie.id}}">
+                    <img class="img-thumbnail" src="/web/images/oeuvrePictures/{{serie.img}}" >
+                </a>
+            </div>
+        </div>
+
+    {% endfor %}
+{% endblock %}
