@@ -33,6 +33,21 @@ class Place
     /**
      * @var int
      *
+     * @ORM\Column(name="name", type="string", nullable=true)
+     */
+    private $name;
+    
+    function getName() {
+        return $this->name;
+    }
+
+    function setName($name) {
+        $this->name = $name;
+    }
+
+        /**
+     * @var int
+     *
      * @ORM\Column(name="size", type="integer")
      */
     private $size;

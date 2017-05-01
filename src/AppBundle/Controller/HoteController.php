@@ -21,9 +21,9 @@ use Symfony\Component\HttpFoundation\Request;
 class HoteController extends Controller {
 
     /**
-     * @Route("user/edit/role/role_hote")
+     * @Route("user/request/role/hote")
      */
-    public function userAddrole_hote(Request $request) {
+    public function userAddRoleHoteRequest(Request $request) {
         $em = $this->getDoctrine()->getManager();
         // get user in session
         $userId = $this->getUser()->getId();
@@ -39,31 +39,55 @@ class HoteController extends Controller {
             // Creating Place
             $lieu = new Place();
             $lieu->setUserid($user);
-                        print_r('iff');
+            $lieu->setName("Default");
 
-        } 
-        else {
-            // Ou merge si il exsiste
-            print_r('else');
-        $lieu = $em->getRepository(Place::class)->findBy(array('fk_user' => $userId));
-            $placeDefault = $placeDefault[0];
-            $em->merge($placeDefault);
-            $em->flush($placeDefault);
+            // on lie notre formulaire a notre entity
+            $f = $this->createForm('AppBundle\Form\PlaceFormType', $lieu);
+
+            // et on retourne le formulaire dans notre vue
+            $f->handleRequest($request);
+            if ($f->isSubmitted() && $f->isValid()) {
+                $em->persist($lieu);
+                $em->flush($lieu);
+            return $this->redirectToRoute('profilTest');
+            }
+            return $this->render('default/formCreatePlace.html.twig', array("PlaceType" => $f->createView()));
         }
-        
+    }
 
-        // on lie notre formulaire a notre entity
-        $f = $this->createForm('AppBundle\Form\PlaceFormType', $lieu);
-        // et on retourne le formulaire dans notre vue
+    /**
+     * @Route("user/request/role/hote/edit")
+     */
+    public function userEditRoleHoteRequest(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        // get user in session
+        $userId = $this->getUser()->getId();
+        $user = $this->getDoctrine()->getRepository(User::class)->find($userId);
+
+        $placeDefaultTbl = $em->getRepository(Place::class)->findBy(array('name' => 'Default', 'fk_user' => $user));
+        if ($placeDefaultTbl == null) {
+
+            // Initalisation boolean ArtistValidate
+            $user->setArtistValidate(0);
+            $em->merge($user);
+            $em->flush($user);
+
+            // Creation place par default
+//            $em->persist($placeDefault);
+        } else {
+            // Ou merge si il exsiste
+            $placeDefault = $placeDefaultTbl[0];
+            $em->merge($placeDefault);
+        }
+//        $em->flush();
+        $placeDefault = $placeDefaultTbl[0];
+
+        $f = $this->createForm('AppBundle\Form\PlaceFormType', $placeDefault);
         $f->handleRequest($request);
         if ($f->isSubmitted() && $f->isValid()) {
-            // on recupere le nom du fichier, on genere un nom numerique aleatoire et on creer un dossier uploads/images 
-//            $nomDuFichier = md5(uniqid()) . "." . $lieu->getImg()->getClientOriginalExtension();
-//            $lieu->getImg()->move('images/oeuvrePictures', $nomDuFichier);
-//            $lieu->setImg($nomDuFichier);
-//            $lieu->setAdress("test");
-            $em->persist($lieu);
-            $em->flush($lieu);
+            $em->persist($placeDefault);
+            $em->flush($placeDefault);
         }
         return $this->render('default/formCreatePlace.html.twig', array("PlaceType" => $f->createView()));
     }
