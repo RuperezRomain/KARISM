@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * City
@@ -29,9 +31,9 @@ class City
     private $city;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="country", type="integer")
+     * Many Place have One place_type.
+     * @ManyToOne(targetEntity="Country")
+     * @JoinColumn(name="country_id", referencedColumnName="id")
      */
     private $country;
 
@@ -67,6 +69,9 @@ class City
      */
     public function getCity()
     {
+        return $this->city;
+    }
+    public function __toString() {
         return $this->city;
     }
 
