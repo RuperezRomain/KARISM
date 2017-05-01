@@ -105,10 +105,9 @@ class ArtisteController extends Controller {
             $serieDefault = $serieDefaultTbl[0];
             $em->merge($serieDefault);
         }
-        // Verification que la serie appartient bien a l'user courant 
-        if ($serieDefault->getUserid()[0] == $this->getUser()->getId()) {
+      
             $em->flush();
-        }
+ 
 
         return $serieDefault;
     }
