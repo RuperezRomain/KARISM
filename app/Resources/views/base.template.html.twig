@@ -26,11 +26,21 @@
               <button class="btn btn-default dropdown-toggle btn btn-link text-left " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 Romain Duris <span class="caret"> </span>
               </button>
+           {% if is_granted("ROLE_ARTISTE") %}
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
+                  <li><a href="#">Profil</a></li>
+                  <li><a href="#">Wishlist</a></li>
+                  <li><a href="#">devenir Hote</a></li>
+                  <li><a href="#">devenir Artiste</a></li>
+                  <li><a href="#">lieux</a></li>
+                  <li><a href="#">expos</a></li>
+                  <li><a href="#">serie</a></li>
+                  {# Profile x3, Wishlist x3, hote x2, artiste x2, lieux, expos x2, serie #}
                 </ul>
+           <button class="btn-danger"><a href="#">deconnexion</a></button>
+           {%else%}
+           <button class="btn-success"> inscription/connexion</button>
+           {% endif %}
               </div>
             </div>
           </div>
