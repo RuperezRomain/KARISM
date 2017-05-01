@@ -49,7 +49,16 @@ function getPicture() {
             expoInput.val('');
             commInput.val('');
             imgInput.val('');
-            $($listePic).each(function () {
+
+            $buton = str = "<button type='button' class='caca'>Click Me!</button>",
+                    html = $.parseHTML(str);
+            
+            $(".caca").click(function(){
+                alert("caca");
+            });
+           
+                    $($listePic).each(function () {
+
                 //Parce mes object picture
                 $("#contentPicture").append("\
                     <div class='col-lg-4'>\n\
@@ -63,9 +72,9 @@ function getPicture() {
                             <img src='/web/images/oeuvrePictures/" + this.img + "'class='img-responsive m-b-md'>\n\
                         </div>\n\
                         <div class='widget-text-box'>\n\
-                            <h4 class='media-heading'>Alex Smith</h4>\n\
-                            <p>"+ this.commentaire +"</p>\n\
+                           <p>" + this.commentaire + "</p>\n\
                         </div>\n\
+                        "+ $buton +"\n\
                 </div>\n\
                 ");
 //
@@ -78,10 +87,10 @@ function getPicture() {
 
 
 
-    // <div class='text-right'>
-      //                          <i class='fa fa-thumbs-up'></i>" + this.style + "\n\
-        //                        <i class='fa fa-heart'></i> " + this.genres + "\n\
-          //                  </div>
+// <div class='text-right'>
+//                          <i class='fa fa-thumbs-up'></i>" + this.style + "\n\
+//                        <i class='fa fa-heart'></i> " + this.genres + "\n\
+//                  </div>
 
 
 // <div class='col-sm-6 col-md-4'>\n\
@@ -95,7 +104,7 @@ function getPicture() {
 //                           <div>\n\
 //                                <p>" + this.style + "</p>\n\
 //                                <p>" + this.genres + "</p>\n\
- //                           </div>\n\
+//                           </div>\n\
 //                        </div>\n\
 //                    </div>\n\
 //                </div>

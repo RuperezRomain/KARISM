@@ -49,6 +49,14 @@ class Serie {
     private $fk_picture;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="img", type="string", length=255, nullable=true)
+     */
+    private $img;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -114,8 +122,15 @@ class Serie {
         $this->fk_picture = $fk_picture;
     }
     
-    
-     public function jsonSerialize() {
+    function getImg() {
+        return $this->img;
+    }
+
+    function setImg($img) {
+        $this->img = $img;
+    }
+
+         public function jsonSerialize() {
         return array(
             "fk_picture" => $this->fk_picture
 );}
