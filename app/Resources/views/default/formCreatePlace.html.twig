@@ -29,7 +29,7 @@
                             {{ form_widget(PlaceType.adress, { 'attr': {'class': 'form-control','placeholder':"Adresse du lieu"}})}}
                             {{ form_widget(PlaceType.fk_city, { 'attr': {'class': 'form-control'}})}}
                             {{ form_widget(PlaceType.available)}}
-                            <button class="validPlace" >Valider mon lieu</button>
+                            <button id="validPlace" >Valider mon lieu</button>
                             {{form_end(PlaceType)}}
 
                         </div>
@@ -47,5 +47,6 @@
 
 {% block javascripts %}
     {{parent()}}
-    {#    <script src="{{asset('script/js/artiste.js')}}"></script>#}
+        <script src="{{asset('script/js/plugins/sweetalert/sweetalert.js')}}"></script>
+        <script src="{{asset('script/js/plugins/sweetalert/hoteAlarm.js.js')}}"></script>
 {% endblock %}

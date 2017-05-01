@@ -12,7 +12,7 @@
                 <div>
                     <div>
 
-                        <h4 class="logo-name">logo</h4>
+                        <h4 class="logo-name"><span class="loading dots3"></span></h4>
 
                     </div>
                     <h3>Bienvenue chez KARISM </h3>
@@ -20,25 +20,26 @@
                         <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
                     </p>#}
                     <p>Inscription</p>
-                    
-                        {{ form_start(form,{ 'attr': {'class': 'form-horizontal'}})}}
-                        {{ form_widget(form.username, { 'attr': {'class': 'form-control','placeholder':'Votre Pseudo '}})}}
-                        {{ form_widget(form.email, { 'attr': {'class': 'form-control','placeholder':'Votre email '}})}}
-                        {{ form_widget(form.password.first, { 'attr': {'class': 'form-control','placeholder':'Votre mots de passe '}})}}
-                        {{ form_widget(form.password.second, { 'attr': {'class': 'form-control','placeholder':'Confirmation mots de passe '}})}}
-                        {{ form_widget(form.genre, { 'attr': {'class': 'form-control'}})}}
-                        {{ form_widget(form.firstname, { 'attr': {'class': 'form-control','placeholder':'Votre Prenom '}})}}
-                        {{ form_widget(form.lastname, { 'attr': {'class': 'form-control','placeholder':'Votre Nom '}})}}
-                        {{ form_widget(form.phone, { 'attr': {'class': 'form-control','placeholder':'Votre N°Tel '}})}}
-                        {{ form_widget(form.bio, { 'attr': {'class': 'form-control','placeholder':'Description'}})}}
-                        {{ form_widget(form.adress, { 'attr': {'class': 'form-control','placeholder':'Votre Adresse '}})}}
-                        {{ form_widget(form.profilPicture, { 'attr': {'class': 'btn btn-default btn-file'}})}}
-                        
-                        
-                        <img id="previewPicture" src="#" alt="your image" width="350px" />
 
-                        <button type="submit" class="btn btn-primary">S'enregistrer</button>
-                        {{ form_end(form) }}                    
+                    {{ form_start(form,{ 'attr': {'class': 'form-horizontal'}})}}
+                    {{ form_widget(form.username, { 'attr': {'class': 'form-control','placeholder':'Votre Pseudo '}})}}
+                    {{ form_widget(form.email, { 'attr': {'class': 'form-control','placeholder':'Votre email '}})}}
+                    {{ form_widget(form.password.first, { 'attr': {'class': 'form-control','placeholder':'Votre mots de passe '}})}}
+                    {{ form_widget(form.password.second, { 'attr': {'class': 'form-control','placeholder':'Confirmation mots de passe '}})}}
+                    {{ form_widget(form.genre, { 'attr': {'class': 'form-control'}})}}
+                    {{ form_widget(form.firstname, { 'attr': {'class': 'form-control','placeholder':'Votre Prenom '}})}}
+                    {{ form_widget(form.lastname, { 'attr': {'class': 'form-control','placeholder':'Votre Nom '}})}}
+                    {{ form_widget(form.phone, { 'attr': {'class': 'form-control','placeholder':'Votre N°Tel '}})}}
+                    {{ form_widget(form.bio, { 'attr': {'class': 'form-control','placeholder':'Description'}})}}
+                    {{ form_widget(form.adress, { 'attr': {'class': 'form-control','placeholder':'Votre Adresse '}})}}
+                    {{ form_widget(form.profilPicture, { 'attr': {'class': 'btn btn-default btn-file'}})}}
+
+
+                    <img id="previewPicture" src="#" alt="your image" width="350px" />
+
+                    <button id="validRegister" type="submit" class="btn btn-primary">S'enregistrer</button>
+                    {{ form_end(form) }}                    
+                    <button  class="btn btn-primary">S'enregistrer</button>
                 </div>
             </div>
         </div>
@@ -46,6 +47,14 @@
 {% endblock %}
 {% block javascripts %}        
     {{ parent () }}
-    <script src="script/js/previewImage.js"></script>
+    <script src="{{ asset('script/js/previewImage.js') }}"></script>
+    <script src="{{ asset('script/js/plugins/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('script/js/plugins/sweetalert/alertRegister.js') }}"></script>
+{% endblock %}
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="{{ asset('script/css/text-spinner/spinners.css') }}" />
+    <link rel="stylesheet" href="{{ asset('script/css/sweetalertCss/sweetalert.css') }}" />
+
 {% endblock %}
 

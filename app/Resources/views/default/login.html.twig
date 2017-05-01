@@ -5,17 +5,13 @@
 {% endblock %}
 {% block body %}
 
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
     <div class="container">
         <div class="row">
             <div class="middle-box text-center loginscreen animated fadeInDown">
                 <div>
                     <div>
 
-                        <h4 class="logo-name">logo</h4>
+                        <h4 class="logo-name"><span class="loading dots3"></span></h4>
 
                     </div>
                     <h3>Bienvenue chez KARISM </h3>
@@ -23,6 +19,9 @@
                         <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
                     </p>#}
                     <p>Entrez vos informations de connexion</p>
+                    {% if error %}
+                        <div id="error">Adresse ou mot de passe incorrectes</div>
+                    {% endif %}
                     <form action="{{ path('loginCheck') }}" method="post">
                         <div class="form-group">
                             <input type="text" name="_username" id="username" class="form-control" placeholder="Email" value="{{ last_username }}"  required="">
@@ -30,7 +29,7 @@
                         <div class="form-group">
                             <input type="password" id="password" class="form-control" placeholder="Password" name="_password" required="">
                         </div>
-                        <button type="submit" class="btn btn-primary block full-width m-b">Conéction</button>
+                        <button id="login" type="submit" class="btn btn-primary block full-width m-b">Connexion</button>
 
 
                         <a class="btn btn-sm btn-white btn-block" href="{{path('register')}}" >Vous n'êtes pas inscrit ?</a>
@@ -39,4 +38,15 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}        
+    {{ parent () }}
+    <script src="{{ asset('script/js/plugins/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('script/js/plugins/sweetalert/alertLogin.js') }}"></script>
+{% endblock %}
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="{{ asset('script/css/text-spinner/spinners.css') }}" />
+    <link rel="stylesheet" href="{{ asset('script/css/sweetalertCss/sweetalert.css') }}" />
+
 {% endblock %}
