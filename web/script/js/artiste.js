@@ -50,12 +50,6 @@ function getPicture() {
             commInput.val('');
             imgInput.val('');
 
-            $buton = str = "<button type='button' class='caca'>Click Me!</button>",
-                    html = $.parseHTML(str);
-            
-            $(".caca").click(function(){
-                alert("caca");
-            });
            
                     $($listePic).each(function () {
 
@@ -67,14 +61,12 @@ function getPicture() {
                             <h2 class='font-bold no-margins'>\n\
                                 " + this.nom + "\n\
                             </h2>\n\
-                                <small>Founder of Groupeq</small>\n\
                             </div>\n\
                             <img src='/web/images/oeuvrePictures/" + this.img + "'class='img-responsive m-b-md'>\n\
                         </div>\n\
                         <div class='widget-text-box'>\n\
                            <p>" + this.commentaire + "</p>\n\
                         </div>\n\
-                        "+ $buton +"\n\
                 </div>\n\
                 ");
 //

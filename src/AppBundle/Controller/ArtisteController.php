@@ -24,19 +24,43 @@ use Symfony\Component\HttpFoundation\Request;
 class ArtisteController extends Controller {
 
     /**
+     *@Route("edit/user/roleArtiste")
      * 
-     * @Route("user/edit/role/role_artiste/{id}",name="gestionSerie")
      */
-    public function gestionSerie(Request $request, $id) {
+    public function editUserRoleArtiste() {
+         $em = $this->getDoctrine()->getManager();
+        $serieDefault = $this->SelecteSerie('Default');
+         //Creation et insertion dans le token de l'entité 
+        $this->get('session')->set('serieDefault', $serieDefault);
+        //Recuperation de son id 
+        $id = $this->get('session')->get('serieDefault')->getId();
+        
+         $user = $this->getUserSetion();
+            // Initalisation boolean ArtistValidate
+            if ($user->getArtistValidate() == null) {
+                $user->setArtistValidate(0);
+            }
+            $em->merge($user);
+            $em->flush($user);
+        
+        // Execution de ma methodde pour etre redirigé sur la vue de gestion de cette serie 
+        return $this->redirect($this->generateUrl('gestionSerie',array('id' => $id)));
+        
+    }
+
+    
+
+    /**
+     * 
+     * @Route("edit/picture/serie/{id}",name="gestionSerie")
+     */
+    public function gestionSerie(Request $request,$id) {
 
         $em = $this->getDoctrine()->getManager();
-        // cheek du parametre $id
-        if ($id === 'Default') {
-            $serieDefault = $this->SelecteSerie($id);
-        } else {
-            $serieDefault = $this->getDoctrine()->getRepository(Serie::class)->find($id);
-        }
-
+        
+        $serieDefault = $this->getDoctrine()->getRepository(Serie::class)->find($id);
+        
+        
         //Creation de la serie sous session
         $this->get('session')->set('serieDefault', $serieDefault);
 
@@ -86,11 +110,8 @@ class ArtisteController extends Controller {
         // Check si la table Default pour cette user n'existe pas
         $serieDefaultTbl = $em->getRepository(Serie::class)->findBy(array('name' => $nomSerie, 'userid' => $user->getId()));
         if ($serieDefaultTbl == null) {
-
-            // Initalisation boolean ArtistValidate
-            if ($user->getArtistValidate() == null) {
-                $user->setArtistValidate(0);
-            }
+            
+             
             $em->merge($user);
             $em->flush($user);
 
@@ -132,12 +153,12 @@ class ArtisteController extends Controller {
     }
 
     /**
-     * Liste des serie dun artiste 
-     * @Route("artiste/get/series/user/{id}",name ="getSeriesUser")
+     * Liste des serie de l'artiste courant 
+     * @Route("artiste/get/series/user/",name ="getSeriesUser")
      * 
      */
-    public function getSeriesUser($id) {
-
+    public function getSeriesUser() {
+        $id = $this->getUser()->getId();
         $series = $this->getDoctrine()->getRepository(Serie::class)->findByUserid($id);
 
         return $this->render('artiste/gestionSeries.html.twig', array('series' => $series));
@@ -161,8 +182,11 @@ class ArtisteController extends Controller {
 
     
     public function creatSerie($nom) {
+        //Creation et insertion dans le token de l'entité 
         $this->get('session')->set('serieDefault', $this->SelecteSerie($nom));
+        //Recuperation de son id 
         $id = $this->get('session')->get('serieDefault')->getId();
+        // Execution de ma methodde pour etre redirigé sur la vue de gestion de cette serie 
         return $this->redirect($this->generateUrl('gestionSerie',array('id' => $id)));
     }
 
