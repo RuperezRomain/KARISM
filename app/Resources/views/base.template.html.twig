@@ -4,90 +4,120 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Kar:sm{% endblock %}</title>
         {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('/script/css/bootstrap.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('/script/css/main.css') }}" />
-        
+            <link rel="stylesheet" href="{{ asset('/script/css/bootstrap.min.css') }}" />
+            <link rel="stylesheet" href="{{ asset('/script/css/main.css') }}" />
+            <link rel="stylesheet" href="{{ asset('/script/css/animate.css') }}" />
+
+
         {% endblock %}
-        
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        
-    <div class="container-fluid">       
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="row navigation">
-            <div class="col-xs-2 col-sm-4 col-md-5 col-lg-5 ">
-                <a href="http://placehold.it"><img src="http://placehold.it/60x35"></a></div>
-              
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-5 "><h4>Bonjour user </h4></div>
-           
-       <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 dropdown"><a href="http://placehold.it"><img class="roundedimg" src="http://placehold.it/60x60"></a>
-              <button class="btn btn-default dropdown-toggle btn btn-link text-left " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Romain Duris <span class="caret"> </span>
-              </button>
-           {% if is_granted("ROLE_ARTISTE") %}
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                  <li><a href="#">Profil</a></li>
-                  <li><a href="#">Wishlist</a></li>
-                  <li><a href="#">devenir Hote</a></li>
-                  <li><a href="#">devenir Artiste</a></li>
-                  <li><a href="#">lieux</a></li>
-                  <li><a href="#">expos</a></li>
-                  <li><a href="#">serie</a></li>
-                  {# Profile x3, Wishlist x3, hote x2, artiste x2, lieux, expos x2, serie #}
-                </ul>
-           <button class="btn-danger"><a href="#">deconnexion</a></button>
-           {%else%}
-           <button class="btn-success"> inscription/connexion</button>
-           {% endif %}
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-        {% block navbar    %}
-       {% endblock   %}
-       
-         {% block body %}{% endblock %}
-        
-         <footer class="footerr pull-left degrade"> 
 
-           
-                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                     A propos <br> Les EXPOS à la MAISON est une plateforme de mise en relation entre artistes et particuliers qui s’articule autour d’une galerie d’art en ligne.
- Ce projet d’art, fondé par Sellah Alidor (collectif FROM PARIS) et Thibault Chazal
-                 </div>
-                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                      <p> En savoir plus <br> 
-                          Charte <br> FAQ <br></p>
-                 </div>
-                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                     <p> Contact <br>
-                     <span class="glyphicon glyphicon-phone">07 81 02 72 15</span>
-                     <br>
-                      <span class="glyphicon glyphicon-envelope"> contact@karism.fr</span>
-                     </p>
-                 </div>
-                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                    <a href="http://placehold.it"><img src="http://placehold.it/60x35"></a>
-                     icone resaux sociaux <br> O <br> O <br>
-                     
-                 </div>
-            </footer>
-      
-        
-        
-        
-          
-       
-        {% block javascripts %}        
-        <script src="{{ asset('script/jquery/jquery.js') }}"></script>
-        <script src="{{ asset('script/js/bootstrap.js') }}"></script>
-        <script src="{{ asset('script/js/angular.min.js') }}"></script>
-        {% endblock %}
-        {% block footer %}
+        <div class="container-fluid">       
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="row navigation">
+                        <div class="col-xs-2 col-sm-4 col-md-5 col-lg-5 ">
+                            <a href="http://placehold.it"><img src="http://placehold.it/60x35"></a></div>
+                                {% if is_granted("ROLE_ARTISTE") 
+                                    or is_granted('ROLE_USER')
+                                    or is_granted('ROLE_ADMIN')
+                                    or is_granted('ROLE_ARTISTE')
+                                    or is_granted('ROLE_HOTE') %}
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-5"data-animation="flash"><h4>Bonjour {{ app.user.username }}</h4></div>
+                        {%else%}
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-5 "><h4>Bienvenue sur KARISM</h4></div>
+                            {% endif %}
+                                {% if is_granted("ROLE_ARTISTE") 
+                                    or is_granted('ROLE_USER')
+                                    or is_granted('ROLE_ADMIN')
+                                    or is_granted('ROLE_ARTISTE')
+                                    or is_granted('ROLE_HOTE') %}
+                                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 dropdown"><a href="http://placehold.it"><img class="roundedimg" src="http://placehold.it/60x60"></a>
+                                    <button class="btn btn-default dropdown-toggle btn btn-link text-left " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        {{ app.user.username }}<span class="caret"> </span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <li><a href="{{ path('profilTest') }}">Profil</a></li>
+                                            {% if is_granted("ROLE_ADMIN") %}
+                                            <li><a href="{{ path('admin') }}">Panneaux d'administration</a></li>
+                                            {% endif %}
+                                        <li><a href="#">Wishlist</a></li>
+                                        <li><a href="#">Devenir Hote</a></li>
+                                        <li><a href="#">Devenir Artiste</a></li>
+                                            {% if is_granted("ROLE_ARTISTE") %}
+                                            <li><a href="#">Mes séries</a></li>
+                                            <li><a href="#">expos</a></li>
+                                            {% endif %}
+                                            {% if is_granted("ROLE_HOTE") %}
+                                            <li><a href="#">Mes lieux</a></li>
+                                            <li><a href="#">expos</a></li>
+                                            {% endif %}
+                                        <li class="bg-warning"><a href="{{ path('logout') }}">Déconnexion</a></li>
+                                            {# Profile x3, Wishlist x3, hote x2, artiste x2, lieux, expos x2, serie #}
+                                    </ul>
+                                    {%else%}
+                                        <p class="text-center" ><a href="{{ path('register') }}">S'inscrire</a></p>
+                                        <p class="text-center" ><a href="{{ path('login') }}">Se connecter</a></p>
+                                        {% endif %}
+                                        </div>
+                                        <div class="col-xs-1 col-sm-2 col-md-2 col-lg-2"></div>
+                                        <div class="col-xs-3 col-sm-4 col-md-5 col-lg-10">
+                                            <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="{{ path('accueilTest') }}">Accueil</a></h4></div>
+                                            <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="">Mes Expos</a></h4></div>
+                                            <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="">Mes lieux</a></h4></div>
+                                            <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="{{ path('profilTest') }}">Mon Profil</a></h4></div>
+                                            <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="">Rechercher</a></h4></div>
+                                        </div>
+                                        <div class="col-xs-3 col-sm-4 col-md-5 col-lg-2"></div>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% block navbar    %}
+                        {% endblock   %}
 
-        {% endblock %}
-    </body>
-</html>
+                    {% block body %}{% endblock %}
+
+                    <footer class="footerr pull-left degrade"> 
+
+
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            A propos <br> Les EXPOS à la MAISON est une plateforme de mise en relation entre artistes et particuliers qui s’articule autour d’une galerie d’art en ligne.
+                            Ce projet d’art, fondé par Sellah Alidor (collectif FROM PARIS) et Thibault Chazal
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <p> En savoir plus <br> 
+                                Charte <br> FAQ <br></p>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <p> Contact <br>
+                                <span class="glyphicon glyphicon-phone">07 81 02 72 15</span>
+                                <br>
+                                <span class="glyphicon glyphicon-envelope"> contact@karism.fr</span>
+                            </p>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <a href="http://placehold.it"><img src="http://placehold.it/60x35"></a>
+                            icone resaux sociaux <br> O <br> O <br>
+
+                        </div>
+                    </footer>
+
+
+
+
+
+
+                    {% block javascripts %}        
+                        <script src="{{ asset('script/jquery/jquery.js') }}"></script>
+                        <script src="{{ asset('script/js/bootstrap.js') }}"></script>
+                        <script src="{{ asset('script/js/angular.min.js') }}"></script>
+                    {% endblock %}
+                    {% block footer %}
+
+                    {% endblock %}
+                </body>
+            </html>
