@@ -161,7 +161,6 @@ class ArtisteController extends Controller {
 
     
     public function creatSerie($nom) {
-
         $this->get('session')->set('serieDefault', $this->SelecteSerie($nom));
         $id = $this->get('session')->get('serieDefault')->getId();
         return $this->redirect($this->generateUrl('gestionSerie',array('id' => $id)));
