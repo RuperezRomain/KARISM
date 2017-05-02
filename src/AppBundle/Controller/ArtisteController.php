@@ -25,9 +25,9 @@ class ArtisteController extends Controller {
 
     /**
      * 
-     * @Route("user/edit/role/role_artiste/{id}")
+     * @Route("user/edit/role/role_artiste/{id}",name="gestionSerie")
      */
-    public function GestionSerie(Request $request, $id) {
+    public function gestionSerie(Request $request, $id) {
 
         $em = $this->getDoctrine()->getManager();
         // cheek du parametre $id
@@ -79,7 +79,6 @@ class ArtisteController extends Controller {
         return $this->render('artiste/formCreateSerie.html.twig', array("formPicture" => $f->createView()));
     }
 
-
     public function SelecteSerie($nomSerie) {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUserSetion();
@@ -105,9 +104,9 @@ class ArtisteController extends Controller {
             $serieDefault = $serieDefaultTbl[0];
             $em->merge($serieDefault);
         }
-      
-            $em->flush();
- 
+
+        $em->flush();
+
 
         return $serieDefault;
     }
@@ -132,10 +131,9 @@ class ArtisteController extends Controller {
         return new JsonResponse($listePic);
     }
 
-   
     /**
      * Liste des serie dun artiste 
-     * @Route("artiste/get/series/user/{id}")
+     * @Route("artiste/get/series/user/{id}",name ="getSeriesUser")
      * 
      */
     public function getSeriesUser($id) {
@@ -145,7 +143,6 @@ class ArtisteController extends Controller {
         return $this->render('artiste/gestionSeries.html.twig', array('series' => $series));
     }
 
-
     /**
      * @Route("delete/cache/pictures")
      */
@@ -153,4 +150,21 @@ class ArtisteController extends Controller {
         $this->get('session')->remove('serieDefault');
         return new JsonResponse();
     }
+    /**
+     * @Route("valid/form/nomSerie", name="valideNomSerie")
+     */
+    public function validFormNom(Request $request){
+        $nom = $request->get('nomSerie');
+        return $this->creatSerie($nom);
+        
+    }
+
+    
+    public function creatSerie($nom) {
+
+        $this->get('session')->set('serieDefault', $this->SelecteSerie($nom));
+        $id = $this->get('session')->get('serieDefault')->getId();
+        return $this->redirect($this->generateUrl('gestionSerie',array('id' => $id)));
+    }
+
 }
