@@ -1,11 +1,6 @@
-{% extends "base.template.html.twig" %}
+{% extends "admin/adminTemplate.html.twig" %}
 
-{% block stylesheets %}
 
-    {#<link rel="stylesheet" href="{{ asset('/script/slickCarousel/slick-theme.css') }}" />#}
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-
-{% endblock %}
 
 {% block title %}
     {{parent()}}
@@ -14,25 +9,49 @@
 
 {% block body %}
 
-    <form id="editProfil" class="col-lg-6 profil">
-        <p>Nom</p><input type="text" id="firstname" name="caca" class="col-lg-6"/>
-        <p>Prénom</p><input id="lastname" class="col-lg-6"/>
-        <p>Pseudo</p><input id="username" class="col-lg-6" placeholder="adresse"/>
-        <p>Téléphone</p><input id="phone" class="col-lg-6"/>
-        <p>Biographie</p><input id="bio" class="col-lg-6"/>
-        <p>Adresse</p><input id="adress" class="col-lg-6"/>
-{#        <p>Date de naissance</p><input type="date" id="date" class="col-lg-6"/>#}
-        <select id="genre">
-            <option value="">Sexe</option>
-            <option value="Homme">Homme</option>
-            <option value="Femme">Femme</option></select>
-{#        <input type="file" id="user_profilPicture" name="user[profilPicture]" class="col-lg-6"/>#}
-        <img id="previewPicture" src="" alt="your image" width="350px" class="col-lg-6"/>
+<div class="container-fluid " >
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <p><a class="text-warning" href="{{ path('profilTest') }}">Mon Profil</a> > Edition du profil</p>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-6 b-r"><h3 class="m-t-none m-b">Editer mon profil</h3>
+                        <form id="editProfil" class="form-horizontal">
+                            <p>Nom</p><input type="text" id="firstname" name="caca" class="form-control"/>
+                            <p>Prénom</p><input id="lastname" class="form-control"/>
+                            <p>Pseudo</p><input id="username" class="form-control" placeholder="adresse"/>
+                            <p>Téléphone</p><input id="phone" class="form-control"/>
+                            <p>Biographie</p><input id="bio" class="form-control"/>
+                            <p>Adresse</p><input id="adress" class="form-control"/>
+                            {#        <p>Date de naissance</p><input type="date" id="date" class="col-lg-6"/>#}
+                            <select id="genre" class="form-control">
+                                <option value="">Sexe</option>
+                                <option value="Homme">Homme</option>
+                                <option value="Femme">Femme</option></select>
+                                {#        <input type="file" id="user_profilPicture" name="user[profilPicture]" class="col-lg-6"/>#}
+                            <img id="previewPicture" src="" alt="your image" width="350px" class="col-lg-6"/>
 
-        <div class="col-lg-9">
-            <input id="validEditProfil" type="submit" value="Editer" class="col-lg-6"/>
+                            <div class="form-control">
+                                <input id="validEditProfil" type="submit" value="Editer" class="col-lg-6"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-6"><h4>Envie de rejoindre notre cercle d'hôtes ?</h4>
+                        <p>blabla</p>
+
+                    </div>
+                </div>
+            </div>
         </div>
-    </form>
+    </div>
+</div>
 
 {% endblock %}
 {% block javascripts %}  

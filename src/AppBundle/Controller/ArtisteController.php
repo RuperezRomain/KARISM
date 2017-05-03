@@ -24,7 +24,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ArtisteController extends Controller {
 
     /**
-     *@Route("edit/user/roleArtiste")
+     *@Route("edit/user/roleArtiste", name="requestArtiste")
      * 
      */
     public function editUserRoleArtiste() {

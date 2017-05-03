@@ -1,7 +1,11 @@
-/*.foot{
-    position : fixed;
-    padding: 3%;
-    bottom : 0;
-    width:100%;
-    background-color: white;
-}*/
+.footerColor{
+    background-color: $blue;
+}
+
+.footerText{
+    color : rgba(251,255,255,0.9);
+    transition: 0.2s;
+}
+.footerText:hover{
+    color : rgba(251,255,255,1);
+}
