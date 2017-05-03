@@ -19,7 +19,7 @@ class PlaceFormType extends AbstractType
 //                ->add('img',FileType::class,array('data_class'=> null))
                 ->add('capacity')
                 ->add('adress')
-//                ->add('fk_place_type')
+                ->add('fk_placetype')
                 ->add('fk_city')
                 ->add('available',DateType::class);
     }

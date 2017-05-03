@@ -12,8 +12,8 @@ use Doctrine\ORM\Mapping\ManyToOne;
  * @ORM\Table(name="place")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PlaceRepository")
  */
-class Place
-{
+class Place {
+
     /**
      * @var int
      *
@@ -31,12 +31,22 @@ class Place
     private $fk_placetype;
 
     /**
+     * @var array
+     *
+     * @ORM\ManyToMany(targetEntity="ImagesPlaces")
+     * @ORM\JoinTable(name="place_picture",
+     *      joinColumns={@ORM\JoinColumn(name="img_id",referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="place_id",referencedColumnName="id")})
+     */
+    private $fk_ImagesPlace;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="name", type="string", nullable=true)
      */
     private $name;
-    
+
     function getName() {
         return $this->name;
     }
@@ -45,7 +55,7 @@ class Place
         $this->name = $name;
     }
 
-        /**
+    /**
      * @var int
      *
      * @ORM\Column(name="size", type="integer" ,nullable=true)
@@ -79,7 +89,7 @@ class Place
      * @ORM\Column(name="available", type="datetime",nullable=true)
      */
     private $available;
-    
+
     /**
      * @var int
      * @ManyToOne(targetEntity="User")
@@ -92,8 +102,7 @@ class Place
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -104,8 +113,7 @@ class Place
      *
      * @return Place
      */
-    public function setFkPlaceType($fk_place_type)
-    {
+    public function setFkPlaceType($fk_place_type) {
         $this->fk_place_type = $fk_place_type;
 
         return $this;
@@ -116,10 +124,10 @@ class Place
      *
      * @return int
      */
-    public function getFkPlaceType()
-    {
+    public function getFkPlaceType() {
         return $this->fk_placetype;
     }
+
     /**
      * Set size
      *
@@ -127,8 +135,7 @@ class Place
      *
      * @return Place
      */
-    public function setSize($size)
-    {
+    public function setSize($size) {
         $this->size = $size;
 
         return $this;
@@ -139,8 +146,7 @@ class Place
      *
      * @return int
      */
-    public function getSize()
-    {
+    public function getSize() {
         return $this->size;
     }
 
@@ -151,8 +157,7 @@ class Place
      *
      * @return Place
      */
-    public function setCapacity($capacity)
-    {
+    public function setCapacity($capacity) {
         $this->capacity = $capacity;
 
         return $this;
@@ -163,8 +168,7 @@ class Place
      *
      * @return int
      */
-    public function getCapacity()
-    {
+    public function getCapacity() {
         return $this->capacity;
     }
 
@@ -175,8 +179,7 @@ class Place
      *
      * @return Place
      */
-    public function setAdress($adress)
-    {
+    public function setAdress($adress) {
         $this->adress = $adress;
 
         return $this;
@@ -187,8 +190,7 @@ class Place
      *
      * @return string
      */
-    public function getAdress()
-    {
+    public function getAdress() {
         return $this->adress;
     }
 
@@ -199,8 +201,7 @@ class Place
      *
      * @return Place
      */
-    public function setFkCity($fk_city)
-    {
+    public function setFkCity($fk_city) {
         $this->fk_city = $fk_city;
 
         return $this;
@@ -211,11 +212,9 @@ class Place
      *
      * @return int
      */
-    public function getFkcity()
-    {
+    public function getFkcity() {
         return $this->fk_city;
     }
-    
 
     /**
      * Set fk_user
@@ -224,8 +223,7 @@ class Place
      *
      * @return Place
      */
-    public function setUserid($fk_user)
-    {
+    public function setUserid($fk_user) {
         $this->fk_user = $fk_user;
 
         return $this;
@@ -236,8 +234,7 @@ class Place
      *
      * @return int
      */
-    public function getFkUserid()
-    {
+    public function getFkUserid() {
         return $this->fk_user;
     }
 
@@ -248,8 +245,7 @@ class Place
      *
      * @return Place
      */
-    public function setAvailable($available)
-    {
+    public function setAvailable($available) {
         $this->available = $available;
 
         return $this;
@@ -260,9 +256,17 @@ class Place
      *
      * @return \DateTime
      */
-    public function getAvailable()
-    {
+    public function getAvailable() {
         return $this->available;
     }
-}
 
+    function getFk_ImagesPlace() {
+        return $this->fk_ImagesPlace;
+    }
+
+    function setFk_ImagesPlace($fk_ImagesPlace) {
+        $this->fk_ImagesPlace = $fk_ImagesPlace;
+    }
+
+
+}

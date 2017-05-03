@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Place_type
+ * ImagesPlaces
  *
- * @ORM\Table(name="place_type")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Place_typeRepository")
+ * @ORM\Table(name="images_places")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ImagesPlacesRepository")
  */
-class Place_type 
+class ImagesPlaces
 {
     /**
      * @var int
@@ -24,9 +24,11 @@ class Place_type
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
-    private $nom;
+    private $name;
+
+
 
 
     /**
@@ -40,31 +42,29 @@ class Place_type
     }
 
     /**
-     * Set nom
+     * Set name
      *
-     * @param string $nom
+     * @param string $name
      *
-     * @return Place_type
+     * @return ImagesPlaces
      */
-    public function setNom($nom)
+    public function setName($name)
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get nom
+     * Get name
      *
      * @return string
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
-    
-        public function __toString() {
-        return $this->nom;
-    }
+
+   
 }
 

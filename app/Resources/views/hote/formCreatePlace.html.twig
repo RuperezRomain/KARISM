@@ -33,9 +33,11 @@
                             {{form_end(PlaceType)}}
 
                         </div>
-                        <div class="col-sm-6"><h4>Envie de rejoindre notre cercle d'hôtes ?</h4>
-                            <p>You can create an account:</p>
-
+                        <div class="col-sm-6"><h4>Ajouter des photos du lieux ?</h4>
+                            <form action="{{ path('createPicPlace')}}" method="post">
+                            <input type="file" name="image" accept="image/*">
+                            <input type="submit">
+                            </form>
                         </div>
                     </div>
                 </div>

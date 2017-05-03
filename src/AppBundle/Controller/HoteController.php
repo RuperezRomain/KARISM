@@ -130,7 +130,7 @@ public function SelectePlace($nomLieu){
      * 
      * @Route("hote/create/lieu",name="valideNomLieux")
      */
-    public function creatSerie(Request $request) {
+    public function creatPlace(Request $request) {
         $nomLieu = $request->get('nomSerie');
         $em = $this->getDoctrine()->getManager();
         $lieuDefault = $this->SelectePlace($nomLieu);
@@ -143,13 +143,17 @@ public function SelectePlace($nomLieu){
             return $this->redirectToRoute('profilTest');
             }
             return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView()));
-       
-
-    
-        
     }
     
+    
     /**
+     * @Route("hote/create/lieu/picture", name="createPicPlace")
+     */
+    public function createLieuPic(){
+        
+    }
+
+        /**
      * @Route("hote/remove/place/{id}", name="suprPlace")
      */
     public function deletePlace($id) {
@@ -169,4 +173,5 @@ public function SelectePlace($nomLieu){
         return $this->redirect($this->generateUrl('hotePlaces'));
     }
 
+    
 }
