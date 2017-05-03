@@ -55,7 +55,7 @@ class HoteController extends Controller {
         
         
     /**
-     * @Route("user/get/lieux")
+     * @Route("user/get/lieux",name="hotePlaces")
      */
     public function getUserPlaces(){
         $em = $this->getDoctrine()->getManager();
@@ -149,4 +149,24 @@ public function SelectePlace($nomLieu){
         
     }
     
+    /**
+     * @Route("hote/remove/place/{id}", name="suprPlace")
+     */
+    public function deletePlace($id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $userId = $this->getUser()->getId();
+
+        $lieuDefault = $em->getRepository(Place::class)->find($id);
+        $idIser = $lieuDefault->getFkUserid()->getId();
+
+        if ($userId == $idIser) {
+            $em->remove($lieuDefault);
+            $em->flush();
+        }
+
+
+        return $this->redirect($this->generateUrl('hotePlaces'));
+    }
+
 }

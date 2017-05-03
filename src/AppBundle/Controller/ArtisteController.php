@@ -190,4 +190,23 @@ class ArtisteController extends Controller {
         return $this->redirect($this->generateUrl('gestionSerie',array('id' => $id)));
     }
 
+     /**
+     * @Route("artiste/remove/serie/{id}", name="suprSerie")
+     */
+    public function deleteSerie($id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        
+
+        $serieDefault = $em->getRepository(Serie::class)->find($id);
+        
+
+            $em->remove($serieDefault);
+            $em->flush();
+      
+
+        return $this->redirect($this->generateUrl('getSeriesUser'));
+    }
+
+    
 }
