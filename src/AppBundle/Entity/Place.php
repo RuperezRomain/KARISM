@@ -48,42 +48,42 @@ class Place
         /**
      * @var int
      *
-     * @ORM\Column(name="size", type="integer")
+     * @ORM\Column(name="size", type="integer" ,nullable=true)
      */
     private $size;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="capacity", type="integer")
+     * @ORM\Column(name="capacity", type="integer",nullable=true)
      */
     private $capacity;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adress", type="string", length=255)
+     * @ORM\Column(name="adress", type="string", length=255,nullable=true)
      */
     private $adress;
 
     /**
      *
      * @ManyToOne(targetEntity="City")
-     * @JoinColumn(name="city_id", referencedColumnName="id")
+     * @JoinColumn(name="city_id", referencedColumnName="id",nullable=true)
      */
     private $fk_city;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="available", type="datetime")
+     * @ORM\Column(name="available", type="datetime",nullable=true)
      */
     private $available;
     
     /**
      * @var int
      * @ManyToOne(targetEntity="User")
-     * @JoinColumn(name="user_id", referencedColumnName="id")
+     * @JoinColumn(name="user_id", referencedColumnName="id",nullable=true)
      */
     private $fk_user;
 
