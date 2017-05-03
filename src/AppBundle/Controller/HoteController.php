@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class HoteController extends Controller {
 
+    
     /**
      * @Route("user/request/role/hote",name="requestHote")
      */
@@ -50,6 +51,9 @@ class HoteController extends Controller {
             return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView()));
         }
     
+        
+        
+        
     /**
      * @Route("user/get/lieux")
      */
@@ -57,12 +61,44 @@ class HoteController extends Controller {
         $em = $this->getDoctrine()->getManager();
         
         $userId = $this->getUser()->getId();
-/***********A finire* recperation ***/
-        $lieuDefaultTbl = $em->getRepository(Place::class)->findByFk_user($userId);
+
+        $lieuDefaultTbl = $em->getRepository(Place::class)->findBy(array('fk_user' =>  $userId));
         
         return $this->render('hote/gestionPlace.html.twig',array('places'=>$lieuDefaultTbl));
     }
-    public function SelectePlace($nomLieu){
+    
+    /**
+     * @Route("hote/get/lieu/{id}")
+     */
+    public function getPlace(Request $request,$id){
+        
+         $em = $this->getDoctrine()->getManager();
+         $userId = $this->getUser()->getId();
+         
+          $lieuDefault = $em->getRepository(Place::class)->find($id);
+        $lieux = $lieuDefault->getFkUserid()->getId();
+          
+          if( $lieux == $userId ){
+              
+              $f = $this->createForm('AppBundle\Form\PlaceFormType', $lieuDefault);
+            // et on retourne le formulaire dans notre vue
+            $f->handleRequest($request);
+            if ($f->isSubmitted() && $f->isValid()) {
+                $em->persist($lieuDefault);
+                $em->flush($lieuDefault);
+            return $this->redirectToRoute('profilTest');
+            }
+            return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView()));
+       
+
+    }
+    }
+
+
+
+
+
+public function SelectePlace($nomLieu){
         
         $em = $this->getDoctrine()->getManager();
         $userId = $this->getUser()->getId();
@@ -70,8 +106,7 @@ class HoteController extends Controller {
         // Check si la table Default pour cette user n'existe pas
         $lieuDefaultTbl = $em->getRepository(Place::class)->findBy(array('name' => $nomLieu, 'fk_user' => $user->getId()));
         if ($lieuDefaultTbl == null) {
-            
-             
+              
             $em->merge($user);
             $em->flush($user);
 
@@ -89,6 +124,29 @@ class HoteController extends Controller {
         $em->flush();
         return $lieuDefault ;
     }
+    
+    
+    /**
+     * 
+     * @Route("hote/create/lieu",name="valideNomLieux")
+     */
+    public function creatSerie(Request $request) {
+        $nomLieu = $request->get('nomSerie');
+        $em = $this->getDoctrine()->getManager();
+        $lieuDefault = $this->SelectePlace($nomLieu);
+        $f = $this->createForm('AppBundle\Form\PlaceFormType', $lieuDefault);
+            // et on retourne le formulaire dans notre vue
+            $f->handleRequest($request);
+            if ($f->isSubmitted() && $f->isValid()) {
+                $em->persist($lieuDefault);
+                $em->flush($lieuDefault);
+            return $this->redirectToRoute('profilTest');
+            }
+            return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView()));
+       
 
-
+    
+        
+    }
+    
 }

@@ -3,7 +3,7 @@
 
 {% block body %}
 
-    <form action="{{ path('valideNomSerie')}}" method="post">
+    <form action="{{ path('valideNomLieux')}}" method="post">
         <input type="text" name="nomSerie"  placeholder="Nom de la nouvelle serie">
         <input type="submit">
     </form>
@@ -11,10 +11,10 @@
     {% for place in places %}
         <div class="col-sm-6 col-md-2">
             <div class="thumbnail">
-                <a href="/edit/picture/serie/{{place.id}}">
-                    <p>{{place.adress}}<p>
+                <a href="/hote/get/lieu/{{place.id}}">
+                    <p>{{place.name}}<p>
 {#                    <img class="img-thumbnail" src="/web/images/oeuvrePictures/" >
-#}                </a>
+#}              </a>
             </div>
         </div>
 
