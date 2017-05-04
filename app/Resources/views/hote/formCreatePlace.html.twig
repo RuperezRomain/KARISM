@@ -28,6 +28,7 @@
                             {{ form_widget(PlaceType.capacity, { 'attr': {'class': 'form-control','placeholder':"Capacité d'acceuil"}})}}
                             {{ form_widget(PlaceType.adress, { 'attr': {'class': 'form-control','placeholder':"Adresse du lieu"}})}}
                             {{ form_widget(PlaceType.fk_city, { 'attr': {'class': 'form-control'}})}}
+                            {{ form_widget(PlaceType.fk_placetype, { 'attr': {'class': 'form-control'}})}}
                             {{ form_widget(PlaceType.available)}}
                             <button id="validPlace" >Valider mon lieu</button>
                             {{form_end(PlaceType)}}

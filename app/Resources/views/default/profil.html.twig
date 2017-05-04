@@ -63,26 +63,27 @@
             <!-- /Boxes de Acoes -->
         </div>
     </div>
-    {% if series is not empty %}              
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="text-center">Ses séries</h2>
-                    {% for serie in series %}
-                        <div class="col-md-7">
-                            <a href="/serie/{{user.username}}/{{serie.id}}">
-                                <img class="img-thumbnail" src="/web/images/oeuvrePictures/{{serie.img}}" >
-                            </a>
-                        </div>
-                        <div class="col-md-5">
-                            <h2>{{serie.name}}</h2>
-                        </div>
-                    {% endfor %}
+    {%if user.artistValidate == 1 %}
+        {% if series is not empty %}              
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-center">Ses séries</h2>
+                        {% for serie in series %}
+                            <div class="col-md-7">
+                                <a href="/serie/{{user.username}}/{{serie.id}}">
+                                    <img class="img-thumbnail" src="/web/images/oeuvrePictures/{{serie.img}}" >
+                                </a>
+                            </div>
+                            <div class="col-md-5">
+                                <h2>{{serie.name}}</h2>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
     {% endif %}
-
 
 {% endblock %}
 {% block javascripts %}  

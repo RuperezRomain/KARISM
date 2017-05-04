@@ -30,7 +30,7 @@ class HoteController extends Controller {
         $user = $this->getDoctrine()->getRepository(User::class)->find($userId);
             // Init boolean HoteValidate
             // This is for the admin, he will be available to see the role request of the user
-        if ($user->getHoteValidate() === 0){
+        if ($user->getHoteValidate() === null){
             $user->setHoteValidate(0);
             $em->merge($user);
             $em->flush($user);
