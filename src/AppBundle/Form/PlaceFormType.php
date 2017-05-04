@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Place;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,7 +21,7 @@ class PlaceFormType extends AbstractType
                 ->add('adress')
 //                ->add('fk_place_type')
                 ->add('fk_city')
-                ->add('available');
+                ->add('available',DateType::class);
     }
 
     /**
