@@ -7,235 +7,83 @@
     {#<link rel="stylesheet" href="{{ asset('/script/slickCarousel/slick-theme.css') }}" />#}
     <link rel="stylesheet" href="{{ asset('/script/slickCarousel/slick.css') }}" />
     <link rel="stylesheet" href="{{ asset('/script/css/profil.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/script/css/templateInspinia.css') }}" />
     <meta name="viewport" content="width=device-width, user-scalable=no">
 
 {% endblock %}
 
 {% block title %}
     {{parent()}}
-    Accueil
+    - Mon Profil
 {% endblock %}
 
 {% block body %}
-<div class="container">
-	<div class="row">
-        <!-- Boxes de Acoes -->
-    	<div class="col-xs-12 col-sm-6 col-lg-4">
-			<div class="box">							
-				<div class="icon">
-					<div class="image"><i class="fa fa-thumbs-o-up"></i></div>
-					<div class="info">
-						<h3 class="title">Romain Farge</h3>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien. Phasellus ultrices gravida massa luctus ornare. Suspendisse blandit quam elit, eu imperdiet neque semper.
-						</p>
-                                                <span> <b>#Lol #Peinture #Voila</b> </span>
-                                                </br>
-						<div class="more">
-							<a href="#" title="Title Link">
-								Ajouter à ma wishlist <i class="fa fa-angle-double-right"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="space"></div>
-		</div> 
-		</div>
-
-			
-		<!-- /Boxes de Acoes -->
-                <div class="container">
-                    <div class="col-xs-12 col-sm-12 col-lg-6 pull-right">
-                                            <div class="embed-responsive embed-responsive-16by9">
-               
-                                                <iframe class="embed-responsive-item" src="//www.youtube.com/embed/PQnDwKxDo9k"></iframe>
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">Profil de {{user.username}}</h1>
+            <div class="col-md-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Profile Detail</h5>
+                    </div>
+                    <div>
+                        <div class="ibox-content no-padding border-left-right">
+                            <img class="img-responsive" src="/web/images/profilPictures/{{user.profilPicture}}">
+                        </div>
+                        <div class="ibox-content profile-content">
+                            <h4 class="text-center"><strong>{{user.username}}</strong></h4>
                         </div>
                     </div>
                 </div>
-	</div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-4">
-    <a href="http://placehold.it"><img src="http://placehold.it/350x150"></a>
             </div>
-                        <div class="col-md-8">
-                            <p> 
-                                s simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                                It has survived not only five centuries, but also the leap into electronic typesetting,
-                                simply dummy textd of the printing and typesetting industry. 
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                                It has survived not only five centuries, but also the leap into electronic typesetting,<
-                            </p>
-            </div>
-        </div>
-    </div>
-</div>
-    </div>
-</br>
-</br>
-    <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-                       <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <img src="http://placehold.it/350x150" class="img-responsive">
-            </div>
-                                   <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <img src="http://placehold.it/350x150" class="img-responsive">
-            </div>
-                                   <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <img src="http://placehold.it/350x150" class="img-responsive">
-            </div>
-                                   <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <img src="http://placehold.it/350x150" class="img-responsive">
-            </div>
-
-             
-             </div>
-    </div>
-    </div>
-        <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-                       <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <img src="http://placehold.it/350x150" class="img-responsive">
-            </div>
-                                   <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <img src="http://placehold.it/350x150" class="img-responsive">
-            </div>
-                                   <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <img src="http://placehold.it/350x150" class="img-responsive">
-            </div>
-                                   <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <img src="http://placehold.it/350x150" class="img-responsive">
-            </div>
-
-             
-             </div>
-    </div>
-    </div>
-        <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-                       <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <img src="http://placehold.it/350x150" class="img-responsive">
-            </div>
-                                   <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <img src="http://placehold.it/350x150" class="img-responsive">
-            </div>
-                                   <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <img src="http://placehold.it/350x150" class="img-responsive">
-            </div>
-             
-             </div>
-    </div>
-    </div>
-    
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-6 info">
-                    <ul>Informations
-                        
-                        <li>Surface : 35 m</li>
-                        <li>Capacité d'accueil : 20 personnes</li>
-                    <li>info sup : blabla</li>
-                    </ul>
+            <div class="col-xs-12 col-sm-12 col-lg-8">
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3>Ma présentation </h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>{{user.bio}}</p> 
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6 calendar">
-                    <h2> calendrier </h2>
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3>Informations complémentaires</h3>
+                        </div>
+                        <div class="panel-body">
+                            {%if user.artistValidate %}<p>{{user.username}} est un <strong>artiste</strong></p>{% endif %}         
+                            {%if user.hoteValidate %}<p>{{user.username}} est un <strong>hôte</strong></p>{% endif %}  
+                        </div>
+                    </div>
                 </div>
-
-
-                
-                 <div class="container">
-        <div class="row">
-        <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <h1 class="gallery-title">Collaboration précédente</h1>
-        </div>
-
-        <br/>
-
-
-
-            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                <img src="http://fakeimg.pl/365x365/" class="img-responsive">
             </div>
 
-            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-            </div>
-
-            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-            </div>
-
-            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-            </div>
-
-            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-            </div>
-
-            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-            </div>
-
-            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-            </div>
+            <!-- /Boxes de Acoes -->
         </div>
     </div>
-
-                
-                 <div class="container">
-        <div class="row">
-        <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <h1 class="gallery-title">Artiste Favoris</h1>
-        </div>
-
-        <br/>
-
-
-
-            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-            </div>
-
-            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-            </div>
-
-            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-            </div>
-
-            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-            </div>
-
-            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-            </div>
-
-            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-            </div>
-
-            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                <img src="http://fakeimg.pl/365x365/" class="img-responsive">
+    {% if series is not empty %}              
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-center">Ses séries</h2>
+                    {% for serie in series %}
+                        <div class="col-md-7">
+                            <a href="/serie/{{user.username}}/{{serie.id}}">
+                                <img class="img-thumbnail" src="/web/images/oeuvrePictures/{{serie.img}}" >
+                            </a>
+                        </div>
+                        <div class="col-md-5">
+                            <h2>{{serie.name}}</h2>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
-    </div>
-                
-                
-    
+    {% endif %}
+
+
 {% endblock %}
 {% block javascripts %}  
     {{ parent() }}

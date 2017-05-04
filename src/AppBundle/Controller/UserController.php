@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Picture;
+use AppBundle\Entity\Serie;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -48,6 +50,29 @@ class UserController extends Controller {
         $userId = $users->getId();
         $user = $this->getDoctrine()->getRepository(User::class)->find($userId);
         return new JsonResponse($user);
+    }
+
+    /**
+     * @Route("/profil/{id}", name="profilPublic")
+     */
+    public function profilPublicAction($id) {
+
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+        $series = $this->getDoctrine()->getRepository(Serie::class)->findByUserid($id);
+        if ($series != null) {
+        for ($i = 0; $i < count($series); $i++) {
+            $test = $series[$i]->getFk_picture();
+        }
+        }
+//        for ($i = 0; $i < count($test); $i++){
+//        $pictures = $test[$i]->getImg();
+////        echo($pictures);
+//        }
+        if ($series != null) {
+            return $this->render('default/profil.html.twig', array("user" => $user, "series" => $series, "pictures" => $test));
+        }else{
+            return $this->render('default/profil.html.twig', array("user" => $user, "series" => $series));
+        }
     }
 
 }

@@ -34,7 +34,7 @@
                                     or is_granted('ROLE_ADMIN')
                                     or is_granted('ROLE_ARTISTE')
                                     or is_granted('ROLE_HOTE') %}
-                                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 dropdown"><a href="http://placehold.it"><img class="roundedimg" src="http://placehold.it/60x60"></a>
+                                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 dropdown"><a href="http://placehold.it"><img class="roundedimg" src="/web/images/profilPictures/{{app.user.profilPicture}}"></a>
                                     <button class="btn btn-default dropdown-toggle btn btn-link text-left " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         {{ app.user.username }}<span class="caret"> </span>
                                     </button>
@@ -79,7 +79,7 @@
                                                     <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="">Mes Expos</a></h4></div>
                                                     <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="{{ path('getSeriesUser') }}">Mes séries</a></h4></div>
                                                 {% endif %}
-                                                <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="{{ path('profilTest') }}">Mon Profil</a></h4></div>
+                                                {% if is_granted("ROLE_USER") is not empty %}<div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="/profil/{{app.user.id}}">Mon Profil</a></h4></div>{% endif %}
                                             {% endif %}
                                             <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="">Rechercher</a></h4></div>
                                         </div>
