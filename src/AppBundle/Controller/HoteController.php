@@ -46,7 +46,7 @@ class HoteController extends Controller {
             if ($f->isSubmitted() && $f->isValid()) {
                 $em->persist($lieu);
                 $em->flush($lieu);
-            return $this->redirectToRoute('profilTest');
+            return $this->redirectToRoute('accueilTest');
             }
             return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView()));
         }
@@ -55,7 +55,7 @@ class HoteController extends Controller {
         
         
     /**
-     * @Route("user/get/lieux")
+     * @Route("user/get/lieux",name="hotePlaces")
      */
     public function getUserPlaces(){
         $em = $this->getDoctrine()->getManager();
@@ -86,7 +86,7 @@ class HoteController extends Controller {
             if ($f->isSubmitted() && $f->isValid()) {
                 $em->persist($lieuDefault);
                 $em->flush($lieuDefault);
-            return $this->redirectToRoute('profilTest');
+            return $this->redirectToRoute('accueilTest');
             }
             return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView()));
        
@@ -130,7 +130,7 @@ public function SelectePlace($nomLieu){
      * 
      * @Route("hote/create/lieu",name="valideNomLieux")
      */
-    public function creatSerie(Request $request) {
+    public function creatPlace(Request $request) {
         $nomLieu = $request->get('nomSerie');
         $em = $this->getDoctrine()->getManager();
         $lieuDefault = $this->SelectePlace($nomLieu);
@@ -140,13 +140,59 @@ public function SelectePlace($nomLieu){
             if ($f->isSubmitted() && $f->isValid()) {
                 $em->persist($lieuDefault);
                 $em->flush($lieuDefault);
+            return $this->redirectToRoute('accueilTest');
+            }
+            return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView()));
+    }
+    
+    
+    /**
+     * @Route("hote/create/lieu/picture/{id}", name="createPicPlace")
+     */
+    public function createLieuPic($id){
+        
+        $em = $this->getDoctrine()->getManager();
+         $userId = $this->getUser()->getId();
+          
+        //Recuperation lieux 
+        $lieuDefault = $em->getRepository(Place::class)->find($id);         
+        //Recuperation imgLieux
+        $lieuDefault = $em->getRepository(\AppBundle\Entity\ImagesPlaces::class)->find($id);          //Recuperation imgLieux
+
+        if( $lieux == $userId ){
+              
+              $f = $this->createForm('AppBundle\Form\ImagesPlace');
+            // et on retourne le formulaire dans notre vue
+            $f->handleRequest($request);
+            if ($f->isSubmitted() && $f->isValid()) {
+                $em->persist($lieuDefault);
+                $em->flush($lieuDefault);
             return $this->redirectToRoute('profilTest');
             }
             return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView()));
        
-
-    
-        
     }
+    }
+
+        /**
+     * @Route("hote/remove/place/{id}", name="suprPlace")
+     */
+    public function deletePlace($id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $userId = $this->getUser()->getId();
+
+        $lieuDefault = $em->getRepository(Place::class)->find($id);
+        $idIser = $lieuDefault->getFkUserid()->getId();
+
+        if ($userId == $idIser) {
+            $em->remove($lieuDefault);
+            $em->flush();
+        }
+
+
+        return $this->redirect($this->generateUrl('hotePlaces'));
+    }
+
     
 }

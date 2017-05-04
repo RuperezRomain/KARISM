@@ -7,16 +7,24 @@
         <input type="text" name="nomSerie"  placeholder="Nom de la nouvelle serie">
         <input type="submit">
     </form>
-        
+           <div class="container-fluid">
     {% for place in places %}
+      
+          
         <div class="col-sm-6 col-md-2">
+            <a href="/hote/get/lieu/{{place.id}}">
             <div class="thumbnail">
-                <a href="/hote/get/lieu/{{place.id}}">
-                    <p>{{place.name}}<p>
+               <p> 
+                    {{place.name}}
 {#                    <img class="img-thumbnail" src="/web/images/oeuvrePictures/" >
-#}              </a>
+#}               </p>
+               <a href="/hote/remove/place/{{place.id}}"><i class=" fa fa-trash fa-6" aria-hidden="true"></i></a>
             </div>
+         
         </div>
+     
 
     {% endfor %}
+            </div>
+
 {% endblock %}
