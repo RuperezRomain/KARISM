@@ -25,18 +25,18 @@
                     <div class="col-sm-6 b-r">
                         
                         {{form_start(formPicture,{ 'attr': {'class': 'form-horizontal'}})}}
-                        {{ form_widget(formPicture.nom, { 'attr': {'class': 'form-control','placeholder':'Votre nom '}})}}
-                        {{ form_widget(formPicture.style, { 'attr': {'class': 'form-control'} })}}
-                        {{ form_widget(formPicture.techniques, { 'attr': {'class': 'form-control'} })}}
-                        {{ form_widget(formPicture.genres, { 'attr': {'class': 'form-control'} })}}
-                        {{ form_widget(formPicture.size, { 'attr': {'class': 'form-control'} })}}
-                        {{ form_widget(formPicture.prix, { 'attr': {'class': 'form-control'} })}}
+                        {{ form_widget(formPicture.nom, { 'attr': {'class': 'form-control','placeholder':'Votre nom'}})}}
+                        {{ form_widget(formPicture.style, { 'attr': {'class': 'form-control','placeholder':'Style'}})}}
+                        {{ form_widget(formPicture.techniques, { 'attr': {'class': 'form-control','placeholder':'Techniques'}})}}
+                        {{ form_widget(formPicture.genres, { 'attr': {'class': 'form-control','placeholder':'Genres'}})}}
+                        {{ form_widget(formPicture.size, { 'attr': {'class': 'form-control','placeholder':'Taille'}})}}
+                        {{ form_widget(formPicture.prix, { 'attr': {'class': 'form-control','placeholder':'Prix'}})}}
                         {{ form_widget(formPicture.expos, { 'attr': {'class': 'form-control'} })}}
                         {{ form_widget(formPicture.commentaire, { 'attr': {'class': 'form-control','placeholder':'Commentaire'} })}}
                         {{ form_widget(formPicture.img, { 'attr': {'class': 'btn btn-default btn-file'}})}}
-                        <button class="validPicture" >Validation Picture </button>
+                        <button class="validPicture btn btn-primary block full-width m-b" >Valider l'image</button>
                         <div>
-                            <a href="{{path('accueilTest')}}" id="exitSerie"><button type="button">Valider Serie</button></a>
+                            <a href="{{path('accueilTest')}}" id="exitSerie"><button class="btn btn-sm btn-white btn-block "type="button">Valider la série</button></a>
                         </div>
                         {{form_end(formPicture)}}   
                          {#            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><{strong>Log in</strong></button>
