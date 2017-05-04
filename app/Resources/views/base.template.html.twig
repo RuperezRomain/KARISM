@@ -43,16 +43,20 @@
                                             {% if is_granted("ROLE_ADMIN") %}
                                             <li><a href="{{ path('admin') }}">Panneaux d'administration</a></li>
                                             {% endif %}
-                                        <li><a href="#">Wishlist</a></li>
-                                        <li><a href="#">Devenir Hote</a></li>
+{#                                        <li><a href="#">Wishlist</a></li>#}
+                                        {% if not is_granted("ROLE_HOTE")%}
+                                        <li><a href="{{path('requestHote')}}">Devenir Hote</a></li>
+                                        {% endif %}
+                                        {% if not is_granted("ROLE_ARTISTE")%}
                                         <li><a href="{{ path('requestArtiste') }}">Devenir Artiste</a></li>
+                                        {% endif %}
                                             {% if is_granted("ROLE_ARTISTE") %}
                                             <li><a href="{{ path('getSeriesUser') }}">Mes séries</a></li>
-                                            <li><a href="#">expos</a></li>
+{#                                            <li><a href="#">expos</a></li>#}
                                             {% endif %}
                                             {% if is_granted("ROLE_HOTE") %}
                                             <li><a href="#">Mes lieux</a></li>
-                                            <li><a href="#">expos</a></li>
+{#                                            <li><a href="#">expos</a></li>#}
                                             {% endif %}
                                         <li class="bg-warning"><a href="{{ path('logout') }}">Déconnexion</a></li>
                                             {# Profile x3, Wishlist x3, hote x2, artiste x2, lieux, expos x2, serie #}
@@ -66,29 +70,29 @@
                                         <div class="col-xs-3 col-sm-4 col-md-5 col-lg-10">
                                             {% if is_granted("ROLE_USER") %}
                                                 {% if not is_granted("ROLE_HOTE")%}
-                                                    <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="">Devenir Hôte</a></h4></div>
+                                                    <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="{{path('requestHote')}}">Devenir Hôte</a></h4></div>
                                                 {% endif %}
                                                 {% if not is_granted("ROLE_ARTISTE")%}
                                                     <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="{{ path('requestArtiste') }}">Devenir Artiste</a></h4></div>
                                                 {% endif %}
                                                 {% if is_granted("ROLE_HOTE") %}
-                                                    <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="">Mes Expos</a></h4></div>
+{#                                                    <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="">Mes Expos</a></h4></div>#}
                                                     <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="">Mes lieux</a></h4></div>
                                                 {% endif %}
                                                 {% if is_granted("ROLE_ARTISTE") %}
-                                                    <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="">Mes Expos</a></h4></div>
+{#                                                    <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="">Mes Expos</a></h4></div>#}
                                                     <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="{{ path('getSeriesUser') }}">Mes séries</a></h4></div>
                                                 {% endif %}
                                                 {% if is_granted("ROLE_USER") is not empty %}<div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="/profil/{{app.user.id}}">Mon Profil</a></h4></div>{% endif %}
+                                                {% if is_granted("ROLE_USER") is not empty %}<div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="{{ path('profilEdit') }}">Editer mon Profil</a></h4></div>{% endif %}
                                             {% endif %}
-                                            <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="">Rechercher</a></h4></div>
+{#                                            <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class=" border-bottom text-center"><a class="text-warning" href="">Rechercher</a></h4></div>#}
                                         </div>
                                         <div class="col-xs-3 col-sm-4 col-md-5 col-lg-2"></div>  
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        {#                {% endif %}#}
                     {% block body %}{% endblock %}
 
                     <footer class="panel-footer footerColor footerText"> 
