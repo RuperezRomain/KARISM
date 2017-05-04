@@ -21,8 +21,8 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-6 b-r"><h3 class="m-t-none m-b">Sign in</h3>
-                            <p>Sign in today for more expirience.</p>
+                        <div class="col-sm-6 b-r">
+                            
                             {{form_start(PlaceType,{ 'attr': {'class': 'form-horizontal'}})}}
                             {{ form_widget(PlaceType.size, { 'attr': {'class': 'form-control','placeholder':'Dimensions en mètre carré'}})}}
                             {{ form_widget(PlaceType.capacity, { 'attr': {'class': 'form-control','placeholder':"Capacité d'acceuil"}})}}
@@ -34,10 +34,7 @@
 
                         </div>
                         <div class="col-sm-6"><h4>Ajouter des photos du lieux ?</h4>
-                            <form action="{{ path('createPicPlace')}}" method="post">
-                            <input type="file" name="image" accept="image/*">
-                            <input type="submit">
-                            </form>
+                            <a href=""><button class="btn btn-default">Ajout</button></a>
                         </div>
                     </div>
                 </div>
