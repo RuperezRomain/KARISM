@@ -36,6 +36,7 @@ class HoteController extends Controller {
             $em->merge($user);
             $em->flush($user);
         }
+        
             // Creating Place
             $lieu = $this->SelectePlace("Default");
             
@@ -49,6 +50,7 @@ class HoteController extends Controller {
                 $em->flush($lieu);
             return $this->redirectToRoute('accueilTest');
             }
+            $this->get('session')->set('placeDefault', $lieu);
             $listImg = $lieu->getFk_ImagesPlace();
             return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView(),'pictures'=>$listImg));
         }
