@@ -5,7 +5,7 @@
  *
  */
 
-///Apel ajax pour validation Positive 
+///Apel ajax pour validation Positive demande artiste 
 $(document).ready(function () {
        
     $(".validArtiste").click(function () {
@@ -25,7 +25,7 @@ $(document).ready(function () {
     });
     
 
-///Apel ajax pour validation Positive 
+///Apel ajax pour validation Négative demande artiste 
     $(".refuseArtiste").click(function () {
 
         $idUser = $(this).parents("tr").attr('id');
@@ -42,7 +42,41 @@ $(document).ready(function () {
         });
     });
                 
-        
+                
+
+    $(".validHote").click(function () {
+
+        $idUser = $(this).parents("tr").attr('id');
+        $.ajax({
+            url: "./remote/user/" + $idUser + "/hote/valid",
+            type: "Get",
+            dataType: "json",
+            async: true,
+            success: function () {
+                $('#' + $idUser).css({
+                    'display': 'none'
+                });
+            }
+        });
+    });
+    
+
+///Apel ajax pour validation Négative Hote
+    $(".refuseArtiste").click(function () {
+
+        $idUser = $(this).parents("tr").attr('id');
+        $.ajax({
+            url: "./remote/user/" + $idUser + "/hote/refuse",
+            type: "Get",
+            dataType: "json",
+            async: true,
+            success: function () {
+                $('#' + $idUser).css({
+                    'display': 'none'
+                });
+            }
+        });
+    });
 
 
     // Add body-small class if window less than 768px
