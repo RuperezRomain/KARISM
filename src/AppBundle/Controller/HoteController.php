@@ -49,7 +49,8 @@ class HoteController extends Controller {
                 $em->flush($lieu);
             return $this->redirectToRoute('accueilTest');
             }
-            return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView()));
+            $listImg = $lieu->getFk_ImagesPlace();
+            return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView(),'pictures'=>$listImg));
         }
     
         
@@ -72,7 +73,7 @@ class HoteController extends Controller {
      * @Route("hote/get/lieu/{id}")
      */
     public function getPlace(Request $request,$id){
-        $this->get('session')->remove('placeDefault');
+       
          $em = $this->getDoctrine()->getManager();
          $userId = $this->getUser()->getId();
          

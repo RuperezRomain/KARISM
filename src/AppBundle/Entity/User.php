@@ -105,7 +105,10 @@ class User implements UserInterface, Serializable, JsonSerializable {
      * @var UploadedFile
      *
      * @ORM\Column(name="profilPicture", type="string", length=255, nullable=true)
-     * @File(mimeTypes={ "image/png" })
+     * @File(mimeTypes={ "image/png","image/jpeg" },
+     * mimeTypesMessage = "Please upload a valide jpg or png"
+     * )
+     * 
      */
     private $profilPicture;
 
