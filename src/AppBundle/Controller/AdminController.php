@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 /**
  * Description of AdminController
  *
- * @author vien34
+ * 
  * @Route("/admin")
  */
 class AdminController extends Controller {
@@ -30,6 +30,8 @@ class AdminController extends Controller {
           $usersHote = $this->getDoctrine()->getRepository(User::class)->findByHoteValidate(0);
         return $this->render('admin/demandeValidation.html.twig',array('usersArtiste' => $usersArtiste,'usersHote'=>$usersHote));
     }
+    
+    ///////////Validation de demande de Role //////////////////
 
     /**
      * Validation postive dune demande re role ArtisteUser
@@ -55,33 +57,9 @@ class AdminController extends Controller {
         return new JsonResponse();
     }
     
-    /**
-     * Validation postive dune demande re role HoteUser
-     * @Route("/remote/user/{id}/hote/valid")
-     */
-    public function remoteUserHoteValid($id) {
-        $em = $this->getDoctrine()->getManager();
-        
-        //Recuperation de l'entity roleHote
-        $rolesHote = $this->getDoctrine()->getRepository(Role::class)->findByRole("ROLE_HOTE");
-        $roleHote = $rolesHote[0];
-        
-        //Recuperation de l'entity User a valider 
-        $user = $this->getDoctrine()->getRepository(User::class)->find($id);         
-        $listeRoleUser = $user->getRoles();
-        array_push($listeRoleUser, $roleHote);
-        $user->setRoles($listeRoleUser);
-        $user->setHoteValidate(1);
-        $em->merge($user);
-        $em->flush($user);
-        
-        return new JsonResponse();
-    }
-    
-    
     
     /**
-     * Validation Négative dune demande re role ArtisteUser
+     * Négative demande  role ArtisteUser
      * @Route("/remote/user/{id}/artiste/refuse")
      */
     public function remoteUserArtisteRefuse($id) {
@@ -98,5 +76,45 @@ class AdminController extends Controller {
     }
 
     
+    /**
+     * Postive demande role HoteUser
+     * @Route("/remote/user/{id}/hote/valid")
+     */
+    public function remoteUserHoteValid($id) {
+        $em = $this->getDoctrine()->getManager();
+        
+        //Recuperation de l'entity roleHote
+        $rolesHote = $this->getDoctrine()->getRepository(Role::class)->findByRole("ROLE_HOTE");
+        $roleHote = $rolesHote[0];
+        
+        //Recuperation de l'entity User a valider 
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);         
+        $listeRoleUser = $user->getRoles();
+        array_push($listeRoleUser, $roleHote);
+        $user->setRoles($listeRoleUser);
+        $user->setHoteValidate(1);
+        $em->merge($user);
+        $em->flush();
+        
+        return new JsonResponse();
+    }
+    
+     
+    /**
+     * Négative demande  role ArtisteUser
+     * @Route("/remote/user/{id}/hote/refuse")
+     */
+    public function remoteUserHoteRefuse($id) {
+
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+        $user->setHoteValidate(null);
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->merge($user);
+        $em->flush($user);
+        
+        
+        return new JsonResponse();
+    }
 
 }

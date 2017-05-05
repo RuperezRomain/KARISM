@@ -161,13 +161,19 @@
                                                             <td class='sorting_1'>{{user.firstname}}</td>
                                                             <td>{{user.email}}</td>
                                                             <td>"{{user.phone}}</td>
-                                                            <td>                                                                
+                                                                                                                       
                                                                 
+                                                            
+                                                           <td>                                                                
+                                                                <button class=' validArtiste btn bg-primary btn-block' type='button'>
+                                                                    <i class='fa fa-check-circle'></i>
+                                                                </button>
                                                             </td>
                                                             <td>
                                                                 <button  class=' refuseArtiste btn bg-danger btn-block' type='button'>
-                                                                
+                                                                    <i class='fa fa-times-circle'></i></button>
                                                             </td>
+                                                            
                                                         </tr>
                                                     {% endfor %}
                                                                      
@@ -320,6 +326,8 @@
     {% endblock %}
     {% block javascripts %}  
         {{ parent() }}
+        
+        <script src="{{asset('script/js/jsAdmin/admin.js')}}"></script>
         <!-- Mainly scripts -->
         <script src="{{asset('script/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
         <script src="{{asset('script/js/plugins/slimscroll/jquery.slimscroll.js')}}"></script>
