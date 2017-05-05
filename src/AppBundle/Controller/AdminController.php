@@ -21,7 +21,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  * @Route("/admin")
  */
 class AdminController extends Controller {
-
     /**
      * @Route("/demande", name="adminDemande")
      */
@@ -31,7 +30,31 @@ class AdminController extends Controller {
         return $this->render('admin/demandeValidation.html.twig',array('usersArtiste' => $usersArtiste,'usersHote'=>$usersHote));
     }
     
-    ///////////Validation de demande de Role //////////////////
+    
+    
+    
+    /**
+     * Retourne le Nombre d'utilisateurs demandant un new statue 
+     * @Route("/get/users/request")
+     */
+    public function getUserRequestRole(){
+        $nbr = 0;
+         $usersArtiste = $this->getDoctrine()->getRepository(User::class)->findByArtistValidate(0);
+         $usersHote = $this->getDoctrine()->getRepository(User::class)->findByHoteValidate(0);
+         
+         for ($i=0;$i< count($usersArtiste);$i++){
+             $nbr = $nbr+1 ;
+         }
+         
+          for ($i=0;$i< count($usersHote);$i++){
+             $nbr = $nbr+1 ;  
+         }
+                      return new JsonResponse($nbr);
+
+    }
+
+
+    ////////////////////Validation demande de Role /////////////////////////
 
     /**
      * Validation postive dune demande re role ArtisteUser
