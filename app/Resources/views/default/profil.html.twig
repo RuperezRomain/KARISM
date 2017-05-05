@@ -42,7 +42,7 @@
                         <div class="panel-heading">
                             <h3>Ma présentation </h3>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body text-center">
                             <p>{{user.bio}}</p> 
                         </div>
                     </div>
@@ -52,9 +52,22 @@
                         <div class="panel-heading">
                             <h3>Informations complémentaires</h3>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body text-center">
                             {%if user.artistValidate %}<p>{{user.username}} est un <strong>artiste</strong></p>{% endif %}         
-                            {%if user.hoteValidate %}<p>{{user.username}} est un <strong>hôte</strong></p>{% endif %}  
+                            {%if user.hoteValidate %}<p>{{user.username}} est un <strong>hôte</strong></p>{% endif %}
+                            
+                            {%if user.linkFacebook or user.linkInstagram or user.linkTwitter %}
+                                <h5>Retrouvez-moi sur les réseaux sociaux</h5>
+                            {%if user.linkFacebook %}
+                                <p><a href="{{user.linkFacebook}}" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+                                {% endif %}  
+                            {%if user.linkInstagram %}
+                            <a href="{{user.linkInstagram}}" target="_blank"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+                                {% endif %}  
+                            {%if user.linkTwitter %}
+                            <a href="{{user.linkTwitter}}"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a></p>
+                            {% endif %}  
+                            {% endif %}
                         </div>
                     </div>
                 </div>

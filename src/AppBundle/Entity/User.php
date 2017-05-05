@@ -146,6 +146,27 @@ class User implements UserInterface, Serializable, JsonSerializable {
      * @ORM\Column(name="nbrExpo", type="integer", nullable=true)
      */
     private $nbrExpo;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="linkFacebook", type="string", nullable=true)
+     */
+    private $linkFacebook;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="linkInstagram", type="string", nullable=true)
+     */
+    private $linkInstagram;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="linkTwitter", type="string", nullable=true)
+     */
+    private $linkTwitter;
 
     /**
      * @var bool
@@ -523,6 +544,30 @@ class User implements UserInterface, Serializable, JsonSerializable {
         return $this->nbrExpo;
     }
 
+    function getLinkFacebook() {
+        return $this->linkFacebook;
+    }
+
+    function getLinkInstagram() {
+        return $this->linkInstagram;
+    }
+
+    function getLinkTwitter() {
+        return $this->linkTwitter;
+    }
+
+    function setLinkFacebook($linkFacebook) {
+        $this->linkFacebook = $linkFacebook;
+    }
+
+    function setLinkInstagram($linkInstagram) {
+        $this->linkInstagram = $linkInstagram;
+    }
+
+    function setLinkTwitter($linkTwitter) {
+        $this->linkTwitter = $linkTwitter;
+    }
+    
     /**
      * Set artistValidate
      *
@@ -602,6 +647,9 @@ return null;
             "genre" => $this->genre,
             "user_profilPicture" => $this->profilPicture,
             "email" => $this->email,
+            "facebook" => $this->linkFacebook,
+            "instagram" => $this->linkInstagram,
+            "twitter" => $this->linkTwitter,
         );
     }
 

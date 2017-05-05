@@ -37,7 +37,10 @@ class UserController extends Controller {
         $util->setAdress($request->get("adress"));
         $util->setBio($request->get("bio"));
         $util->setGenre($request->get("genre"));
-        $util->setProfilPicture($request->get("user_profilPicture"));
+        $util->setLinkFacebook($request->get("facebook"));
+        $util->setLinkInstagram($request->get("instagram"));
+        $util->setLinkTwitter($request->get("twitter"));
+//        $util->setProfilPicture($request->get("user_profilPicture"));
         $em->merge($util);
         $em->flush();
         return new Response("ok");
