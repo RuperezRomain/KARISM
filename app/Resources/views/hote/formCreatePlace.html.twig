@@ -35,7 +35,17 @@
 
                         </div>
                         <div class="col-sm-6"><h4>Ajouter des photos du lieux ?</h4>
-                            <a href=""><button class="btn btn-default">Ajout</button></a>
+                               <a href="/hote/create/lieu/picture"><button class="colbtn btn-default">Gestion images lieux</button></a>
+                               <div class="row">
+                                {% for picture in pictures %}
+                                    
+                                        
+                                            <img class="img-responsive col-sm-6 col-md-4" src="/web/images/placePictures/{{picture.name}}" >     
+                                        
+                                   
+                                {% endfor %}
+                                
+                            </div>
                         </div>
                     </div>
                 </div>

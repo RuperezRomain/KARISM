@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
@@ -241,7 +243,7 @@ class Place {
     /**
      * Set available
      *
-     * @param \DateTime $available
+     * @param DateTime $available
      *
      * @return Place
      */
@@ -254,19 +256,25 @@ class Place {
     /**
      * Get available
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getAvailable() {
         return $this->available;
     }
+    
+    public function __construct()
+    {
+        $this->fk_ImagesPlace = new ArrayCollection();
+    }
+   
 
     function getFk_ImagesPlace() {
-        return $this->fk_ImagesPlace;
+        return $this->fk_ImagesPlace->toArray();
     }
 
     function setFk_ImagesPlace($fk_ImagesPlace) {
         $this->fk_ImagesPlace = $fk_ImagesPlace;
     }
 
-
+    
 }

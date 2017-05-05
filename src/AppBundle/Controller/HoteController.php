@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\ImagesPlaces;
 use AppBundle\Entity\Place;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -71,7 +72,7 @@ class HoteController extends Controller {
      * @Route("hote/get/lieu/{id}")
      */
     public function getPlace(Request $request,$id){
-        
+        $this->get('session')->remove('placeDefault');
          $em = $this->getDoctrine()->getManager();
          $userId = $this->getUser()->getId();
          
@@ -79,16 +80,19 @@ class HoteController extends Controller {
         $lieux = $lieuDefault->getFkUserid()->getId();
           
           if( $lieux == $userId ){
-              
+                 
+            $this->get('session')->set('placeDefault', $lieuDefault);
               $f = $this->createForm('AppBundle\Form\PlaceFormType', $lieuDefault);
             // et on retourne le formulaire dans notre vue
             $f->handleRequest($request);
             if ($f->isSubmitted() && $f->isValid()) {
                 $em->persist($lieuDefault);
                 $em->flush($lieuDefault);
+              
             return $this->redirectToRoute('accueilTest');
             }
-            return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView()));
+            $listImg = $lieuDefault->getFk_ImagesPlace();
+            return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView(),"pictures"=>$listImg));
        
 
     }
@@ -120,8 +124,9 @@ public function SelectePlace($nomLieu){
             $lieuDefault = $lieuDefaultTbl[0];
             $em->merge($lieuDefault);
         }
-
+        
         $em->flush();
+       
         return $lieuDefault ;
     }
     
@@ -142,37 +147,62 @@ public function SelectePlace($nomLieu){
                 $em->flush($lieuDefault);
             return $this->redirectToRoute('accueilTest');
             }
-            return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView()));
+            $listImg = $lieuDefault->getFk_ImagesPlace(); 
+            return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView(),"pictures"=>$listImg));
     }
     
     
     /**
-     * @Route("hote/create/lieu/picture/{id}", name="createPicPlace")
+     * @Route("hote/create/lieu/picture", name="createPicPlace")
      */
-    public function createLieuPic($id){
+    public function createLieuPic(Request $request){
         
         $em = $this->getDoctrine()->getManager();
-         $userId = $this->getUser()->getId();
-          
-        //Recuperation lieux 
-        $lieuDefault = $em->getRepository(Place::class)->find($id);         
-        //Recuperation imgLieux
-        $lieuDefault = $em->getRepository(\AppBundle\Entity\ImagesPlaces::class)->find($id);          //Recuperation imgLieux
+        
+         //Creation et insertion dans le token de l'entité 
+      
+        
+      
+         
+        $lieuDefault = $em->getRepository(Place::class)->find($this->get('session')->get('placeDefault')->getId());   
 
-        if( $lieux == $userId ){
-              
-              $f = $this->createForm('AppBundle\Form\ImagesPlace');
+         
+        
+       
+        
+        //Recuperation imgLieux
+        $listImg = $lieuDefault->getFk_ImagesPlace();   
+        //Recuperation imgLieux Form
+
+        $image = new ImagesPlaces();
+              /****Validation ******/
+              $f = $this->createForm('AppBundle\Form\ImagesPlacesType',$image);
             // et on retourne le formulaire dans notre vue
             $f->handleRequest($request);
             if ($f->isSubmitted() && $f->isValid()) {
-                $em->persist($lieuDefault);
-                $em->flush($lieuDefault);
-            return $this->redirectToRoute('profilTest');
+              
+                // On recupere le nom du fichier, on genere un nom numerique aleatoire et on creer un dossier uploads/images 
+            $nomDuFichier = md5(uniqid()) . "." . $image->getName()->getClientOriginalExtension();
+            $image->getName()->move('images/placePictures', $nomDuFichier);
+            $image->setName($nomDuFichier);
+            
+              $em->persist($image);
+              $em->flush();
+            
+                
+                array_push($listImg,$image);
+                  $lieuDefault->setFk_ImagesPlace($listImg);      
+                $em->merge($lieuDefault);
+              $em->flush();
+            return $this->render('hote/gestionPicturePlace.html.twig', array("PlacePictForm" => $f->createView(),"pictures"=>$listImg));
             }
-            return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView()));
+            
+            
+        
+            return $this->render('hote/gestionPicturePlace.html.twig', array("PlacePictForm" => $f->createView(),"pictures"=>$listImg));
        
     }
-    }
+    
 
         /**
      * @Route("hote/remove/place/{id}", name="suprPlace")
@@ -192,6 +222,34 @@ public function SelectePlace($nomLieu){
 
 
         return $this->redirect($this->generateUrl('hotePlaces'));
+    }
+
+     /**
+     * @Route("hote/remove/imagePlace/{id}", name="suprImgPlace")
+     */
+    public function deletePicturePlace($id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        
+        //Selection de la picture a supr
+        $pictureLieux = $em->getRepository(ImagesPlaces::class)->find($id);
+        //Selection de la place 
+        $placeDefault = $this->get('session')->get('placeDefault');
+        
+        $lieuDefault = $em->getRepository(Place::class)->find($placeDefault->getId());
+        
+        $listeImg = $lieuDefault->getFk_ImagesPlace();
+        unset($listeImg[array_search($pictureLieux, $listeImg)]); 
+        
+        $lieuDefault->setFk_ImagesPlace($listeImg);
+        
+            $em->merge($lieuDefault);
+            // Verification que l'image est bien dans une serie de user courant
+            $em->remove($pictureLieux);
+            $em->flush();
+     
+
+        return $this->redirect($this->generateUrl('createPicPlace'));
     }
 
     
