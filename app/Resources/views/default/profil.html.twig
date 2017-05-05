@@ -59,13 +59,13 @@
                             {%if user.linkFacebook or user.linkInstagram or user.linkTwitter %}
                                 <h5>Retrouvez-moi sur les réseaux sociaux</h5>
                             {%if user.linkFacebook %}
-                                <p><a href="{{user.linkFacebook}}" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+                                <p><a href="{{user.linkFacebook}}" target="_new"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
                                 {% endif %}  
                             {%if user.linkInstagram %}
-                            <a href="{{user.linkInstagram}}" target="_blank"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+                            <a href="{{user.linkInstagram}}" target="_new"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
                                 {% endif %}  
                             {%if user.linkTwitter %}
-                            <a href="{{user.linkTwitter}}"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a></p>
+                            <a href="{{user.linkTwitter}}" target="_new" ><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a></p>
                             {% endif %}  
                             {% endif %}
                         </div>
