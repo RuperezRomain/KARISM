@@ -1,4 +1,4 @@
-{% extends "admin/adminTemplate.html.twig" %}
+{% extends "base.template.html.twig" %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('/script/css/bootstrap.min.css') }}" />
@@ -92,161 +92,156 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer">
-                    <div class="pull-right">
-                        <strong>KARISM</strong> Project
-                    </div>
-                    <div>
-                        <strong>Copyright</strong> Example Company &copy; 2014-2017
-                    </div>
-                </div>
 
-                <div class="containerThumb">
-                    <div class="col-md-6">
-                        <div class="caption">
-                            <h2>Demande de validation</h2>
-                            <a href="{{ path('adminDemande')}}"><div class="widget navy-bg no-padding">
-                                    <div class="p-m">
-                                        <h2 class="m-xs">4 Membres</h2>
 
-                                        <h3 class="font-bold no-margins">
-                                            En attente de validation
-                                        </h3>
-                                        <small>Cliquez pour y accéder</small>
-                                    </div>
-                                </div></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="caption">
-                            <h2>Utilisateurs</h2>
-                            <a href="{{ path('adminListUsers')}}"><div class="widget navy-bg no-padding">
-                                    <div class="p-m">
-                                        <h2 class="m-xs">18 Membres</h2>
+                {#                <div class="containerThumb">#}
+                <div class="col-md-6">
+                    <div class="caption">
+                        <h2>Demande de validation</h2>
+                        <a href="{{ path('adminDemande')}}"><div class="widget navy-bg no-padding">
+                                <div class="p-m">
+                                    <h2 class="m-xs">4 Membres</h2>
 
-                                        <h3 class="font-bold no-margins">
-                                            Enregistrés
-                                        </h3>
-                                        <small>Cliquez pour y accéder</small>
-                                    </div>
-                                </div></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="caption">
-                            <h2>Séries</h2>
-                            <a href="{{ path('adminListSeries')}}"><div class="widget navy-bg no-padding">
-                                    <div class="p-m">
-                                        <h2 class="m-xs">2 Séries</h2>
-
-                                        <h3 class="font-bold no-margins">
-                                            En ligne
-                                        </h3>
-                                        <small>Cliquez pour y accéder</small>
-                                    </div>
-                                </div></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="caption">
-                            <h2>Lieux</h2>
-                            <a href="{{ path('adminListPlaces')}}"><div class="widget navy-bg no-padding">
-                                    <div class="p-m">
-                                        <h2 class="m-xs">2 Lieux</h2>
-
-                                        <h3 class="font-bold no-margins">
-                                            En ligne
-                                        </h3>
-                                        <small>Cliquez pour y accéder</small>
-                                    </div>
-                                </div></a>
-                        </div>
-                    </div>
-                </div>
-
-                {#<div class="col-lg-6">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-title">
-                                    <h5>Pie Chart Example</h5>
-                                    <div class="ibox-tools">
-                                        <a class="collapse-link">
-                                            <i class="fa fa-chevron-up"></i>
-                                        </a>
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                            <i class="fa fa-wrench"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-user">
-                                            <li><a href="#">Config option 1</a>
-                                            </li>
-                                            <li><a href="#">Config option 2</a>
-                                            </li>
-                                        </ul>
-                                        <a class="close-link">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </div>
+                                    <h3 class="font-bold no-margins">
+                                        En attente de validation
+                                    </h3>
+                                    <small>Cliquez pour y accéder</small>
                                 </div>
-                                <div class="ibox-content">
-                                    <div class="flot-chart">
-                                        <div class="flot-chart-pie-content" id="flot-pie-chart" style="padding: 0px; position: relative;">
-                                            <canvas class="flot-base" width="200" height="200" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 200px; height: 200px;"></canvas>
-                                            <canvas class="flot-overlay" width="200" height="200" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 200px; height: 200px;"></canvas>
-                                            <div class="legend">
-                                                <div style="position: absolute; width: 55px; height: 60px; top: 5px; right: 5px; background-color: rgb(255, 255, 255); opacity: 0.85;"> 
-                                                </div>
-                                                <table style="position:absolute;top:5px;right:5px;;font-size:smaller;color:#545454">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="legendColorBox">
-                                                                <div style="border:1px solid #ccc;padding:1px">
-                                                                    <div style="width:4px;height:0;border:5px solid #d3d3d3;overflow:hidden">
-                                                                        
-                                                                    </div>
-                                                                        
-                                                                </div>
-                                                            </td><td class="legendLabel">Invité</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="legendColorBox">
-                                                                <div style="border:1px solid #ccc;padding:1px">
-                                                                    <div style="width:4px;height:0;border:5px solid #bababa;overflow:hidden">
-                                                                        
-                                                                    </div>
-                                                                        
-                                                                </div>
-                                                            </td>
-                                                            <td class="legendLabel">Hôte</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="legendColorBox">
-                                                                <div style="border:1px solid #ccc;padding:1px">
-                                                                    <div style="width:4px;height:0;border:5px solid #79d2c0;overflow:hidden">
-                                                                        
-                                                                    </div>
-                                                                        
-                                                                </div>
-                                                            </td>
-                                                            <td class="legendLabel">Artiste</td>
-                                                        </tr>
-        
-                                                    </tbody>
-                                                </table>
+                            </div></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="caption">
+                        <h2>Utilisateurs</h2>
+                        <a href="{{ path('adminListUsers')}}"><div class="widget navy-bg no-padding">
+                                <div class="p-m">
+                                    <h2 class="m-xs">18 Membres</h2>
+
+                                    <h3 class="font-bold no-margins">
+                                        Enregistrés
+                                    </h3>
+                                    <small>Cliquez pour y accéder</small>
+                                </div>
+                            </div></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="caption">
+                        <h2>Séries</h2>
+                        <a href="{{ path('adminListSeries')}}"><div class="widget navy-bg no-padding">
+                                <div class="p-m">
+                                    <h2 class="m-xs">2 Séries</h2>
+
+                                    <h3 class="font-bold no-margins">
+                                        En ligne
+                                    </h3>
+                                    <small>Cliquez pour y accéder</small>
+                                </div>
+                            </div></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="caption">
+                        <h2>Lieux</h2>
+                        <a href="{{ path('adminListPlaces')}}"><div class="widget navy-bg no-padding">
+                                <div class="p-m">
+                                    <h2 class="m-xs">2 Lieux</h2>
+
+                                    <h3 class="font-bold no-margins">
+                                        En ligne
+                                    </h3>
+                                    <small>Cliquez pour y accéder</small>
+                                </div>
+                            </div></a>
+                    </div>
+                </div>
+                                
+                  
+            </div>
+
+            {#<div class="col-lg-6">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Pie Chart Example</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li><a href="#">Config option 1</a>
+                                        </li>
+                                        <li><a href="#">Config option 2</a>
+                                        </li>
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="flot-chart">
+                                    <div class="flot-chart-pie-content" id="flot-pie-chart" style="padding: 0px; position: relative;">
+                                        <canvas class="flot-base" width="200" height="200" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 200px; height: 200px;"></canvas>
+                                        <canvas class="flot-overlay" width="200" height="200" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 200px; height: 200px;"></canvas>
+                                        <div class="legend">
+                                            <div style="position: absolute; width: 55px; height: 60px; top: 5px; right: 5px; background-color: rgb(255, 255, 255); opacity: 0.85;"> 
                                             </div>
+                                            <table style="position:absolute;top:5px;right:5px;;font-size:smaller;color:#545454">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="legendColorBox">
+                                                            <div style="border:1px solid #ccc;padding:1px">
+                                                                <div style="width:4px;height:0;border:5px solid #d3d3d3;overflow:hidden">
+                                                                    
+                                                                </div>
+                                                                    
+                                                            </div>
+                                                        </td><td class="legendLabel">Invité</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="legendColorBox">
+                                                            <div style="border:1px solid #ccc;padding:1px">
+                                                                <div style="width:4px;height:0;border:5px solid #bababa;overflow:hidden">
+                                                                    
+                                                                </div>
+                                                                    
+                                                            </div>
+                                                        </td>
+                                                        <td class="legendLabel">Hôte</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="legendColorBox">
+                                                            <div style="border:1px solid #ccc;padding:1px">
+                                                                <div style="width:4px;height:0;border:5px solid #79d2c0;overflow:hidden">
+                                                                    
+                                                                </div>
+                                                                    
+                                                            </div>
+                                                        </td>
+                                                        <td class="legendLabel">Artiste</td>
+                                                    </tr>
+    
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>#}
-            </div>
+                        </div>
+                    </div>#}
         </div>
     </div>
+</div>
 
 
 
 {% endblock %}
 {% block javascripts %}  
     {{ parent() }}
-            <script src="{{asset('script/js/jsAdmin/admin.js')}}"></script>
+    <script src="{{asset('script/js/jsAdmin/admin.js')}}"></script>
 
     <!-- Mainly scripts -->
     <script src="{{asset('script/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
