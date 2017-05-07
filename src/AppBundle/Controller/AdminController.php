@@ -8,7 +8,9 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Place;
 use AppBundle\Entity\Role;
+use AppBundle\Entity\Serie;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -52,10 +54,93 @@ class AdminController extends Controller {
                       return new JsonResponse($nbr);
 
     }
+    
+    
+    /**
+     * Retourne le Nombre d'utilisateurs
+     * @Route("/get/users/")
+     */
+    public function getUsers(){
+        $nbr = 0;
+         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+         
+         
+         for ($i=0;$i< count($users);$i++){
+             $nbr = $nbr+1 ;
+         }
+         
+         
+                      return new JsonResponse($nbr);
 
+    }
+    
+    /**
+     * Retourne le Nombre de serie 
+     * @Route("/get/series/")
+     */
+    public function getSerie(){
+      $serieValid = array();
+        $nbr = 0;
+        
+        $series = $this->getDoctrine()->getRepository(Serie::class)->findAll();
+        $i=0;
+        while ($i< count($series)){
+             $checkValid = $series[$i]->getUserid()->getArtistValidate();
+             if($checkValid == null || 0 ){
+                 $i++;
+             }elseif($checkValid == 1){
+                array_push ($serieValid, $series[$i]);
+                $i++;
+             }
+             
+           }
+              for ($i=0;$i< count($serieValid);$i++){
+             $nbr = $nbr+1 ;
+         }
+         
+         
+         
+                      return new JsonResponse($nbr);
+
+    }
+    
+    /**
+     * Retourne le Nombre de Place 
+     * @Route("/get/places/")
+     */
+    public function getLieux(){
+      $placeValid = array();
+        $nbr = 0;
+        
+        $places = $this->getDoctrine()->getRepository(Place::class)->findAll();
+        $i=0;
+        while ($i< count($places)){
+             $checkValid = $places[$i]->getFkUserid()->getHoteValidate();
+             if($checkValid == null || 0 ){
+                 $i++;
+             }elseif($checkValid == 1){
+                array_push ($placeValid, $places[$i]);
+                $i++;
+             }
+             
+           }
+              for ($i=0;$i< count($placeValid);$i++){
+             $nbr = $nbr+1 ;
+         }
+         
+         
+         
+                      return new JsonResponse($nbr);
+
+    }
+    
 
     ////////////////////Validation demande de Role /////////////////////////
 
+    
+    
+    ///////////Bounton reponse 
+    
     /**
      * Validation postive dune demande re role ArtisteUser
      * @Route("/remote/user/{id}/artiste/valid")
@@ -138,6 +223,23 @@ class AdminController extends Controller {
         
         
         return new JsonResponse();
+    }
+    
+    
+    
+    ///////Lien vers place default du USER
+    /**
+     * @Route("/get/place/default/user/{id}")
+     */
+    function getPlaceDefaultUser($id){
+       
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+        
+        $place = $this->getDoctrine()->getRepository(Place::class)->findBy(array('name' => 'Default', 'fk_user' => $user));
+        
+        $listImg = $place[0]->getFk_ImagesPlace();
+        
+        return $this->render('hote/formCreatePlace.html.twig', array("places" => $place,"pictures"=>$listImg));
     }
 
 }
