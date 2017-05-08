@@ -55,19 +55,19 @@
                         <div class="panel-body text-center">
                             {%if user.artistValidate %}<p>{{user.username}} est un <strong>artiste</strong></p>{% endif %}         
                             {%if user.hoteValidate %}<p>{{user.username}} est un <strong>hôte</strong></p>{% endif %}
-                            
+
                             {%if user.linkFacebook or user.linkInstagram or user.linkTwitter %}
                                 <h5>Retrouvez-moi sur les réseaux sociaux</h5>
-                            {%if user.linkFacebook %}
-                                <p><a href="{{user.linkFacebook}}" target="_new"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
-                                {% endif %}  
-                            {%if user.linkInstagram %}
-                            <a href="{{user.linkInstagram}}" target="_new"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
-                                {% endif %}  
-                            {%if user.linkTwitter %}
-                            <a href="{{user.linkTwitter}}" target="_new" ><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a></p>
-                            {% endif %}  
-                            {% endif %}
+                                {%if user.linkFacebook %}
+                                    <p><a href="{{user.linkFacebook}}" target="_new"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+                                        {% endif %}  
+                                        {%if user.linkInstagram %}
+                                        <a href="{{user.linkInstagram}}" target="_new"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+                                        {% endif %}  
+                                        {%if user.linkTwitter %}
+                                        <a href="{{user.linkTwitter}}" target="_new" ><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a></p>
+                                        {% endif %}  
+                                    {% endif %}
                         </div>
                     </div>
                 </div>
@@ -90,6 +90,32 @@
                             </div>
                             <div class="col-md-5">
                                 <h2>{{serie.name}}</h2>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+
+    {%if user.hoteValidate == 1 %}
+        {% if places is not empty %}              
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-center">Ses lieux</h2>
+                                {% for placePicture in placePictures %}
+                            <div class="col-md-6">
+                                    <a href="/serie">
+                                        <img class="img-thumbnail" src="/web/images/placePictures/{{placePicture.name}}" >
+                                    </a>
+                            </div>
+                                {% endfor %}
+                        {% for place in places %}
+                            <div class="col-md-6">
+                                <h2>{{place.name}} {{place.id}}</h2>
+                                <p>Taille : {{place.size}} mètres carré</p>
+                                <p>Capacité : {{place.capacity}} personnes</p>
                             </div>
                         {% endfor %}
                     </div>

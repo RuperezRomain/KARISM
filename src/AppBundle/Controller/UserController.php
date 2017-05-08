@@ -63,29 +63,23 @@ class UserController extends Controller {
 
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $series = $this->getDoctrine()->getRepository(Serie::class)->findByUserid($id);
-        if ($series != null) {
-            for ($i = 0; $i < count($series); $i++) {
-                $pictures = $series[$i]->getFk_picture();
-            }
-        }
-//        $lieux = $this->getDoctrine()->getRepository(Place::class)->findByUserId($id);
-//        if ($lieux != null) {
+//        if ($series != null) {
 //            for ($i = 0; $i < count($series); $i++) {
-//                $places = $lieux[$i]->getFk_imagesPlace();
+//                $pictures = $series[$i]->getFk_picture();
 //            }
 //        }
-        if ($series != null) {
-            return $this->render('default/profil.html.twig', array("user" => $user, "series" => $series, "pictures" => $pictures));
-        } 
-//        else if ($lieux != null) {
-//            return $this->render('default/profil.html.twig', array("user" => $user, "series" => $series, "places" => $places));
-//        } 
-//        else if ($lieux != null && $series != null) {
-//            return $this->render('default/profil.html.twig', array("user" => $user, "series" => $series, "pictures" => $pictures, "places" => $places));
-//        } 
-        else {
-            return $this->render('default/profil.html.twig', array("user" => $user, "series" => $series));
+        $places = $this->getDoctrine()->getRepository(Place::class)->findBy(array("fk_user" => $id));
+
+//        $lieux = $lieuDefault->getFkUserid()->getId();
+        $placePicturesArray = array();
+        if ($places != null) {
+            for ($i = 0; $i < count($places); $i++) {
+                $placeTbl1 = $places[$i]->getFk_ImagesPlace();
+                $placePicturesArray = array_merge($placePicturesArray, $placeTbl1);
+            }
         }
+
+        return $this->render('default/profil.html.twig', array("user" => $user, "places" => $places, "placePictures" => $placePicturesArray, "series" => $series));
     }
 
 }
