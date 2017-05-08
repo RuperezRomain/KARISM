@@ -11,6 +11,13 @@ var imgInput = $("input[name$='appbundle_picture[img]']");
 
 $(document).ready(function () {
 
+   
+    ///Selection styles
+    
+  
+  
+  
+
     getPicture();
 
     $(".validPicture").click(function () {
@@ -49,6 +56,7 @@ function getPicture() {
             expoInput.val('');
             commInput.val('');
             imgInput.val('');
+    $( "[type=checkbox]" ).removeAttr("checked");
 
            
                     $($listePic).each(function () {
@@ -73,6 +81,8 @@ function getPicture() {
             });
         }
     });
+    
+  
 
 }
 
