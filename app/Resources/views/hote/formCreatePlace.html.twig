@@ -50,19 +50,21 @@
                             
                             
                             {% if is_granted('ROLE_ADMIN') is  empty %}
+                                <div class="row">
                                 <h4>Ajouter des photos du lieux ?</h4>
                                 <a href="/hote/create/lieu/picture"><button class="colbtn btn-default">Gestion images lieux</button></a>
+                                </div>
                                 {% endif %}
-                                <div class="row">
+                               
                                     {% for picture in pictures %}
 
-
-                                        <img class="img-responsive col-sm-6 col-md-4" src="/web/images/placePictures/{{picture.name}}" >     
-
+                                        <div class=" col-sm-3 thumbnail">
+                                        <img class=" img-thumbnail " src="/web/images/placePictures/{{picture.name}}" >     
+                                        </div>
 
                                     {% endfor %}
 
-                                </div>
+                              
                             </div>
                         </div>
                     </div>

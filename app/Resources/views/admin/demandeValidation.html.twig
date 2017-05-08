@@ -157,9 +157,9 @@
 {#                                                  Insertion object User 
 #}                                                    {% for user in usersArtiste %}
                                                         <tr class=' gradeA odd'  id="{{user.id}}" role='row'>
-                                                            <td class='sorting_1'>{{user.firstname}}</td>
-                                                            <td>{{user.email}}</td>
-                                                            <td>"{{user.phone}}</td>
+                                                            <td class=' hote-clickable-row sorting_1' data-href="./get/serie/default/user/{{user.id}}">{{user.firstname}}</td>
+                                                            <td class=' hote-clickable-row' data-href="./get/serie/default/user/{{user.id}}">{{user.email}}</td>
+                                                            <td class=' hote-clickable-row' data-href="./get/serie/default/user/{{user.id}}">"{{user.phone}}</td>
                                                                                                                        
                                                                 
                                                             
@@ -275,9 +275,9 @@
 {#                                                  Insertion object User 
 #}                                                    {% for user in usersHote %}
                                                         <tr id="{{user.id}}" role='row'>
-                                                            <td class=' clickable-row  sorting_1' data-href="./get/place/default/user/{{user.id}}" >{{user.firstname}}</td>
-                                                            <td class=' clickable-row ' data-href="./get/place/default/user/{{user.id}}">{{user.email}}</td>
-                                                            <td class=' clickable-row ' data-href="./get/place/default/user/{{user.id}}">"{{user.phone}}</td>
+                                                            <td class=' hote-clickable-row  sorting_1' data-href="./get/place/default/user/{{user.id}}" >{{user.firstname}}</td>
+                                                            <td class=' hote-clickable-row ' data-href="./get/place/default/user/{{user.id}}">{{user.email}}</td>
+                                                            <td class=' hote-clickable-row ' data-href="./get/place/default/user/{{user.id}}">"{{user.phone}}</td>
                                                             <td>                                                                
                                                                 <button class=' validHote btn bg-primary btn-block' type='button'>
                                                                     <i class='fa fa-check-circle'></i>

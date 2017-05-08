@@ -145,7 +145,11 @@ $elmentCourant =  $(this).parents("tr");
     });
     
     
-    $(".clickable-row").click(function() {
+    $(".artiste-clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+    
+    $(".hote-clickable-row").click(function() {
         window.location = $(this).data("href");
     });
     

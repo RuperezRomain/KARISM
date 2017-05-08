@@ -15,6 +15,7 @@ use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Description of AdminController
@@ -27,6 +28,7 @@ class AdminController extends Controller {
      * @Route("/demande", name="adminDemande")
      */
     public function adminDemandeValidation() {
+        $this->get('session')->remove('serieDefault');
           $usersArtiste = $this->getDoctrine()->getRepository(User::class)->findByArtistValidate(0);
           $usersHote = $this->getDoctrine()->getRepository(User::class)->findByHoteValidate(0);
         return $this->render('admin/demandeValidation.html.twig',array('usersArtiste' => $usersArtiste,'usersHote'=>$usersHote));
@@ -227,7 +229,24 @@ class AdminController extends Controller {
     
     
     
-    ///////Lien vers place default du USER
+    
+     ///////Lien vers serie default de USER
+    /**
+     * @Route("/get/serie/default/user/{id}")
+     */
+    function getSerieDefaultUser($id){
+       
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+        
+        $series = $this->getDoctrine()->getRepository(Serie::class)->findBy(array('name' => 'Default', 'userid' => $user));
+        
+        $this->get('session')->set('serieDefault', $series[0]);
+        
+        return $this->render('artiste/formCreateSerie.html.twig');
+    }
+    
+    
+    ///////Lien vers place default de USER
     /**
      * @Route("/get/place/default/user/{id}")
      */
@@ -241,5 +260,7 @@ class AdminController extends Controller {
         
         return $this->render('hote/formCreatePlace.html.twig', array("places" => $place,"pictures"=>$listImg));
     }
+    
+    
 
 }
