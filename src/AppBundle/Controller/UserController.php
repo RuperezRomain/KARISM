@@ -27,10 +27,17 @@ class UserController extends Controller {
 
         $f = $this->createForm('AppBundle\Form\UserType', $util);
         $utilPass = $util->getPassword();
-        
+        $utilPicture = $util->getProfilPicture();
         // et on retourne le formulaire dans notre vue
         $f->handleRequest($request);
         if ($f->isSubmitted() && $f->isValid()) {
+            if ($f->get('profilPicture')->getData() !== null) {
+                    $nomDuFichier = md5(uniqid()) . "." . $util->getProfilpicture()->getClientOriginalExtension();
+                    $util->getProfilPicture()->move('images/profilPictures', $nomDuFichier);
+                    $util->setProfilPicture($nomDuFichier);
+                } else {
+                    $util->setProfilPicture($utilPicture);
+                }
             $util->setPassword($utilPass);
             $em->merge($util);
             $em->flush();
