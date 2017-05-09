@@ -30,8 +30,11 @@
                                 {{ form_widget(PlaceType.adress, { 'attr': {'class': 'form-control','placeholder':"Adresse du lieu"}})}}
                                 {{ form_widget(PlaceType.fk_city, { 'attr': {'class': 'form-control'}})}}
                                 {{ form_widget(PlaceType.fk_placetype, { 'attr': {'class': 'form-control'}})}}
-                                {{ form_widget(PlaceType.available)}}
-                                <button id="validPlace" >Valider mon lieu</button>
+                                <h4>Disponibilités</h4>
+                                <p>Heure de début</p>{{ form_widget(PlaceType.availableStart)}}
+                                <p>Heure de fin</p>{{ form_widget(PlaceType.availableEnd)}}
+                                {{ form_widget(PlaceType.img, { 'attr': {'class': 'btn btn-default btn-file'}})}}
+                                <button id="validPlace" class="btn btn-primary block full-width m-b" >Valider mon lieu</button>
                                 {{form_end(PlaceType)}}
                                 {% elseif is_granted('ROLE_ADMIN') is not empty %}
                                     
