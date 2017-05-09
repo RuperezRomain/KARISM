@@ -2,35 +2,39 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PictureType extends AbstractType
-{
+class PictureType extends AbstractType {
+
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('nom')
-                ->add('img',FileType::class,array('data_class'=> null))
-                ->add('style')
+                ->add('img', FileType::class, array('data_class' => null))
+                ->add('style', EntityType::class, array(
+                    'class' => 'AppBundle:Style',
+                    'choice_label' => 'name',
+                    'multiple' => true,
+                    'expanded' => true,
+                    ))
                 ->add('techniques')
                 ->add('genres')
                 ->add('size')
                 ->add('prix')
                 ->add('expos')
-                ->add('commentaire',TextareaType::class);
+                ->add('commentaire', TextareaType::class);
     }
-    
+
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
-    {
+    public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Picture'
         ));
@@ -39,10 +43,8 @@ class PictureType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
-    {
+    public function getBlockPrefix() {
         return 'appbundle_picture';
     }
-
 
 }
