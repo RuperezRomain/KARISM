@@ -1,0 +1,44 @@
+{% extends "admin/adminTemplate.html.twig" %}
+{% block body %}
+
+    <div class="container-fluid " >
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="ibox-title">
+
+
+                    </div>
+                    {{form_start(formInfoExpo)}}
+                    
+                        
+                        <div class=" col-lg-offset-1 col-lg-1 ">Lieux:{{ form_widget(formInfoExpo.fk_ville, { 'attr': {'class': 'form-control'}})}}</div>
+                    
+                    <div class="row">
+                        <div class="col-lg-offset-2 col-lg-8 " id="appbundle_exposition_date"><p> Date</p><p> Heurs</p></div>
+                    <div class="col-lg-offset-2 col-lg-8 ">{{ form_widget(formInfoExpo.date)}}</div>
+                    </div>
+                    <div class="container-fluid ">
+
+                        <div  class=" col-lg-offset-3 col-lg-1 "> Surface:{{ form_widget(formInfoExpo.surfaceRquirements, { 'attr': {'class': 'form-control'}})}}</div>
+
+                        <div class=" col-lg-offset-4 col-lg-1"> Place:{{ form_widget(formInfoExpo.inviteRquirements, { 'attr': {'class': 'form-control'}})}} </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="col-lg-offset-4 col-lg-4" >Description:{{ form_widget(formInfoExpo.description, { 'attr': {'class': 'form-control'}})}}</div>
+                  
+                    </div>
+                        <input type="submit" class="btn btn-primary" value="Etape Suivent !">                                
+                        {{form_end(formInfoExpo)}}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <style>
+        #appbundle_exposition_date {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+{% endblock %}
