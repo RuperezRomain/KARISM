@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 use JsonSerializable;
 use Serializable;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -120,11 +122,11 @@ class User implements UserInterface, Serializable, JsonSerializable {
     private $adress;
 
     /**
-     * @var int
      *
-     * @ORM\Column(name="city", type="integer", nullable=true)
+     * @ManyToOne(targetEntity="City")
+     * @JoinColumn(name="city_id", referencedColumnName="id",nullable=true)
      */
-    private $city;
+    private $fk_city;
 
     /**
      * @var bool
@@ -457,25 +459,25 @@ class User implements UserInterface, Serializable, JsonSerializable {
     }
 
     /**
-     * Set city
+     * Set fk_city
      *
-     * @param integer $city
+     * @param integer $fk_city
      *
-     * @return User
+     * @return Place
      */
-    public function setCity($city) {
-        $this->city = $city;
+    public function setFkCity($fk_city) {
+        $this->fk_city = $fk_city;
 
         return $this;
     }
 
     /**
-     * Get city
+     * Get fk_city
      *
      * @return int
      */
-    public function getCity() {
-        return $this->city;
+    public function getFkcity() {
+        return $this->fk_city;
     }
 
     /**
@@ -650,6 +652,7 @@ return null;
             "facebook" => $this->linkFacebook,
             "instagram" => $this->linkInstagram,
             "twitter" => $this->linkTwitter,
+            "city" => $this->fk_city,
         );
     }
 

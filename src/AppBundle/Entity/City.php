@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use JsonSerializable;
 
 /**
  * City
@@ -12,7 +13,7 @@ use Doctrine\ORM\Mapping\ManyToOne;
  * @ORM\Table(name="city")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CityRepository")
  */
-class City
+class City implements JsonSerializable
 {
     /**
      * @var int
@@ -97,6 +98,14 @@ class City
     public function getCountry()
     {
         return $this->country;
+    }
+    
+    public function jsonSerialize() {
+        return array(
+            "id" => $this->id,
+            "city" => $this->city,
+            "country" => $this->country,
+        );
     }
 }
 
