@@ -209,4 +209,33 @@ class ArtisteController extends Controller {
     }
 
     
+
+    /**
+     * @Route("serie/{id}")
+     */
+    public function getPlaceDisplay($id) {
+
+        $em = $this->getDoctrine()->getManager();
+        $serieDefault = $em->getRepository(Serie::class)->find($id);
+        $arrayImg = $serieDefault->getFk_picture();
+
+        $picture = array();
+        for($i=0; $i< count($arrayImg); $i++){
+            array_push($picture, $arrayImg[$i]);
+        }
+        
+//        $pictureDefault = $em->getRepository(Picture::class)->findById($picture);
+//        $pictureStyle = $pictureDefault;
+//        
+//        $style = array();
+//        for($i=0; $i< count($pictureStyle); $i++){
+//            array_push($style, $pictureDefault[$i]);
+//        }
+//        print_r($style);
+////        print_r($picture);
+        
+        return $this->render('artiste/contentSerie.html.twig', array("serie" => $serieDefault, "pictures" => $picture));
+    }
+    
+    
 }

@@ -96,13 +96,28 @@ class HoteController extends Controller {
                 } else {
                     $lieuDefault->setImg($imageDefault);
                 }
-                    $em->persist($lieuDefault);
-                    $em->flush($lieuDefault);
+                $em->persist($lieuDefault);
+                $em->flush($lieuDefault);
                 return $this->redirectToRoute('accueilTest');
             }
             $listImg = $lieuDefault->getFk_ImagesPlace();
             return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView(), "pictures" => $listImg));
         }
+    }
+
+    /**
+     * @Route("lieu/{id}")
+     */
+    public function getPlaceDisplay($id) {
+
+        $em = $this->getDoctrine()->getManager();
+        $lieuDefault = $em->getRepository(Place::class)->find($id);
+        $arrayImg = $lieuDefault->getFk_ImagesPlace();
+        $picture = array();
+        for($i=0; $i< count($arrayImg); $i++){
+            array_push($picture, $arrayImg[$i]);
+        } 
+        return $this->render('hote/contentPlace.html.twig', array("place" => $lieuDefault, "pictures" => $picture));
     }
 
     public function SelectePlace($nomLieu) {

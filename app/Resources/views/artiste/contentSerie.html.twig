@@ -1,0 +1,45 @@
+{% extends "base.template.html.twig" %}
+{% block stylesheets %}
+    {{parent()}} 
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('/script/css/templateInspinia.css') }}" />
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+{% endblock %}
+
+{% block title %}
+    {{parent()}}
+    - Série {{serie.name}}
+{% endblock %}
+
+{% block body %}
+    <div class="text-center ibox-content container-fluid">
+
+        <div class="col-md-12">
+            <img class="img-thumbnail" width="300px" height="200px" src="/web/images/oeuvrePictures/{{serie.img}}" >
+            <h2>{{serie.name}}</h2>
+        </div>
+
+    </div>
+    {% if pictures != null %}
+        <div class="text-center ibox-content container-fluid">
+            <h2>Images de la série</h2>
+            {% for picture in pictures %}
+                <div class="col-md-2">
+                    <img class="img-thumbnail" width="250px" height="250px" src="/web/images/oeuvrePictures/{{picture.img}}" >
+                    <div class="col-md-12">
+                        <p>Nom : {{picture.nom}}</p>
+                        <p>Size : {{picture.size}}</p>
+                        <p>Genre : {{picture.genres}}</p>
+                        <p>Techniques : {{picture.techniques}}</p>
+                    </div>
+                </div>
+
+            {% endfor %}
+{#                {% for style in pictures %}
+                    s
+                {% endfor %}#}
+        </div>
+    {% endif %}
+{% endblock %}
