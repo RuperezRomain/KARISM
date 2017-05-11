@@ -20,9 +20,12 @@ $("#searchBtn").click(function () {
         searchHosts();
     } else if ($("#searchWhat").val() === "guest") {
         searchGuests();
-    } else if ($("#searchWhat").val() === "expos") {
-        searchExpos();
+    } else if ($("#searchWhat").val() === "place") {
+        searchPlaces();
     }
+//    } else if ($("#searchWhat").val() === "expos") {
+//        searchExpos();
+//    }
     if ($("#citiesList").val() === "city") {
         alert("Veuillez choisir une ville");
     }
@@ -105,6 +108,32 @@ function searchGuests() {
         }
     });
 }
+
+function searchPlaces() {
+    $.ajax({
+        url: URL + "places",
+        async: true,
+        type: "GET",
+        datatype: "json",
+        success: function (data){
+        for (var $i = 0; $i < data.length; $i++) {
+            var selectedCity = $("#citiesList").val();
+            var placeURL = document.createElement("a");
+            var linkText = document.createTextNode(data[$i].name);
+            placeURL.appendChild(linkText);
+            placeURL.href = URL + "lieu/" +data[$i].id;
+            var placeCity = data[$i].city.city;
+            
+            if(placeCity == selectedCity) {
+                $("#results").append(placeURL);
+            }
+        }},
+        error: function () {
+            alert("problème");
+        }
+    });
+}
+
 
 //function searchExpos() {
 //    $.ajax({

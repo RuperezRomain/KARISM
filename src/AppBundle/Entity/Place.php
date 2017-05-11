@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use JsonSerializable;
 
 /**
  * Place
@@ -14,7 +15,7 @@ use Doctrine\ORM\Mapping\ManyToOne;
  * @ORM\Table(name="place")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PlaceRepository")
  */
-class Place {
+class Place implements JsonSerializable {
 
     /**
      * @var int
@@ -318,5 +319,11 @@ class Place {
         $this->fk_ImagesPlace = $fk_ImagesPlace;
     }
 
-    
+    public function jsonSerialize() {
+        return array(
+            "id" => $this->id,
+            "city" => $this->fk_city,
+            "name" => $this->name,
+        );
+    }
 }

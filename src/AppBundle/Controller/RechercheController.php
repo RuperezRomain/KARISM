@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\City;
+use AppBundle\Entity\Place;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -35,8 +36,8 @@ class RechercheController extends Controller {
      */
     public function getGuests() {
         $guests = $this->getDoctrine()->getRepository(User::class)->findBy(array(
-            'hoteValidate' => 0,
-            'artistValidate' => 0
+            'hoteValidate' => 0 OR null,
+            'artistValidate' => 0 OR null
         ));
 
         return new JsonResponse($guests);
@@ -49,6 +50,15 @@ class RechercheController extends Controller {
     public function getCities() {
         $cities = $this->getDoctrine()->getRepository(City::class)->findAll();
         return new JsonResponse($cities);
+    }
+    
+    /**
+     * @Route("/places")
+     * @Method({"GET"})
+     */
+    public function getPlaces() {
+        $places = $this->getDoctrine()->getRepository(Place::class)->findAll();
+        return new JsonResponse($places);
     }
     
 //    /**
