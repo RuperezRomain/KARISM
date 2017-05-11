@@ -88,9 +88,16 @@ class Place {
     /**
      * @var \Date
      *
-     * @ORM\Column(name="available", type="datetime",nullable=true)
+     * @ORM\Column(name="availableStart", type="datetime",nullable=true)
      */
-    private $available;
+    private $availableStart;
+
+    /**
+     * @var \Date
+     *
+     * @ORM\Column(name="availableEnd", type="datetime",nullable=true)
+     */
+    private $availableEnd;
 
     /**
      * @var int
@@ -98,6 +105,21 @@ class Place {
      * @JoinColumn(name="user_id", referencedColumnName="id",nullable=true)
      */
     private $fk_user;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="img", type="string", length=255, nullable=true)
+     */
+    private $img;
+    
+    function getImg() {
+        return $this->img;
+    }
+
+    function setImg($img) {
+        $this->img = $img;
+    }
 
     /**
      * Get id
@@ -241,25 +263,45 @@ class Place {
     }
 
     /**
-     * Set available
+     * Set availableStart
      *
-     * @param DateTime $available
+     * @param DateTime $availableStart
      *
      * @return Place
      */
-    public function setAvailable($available) {
-        $this->available = $available;
+    public function setAvailableStart($availableStart) {
+        $this->availableStart = $availableStart;
 
         return $this;
     }
 
     /**
-     * Get available
+     * Get availableStart
      *
      * @return DateTime
      */
-    public function getAvailable() {
-        return $this->available;
+    public function getAvailableStart() {
+        return $this->availableStart;
+    }
+    
+    /**
+     * Get availableEnd
+     *
+     * @return DateTime
+     */
+    function getAvailableEnd() {
+        return $this->availableEnd;
+    }
+
+    /**
+     * Set availableEnd
+     *
+     * @param DateTime $availableEnd
+     *
+     * @return Place
+     */
+    function setAvailableEnd($availableEnd) {
+        $this->availableEnd = $availableEnd;
     }
     
     public function __construct()

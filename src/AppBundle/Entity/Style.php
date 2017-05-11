@@ -62,5 +62,11 @@ class Style
     {
         return $this->name;
     }
+    
+    
+       public function __toString() {
+        return $this->name;
+    }
+    
 }
 

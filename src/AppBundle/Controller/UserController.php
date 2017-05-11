@@ -14,15 +14,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller {
 
-    /**
-     * @Route("/profil/edit", name="profilEdit")
-     */
-    public function profilEdit() {
-        return $this->render('default/editProfil.html.twig');
-    }
 
-    /**
-     * @Route("/profil/update", name="editProfil")
+   /** 
+     * @Route("/profil/edit", name="profilEdit")
      * @param Request $request
      */
     public function updateAction(Request $request) {
@@ -30,20 +24,20 @@ class UserController extends Controller {
         $userId = $users->getId();
         $em = $this->getDoctrine()->getManager();
         $util = $em->getRepository(User::class)->find($userId);
-        $util->setFirstname($request->get("firstname"));
-        $util->setLastname($request->get("lastname"));
-        $util->setUsername($request->get("username"));
-        $util->setPhone($request->get("phone"));
-        $util->setAdress($request->get("adress"));
-        $util->setBio($request->get("bio"));
-        $util->setGenre($request->get("genre"));
-        $util->setLinkFacebook($request->get("facebook"));
-        $util->setLinkInstagram($request->get("instagram"));
-        $util->setLinkTwitter($request->get("twitter"));
-//        $util->setProfilPicture($request->get("user_profilPicture"));
-        $em->merge($util);
-        $em->flush();
-        return new Response("ok");
+
+        $f = $this->createForm('AppBundle\Form\UserType', $util);
+        $utilPass = $util->getPassword();
+        
+        // et on retourne le formulaire dans notre vue
+        $f->handleRequest($request);
+        if ($f->isSubmitted() && $f->isValid()) {
+            $util->setPassword($utilPass);
+            $em->merge($util);
+            $em->flush();
+            return $this->redirectToRoute('accueilTest');
+        }
+
+        return $this->render('default/editProfil.html.twig', array("userType" => $f->createView()));
     }
 
     /**
@@ -63,29 +57,9 @@ class UserController extends Controller {
 
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $series = $this->getDoctrine()->getRepository(Serie::class)->findByUserid($id);
-        if ($series != null) {
-            for ($i = 0; $i < count($series); $i++) {
-                $pictures = $series[$i]->getFk_picture();
-            }
-        }
-//        $lieux = $this->getDoctrine()->getRepository(Place::class)->findByUserId($id);
-//        if ($lieux != null) {
-//            for ($i = 0; $i < count($series); $i++) {
-//                $places = $lieux[$i]->getFk_imagesPlace();
-//            }
-//        }
-        if ($series != null) {
-            return $this->render('default/profil.html.twig', array("user" => $user, "series" => $series, "pictures" => $pictures));
-        } 
-//        else if ($lieux != null) {
-//            return $this->render('default/profil.html.twig', array("user" => $user, "series" => $series, "places" => $places));
-//        } 
-//        else if ($lieux != null && $series != null) {
-//            return $this->render('default/profil.html.twig', array("user" => $user, "series" => $series, "pictures" => $pictures, "places" => $places));
-//        } 
-        else {
-            return $this->render('default/profil.html.twig', array("user" => $user, "series" => $series));
-        }
+        $places = $this->getDoctrine()->getRepository(Place::class)->findBy(array('fk_user' => $id));
+
+        return $this->render('default/profil.html.twig', array("user" => $user, "places" => $places, "series" => $series));
     }
 
 }

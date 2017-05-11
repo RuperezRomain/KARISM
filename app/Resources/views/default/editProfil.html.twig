@@ -21,9 +21,52 @@
                 </div>
             </div>
             <div class="ibox-content">
-                <div class="row">
-                    <div class="col-sm-6 b-r"><h3 class="m-t-none m-b">Editer mon profil</h3>
-                        <form id="editProfil" class="form-horizontal">
+                <div class="container">
+        <div class="row">
+            <div class=" text-center loginscreen animated fadeInDown">
+               
+                    <div>
+
+                        <h4 class="logo-name"><span class="loading dots3"></span></h4>
+
+                    </div>
+                    <h3>Bienvenue chez KARISM </h3>
+                    {#<p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
+                        <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
+                    </p>#}
+                    
+                    <div class="col-md-6">
+                    <p>Inscription</p>
+                    {{ form_start(userType,{ 'attr': {'class': 'form-horizontal'}})}}
+                    {{ form_widget(userType.username, { 'attr': {'class': 'form-control','placeholder':'Votre Pseudo '}})}}
+                    {{ form_widget(userType.email, { 'attr': {'class': 'form-control','placeholder':'Votre email '}})}}
+                    {{ form_widget(userType.password.first, { 'attr': {'class': ' hidden form-control','placeholder':'Votre mots de passe '}})}}
+                    {{ form_widget(userType.password.second, { 'attr': {'class': ' hidden form-control','placeholder':'Confirmation mots de passe '}})}}
+                    {{ form_widget(userType.genre, { 'attr': {'class': 'form-control'}})}}
+                    {{ form_widget(userType.firstname, { 'attr': {'class': 'form-control','placeholder':'Votre Prenom '}})}}
+                    {{ form_widget(userType.lastname, { 'attr': {'class': 'form-control','placeholder':'Votre Nom '}})}}
+                    {{ form_widget(userType.phone, { 'attr': {'class': 'form-control','placeholder':'Votre N°Tel '}})}}
+                    {{ form_widget(userType.bio, { 'attr': {'class': 'form-control','placeholder':'Description'}})}}
+                    {{ form_widget(userType.adress, { 'attr': {'class': 'form-control','placeholder':'Votre Adresse '}})}}
+                    </div>
+{#                    <div class="col-md-6 middle-box" >#}
+                                    <h4 class="headerStyle">Style de Préféré</h4>
+                                    <div class="listStyle">
+                                        {{ form_widget(userType.style, { 'attr': {'class': 'placeholder ','placeholder':'Style'}})}}
+                                    </div>
+                    {{ form_widget(userType.profilPicture, { 'attr': {'class': ' hidden btn btn-default btn-file'}})}}
+
+
+                    <img id="previewPicture" src="#" alt="your image" width="350px" />
+                                </div>
+
+                    <button id="validRegister" type="submit" class="btn btn-primary">S'enregistrer</button>
+                    {{ form_end(userType) }}                    
+                    
+               
+            </div>
+        </div>
+                        {#<form id="editProfil" class="form-horizontal">
                             <p>Nom</p><input type="text" id="firstname" name="caca" class="form-control"/>
                             <p>Prénom</p><input id="lastname" class="form-control"/>
                             <p>Pseudo</p><input id="username" class="form-control" placeholder="adresse"/>
@@ -33,18 +76,18 @@
                             <p>Facebook</p><input id="facebook" class="form-control"/>
                             <p>Instagram</p><input id="instagram" class="form-control"/>
                             <p>Twitter</p><input id="twitter" class="form-control"/>
-                            {#        <p>Date de naissance</p><input type="date" id="date" class="col-lg-6"/>#}
+                                   <p>Date de naissance</p><input type="date" id="date" class="col-lg-6"/>
                             <select id="genre" class="form-control">
                                 <option value="">Sexe</option>
                                 <option value="Homme">Homme</option>
                                 <option value="Femme">Femme</option></select>
-                                {#        <input type="file" id="user_profilPicture" name="user[profilPicture]" class="col-lg-6"/>#}
+                                        <input type="file" id="user_profilPicture" name="user[profilPicture]" class="col-lg-6"/>
                             <img id="previewPicture" src="" alt="your image" width="350px" class="col-lg-6"/>
 
                             <div class="form-control">
                                 <input id="validEditProfil" type="submit" value="Editer" class="col-lg-6"/>
                             </div>
-                        </form>
+                        </form>#}
                     </div>
                     <div class="col-sm-6"><h4>Envie de rejoindre notre cercle d'hôtes ?</h4>
                         <p>blabla</p>

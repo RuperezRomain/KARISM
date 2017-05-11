@@ -183,6 +183,16 @@ class User implements UserInterface, Serializable, JsonSerializable {
      * @ORM\Column(name="hoteValidate", type="boolean", nullable=true)
      */
     private $hoteValidate;
+    
+    /**
+     * @var array
+     *
+     * @ORM\ManyToMany(targetEntity="Style")
+     * @ORM\JoinTable(name="style_user",
+     *      joinColumns={@ORM\JoinColumn(name="user_id",referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="style_id",referencedColumnName="id")})
+     */
+    private $style;
 
     /**
      * Get id
@@ -613,7 +623,17 @@ class User implements UserInterface, Serializable, JsonSerializable {
     public function getHoteValidate() {
         return $this->hoteValidate;
     }
+    
+    
+    function getStyle() {
+        return $this->style;
+    }
 
+    function setStyle($style) {
+        $this->style = $style;
+    }
+
+    
     public function eraseCredentials() {
     }
 
