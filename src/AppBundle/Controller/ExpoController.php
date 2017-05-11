@@ -26,23 +26,48 @@ class ExpoController extends Controller {
         // et on retourne le formulaire dans notre vue
         $f->handleRequest($request);
         if ($f->isSubmitted() && $f->isValid()) {
+            
+            $this->get('session')->remove('expoSession');
+            $this->get('session')->set('expoSession', $expo);
            
             $em->persist($expo);
             $em->flush($expo);
             
-        return $this->render("expo/infoExpo.html.twig", array("formInfoExpo" => $f->createView()));
-        }
+            return $this->redirect($this->generateUrl('expoSerie'));
+          }       
         
         return $this->render("expo/infoExpo.html.twig", array("formInfoExpo" => $f->createView()));
     }
-
+    
+    /// Vue des serie de l'expo
+    /**
+     * @Route("get/expo/serie",name="expoSerie")
+     */
+    public function getExpoSerie() {
+         $expo = $this->getDoctrine()->getRepository(Exposition::class)->find($this->get('session')->get('expoSession')->getId());
+         $expoListeSerie = $expo->getFkserie();
+         return $this->render("expo/gestionSeriesExpo.html.twig",array("listesSerieExpo" => $expoListeSerie));
+    }
+    
+    
     /// Selection oeuvres
     /**
-     * @Route("")
+     * @Route("edit/expo/serie")
      */
-    public function updateExpoSerie() {
+    public function updateExpoSerie(Request $request) {
         
+        ////Recupertion ajax
+        
+        ////creation tbl d'object serie 
+        
+       ////mergage avec la serie sous session
+        
+       ///svg 
+        
+       ///redirection liste hote 
     }
+    
+
 
     /// trouver hote 
     /**

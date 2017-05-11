@@ -133,7 +133,7 @@ class Exposition
         return $this->fk_Place;
     }
 
-    function getFk_Serie() {
+    function getFkserie() {
         return $this->fk_Serie;
     }
 
@@ -185,7 +185,7 @@ class Exposition
         $this->fk_Place = $fk_Place;
     }
 
-    function setFk_Serie($fk_Serie) {
+    function setFkserie($fk_Serie) {
         $this->fk_Serie = $fk_Serie;
     }
 

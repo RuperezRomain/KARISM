@@ -1,0 +1,8 @@
+{% extends "admin/adminTemplate.html.twig" %}
+{% block body %}
+    <a href="{{path('getSeriesUser')}}"><input type="submit" value="Ajouts serie" class="btn btn-default" ></a>
+{% for serieExpo in listesSerieExpo %}
+    {{ serieExpo.name }}
+    {% endfor %}
+    {% endblock %}
+

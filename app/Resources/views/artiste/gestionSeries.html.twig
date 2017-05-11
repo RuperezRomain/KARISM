@@ -6,20 +6,35 @@
         <input type="text" name="nomSerie"  placeholder="Nom de la nouvelle serie">
         <input type="submit">
     </form>
-        <div class="container-fluid">
-    {% for serie in series %}
-        <div class="col-sm-6 col-md-2">
-            <div class="thumbnail">
-                <a href="/edit/picture/serie/{{serie.id}}">
-                    <img class="img-thumbnail" src="/web/images/oeuvrePictures/{{serie.img}}" >
+    <div class="container-fluid">
+        {% for serie in series %}
+            <div class="col-sm-6 col-md-2">
+                <div class="thumbnail">
+                    <a href="/edit/picture/serie/{{serie.id}}">
+                        <img class="img-thumbnail" src="/web/images/oeuvrePictures/{{serie.img}}" >
+                    </a>    
                     <div>
-                    <a href="/artiste/remove/serie/{{serie.id}}"><i class="  fa fa-trash fa-6" aria-hidden="true"></i></a>
-                    <p>{{serie.name}}</p>
+                        {% if app.session.get('expoSession') is not defined %}
+                            <a href="/artiste/remove/serie/{{serie.id}}"><i class="  fa fa-trash fa-6" aria-hidden="true"></i></a>
+                            {% endif %}
+                        <p>{{serie.name}}</p>
+                        {% if app.session.get('expoSession') is defined %}
+                            <input class="seriesCheckbox" name="cheeck" id="{{serie.id}}" type="checkbox">
+                        {% endif %}
                     </div>
-            </div>
-        </div>
-      
+                </div>
 
-    {% endfor %}
-      </div>
+            </div>
+
+
+        {% endfor %}
+        {% if app.session.get('expoSession') is defined %}
+            <input type="submit" id="validSerieExpo" value="Valider serie" class="btn btn-default" >
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+    <script src="{{asset('/script/js/jsExpo/expo.js')}}"></script>
 {% endblock %}
