@@ -117,13 +117,17 @@ function searchPlaces() {
         datatype: "json",
         success: function (data){
         for (var $i = 0; $i < data.length; $i++) {
+            console.log(data);
             var selectedCity = $("#citiesList").val();
             var placeURL = document.createElement("a");
+//            var placeImg = document.createElement("img");
+//            placeImg.src = "/web/images/placePictures/{{place.img}}";
             var linkText = document.createTextNode(data[$i].name);
             placeURL.appendChild(linkText);
             placeURL.href = URL + "lieu/" +data[$i].id;
-            var placeCity = data[$i].city.city;
-            
+                if (data[$i].city !== null) {
+                var placeCity = data[$i].city.city;
+                }
             if(placeCity == selectedCity) {
                 $("#results").append(placeURL);
             }
