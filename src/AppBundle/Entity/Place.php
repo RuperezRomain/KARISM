@@ -324,6 +324,8 @@ class Place implements JsonSerializable {
             "id" => $this->id,
             "city" => $this->fk_city,
             "name" => $this->name,
+            "img" => $this->img,
+            "adress" => $this->adress,
         );
     }
 }
