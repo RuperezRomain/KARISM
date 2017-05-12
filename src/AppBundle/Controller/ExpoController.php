@@ -68,6 +68,12 @@ class ExpoController extends Controller {
         ////mergage avec la serie sous session
         $idExpo = $this->get('session')->get('expoSession')->getId();
         $ExpoDefault = $em->getRepository(Exposition::class)->find($idExpo);
+        
+        
+        
+        $listeSerieExpo = $ExpoDefault->getFkserie();
+        
+        $listeSeries = array_merge($listeSeries, $listeSerieExpo);
         $ExpoDefault->setFkserie($listeSeries);
 
         ///svg 

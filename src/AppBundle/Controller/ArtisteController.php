@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Exposition;
 use AppBundle\Entity\Picture;
 use AppBundle\Entity\Serie;
 use AppBundle\Entity\User;
@@ -158,9 +159,43 @@ class ArtisteController extends Controller {
      * 
      */
     public function getSeriesUser() {
+        // series : la liste de toutes les series de l'utilisateur
+        // serieExpo : liste des series dans une exposition
         $id = $this->getUser()->getId();
         $series = $this->getDoctrine()->getRepository(Serie::class)->findByUserid($id);
+        $expoSession = $this->get('session')->get('expoSession');
+        
+        if ($expoSession == true){
+        $seriesId = $this->getDoctrine()->getRepository(Exposition::class)->find($expoSession->getId());
+        
+        $seriesExpo = $seriesId->getFkserie();
+        
+        
+//        for($i=0;$i<count($seriesExpo);$i++){
+//            $serie = $seriesExpo[$i];
+//            for($j=0;$j<count($series);$j++){
+//                $s = $series[$j];
+//                
+//            }
+//        }
+       
+        
+        
+        for ($i = 0; $i < count($series); $i++) {
 
+                for ($j = 0; $j < count($seriesExpo); $j++) {
+                    
+                   
+                    if ($series[$i] == $seriesExpo[$j]) {
+                        
+                        unset($series[$i]);
+                        $series = array_values($series);
+                        
+                    }
+                }
+            }
+        }
+       
         return $this->render('artiste/gestionSeries.html.twig', array('series' => $series));
     }
 
