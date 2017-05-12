@@ -2,5 +2,140 @@
 {% block title %}
     {{parent()}} - Charte
 {% endblock %}
+
+{% block stylesheets %}
+    {{parent()}} 
+    {#<link rel="stylesheet" href="{{ asset('/script/slickCarousel/slick-theme.css') }}" />#}
+    <link rel="stylesheet" href="{{ asset('/script/css/templateInspinia.css') }}" />
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+{% endblock %}
+
 {% block body %}
+    <div>
+        <div class="enTete">
+            <h1 class="colorTitreTextCharte formTitreCharte">La charte</h1>
+        </div>
+
+        <div>
+            <section>
+                <h2 class="colorTitreTextCharte formTitreCharte">Karism est un projet qui repose sur des valeurs fortes</h2>
+                <article class="miseEnPage">
+                    <h3 class="colorText formTitreCharte">La confiance</h3>
+                    <p class="justifyText colorText">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        In tristique placerat diam sed gravida. 
+                        Etiam tristique erat vel felis egestas luctus. 
+                        Nunc rhoncus dolor nec felis semper, eget vehicula velit placerat. 
+                        Proin ac interdum velit, vitae pulvinar mauris. 
+                        Phasellus in urna scelerisque, elementum mi vitae, maximus libero. 
+                        Quisque tellus justo, venenatis in suscipit id, tincidunt ut dolor. 
+                        Quisque ac semper arcu, at pellentesque augue. 
+                        Etiam id mauris sit amet ligula vehicula convallis eget id odio. 
+                        In dui justo, dictum feugiat justo in, varius sagittis ipsum. 
+                        Vestibulum tempus ultrices sapien. 
+                        Nam eget neque auctor, viverra ex non, porta turpis.
+                        Vivamus molestie ante eget lectus tristique, eget imperdiet sapien condimentum. 
+                        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; 
+                        Mauris et nisi diam. 
+                        Sed vitae leo mauris. 
+                        Praesent luctus velit libero, vitae aliquam ante bibendum sed. 
+                        Fusce convallis ipsum sit amet quam molestie, id vestibulum leo placerat. 
+                        Nam eleifend dapibus malesuada. 
+                        Suspendisse nunc quam, luctus non ante eget, cursus fermentum turpis.
+                        Nunc a est volutpat, ullamcorper turpis a, ullamcorper leo. 
+                        Maecenas feugiat purus at purus faucibus congue vitae sit amet libero. 
+                        Integer pharetra at erat a vestibulum. 
+                        Maecenas vel arcu pellentesque, bibendum arcu nec, pretium massa. 
+                        Nullam vehicula nisi est, a egestas orci imperdiet eu. 
+                        Pellentesque nec turpis sed urna iaculis maximus. 
+                        Aliquam quis euismod diam. Nam rutrum in elit ac placerat. 
+                        Integer vitae auctor est. Quisque imperdiet vel quam a viverra. 
+                        Donec commodo semper est, nec condimentum massa tincidunt non. 
+                        Vestibulum ac eros mi. 
+                        Cras ut turpis nec tortor venenatis sollicitudin a non ligula. 
+                        Integer dapibus nunc a risus euismod, non tincidunt dolor feugiat. 
+                        Suspendisse non mi turpis. Etiam eu ultricies diam, vel iaculis enim.
+                        Phasellus ante ante, pulvinar dignissim hendrerit eget, ultrices sed purus. 
+                        Suspendisse potenti. Pellentesque ut laoreet erat. Vivamus a ante turpis. 
+                        Duis eget libero at purus iaculis molestie. Sed eget sem lorem. 
+                        Nullam congue sem lacinia, lobortis justo a, rhoncus nunc. 
+                        Proin a ipsum a libero porta sagittis.
+                        Morbi fermentum vulputate tellus eget volutpat. 
+                        Nulla auctor nunc nec ligula laoreet suscipit. 
+                        Suspendisse eleifend orci et ante elementum fermentum. 
+                        Etiam elementum at justo ut fringilla. 
+                        Etiam ut feugiat tortor, nec efficitur mi. 
+                        Fusce sed aliquet nisi. 
+                        Maecenas metus nisl, euismod sit amet convallis id, congue ac nisi. 
+                        Cras vitae lectus non lorem vestibulum facilisis. 
+                        Nunc id libero at lectus ultricies gravida. 
+                        Duis eu placerat quam. Nunc accumsan ut quam vel suscipit. 
+                        Nam purus elit, pretium non ultricies a, volutpat sit amet augue.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        Proin ultrices erat eget ex aliquam scelerisque. 
+                        Duis eu malesuada lectus.
+                    </p>
+                </article>
+
+                <article class="miseEnPage">
+                    <h3 class="colorText formTitreCharte">L'experience</h3>
+                    <p class="justifyText colorText">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        In tristique placerat diam sed gravida. 
+                        Etiam tristique erat vel felis egestas luctus. 
+                        Nunc rhoncus dolor nec felis semper, eget vehicula velit placerat. 
+                        Proin ac interdum velit, vitae pulvinar mauris. 
+                        Phasellus in urna scelerisque, elementum mi vitae, maximus libero. 
+                        Quisque tellus justo, venenatis in suscipit id, tincidunt ut dolor. 
+                        Quisque ac semper arcu, at pellentesque augue. 
+                        Etiam id mauris sit amet ligula vehicula convallis eget id odio. 
+                        In dui justo, dictum feugiat justo in, varius sagittis ipsum. 
+                        Vestibulum tempus ultrices sapien. 
+                        Nam eget neque auctor, viverra ex non, porta turpis.
+                        Vivamus molestie ante eget lectus tristique, eget imperdiet sapien condimentum. 
+                        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; 
+                        Mauris et nisi diam. 
+                        Sed vitae leo mauris. 
+                        Praesent luctus velit libero, vitae aliquam ante bibendum sed. 
+                        Fusce convallis ipsum sit amet quam molestie, id vestibulum leo placerat. 
+                        Nam eleifend dapibus malesuada. 
+                        Suspendisse nunc quam, luctus non ante eget, cursus fermentum turpis.
+                        Nunc a est volutpat, ullamcorper turpis a, ullamcorper leo. 
+                        Maecenas feugiat purus at purus faucibus congue vitae sit amet libero. 
+                        Integer pharetra at erat a vestibulum. 
+                        Maecenas vel arcu pellentesque, bibendum arcu nec, pretium massa. 
+                        Nullam vehicula nisi est, a egestas orci imperdiet eu. 
+                        Pellentesque nec turpis sed urna iaculis maximus. 
+                        Aliquam quis euismod diam. Nam rutrum in elit ac placerat. 
+                        Integer vitae auctor est. Quisque imperdiet vel quam a viverra. 
+                        Donec commodo semper est, nec condimentum massa tincidunt non. 
+                        Vestibulum ac eros mi. 
+                        Cras ut turpis nec tortor venenatis sollicitudin a non ligula. 
+                        Integer dapibus nunc a risus euismod, non tincidunt dolor feugiat. 
+                        Suspendisse non mi turpis. Etiam eu ultricies diam, vel iaculis enim.
+                        Phasellus ante ante, pulvinar dignissim hendrerit eget, ultrices sed purus. 
+                        Suspendisse potenti. Pellentesque ut laoreet erat. Vivamus a ante turpis. 
+                        Duis eget libero at purus iaculis molestie. Sed eget sem lorem. 
+                        Nullam congue sem lacinia, lobortis justo a, rhoncus nunc. 
+                        Proin a ipsum a libero porta sagittis.
+                        Morbi fermentum vulputate tellus eget volutpat. 
+                        Nulla auctor nunc nec ligula laoreet suscipit. 
+                        Suspendisse eleifend orci et ante elementum fermentum. 
+                        Etiam elementum at justo ut fringilla. 
+                        Etiam ut feugiat tortor, nec efficitur mi. 
+                        Fusce sed aliquet nisi. 
+                        Maecenas metus nisl, euismod sit amet convallis id, congue ac nisi. 
+                        Cras vitae lectus non lorem vestibulum facilisis. 
+                        Nunc id libero at lectus ultricies gravida. 
+                        Duis eu placerat quam. Nunc accumsan ut quam vel suscipit. 
+                        Nam purus elit, pretium non ultricies a, volutpat sit amet augue.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        Proin ultrices erat eget ex aliquam scelerisque. 
+                        Duis eu malesuada lectus.
+                    </p>
+                </article>
+            </section>
+        </div>
+    </div>
 {% endblock %}
