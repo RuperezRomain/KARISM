@@ -36,9 +36,12 @@ class Picture implements \JsonSerializable{
     private $img;
 
     /**
-     * @var int
+     * @var array
      *
-     * @ORM\Column(name="style", type="integer")
+     * @ORM\ManyToMany(targetEntity="Style")
+     * @ORM\JoinTable(name="style_picture",
+     *      joinColumns={@ORM\JoinColumn(name="picture_id",referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="style_id",referencedColumnName="id")})
      */
     private $style;
 
@@ -115,6 +118,15 @@ class Picture implements \JsonSerializable{
         return $this->img;
     }
 
+//    
+//    public function __construct()
+//    {
+//        $this->style = new ArrayCollection();
+//    }
+   
+
+   
+    
     /**
      * Set style
      *

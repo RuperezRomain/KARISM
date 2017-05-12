@@ -8,8 +8,8 @@
 
     <div class="container">
         <div class="row">
-            <div class="middle-box text-center loginscreen animated fadeInDown">
-                <div>
+            <div class=" text-center loginscreen animated fadeInDown">
+               
                     <div>
 
                         <h4 class="logo-name"><span class="loading dots3"></span></h4>
@@ -19,8 +19,9 @@
                     {#<p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
                         <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
                     </p>#}
+                    
+                    <div class="col-md-6">
                     <p>Inscription</p>
-
                     {{ form_start(form,{ 'attr': {'class': 'form-horizontal'}})}}
                     {{ form_widget(form.username, { 'attr': {'class': 'form-control','placeholder':'Votre Pseudo '}})}}
                     {{ form_widget(form.email, { 'attr': {'class': 'form-control','placeholder':'Votre email '}})}}
@@ -32,15 +33,22 @@
                     {{ form_widget(form.phone, { 'attr': {'class': 'form-control','placeholder':'Votre N°Tel '}})}}
                     {{ form_widget(form.bio, { 'attr': {'class': 'form-control','placeholder':'Description'}})}}
                     {{ form_widget(form.adress, { 'attr': {'class': 'form-control','placeholder':'Votre Adresse '}})}}
+                    </div>
+                    <div class="col-md-6 middle-box" >
+                                    <h4 class="headerStyle">Style de Préféré</h4>
+                                    <div class="listStyle">
+                                        {{ form_widget(form.style, { 'attr': {'class': 'placeholder ','placeholder':'Style'}})}}
+                                    </div>
                     {{ form_widget(form.profilPicture, { 'attr': {'class': 'btn btn-default btn-file'}})}}
 
 
                     <img id="previewPicture" src="#" alt="your image" width="350px" />
+                                </div>
 
                     <button id="validRegister" type="submit" class="btn btn-primary">S'enregistrer</button>
                     {{ form_end(form) }}                    
                     
-                </div>
+               
             </div>
         </div>
     </div>

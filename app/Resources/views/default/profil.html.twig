@@ -55,19 +55,19 @@
                         <div class="panel-body text-center">
                             {%if user.artistValidate %}<p>{{user.username}} est un <strong>artiste</strong></p>{% endif %}         
                             {%if user.hoteValidate %}<p>{{user.username}} est un <strong>hôte</strong></p>{% endif %}
-                            
+
                             {%if user.linkFacebook or user.linkInstagram or user.linkTwitter %}
                                 <h5>Retrouvez-moi sur les réseaux sociaux</h5>
-                            {%if user.linkFacebook %}
-                                <p><a href="{{user.linkFacebook}}" target="_new"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
-                                {% endif %}  
-                            {%if user.linkInstagram %}
-                            <a href="{{user.linkInstagram}}" target="_new"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
-                                {% endif %}  
-                            {%if user.linkTwitter %}
-                            <a href="{{user.linkTwitter}}" target="_new" ><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a></p>
-                            {% endif %}  
-                            {% endif %}
+                                {%if user.linkFacebook %}
+                                    <p><a href="{{user.linkFacebook}}" target="_new"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+                                        {% endif %}  
+                                        {%if user.linkInstagram %}
+                                        <a href="{{user.linkInstagram}}" target="_new"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+                                        {% endif %}  
+                                        {%if user.linkTwitter %}
+                                        <a href="{{user.linkTwitter}}" target="_new" ><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a></p>
+                                        {% endif %}  
+                                    {% endif %}
                         </div>
                     </div>
                 </div>
@@ -98,9 +98,41 @@
         {% endif %}
     {% endif %}
 
+    {%if user.hoteValidate == 1 %}
+        {% if places is not empty %}              
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-center">Ses lieux</h2>
+                        {% for place in places %}
+                            <div class="text-center ibox-content">
+                                <div class="col-md-7 ">
+                                    <a href="/serie">
+                                        <img class="img-thumbnail" width="300px" height="200px" src="/web/images/placePictures/{{place.img}}" >
+                                    </a>
+                                </div>
+                                <div class="col-md-3">
+                                    <h2>{{place.name}}</h2>
+                                    <p>Taille : {{place.size}} mètres carré</p>
+                                    <p>Capacité : {{place.capacity}} personnes</p>
+                                    <p>Adresse : {{place.adress}}</p>
+                                    <div class="contact-box"><p>Disponibilité</p>
+                                    <p>Début : {{place.availableStart|date("m/d/Y/H:i:s", "Europe/Paris")}}</p>
+                                    <p>Fin : {{place.availableEnd|date("m/d/Y/H:i:s", "Europe/Paris")}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+
 {% endblock %}
 {% block javascripts %}  
     {{ parent() }}
     <script src="{{asset('script/slickCarousel/slick.js') }}"></script>
     <script src="{{asset('script/js/home.js')}}"></script>
+
 {% endblock %}
