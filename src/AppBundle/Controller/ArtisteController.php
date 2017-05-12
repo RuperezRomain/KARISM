@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Description of ArtisteController
  *
- * @author vien34
+ * 
  */
 class ArtisteController extends Controller {
 
@@ -171,16 +171,6 @@ class ArtisteController extends Controller {
         $seriesExpo = $seriesId->getFkserie();
         
         
-//        for($i=0;$i<count($seriesExpo);$i++){
-//            $serie = $seriesExpo[$i];
-//            for($j=0;$j<count($series);$j++){
-//                $s = $series[$j];
-//                
-//            }
-//        }
-       
-        
-        
         for ($i = 0; $i < count($series); $i++) {
 
                 for ($j = 0; $j < count($seriesExpo); $j++) {
@@ -259,15 +249,6 @@ class ArtisteController extends Controller {
             array_push($picture, $arrayImg[$i]);
         }
         
-//        $pictureDefault = $em->getRepository(Picture::class)->findById($picture);
-//        $pictureStyle = $pictureDefault;
-//        
-//        $style = array();
-//        for($i=0; $i< count($pictureStyle); $i++){
-//            array_push($style, $pictureDefault[$i]);
-//        }
-//        print_r($style);
-////        print_r($picture);
         
         return $this->render('artiste/contentSerie.html.twig', array("serie" => $serieDefault, "pictures" => $picture));
     }

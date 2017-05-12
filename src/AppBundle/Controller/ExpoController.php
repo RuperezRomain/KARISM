@@ -51,8 +51,11 @@ class ExpoController extends Controller {
         return $this->render("expo/gestionSeriesExpo.html.twig", array("listesSerieExpo" => $expoListeSerie));
     }
 
-    /// Selection oeuvres
+    ////////////// Selection oeuvres
+    
+    
     /**
+     * Ajout de serie a l'exposition sous session 
      * @Route("/edit/expo/serie")
      */
     public function updateExpoSerie(Request $request) {
@@ -84,7 +87,38 @@ class ExpoController extends Controller {
         //***teste****//
         return new JsonResponse($listeSeries);
     }
+    
+    
+    
+    
+    /**
+     * Suppression d'une serie de l'exposition sous session  
+     * @Route("artiste/remove/expo/serie/{id}",name="suprSerieExpo")
+     */
+    public function removeExpoSerie($id) {
+         $em = $this->getDoctrine()->getEntityManager();
+            
+            $serie = $em->getRepository(Serie::class)->find($id);
+            $expo = $em->getRepository(Exposition::class)->find($this->get('session')->get('expoSession')->getId());
+            $series = $expo->getFkserie();
+            
+            for ($i = 0; $i < count($series); $i++) {
+                if($series[$i] == $serie){
+                     unset($series[$i]);
+                      
+                }
+            }
+              $series = array_values($series);
+              
+            $expo->setFkserie($series);
+            $em->merge($expo);
+            $em->flush();
+      
 
+        return $this->redirect($this->generateUrl('expoSerie'));
+    }   
+    
+    
     /// trouver hote 
     /**
      * @Route("")

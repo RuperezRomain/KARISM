@@ -12,9 +12,14 @@
                     <a href="/edit/picture/serie/{{serieExpo.id}}">
                         <img class="img-responsive" src="/web/images/oeuvrePictures/{{serieExpo.img}}" >
                     </a>
+                    <a href="{{path('suprSerieExpo',{'id': serieExpo.id }) }}">
+                        <i class="  fa fa-trash fa-6" aria-hidden="true"></i>
+                    </a>
+                    
                 </div>
             {% endfor %}
 
         </div>
     </div>
+     <a href=""><input type="submit" value="Choix de l'hote" class="btn btn-default" ></a>
 {% endblock %}
