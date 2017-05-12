@@ -29,7 +29,9 @@
 
         {% endfor %}
         {% if app.session.get('expoSession') is defined %}
-            <input type="submit" id="validSerieExpo" value="Valider serie" class="btn btn-default" >
+            <a href="{{path('expoSerie')}}">
+                <input type="submit" id="validSerieExpo" value="Valider serie" class="btn btn-default" >
+            </a>
         {% endif %}
     </div>
 {% endblock %}
