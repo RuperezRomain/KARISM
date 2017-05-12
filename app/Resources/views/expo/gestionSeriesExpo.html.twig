@@ -1,8 +1,10 @@
 {% extends "admin/adminTemplate.html.twig" %}
 {% block body %}
     <a href="{{path('getSeriesUser')}}"><input type="submit" value="Ajouts serie" class="btn btn-default" ></a>
-{% for serieExpo in listesSerieExpo %}
-    {{ serieExpo.name }}
+        {% for serieExpo in listesSerieExpo %}
+            {{serieExpo.name}}
+        <img class="img-thumbnail" src="/web/images/oeuvreSeries/{{serieExpo.img}}" >
+
     {% endfor %}
-    {% endblock %}
+{% endblock %}
 

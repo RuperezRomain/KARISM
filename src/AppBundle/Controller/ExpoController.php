@@ -3,8 +3,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Exposition;
+use AppBundle\Entity\Serie;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -19,55 +21,63 @@ class ExpoController extends Controller {
      */
     public function infoExpo(Request $request) {
         $em = $this->getDoctrine()->getManager();
-        
+
         $expo = new Exposition;
-        
-        $f = $this->createForm('AppBundle\Form\ExpositionType',$expo);
+
+        $f = $this->createForm('AppBundle\Form\ExpositionType', $expo);
         // et on retourne le formulaire dans notre vue
         $f->handleRequest($request);
         if ($f->isSubmitted() && $f->isValid()) {
-            
+
             $this->get('session')->remove('expoSession');
             $this->get('session')->set('expoSession', $expo);
-           
+
             $em->persist($expo);
             $em->flush($expo);
-            
+
             return $this->redirect($this->generateUrl('expoSerie'));
-          }       
-        
+        }
+
         return $this->render("expo/infoExpo.html.twig", array("formInfoExpo" => $f->createView()));
     }
-    
+
     /// Vue des serie de l'expo
     /**
      * @Route("get/expo/serie",name="expoSerie")
      */
     public function getExpoSerie() {
-         $expo = $this->getDoctrine()->getRepository(Exposition::class)->find($this->get('session')->get('expoSession')->getId());
-         $expoListeSerie = $expo->getFkserie();
-         return $this->render("expo/gestionSeriesExpo.html.twig",array("listesSerieExpo" => $expoListeSerie));
+        $expo = $this->getDoctrine()->getRepository(Exposition::class)->find($this->get('session')->get('expoSession')->getId());
+        $expoListeSerie = $expo->getFkserie();
+        return $this->render("expo/gestionSeriesExpo.html.twig", array("listesSerieExpo" => $expoListeSerie));
     }
-    
-    
+
     /// Selection oeuvres
     /**
-     * @Route("edit/expo/serie")
+     * @Route("/edit/expo/serie")
      */
     public function updateExpoSerie(Request $request) {
-        
+        $em = $this->getDoctrine()->getManager();
+        $listeSeries = array();
         ////Recupertion ajax
-        
+        $idSerie = $request->get('listeId');
         ////creation tbl d'object serie 
-        
-       ////mergage avec la serie sous session
-        
-       ///svg 
-        
-       ///redirection liste hote 
-    }
-    
+        for ($i = 0; $i < count($idSerie); $i++) {
+            $serieDefault = $em->getRepository(Serie::class)->find($idSerie[$i]);
+            array_push($listeSeries, $serieDefault);
+        }
+        ////mergage avec la serie sous session
+        $idExpo = $this->get('session')->get('expoSession')->getId();
+        $ExpoDefault = $em->getRepository(Exposition::class)->find($idExpo);
+        $ExpoDefault->setFkserie($listeSeries);
 
+        ///svg 
+        $em->merge($ExpoDefault);
+        $em->flush();
+        ///redirection liste hote
+         $this->redirect($this->generateUrl('expoSerie'));
+        //***teste****//
+        return new JsonResponse($listeSeries);
+    }
 
     /// trouver hote 
     /**

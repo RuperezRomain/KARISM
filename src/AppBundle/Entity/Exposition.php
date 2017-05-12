@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
@@ -133,8 +134,12 @@ class Exposition
         return $this->fk_Place;
     }
 
+    public function __construct()
+    {
+        $this->fk_Serie = new ArrayCollection();
+    }
     function getFkserie() {
-        return $this->fk_Serie;
+        return $this->fk_Serie->toArray();
     }
 
     function getFk_UserHote() {

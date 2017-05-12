@@ -15,9 +15,9 @@ valideListe.click(function () {
     }
 
     $.ajax({
-        url: '',
+        url: '/edit/expo/serie',
         type: 'get',
-        data: {"mail": listeIdSerieTempAjax },
+        data: {"listeId": listeIdSerieTempAjax },
         dataType: "json",
               success: function (){
             

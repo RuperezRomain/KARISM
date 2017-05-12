@@ -154,7 +154,7 @@ class ArtisteController extends Controller {
 
     /**
      * Liste des serie de l'artiste courant 
-     * @Route("artiste/get/series/user/",name ="getSeriesUser")
+     * @Route("artiste/get/series/user",name ="getSeriesUser")
      * 
      */
     public function getSeriesUser() {
