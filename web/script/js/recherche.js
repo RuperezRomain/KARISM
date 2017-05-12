@@ -4,14 +4,12 @@
  * and open the template in the editor.
  */
 var URL = "http://www.karism.fr/";
-var CONTENT = $("#content");
 
 
 $().ready(function () {
     getCities();
 });
 
-var largest = 0; //start with 0
 
 
 $("#searchBtn").click(function () {
@@ -45,7 +43,7 @@ function searchArtists() {
         datatype: "json",
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
-
+                alert(data[i].city.city);
                 var artist = document.createElement("div");
                 artist.className = "member";
 
