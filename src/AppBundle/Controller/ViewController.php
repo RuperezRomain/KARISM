@@ -32,6 +32,15 @@ return $this->render('default/interrogation.html.twig');
 }
 
 /**
+ * 
+ * @Route("/recherche", name="rechercheTest")
+ */
+public function rechercheAction() {
+
+return $this->render('default/recherche.html.twig');
+}
+
+/**
  * @Route("/profil", name="profilTest")
  */
 public function profilAction() {
