@@ -25,14 +25,12 @@ class Wishlist
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
      * @ManyToOne(targetEntity="User")
      * @JoinColumn(name="artiste", referencedColumnName="id")
      */
     private $artiste;
 
     /**
-     * @ORM\Column(type="integer")
      * @ManyToOne(targetEntity="User")
      * @JoinColumn(name="usermain", referencedColumnName="id")
      */
