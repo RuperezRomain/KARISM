@@ -14,7 +14,7 @@
 
 {% block title %}
     {{parent()}}
-    - Mon Profil
+    - {{user.username}}
 {% endblock %}
 
 {% block body %}
@@ -24,7 +24,7 @@
             <div class="col-md-4">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Profile Detail</h5>
+                        <h5>Détail du profil</h5>
                     </div>
                     <div>
                         <div class="ibox-content no-padding border-left-right">
@@ -32,6 +32,14 @@
                         </div>
                         <div class="ibox-content profile-content">
                             <h4 class="text-center"><strong>{{user.username}}</strong></h4>
+
+                            {% if is_granted("ROLE_USER")%}
+                                {% if user.id != app.user.id %}
+                                    {#                                        {% if is_granted('ROLE_ARTISTE') in user.roles %}#}
+                                    <button class="btn btn-danger  dim btn-outline" type="button"><i class="fa fa-star "></i> Ajouter en favori</button>
+                                    {#                                {% endif %}#}
+                                {% endif %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -83,13 +91,15 @@
                     <div class="col-md-12">
                         <h2 class="text-center">Ses séries</h2>
                         {% for serie in series %}
-                            <div class="col-md-7">
-                                <a href="/serie/{{user.username}}/{{serie.id}}">
-                                    <img class="img-thumbnail" src="/web/images/oeuvrePictures/{{serie.img}}" >
-                                </a>
-                            </div>
-                            <div class="col-md-5">
-                                <h2>{{serie.name}}</h2>
+                            <div class="text-center ibox-content">
+                                <div class="col-md-7">
+                                    <a href="/serie/{{serie.id}}">
+                                        <img class="img-thumbnail" src="/web/images/oeuvrePictures/{{serie.img}}" >
+                                    </a>
+                                </div>
+                                <div class="col-md-5">
+                                    <h2>{{serie.name}}</h2>
+                                </div>
                             </div>
                         {% endfor %}
                     </div>
@@ -107,7 +117,7 @@
                         {% for place in places %}
                             <div class="text-center ibox-content">
                                 <div class="col-md-7 ">
-                                    <a href="/serie">
+                                    <a href="/lieu/{{place.id}}">
                                         <img class="img-thumbnail" width="300px" height="200px" src="/web/images/placePictures/{{place.img}}" >
                                     </a>
                                 </div>
@@ -117,8 +127,8 @@
                                     <p>Capacité : {{place.capacity}} personnes</p>
                                     <p>Adresse : {{place.adress}}</p>
                                     <div class="contact-box"><p>Disponibilité</p>
-                                    <p>Début : {{place.availableStart|date("m/d/Y/H:i:s", "Europe/Paris")}}</p>
-                                    <p>Fin : {{place.availableEnd|date("m/d/Y/H:i:s", "Europe/Paris")}}</p>
+                                        <p>Début : {{place.availableStart|date("m/d/Y/H:i:s", "Europe/Paris")}}</p>
+                                        <p>Fin : {{place.availableEnd|date("m/d/Y/H:i:s", "Europe/Paris")}}</p>
                                     </div>
                                 </div>
                             </div>

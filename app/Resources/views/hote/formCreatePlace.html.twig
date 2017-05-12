@@ -25,6 +25,7 @@
                             
                             {% if is_granted('ROLE_ADMIN') is  empty %}
                                 {{form_start(PlaceType,{ 'attr': {'class': 'form-horizontal'}})}}
+                                {{ form_widget(PlaceType.name, { 'attr': {'class': 'form-control','placeholder':'Nommez votre lieu'}})}}
                                 {{ form_widget(PlaceType.size, { 'attr': {'class': 'form-control','placeholder':'Dimensions en mètre carré'}})}}
                                 {{ form_widget(PlaceType.capacity, { 'attr': {'class': 'form-control','placeholder':"Capacité d'acceuil"}})}}
                                 {{ form_widget(PlaceType.adress, { 'attr': {'class': 'form-control','placeholder':"Adresse du lieu"}})}}

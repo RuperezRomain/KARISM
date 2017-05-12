@@ -16,8 +16,8 @@ class PlaceFormType extends AbstractType {
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('size')
-//                ->add('img',FileType::class,array('data_class'=> null))
+        $builder->add('name')
+        ->add('size')
         ->add('capacity')
         ->add('adress')
         ->add('fk_placetype')

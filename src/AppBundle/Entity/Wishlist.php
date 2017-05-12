@@ -3,14 +3,17 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Symfony\Component\Security\Core\User\User;
 
 /**
- * wishlist
+ * Wishlist
  *
  * @ORM\Table(name="wishlist")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\wishlistRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\WishlistRepository")
  */
-class wishlist
+class Wishlist
 {
     /**
      * @var int
@@ -22,16 +25,14 @@ class wishlist
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="artiste", type="integer")
+     * @ManyToOne(targetEntity="User")
+     * @JoinColumn(name="artiste", referencedColumnName="id")
      */
     private $artiste;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="usermain", type="integer")
+     * @ManyToOne(targetEntity="User")
+     * @JoinColumn(name="usermain", referencedColumnName="id")
      */
     private $usermain;
 
@@ -51,7 +52,7 @@ class wishlist
      *
      * @param integer $artiste
      *
-     * @return wishlist
+     * @return Wishlist
      */
     public function setArtiste($artiste)
     {
@@ -75,7 +76,7 @@ class wishlist
      *
      * @param integer $usermain
      *
-     * @return wishlist
+     * @return Wishlist
      */
     public function setUsermain($usermain)
     {

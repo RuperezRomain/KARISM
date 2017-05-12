@@ -4,7 +4,7 @@ body {
   background: url(http://res.cloudinary.com/teadive/image/upload/v1489837195/squairy_light_qdszxk.png);
 }
 
-#member-container {
+#result-container {
   width: 70%;
   margin: 50px auto;
   text-align: center;
@@ -20,6 +20,7 @@ body {
   background-color: #f9f9f9;
   position: relative;
   transition: ease all .5s;
+  text-overflow: ellipsis;
 }
 
 .member:hover {
@@ -88,6 +89,14 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
   color: #424242;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 3; /* number of lines to show */
+  line-height: 1;        /* fallback */
+  /*max-height: ;*/
 }
 
 .soc-icons a {
