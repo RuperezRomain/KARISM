@@ -3,7 +3,16 @@ var seriesCheckbox = $('input[name=cheeck]');
 var valideListe = $('#validSerieExpo');
 var listeIdSerieTempAjax = [];
 var listeIdSerieTemp = [];
+var boutonSelectHote =  $('input[name=selectHote]');
 
+////// Validation message hote 
+
+boutonSelectHote.click(function () {
+    $("#choixHoteExpo").css({
+        
+    });
+       
+});
 
 
 valideListe.click(function () {

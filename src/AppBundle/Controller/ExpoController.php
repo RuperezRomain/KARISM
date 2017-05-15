@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Exposition;
+use AppBundle\Entity\Place;
 use AppBundle\Entity\Serie;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -29,6 +30,8 @@ class ExpoController extends Controller {
         $f->handleRequest($request);
         if ($f->isSubmitted() && $f->isValid()) {
 
+            $expo->setFk_UserArtiste($this->getUser());
+
             $this->get('session')->remove('expoSession');
             $this->get('session')->set('expoSession', $expo);
 
@@ -52,8 +55,7 @@ class ExpoController extends Controller {
     }
 
     ////////////// Selection oeuvres
-    
-    
+
     /**
      * Ajout de serie a l'exposition sous session 
      * @Route("/edit/expo/serie")
@@ -71,11 +73,11 @@ class ExpoController extends Controller {
         ////mergage avec la serie sous session
         $idExpo = $this->get('session')->get('expoSession')->getId();
         $ExpoDefault = $em->getRepository(Exposition::class)->find($idExpo);
-        
-        
-        
+
+
+
         $listeSerieExpo = $ExpoDefault->getFkserie();
-        
+
         $listeSeries = array_merge($listeSeries, $listeSerieExpo);
         $ExpoDefault->setFkserie($listeSeries);
 
@@ -83,49 +85,76 @@ class ExpoController extends Controller {
         $em->merge($ExpoDefault);
         $em->flush();
         ///redirection liste hote
-         $this->redirect($this->generateUrl('expoSerie'));
+        $this->redirect($this->generateUrl('expoSerie'));
         //***teste****//
         return new JsonResponse($listeSeries);
     }
-    
-    
-    
-    
+
     /**
      * Suppression d'une serie de l'exposition sous session  
      * @Route("artiste/remove/expo/serie/{id}",name="suprSerieExpo")
      */
     public function removeExpoSerie($id) {
-         $em = $this->getDoctrine()->getEntityManager();
-            
-            $serie = $em->getRepository(Serie::class)->find($id);
-            $expo = $em->getRepository(Exposition::class)->find($this->get('session')->get('expoSession')->getId());
-            $series = $expo->getFkserie();
-            
-            for ($i = 0; $i < count($series); $i++) {
-                if($series[$i] == $serie){
-                     unset($series[$i]);
-                      
-                }
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $serie = $em->getRepository(Serie::class)->find($id);
+        $expo = $em->getRepository(Exposition::class)->find($this->get('session')->get('expoSession')->getId());
+        $series = $expo->getFkserie();
+
+        for ($i = 0; $i < count($series); $i++) {
+            if ($series[$i] == $serie) {
+                unset($series[$i]);
             }
-              $series = array_values($series);
-              
-            $expo->setFkserie($series);
-            $em->merge($expo);
-            $em->flush();
-      
+        }
+        $series = array_values($series);
+
+        $expo->setFkserie($series);
+        $em->merge($expo);
+        $em->flush();
+
 
         return $this->redirect($this->generateUrl('expoSerie'));
-    }   
-    
-    
-    /// trouver hote 
-    /**
-     * @Route("")
-     */
-    public function updateExpoLieux() {
-        
     }
+
+    //////// Trouver hote
+    
+    /**
+     * Vue de recherche d'hote
+     * @Route("artiste/get/lieux",name="listePlace")
+     */
+    public function getExpoLieux() {
+        return $this->render("expo/gestionLieux.html.twig");
+    }
+    
+    
+    /**
+     * Demande a un hote pour une expo 
+     * @Route("/edit/expo/messageHote/{id}",name="envoiMessage")
+     */
+    public function editeExpoLieux(Request $request,$id) {
+         $em = $this->getDoctrine()->getEntityManager();
+        ///Recuperation expo
+        $idExpo = $this->get('session')->get('expoSession')->getId();
+        $ExpoDefault = $em->getRepository(Exposition::class)->find($idExpo);
+        //// Recuperation lieux 
+        $place = $em->getRepository(Place::class)->find($id);
+        /// Recuperation hote
+        $hote = $place->getFkUserid();
+        /// Recuperation message 
+        $messageHote = $request->get('choixHoteExpo');
+       
+        $ExpoDefault->setFk_Place($place);
+        $ExpoDefault->setFk_UserHote($hote);
+        $ExpoDefault->setMessageHote($messageHote);
+        
+        $em->merge($ExpoDefault);
+        
+        $em->flush();
+        
+       return $this->redirect($this->generateUrl('listePlace'));
+    }
+    
+    
 
     // validation expo
     /**

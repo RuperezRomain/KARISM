@@ -22,12 +22,14 @@ $("#searchBtn").click(function () {
         searchGuests();
     } else if ($("#searchWhat").val() === "place") {
         searchPlaces();
+    } else if ($("#searchWhat").val() === "expo") {
+        searchExpos();
     }
 //    } else if ($("#searchWhat").val() === "expos") {
 //        searchExpos();
 //    }
     if ($("#citiesList").val() === "city") {
-        alert("Veuillez choisir une ville");
+//        alert("Veuillez choisir une ville");
     }
 
 });
@@ -43,7 +45,7 @@ function searchArtists() {
         datatype: "json",
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
-                alert(data[i].city.city);
+//                alert(data[i].city.city);
                 var artist = document.createElement("div");
                 artist.className = "member";
 
@@ -85,7 +87,7 @@ function searchArtists() {
             }
         },
         error: function () {
-            alert("problème");
+//            alert("problème");
         }
     });
 }
@@ -138,7 +140,7 @@ function searchHosts() {
             }
         },
         error: function () {
-            alert("problème");
+//            alert("problème");
         }
     });
 }
@@ -192,7 +194,7 @@ function searchGuests() {
             }
         },
         error: function () {
-            alert("problème");
+//            alert("problème");
         }
     });
 }
@@ -205,10 +207,10 @@ function searchPlaces() {
         datatype: "json",
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
-                alert(data[i].img);
+//                alert(data[i].img);
 //                if (data[i].img !== null && data[i].name !== null && data[i].adress !== null) {
                 var place = document.createElement("div");
-                place.className = "member";
+                place.className = "member col-lg-3";
 
                 var placeImg = document.createElement("img");
                 placeImg.src = "/web/images/profilPictures/" + data[i].img;
@@ -250,38 +252,39 @@ function searchPlaces() {
             }
         },
         error: function () {
-            alert("problème");
+//            alert("problème");
         }
     });
 }
 
 
-//function searchExpos() {
-//    $.ajax({
-//        url: URL + "expos",
-//        async: true,
-//        type: "GET",
-//        datatype: "json",
-//        success: function (data){
-//        for (var i = 0; i < data.length; i++) {
-//            var selectedCity = $("#citiesList").val();
-//            var expoURL = document.createElement("a");
-//            var linkText = document.createTextNode(data[i].lastname);
-//            expoURL.appendChild(linkText);
-//            expoURL.href = URL + "expo/" +data[i].id;
-//            if (data[i].city !== null) {
-//                    var expoCity = data[i].city.city;
-//            }
-//            
-//            if(expoCity == selectedCity) {
-//                $("#results").append(expoURL);
-//            }
-//        }},
-//        error: function () {
+function searchExpos() {
+    
+    $.ajax({
+        url: URL + "expos",
+        async: true,
+        type: "GET",
+        datatype: "json",
+        success: function (data){
+        for (var i = 0; i < data.length; i++) {
+            var selectedCity = $("#citiesList").val();
+            var expoURL = document.createElement("a");
+            var linkText = document.createTextNode(data[i].lastname);
+            expoURL.appendChild(linkText);
+            expoURL.href = URL + "expo/" +data[i].id;
+            if (data[i].city !== null) {
+                    var expoCity = data[i].city.city;
+            }
+            
+            if(expoCity == selectedCity) {
+                $("#results").append(expoURL);
+            }
+        }},
+        error: function () {
 //            alert("problème");
-//        }
-//    });
-//}
+        }
+    });
+}
 
 
 
@@ -302,7 +305,7 @@ function getCities() {
             }
         },
         error: function () {
-            alert("problème");
+//            alert("problème");
         }
     });
 }

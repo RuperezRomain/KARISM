@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use JsonSerializable;
+
 
 /**
  * Serie
@@ -13,7 +15,7 @@ use Doctrine\ORM\Mapping\ManyToOne;
  * @ORM\Table(name="serie")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SerieRepository")
  */
-class Serie {
+class Serie implements JsonSerializable{
 
     /**
      * @var int
@@ -132,7 +134,8 @@ class Serie {
 
          public function jsonSerialize() {
         return array(
-            "fk_picture" => $this->fk_picture
+            "fk_picture" => $this->fk_picture,
+            "name"=> $this->name,
 );}
                 
 

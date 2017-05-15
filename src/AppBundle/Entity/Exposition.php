@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use JsonSerializable;
 
 /**
  * Exposition
@@ -14,8 +15,8 @@ use Doctrine\ORM\Mapping\ManyToOne;
  * @ORM\Table(name="exposition")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ExpositionRepository")
  */
-class Exposition
-{
+class Exposition implements JsonSerializable {
+
     /**
      * @var int
      *
@@ -44,14 +45,14 @@ class Exposition
     private $fk_Serie;
     
     /**
-     * Many Users have One Address.
+     * 
      * @ManyToOne(targetEntity="User")
      * @JoinColumn(name="fk_UserHote", referencedColumnName="id",nullable=true)
      */
     private $fk_UserHote;
 
     /**
-     * Many Users have One Address.
+     *
      * @ManyToOne(targetEntity="User")
      * @JoinColumn(name="fk_UserArtiste", referencedColumnName="id",nullable=true)
      */
@@ -124,6 +125,14 @@ class Exposition
      */
     private $status;
 
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="messageHote", type="string", nullable=true)
+     */
+    private $messageHote;
+    
     
     function getId() {
         return $this->id;
@@ -237,7 +246,27 @@ class Exposition
     function setStatus($status) {
         $this->status = $status;
     }
+    
+    function getMessageHote() {
+        return $this->messageHote;
+    }
 
+    function setMessageHote($messageHote) {
+        $this->messageHote = $messageHote;
+    }
+
+        
+    public function jsonSerialize() {
+        return array(
+            "id" => $this->id,
+//            "place" => $this->place,
+            "artiste" => $this->fk_UserArtiste,
+            "date" => $this->date,
+            "ville" => $this->fk_ville,
+            "serie" => $this->fk_Serie,
+        );
+    }
+    
 
    
 }
