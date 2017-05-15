@@ -151,11 +151,25 @@ class ExpoController extends Controller {
         
         $em->flush();
         
-       return $this->redirect($this->generateUrl('listePlace'));
+       return $this->redirect($this->generateUrl('detailleExpo'));
     }
     
     
-
+    
+    /**
+     * Detaille Expo
+     * @Route("/user/get/expo",name="detailleExpo")
+     */
+    public function getExpo() {
+        $em = $this->getDoctrine()->getEntityManager();
+        ///Recuperation expo
+        $idExpo = $this->get('session')->get('expoSession')->getId();
+        $ExpoDefault = $em->getRepository(Exposition::class)->find($idExpo);
+        
+        return $this->render("expo/detailleExpo.html.",array("expo" => $ExpoDefault));
+    }
+    
+    
     // validation expo
     /**
      * @Route("")
@@ -163,5 +177,6 @@ class ExpoController extends Controller {
     public function updateExpoStatueValidate() {
         
     }
+
 
 }

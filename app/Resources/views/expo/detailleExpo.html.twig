@@ -1,0 +1,20 @@
+{% extends "admin/adminTemplate.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <h2>Rappel des informations</h2>
+            <div> Date: {{expo.date|date("j F à g:i")}}</div>
+            <div> Ville: {{expo.fkville }}</div>
+            <div>Description: {{expo.description }}</div>
+        </div>
+        <div class="row">
+            
+        </div>
+        <div class="row">
+            
+        </div>
+        
+    </div>
+    
+{% endblock %}
