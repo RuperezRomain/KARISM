@@ -15,9 +15,12 @@
 
 {% block body %}
 
+                    <a href="{{path('expoSerie')}}"><input type="submit" value="liste serie" class="btn btn-default" ></a>
+                    <a href="{{path('detailleExpo')}}"><input type="submit" value="Detaille expo" class="btn btn-default" ></a>
     <div id="searchBar"  class="ibox-title"> 
         <h1>RECHERCHE</h1>
         <select id="searchWhat" class="inputHiden">
+
             {% if is_granted("ROLE_ARTISTE")%}
                 <option  value="place">Lieux</option>
             {% endif %}

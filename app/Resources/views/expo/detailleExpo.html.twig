@@ -9,12 +9,32 @@
             <div>Description: {{expo.description }}</div>
         </div>
         <div class="row">
-            
+            <h2>Serie Sélectionées</h2>
+            {% for serieExpo in expo.fkserie %}
+                <img class="col-md-2 img-responsive" src="/web/images/oeuvrePictures/{{serieExpo.img}}" >
+            {% endfor %}
         </div>
         <div class="row">
+            <h2>Hôte</h2>
             
+            {#Verification statue de la demande de l'hote#}
+            {% if expo.fk_place != null %}
+                {% if expo.messageHote != null %}
+                    <div>En atente de validation de l'hote:|</div>
+                    <img class=" img-thumbnail " src="/web/images/placePictures/{{expo.fk_place.img}}" >     
+                    <div>{{expo.fk_place.name}}</div>
+                {% else %}
+                    <div>L'hote a validée la demande ! :)</div>
+                    <img class=" img-thumbnail " src="/web/images/placePictures/{{expo.fk_place.img}}" >     
+                    <div>{{expo.fk_place.name}}</div>
+                {% endif %}
+            {% else %}
+               <div> Il n'y a pas demande d'hote ou la dernier demande a etait refuser :(</div>
+            {% endif %}
+
         </div>
-        
+
     </div>
-    
+    <a href="{{path('listePlace')}}"><input type="submit" value="listeHote" class="btn btn-default" ></a>
+
 {% endblock %}

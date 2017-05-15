@@ -15,8 +15,31 @@ use Symfony\Component\HttpFoundation\Request;
  * 
  */
 class ExpoController extends Controller {
+    
+   
+    /**
+     * Selection d'une expo 
+     * @Route("/user/get/expo/{id}",name="selcetionExpo")
+     */
+    public function getExpo($id){
+         $em = $this->getDoctrine()->getManager();
+         
+       $expo =  $em->getRepository(Exposition::class)->find($id);
+       
+       if($expo->getfk_UserArtiste()->getId() == $this->getUser()->getId()) {
+          
+       $this->get('session')->remove('expoSession');
+       $this->get('session')->set('expoSession', $expo); 
+       return $this->redirect($this->generateUrl('detailleExpo'));
+           
+       }
+       
+     return $this->redirect($this->generateUrl('login'));
 
-    ///Initialisation formEvent 
+       
+    }
+    
+    /////Initialisation formEvent 
     /**
      * @Route("user/create/expo")
      */
@@ -43,9 +66,11 @@ class ExpoController extends Controller {
 
         return $this->render("expo/infoExpo.html.twig", array("formInfoExpo" => $f->createView()));
     }
+   ////////////// Selection serie
 
-    /// Vue des serie de l'expo
+ 
     /**
+     * Vue des series de l'expo
      * @Route("get/expo/serie",name="expoSerie")
      */
     public function getExpoSerie() {
@@ -54,7 +79,7 @@ class ExpoController extends Controller {
         return $this->render("expo/gestionSeriesExpo.html.twig", array("listesSerieExpo" => $expoListeSerie));
     }
 
-    ////////////// Selection oeuvres
+ 
 
     /**
      * Ajout de serie a l'exposition sous session 
@@ -86,7 +111,7 @@ class ExpoController extends Controller {
         $em->flush();
         ///redirection liste hote
         $this->redirect($this->generateUrl('expoSerie'));
-        //***teste****//
+        
         return new JsonResponse($listeSeries);
     }
 
@@ -95,7 +120,7 @@ class ExpoController extends Controller {
      * @Route("artiste/remove/expo/serie/{id}",name="suprSerieExpo")
      */
     public function removeExpoSerie($id) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $serie = $em->getRepository(Serie::class)->find($id);
         $expo = $em->getRepository(Exposition::class)->find($this->get('session')->get('expoSession')->getId());
@@ -132,7 +157,7 @@ class ExpoController extends Controller {
      * @Route("/edit/expo/messageHote/{id}",name="envoiMessage")
      */
     public function editeExpoLieux(Request $request,$id) {
-         $em = $this->getDoctrine()->getEntityManager();
+         $em = $this->getDoctrine()->getManager();
         ///Recuperation expo
         $idExpo = $this->get('session')->get('expoSession')->getId();
         $ExpoDefault = $em->getRepository(Exposition::class)->find($idExpo);
@@ -160,13 +185,13 @@ class ExpoController extends Controller {
      * Detaille Expo
      * @Route("/user/get/expo",name="detailleExpo")
      */
-    public function getExpo() {
-        $em = $this->getDoctrine()->getEntityManager();
+    public function getExpoDetaille() {
+        $em = $this->getDoctrine()->getManager();
         ///Recuperation expo
         $idExpo = $this->get('session')->get('expoSession')->getId();
         $ExpoDefault = $em->getRepository(Exposition::class)->find($idExpo);
         
-        return $this->render("expo/detailleExpo.html.",array("expo" => $ExpoDefault));
+        return $this->render("expo/detailleExpo.html.twig",array("expo" => $ExpoDefault));
     }
     
     
