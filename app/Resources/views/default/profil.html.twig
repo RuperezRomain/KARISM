@@ -4,9 +4,9 @@
     {{parent()}} 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    {#<link rel="stylesheet" href="{{ asset('/script/slickCarousel/slick-theme.css') }}" />#}
     <link rel="stylesheet" href="{{ asset('/script/slickCarousel/slick.css') }}" />
     <link rel="stylesheet" href="{{ asset('/script/css/profil.css') }}" />
+    <link rel="stylesheet" href="{{ asset('script/js/plugins/sweetalert/sweetalert_1.css') }}" />
     <link rel="stylesheet" href="{{ asset('/script/css/templateInspinia.css') }}" />
     <meta name="viewport" content="width=device-width, user-scalable=no">
 
@@ -35,9 +35,17 @@
 
                             {% if is_granted("ROLE_USER")%}
                                 {% if user.id != app.user.id %}
-                                    {#                                        {% if is_granted('ROLE_ARTISTE') in user.roles %}#}
-                                    <button class="btn btn-danger  dim btn-outline" type="button"><i class="fa fa-star "></i> Ajouter en favori</button>
-                                    {#                                {% endif %}#}
+                                    {% if app.session.get('userProfil') == "ok" %}
+                                        <div id="{{user.id}}">
+                                            {#                                                <div class="col-md-6">#}
+                                            <button id="addWish" class="btn btn-block btn-danger dim btn-outline" type="button"><i class="fa fa-star "></i> Ajouter en favori</button></a>
+                                            <div id="isWishlisted"></div>
+                                            <div id="deleteWishlisted"></div>
+                                            {#                                                </div>#}
+                                        </div>
+                                    {% else %}
+                                        <button class="btn btn-block btn-default dim btn-outline" style="cursor:not-allowed" type="button"><i class="fa fa-star "></i> Ajouter en favori</button>
+                                    {% endif %}
                                 {% endif %}
                             {% endif %}
                         </div>
@@ -63,7 +71,8 @@
                         <div class="panel-body text-center">
                             {%if user.artistValidate %}<p>{{user.username}} est un <strong>artiste</strong></p>{% endif %}         
                             {%if user.hoteValidate %}<p>{{user.username}} est un <strong>hôte</strong></p>{% endif %}
-
+                            {#                                                    {%if wislistedArtiste %}<p>sdds</p>{% endif %}#}
+                            <div id="countWishlisted"></div>
                             {%if user.linkFacebook or user.linkInstagram or user.linkTwitter %}
                                 <h5>Retrouvez-moi sur les réseaux sociaux</h5>
                                 {%if user.linkFacebook %}
@@ -79,70 +88,139 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <!-- /Boxes de Acoes -->
         </div>
+
     </div>
-    {%if user.artistValidate == 1 %}
-        {% if series is not empty %}              
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="text-center">Ses séries</h2>
-                        {% for serie in series %}
-                            <div class="text-center ibox-content">
-                                <div class="col-md-7">
-                                    <a href="/serie/{{serie.id}}">
-                                        <img class="img-thumbnail" src="/web/images/oeuvrePictures/{{serie.img}}" >
-                                    </a>
-                                </div>
-                                <div class="col-md-5">
-                                    <h2>{{serie.name}}</h2>
+    {% if (series is not empty) %}
+        <div class="container">
+            <div class="row">
+
+                <div class="tabs-container col-lg-12">
+
+                    <div class="tabs-left">
+                        <ul class="nav nav-tabs">
+                            {%if user.artistValidate == 1 %}
+                                {% if series is not empty %}
+                                    <li class="active"><a data-toggle="tab" href="#series"><h4>Séries</h4></a></li>
+                                    {% endif %}
+                                {% endif %}
+                                {%if user.hoteValidate == 1 %}
+                                    {% if places is not empty %}
+                                    <li class=""><a data-toggle="tab" href="#lieux"><h4>Lieux</h4></a></li>
+                                    {% endif %}
+                                {% endif %}
+                                {% if wishlistArtiste is not empty %}
+                                <li class=""><a data-toggle="tab" href="#wish"><h4>Wishlist</h4></a></li>
+                                {% endif %}
+                        </ul>
+                        <div class="tab-content">
+                            <div id="series" class="tab-pane active">
+                                <div class="panel-body">
+                                    {%if user.artistValidate == 1 %}
+                                        {% if series is not empty %}              
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h2 class="text-center">Ses séries</h2>
+                                                        {% for serie in series %}
+                                                            <div class="text-center ibox-content">
+                                                                <div class="col-md-7">
+                                                                    <a href="/serie/{{serie.id}}">
+                                                                        <img class="img-thumbnail" src="/web/images/oeuvrePictures/{{serie.img}}" >
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-md-5">
+                                                                    <h2>{{serie.name}}</h2>
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-    {% endif %}
-
-    {%if user.hoteValidate == 1 %}
-        {% if places is not empty %}              
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="text-center">Ses lieux</h2>
-                        {% for place in places %}
-                            <div class="text-center ibox-content">
-                                <div class="col-md-7 ">
-                                    <a href="/lieu/{{place.id}}">
-                                        <img class="img-thumbnail" width="300px" height="200px" src="/web/images/placePictures/{{place.img}}" >
-                                    </a>
-                                </div>
-                                <div class="col-md-3">
-                                    <h2>{{place.name}}</h2>
-                                    <p>Taille : {{place.size}} mètres carré</p>
-                                    <p>Capacité : {{place.capacity}} personnes</p>
-                                    <p>Adresse : {{place.adress}}</p>
-                                    <div class="contact-box"><p>Disponibilité</p>
-                                        <p>Début : {{place.availableStart|date("m/d/Y/H:i:s", "Europe/Paris")}}</p>
-                                        <p>Fin : {{place.availableEnd|date("m/d/Y/H:i:s", "Europe/Paris")}}</p>
-                                    </div>
+                            <div id="lieux" class="tab-pane">
+                                <div class="panel-body">
+                                    {%if user.hoteValidate == 1 %}
+                                        {% if places is not empty %}              
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h2 class="text-center">Ses lieux</h2>
+                                                        {% for place in places %}
+                                                            <div class="text-center ibox-content">
+                                                                <div class="col-md-7 ">
+                                                                    <a href="/lieu/{{place.id}}">
+                                                                        <img class="img-thumbnail" width="300px" height="200px" src="/web/images/placePictures/{{place.img}}" >
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-xs-12 col-md-5">
+                                                                    <h2>{{place.name}}</h2>
+                                                                    <p>Taille : {{place.size}} mètres carré</p>
+                                                                    <p>Capacité : {{place.capacity}} personnes</p>
+                                                                    <p>Adresse : {{place.adress}}</p>
+                                                                    <div class="contact-box"><p>Disponibilité</p>
+                                                                        <p>Début : {{place.availableStart|date("m/d/Y/H:i:s", "Europe/Paris")}}</p>
+                                                                        <p>Fin : {{place.availableEnd|date("m/d/Y/H:i:s", "Europe/Paris")}}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-    {% endif %}
+                            <div id="wish" class="tab-pane">
+                                <div class="panel-body">
+                                    {% if wishlistArtiste is not empty %}
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h2 id="countInWishlist" class="text-center">Sa wishlist</h2>
+                                                    <div class="text-center ibox-content">
+                                                        {% for wishlistArtiste in wishlistArtiste %}
+                                                            <div class="col-md-3 ">
+                                                                <a href="/profil/{{ wishlistArtiste.artiste.id }}">
+                                                                    <img class="img-thumbnail" width="300px" height="200px" src="/web/images/profilPictures/{{ wishlistArtiste.artiste.profilPicture }}" >
+                                                                </a>
+                                                                <h2>{{ wishlistArtiste.artiste.username }}</h2>
+                                                                <p>{{ wishlistArtiste.artiste.genre }}</p>
+                                                                <p>{{ wishlistArtiste.artiste.id }}</p>
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
 
-{% endblock %}
-{% block javascripts %}  
-    {{ parent() }}
+                    </div>
+
+                </div>                        
+            </div>                        
+        </div>
+        {% if is_granted('ROLE_USER') %}
+            <div id="{{app.user.id}}"><p id="userId"></p></div>
+            {% endif %}
+        {% endif %}
+    {% endblock %}
+    {% block javascripts %}  
+        {{ parent() }}
     <script src="{{asset('script/slickCarousel/slick.js') }}"></script>
     <script src="{{asset('script/js/home.js')}}"></script>
+    <script src="{{asset('script/js/wishlist/wishlist.js')}}"></script>
+    <script src="{{asset('script/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
 
 {% endblock %}
