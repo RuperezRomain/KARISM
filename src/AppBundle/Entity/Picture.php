@@ -46,16 +46,22 @@ class Picture implements \JsonSerializable{
     private $style;
 
     /**
-     * @var int
+     * @var array
      *
-     * @ORM\Column(name="techniques", type="integer")
+     * @ORM\ManyToMany(targetEntity="Technique")
+     * @ORM\JoinTable(name="technique_picture",
+     *      joinColumns={@ORM\JoinColumn(name="picture_id",referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="technique_id",referencedColumnName="id")})
      */
     private $techniques;
 
     /**
-     * @var int
+     * @var array
      *
-     * @ORM\Column(name="genres", type="integer")
+     * @ORM\ManyToMany(targetEntity="Genre")
+     * @ORM\JoinTable(name="genre_picture",
+     *      joinColumns={@ORM\JoinColumn(name="picture_id",referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="genre_id",referencedColumnName="id")})
      */
     private $genres;
 
@@ -139,6 +145,30 @@ class Picture implements \JsonSerializable{
 
         return $this;
     }
+    /**
+     * Set techniques
+     *
+     * @param integer $techniques
+     *
+     * @return Picture
+     */
+    public function setTechniques($techniques) {
+        $this->techniques = $techniques;
+
+        return $this;
+    }
+    /**
+     * Set genres
+     *
+     * @param integer $genres
+     *
+     * @return Picture
+     */
+    public function setGenres($genres) {
+        $this->genre = $genres;
+
+        return $this;
+    }
 
     /**
      * Get style
@@ -171,14 +201,6 @@ class Picture implements \JsonSerializable{
 
     function getCommentaire() {
         return $this->commentaire;
-    }
-
-    function setTechniques($techniques) {
-        $this->techniques = $techniques;
-    }
-
-    function setGenres($genres) {
-        $this->genres = $genres;
     }
 
     function setSize($size) {

@@ -8,10 +8,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Genre;
 use AppBundle\Entity\Place;
 use AppBundle\Entity\Role;
 use AppBundle\Entity\Serie;
 use AppBundle\Entity\Style;
+use AppBundle\Entity\Technique;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -268,25 +270,112 @@ class AdminController extends Controller {
         $styleForm->setName($nom);
         $em->persist($styleForm);
         $em->flush();
-        echo $nom;
-//        return $this->redirect($this->generateUrl('getStyleAdmin'));
-        
+        return $this->redirect($this->generateUrl('getStyleAdmin'));
     }
-    
-     /**
+
+    /**
      * @Route("/remove/style/{id}",name="removeStyleAdmin")
      */
     public function removeStyle($id) {
-         $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getEntityManager();
 
-        
+
         $style = $em->getRepository(Style::class)->find($id);
-        
-         $em->merge($style);
-        
+
+        $em->merge($style);
+
         $em->remove($style);
         $em->flush();
         return $this->redirect($this->generateUrl('getStyleAdmin'));
+    }
+
+    ///////Gestion des techniques
+
+    /**
+     * Affiche toutes les techniques 
+     * @Route("/get/techniques",name="getTechAdmin")
+     */
+    public function getTechs() {
+
+        $techs = $this->getDoctrine()->getRepository(Technique::class)->findAll(array('name' => 'desc'));
+
+
+        return $this->render('admin/gestionTechs.html.twig', array("techs" => $techs));
+    }
+
+    /**
+     * @Route("create/tech",name="createTechAdmin")
+     */
+    public function createTech(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $nom = $request->get('nomTech');
+
+        $techForm = new Technique();
+        $techForm->setName($nom);
+        $em->persist($techForm);
+        $em->flush();
+        return $this->redirect($this->generateUrl('getTechAdmin'));
+    }
+
+    /**
+     * @Route("/remove/tech/{id}",name="removeTechAdmin")
+     */
+    public function removeTech($id) {
+        $em = $this->getDoctrine()->getEntityManager();
+
+
+        $tech = $em->getRepository(Technique::class)->find($id);
+
+        $em->merge($tech);
+
+        $em->remove($tech);
+        $em->flush();
+        return $this->redirect($this->generateUrl('getTechAdmin'));
+    }
+
+    ///////Gestion des genres
+
+    /**
+     * Affiche tous les genres 
+     * @Route("/get/genres",name="getGenreAdmin")
+     */
+    public function getGenres() {
+
+        $genres = $this->getDoctrine()->getRepository(Genre::class)->findAll(array('name' => 'desc'));
+
+
+        return $this->render('admin/gestionGenres.html.twig', array("genres" => $genres));
+    }
+
+    /**
+     * @Route("create/genre",name="createGenreAdmin")
+     */
+    public function createGenre(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $nom = $request->get('nomGenre');
+
+        $genreForm = new Genre();
+        $genreForm->setName($nom);
+        $em->persist($genreForm);
+        $em->flush();
+        return $this->redirect($this->generateUrl('getGenreAdmin'));
+    }
+
+    /**
+     * @Route("/remove/genre/{id}",name="removeGenreAdmin")
+     */
+    public function removeGenre($id) {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $genre = $em->getRepository(Technique::class)->find($id);
+
+        $em->merge($genre);
+
+        $em->remove($genre);
+        $em->flush();
+        return $this->redirect($this->generateUrl('getGenreAdmin'));
     }
 
 }
