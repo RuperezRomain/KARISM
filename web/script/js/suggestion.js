@@ -4,28 +4,18 @@ $().ready(function () {
     getSuggestionTypes();
 });
 $("#validSuggest").click(function () {
-    if ($("#suggestType").val() === "suggestion" || $("#suggestType").val() === ""){
+    if ($("#suggestType").val() === "suggestion") {
         alert("veuillez choisir un type de suggestion");
+    } else if ($("#suggestName").val() == "") {
+        alert("veuillez écrire une suggestion");
     } else {
         var suggestion = {
-            "name": $("#suggestionName").val(),
+            "name": $("#suggestName").val(),
             "categorie": $("#suggestType").val()
         };
-        alert(suggestion.categorie);
-        $.ajax({
-        url: URL + "suggestion",
-        async: true,
-        type: "POST",
-        datatype: "json",
-        data: suggestion,
-        success: function(suggestion) {
-            alert("OK");
-        },
-        error: function(){
-            alert("merde");
-        }
-    });
-//        addSuggestion(suggestion);
+        addSuggestion(suggestion);
+        ;
+        
     }
 });
 
@@ -37,8 +27,8 @@ function getSuggestionTypes() {
         datatype: "json",
         success: function (data) {
             var suggestTypes = $("#suggestType");
-            $("#suggestType").append('<option >suggestion</option>');
-            $("#suggestType").append('<option ></option>');
+            $("#suggestType").append('<option>suggestion</option>');
+            $("#suggestType").append('<option disabled></option>');
             for (var i = 0; i < data.length; i++) {
                 var typeOptions = document.createElement("option");
                 var typeName = document.createTextNode(data[i].name);
@@ -52,18 +42,18 @@ function getSuggestionTypes() {
     });
 }
 
-//function addSuggestion(suggestion) {
-//    $.ajax({
-//        url: URL + "suggestion",
-//        async: true,
-//        type: "POST",
-//        datatype: "json",
-//        data: suggestion,
-//        success: function(suggestion) {
-//            alert("OK");
-//        },
-//        error: function(){
-//            alert("merde");
-//        }
-//    });
-//}
+function addSuggestion(suggestion) {
+    $.ajax({
+            url: URL + "suggestion",
+            async: true,
+            type: "POST",
+            datatype: "json",
+            data: suggestion,
+            success: function (suggestion) {
+                alert("Merci pour votre suggestion");
+            },
+            error: function () {
+                alert("merde");
+            }
+        });
+}
