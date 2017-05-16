@@ -14,10 +14,18 @@
 {% endblock %}
 
 {% block body %}
-    <div class="text-center ibox-content container-fluid">
+    <div id="choixHoteExpo">
+        <form action="{{ path('envoiMessage',{'id': place.id })}}">
+            <input type="text"  name="choixHoteExpo" required>
+            <input class="btn btn-success"  type="submit" value="Validation">
 
+        </form>
+            <a href="{{ path('listePlace') }}"><button class="btn btn-danger " >retour</button></a>
+    </div>
+    <div class="text-center ibox-content container-fluid">
+        <input type="submit" value="choix hote" name="selectHote" class=" btn-warning">
         <div class="col-md-6">
-                <img class="img-thumbnail" width="300px" height="200px" src="/web/images/placePictures/{{place.img}}" >
+            <img class="img-thumbnail" width="300px" height="200px" src="/web/images/placePictures/{{place.img}}" >
         </div>
         <div class="col-md-6">
             <h2>{{place.name}}</h2>
@@ -31,15 +39,20 @@
         </div>
 
     </div>
-        {% if pictures != null %}
-    <div class="text-center ibox-content container-fluid">
-        <h2>Photos du lieu</h2>
-        {% for picture in pictures %}
-            <div class="col-md-2">
-                <img class="img-thumbnail" width="250px" height="250px" src="/web/images/placePictures/{{picture.name}}" >
-            </div>
-        {% endfor %}
-    </div>
-        {% endif %}
+    {% if pictures != null %}
+        <div class="text-center ibox-content container-fluid">
+            <h2>Photos du lieu</h2>
+            {% for picture in pictures %}
+                <div class="col-md-2">
+                    <img class="img-thumbnail" width="250px" height="250px" src="/web/images/placePictures/{{picture.name}}" >
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+    <script src="{{asset('/script/js/jsExpo/expo.js')}}"></script>
 {% endblock %}
