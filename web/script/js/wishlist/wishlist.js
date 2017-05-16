@@ -92,7 +92,7 @@ $.ajax({
     success: function (data) {
         $data = data;
         if ($data > 0) {
-            $("#countWishlisted").append("Cet artiste a été wishlisté " + $data + " fois");
+            $("#countWishlisted").text("Cet artiste a été wishlisté " + $data + " fois");
         }else if ($data === 0){
            $("#countWishlisted").empty(); 
         }

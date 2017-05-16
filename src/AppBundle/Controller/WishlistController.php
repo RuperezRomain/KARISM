@@ -103,14 +103,17 @@ class WishlistController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
 
+$userId = $this->getUser()->getId();
+        
+$check = array("artiste" => $id, "usermain" => $userId);
+        $wishlistedArtiste = $em->getRepository(Wishlist::class)->findOneBy($check);
 
-        $wishlistedArtiste = $em->getRepository(Wishlist::class)->findOneByArtiste($id);
-
-
+//echo($wishlistedArtiste);
         $em->remove($wishlistedArtiste);
         $em->flush();
 
 
+//        return new JsonResponse($wishlistedArtiste);
         return new Response("suppression");
     }
 
