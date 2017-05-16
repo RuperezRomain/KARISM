@@ -46,18 +46,24 @@ class Picture implements \JsonSerializable{
     private $style;
 
     /**
-     * @var int
+     * @var array
      *
-     * @ORM\Column(name="techniques", type="integer")
+     * @ORM\ManyToMany(targetEntity="Technique")
+     * @ORM\JoinTable(name="technique_picture",
+     *      joinColumns={@ORM\JoinColumn(name="picture_id",referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="technique_id",referencedColumnName="id")})
      */
-    private $techniques;
+    private $technique;
 
     /**
-     * @var int
+     * @var array
      *
-     * @ORM\Column(name="genres", type="integer")
+     * @ORM\ManyToMany(targetEntity="Genre")
+     * @ORM\JoinTable(name="genre_picture",
+     *      joinColumns={@ORM\JoinColumn(name="picture_id",referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="genre_id",referencedColumnName="id")})
      */
-    private $genres;
+    private $genre;
 
     /**
      * @var int
@@ -139,6 +145,30 @@ class Picture implements \JsonSerializable{
 
         return $this;
     }
+    /**
+     * Set technique
+     *
+     * @param integer $technique
+     *
+     * @return Picture
+     */
+    public function setTechnique($technique) {
+        $this->techniques = $technique;
+
+        return $this;
+    }
+    /**
+     * Set genre
+     *
+     * @param integer $genre
+     *
+     * @return Picture
+     */
+    public function setGenre($genre) {
+        $this->genre = $genre;
+
+        return $this;
+    }
 
     /**
      * Get style
@@ -149,12 +179,12 @@ class Picture implements \JsonSerializable{
         return $this->style;
     }
 
-    function getTechniques() {
-        return $this->techniques;
+    function getTechnique() {
+        return $this->technique;
     }
 
-    function getGenres() {
-        return $this->genres;
+    function getGenre() {
+        return $this->genre;
     }
 
     function getSize() {
@@ -171,14 +201,6 @@ class Picture implements \JsonSerializable{
 
     function getCommentaire() {
         return $this->commentaire;
-    }
-
-    function setTechniques($techniques) {
-        $this->techniques = $techniques;
-    }
-
-    function setGenres($genres) {
-        $this->genres = $genres;
     }
 
     function setSize($size) {
@@ -218,8 +240,8 @@ class Picture implements \JsonSerializable{
         return array(
             "nom" => $this->nom,
             "style" => $this->style,
-            "techniques" => $this->techniques,
-            "genres" => $this->genres,
+            "technique" => $this->technique,
+            "genre" => $this->genre,
             "size" => $this->size,
             "prix" => $this->prix,
             "expos" => $this->expos,

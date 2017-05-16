@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use JsonSerializable;
 
 /**
- * Style
+ * SuggestionCat
  *
- * @ORM\Table(name="style")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\StyleRepository")
+ * @ORM\Table(name="suggestion_cat")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SuggestionCatRepository")
  */
-class Style implements JsonSerializable {
-
+class SuggestionCat implements JsonSerializable
+{
     /**
      * @var int
      *
@@ -25,16 +25,18 @@ class Style implements JsonSerializable {
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
+
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -43,9 +45,10 @@ class Style implements JsonSerializable {
      *
      * @param string $name
      *
-     * @return Style
+     * @return SuggestionCat
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
 
         return $this;
@@ -56,20 +59,20 @@ class Style implements JsonSerializable {
      *
      * @return string
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
-
+    
     public function __toString() {
         return $this->name;
     }
 
     public function jsonSerialize() {
         return array(
-        "id" => $this->id,
-        "name" => $this->name,
-
+            "id" => $this->id,
+            "name" => $this->name,
         );
     }
-
 }
+

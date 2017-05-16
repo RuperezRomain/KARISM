@@ -98,7 +98,7 @@
                         <div class="col-lg-12">
                             <div class="text-center m-t-lg">
                                 <h1>
-                                    Gestion des styles
+                                    Gestion des techniques
                                 </h1>
 
                             </div>
@@ -109,19 +109,19 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-2">
-                            <form action="{{ path('createStyleAdmin')}}" method="post" >
-                                <input type="text"  name="nomStyle"  placeholder="Nom Style" >
-                                <button class="validPicture btn btn-primary block full-width m-b" >Ajouter Style</button>
+                            <form action="{{ path('createTechAdmin')}}" method="post" >
+                                <input type="text"  name="nomTech"  placeholder="Nom Technique" >
+                                <button class="validPicture btn btn-primary block full-width m-b" >Ajouter Technique</button>
                             </form>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-offset-2 col-md-10 listStyle b-r">
+                        <div class="col-md-offset-2 col-md-10 listTech b-r">
 
 
-                            <div class="listStyle">
-                                {% for style in styles %}
-                                    <p class="col-lg-3"><a href="{{ path('removeStyleAdmin',{'id': style.id})}}"><i class="  fa fa-trash fa-6" aria-hidden="true"></i></a> {{style.name}} </p>
+                            <div class="listTech">
+                                {% for tech in techs %}
+                                    <p class="col-lg-3"><a href="{{ path('removeTechAdmin',{'id': tech.id})}}"><i class="  fa fa-trash fa-6" aria-hidden="true"></i></a> {{tech.name}} </p>
                                         {% endfor %}
                             </div>
                         </div>
@@ -129,10 +129,10 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <h2>Suggestion de styles</h2>
-                        <div  class="col-md-offset-2 col-md-10 listStyle b-r">
+                        <h2>Suggestion de techniques</h2>
+                        <div  class="col-md-offset-2 col-md-10 listTech b-r">
                             
-                            <div id="suggestStyleList" class="listStyle">
+                            <div id="suggestTechList" class="listTech">
                                 
                             </div>
                         </div>
@@ -155,6 +155,7 @@
 {% block javascripts %}  
     {{ parent() }}
     <script src="{{asset('script/js/jsAdmin/admin.js')}}"></script>
+    <script src="{{asset('script/js/jsAdmin/suggestion.js')}}"></script>
 
     <!-- Mainly scripts -->
     <script src="{{asset('script/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>

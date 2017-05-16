@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use JsonSerializable;
 
 /**
- * Style
+ * Technique
  *
- * @ORM\Table(name="style")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\StyleRepository")
+ * @ORM\Table(name="technique")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TechniqueRepository")
  */
-class Style implements JsonSerializable {
-
+class Technique implements JsonSerializable
+{
     /**
      * @var int
      *
@@ -25,16 +25,18 @@ class Style implements JsonSerializable {
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
+
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -43,9 +45,10 @@ class Style implements JsonSerializable {
      *
      * @param string $name
      *
-     * @return Style
+     * @return Technique
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
 
         return $this;
@@ -56,10 +59,11 @@ class Style implements JsonSerializable {
      *
      * @return string
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
-
+    
     public function __toString() {
         return $this->name;
     }
@@ -71,5 +75,5 @@ class Style implements JsonSerializable {
 
         );
     }
-
 }
+

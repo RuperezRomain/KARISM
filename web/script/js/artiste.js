@@ -1,8 +1,8 @@
 //       Recuperation input formulaire
 var nomInput = $("input[name='appbundle_picture[nom]']");
 var styleInput = $("input[name$='appbundle_picture[style]']");
-var techInput = $("input[name$='appbundle_picture[techniques]']");
-var genreInput = $("input[name$='appbundle_picture[genres]']");
+var techInput = $("input[name$='appbundle_picture[technique]']");
+var genreInput = $("input[name$='appbundle_picture[genre]']");
 var sizeInput = $("input[name$='appbundle_picture[size]']");
 var prixInput = $("input[name$='appbundle_picture[prix]']");
 var expoInput = $("input[name$='appbundle_picture[expos]']");
@@ -42,15 +42,12 @@ function getPicture() {
 /// Recuperation entity picture
     $.ajax({
         url: '/web/get/user/serie/pictures',
-        type: 'Get',
+        type: 'GET',
         dataType: 'json',
         async: true,
         success: function ($listePic) {
-            //Supretion champ formulaire
+            //Supression champs formulaire
             nomInput.val('');
-            styleInput.val('');
-            techInput.val('');
-            techInput.val('');
             sizeInput.val('');
             prixInput.val('');
             expoInput.val('');
@@ -60,8 +57,8 @@ function getPicture() {
 
            
                     $($listePic).each(function () {
-
-                //Parce mes object picture
+                        alert(this.nom);
+                //Parse mes object picture
                 $("#contentPicture").append("\
                     <div class='col-lg-4'>\n\
                         <div class='widget-head-color-box navy-bg p-lg text-center'>\n\
