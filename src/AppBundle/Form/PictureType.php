@@ -23,13 +23,13 @@ class PictureType extends AbstractType {
                     'multiple' => true,
                     'expanded' => true,
                     ))
-                ->add('genres', EntityType::class, array(
+                ->add('genre', EntityType::class, array(
                     'class' => 'AppBundle:Genre',
                     'choice_label' => 'name',
                     'multiple' => true,
                     'expanded' => true,
                     ))
-                ->add('techniques', EntityType::class, array(
+                ->add('technique', EntityType::class, array(
                     'class' => 'AppBundle:Technique',
                     'choice_label' => 'name',
                     'multiple' => true,

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * Technique
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="technique")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TechniqueRepository")
  */
-class Technique
+class Technique implements JsonSerializable
 {
     /**
      * @var int
@@ -67,5 +68,12 @@ class Technique
         return $this->name;
     }
 
+    public function jsonSerialize() {
+        return array(
+        "id" => $this->id,
+        "name" => $this->name,
+
+        );
+    }
 }
 

@@ -293,7 +293,7 @@ class AdminController extends Controller {
 
     /**
      * Affiche toutes les techniques 
-     * @Route("/get/techniques",name="getTechAdmin")
+     * @Route("/get/techs",name="getTechAdmin")
      */
     public function getTechs() {
 
@@ -369,7 +369,7 @@ class AdminController extends Controller {
     public function removeGenre($id) {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $genre = $em->getRepository(Technique::class)->find($id);
+        $genre = $em->getRepository(Genre::class)->find($id);
 
         $em->merge($genre);
 

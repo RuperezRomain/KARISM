@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * Style
@@ -10,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="style")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\StyleRepository")
  */
-class Style
-{
+class Style implements JsonSerializable {
+
     /**
      * @var int
      *
@@ -28,14 +29,12 @@ class Style
      */
     private $name;
 
-
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -46,8 +45,7 @@ class Style
      *
      * @return Style
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -58,15 +56,20 @@ class Style
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
-    
-    
-       public function __toString() {
-        return $this->name;
-    }
-    
-}
 
+    public function __toString() {
+        return $this->name;
+    }
+
+    public function jsonSerialize() {
+        return array(
+        "id" => $this->id,
+        "name" => $this->name,
+
+        );
+    }
+
+}

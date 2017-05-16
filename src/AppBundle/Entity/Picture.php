@@ -53,7 +53,7 @@ class Picture implements \JsonSerializable{
      *      joinColumns={@ORM\JoinColumn(name="picture_id",referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="technique_id",referencedColumnName="id")})
      */
-    private $techniques;
+    private $technique;
 
     /**
      * @var array
@@ -63,7 +63,7 @@ class Picture implements \JsonSerializable{
      *      joinColumns={@ORM\JoinColumn(name="picture_id",referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="genre_id",referencedColumnName="id")})
      */
-    private $genres;
+    private $genre;
 
     /**
      * @var int
@@ -146,26 +146,26 @@ class Picture implements \JsonSerializable{
         return $this;
     }
     /**
-     * Set techniques
+     * Set technique
      *
-     * @param integer $techniques
+     * @param integer $technique
      *
      * @return Picture
      */
-    public function setTechniques($techniques) {
-        $this->techniques = $techniques;
+    public function setTechnique($technique) {
+        $this->techniques = $technique;
 
         return $this;
     }
     /**
-     * Set genres
+     * Set genre
      *
-     * @param integer $genres
+     * @param integer $genre
      *
      * @return Picture
      */
-    public function setGenres($genres) {
-        $this->genre = $genres;
+    public function setGenre($genre) {
+        $this->genre = $genre;
 
         return $this;
     }
@@ -179,12 +179,12 @@ class Picture implements \JsonSerializable{
         return $this->style;
     }
 
-    function getTechniques() {
-        return $this->techniques;
+    function getTechnique() {
+        return $this->technique;
     }
 
-    function getGenres() {
-        return $this->genres;
+    function getGenre() {
+        return $this->genre;
     }
 
     function getSize() {
@@ -240,8 +240,8 @@ class Picture implements \JsonSerializable{
         return array(
             "nom" => $this->nom,
             "style" => $this->style,
-            "techniques" => $this->techniques,
-            "genres" => $this->genres,
+            "technique" => $this->technique,
+            "genre" => $this->genre,
             "size" => $this->size,
             "prix" => $this->prix,
             "expos" => $this->expos,
