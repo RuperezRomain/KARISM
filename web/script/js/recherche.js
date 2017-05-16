@@ -1,8 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 var URL = "http://www.karism.fr/";
 
 
@@ -43,7 +38,7 @@ function searchArtists() {
         datatype: "json",
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
-                alert(data[i].city.city);
+                
                 var artist = document.createElement("div");
                 artist.className = "member";
 
@@ -205,13 +200,12 @@ function searchPlaces() {
         datatype: "json",
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
-                alert(data[i].img);
 //                if (data[i].img !== null && data[i].name !== null && data[i].adress !== null) {
                 var place = document.createElement("div");
                 place.className = "member";
 
                 var placeImg = document.createElement("img");
-                placeImg.src = "/web/images/profilPictures/" + data[i].img;
+                placeImg.src = "/web/images/placePictures/" + data[i].img;
 
                 var placeURL = document.createElement("a");
                 placeURL.href = URL + "lieu/" + data[i].id;
@@ -222,7 +216,7 @@ function searchPlaces() {
                 var placeStyle = document.createElement("p");
                 placeStyle.className = "who";
                 var styleText = document.createTextNode("STYLE");
-
+                
                 var placeAdress = document.createElement("p");
                 placeAdress.className = "member-text";
                 var adressText = document.createTextNode(data[i].adress);

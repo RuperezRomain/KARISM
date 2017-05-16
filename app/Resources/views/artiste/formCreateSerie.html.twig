@@ -62,7 +62,13 @@
                                              <label> <div class="icheckbox_square-green" style="position: relative;"><input type="checkbox" class="i-checks" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Remember me </label>
                                 #} </div>
                             <div class="col-sm-6">
-                                <h4>Envie de rejoindre notre cercle d'artiste ?</h4>                      
+                                <h4>Envie de rejoindre notre cercle d'artiste ?</h4>
+                                <div>
+                                    <h4>Suggestion Style</h4>
+                                     <input id="suggestionName" placeholder="style,genre ou technique"/>
+                                     <select id="suggestType"></select>
+                                     <button id="validSuggest">Suggérer</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -83,4 +89,5 @@
 {% block javascripts %}
     {{parent()}}
     <script src="{{asset('script/js/artiste.js')}}"></script>
+    <script src="{{asset('script/js/suggestion.js')}}"></script>
 {% endblock %}

@@ -111,8 +111,6 @@
                                 <input type="text"  name="nomStyle"  placeholder="Nom Style" >
                             <button class="validPicture btn btn-primary block full-width m-b" >Ajouter Style</button>
                             </form>
-                           
-
                         </div>
                     </div>
                     <div class="row">
@@ -121,8 +119,7 @@
                                
                                 <div class="listStyle">
                             {% for style in styles %}
-                                <p class="col-lg-3"><a href="{{ path('removeStyleAdmin',{'id': style.id})}}"><i class="  fa fa-trash fa-6" aria-hidden="true"></i></a> {{style.name}} </p> 
-
+                                <p class="col-lg-3"><a href="{{ path('removeStyleAdmin',{'id': style.id})}}"><i class="  fa fa-trash fa-6" aria-hidden="true"></i></a> {{style.name}} </p>
                             {% endfor %}
                                 </div>
                         </div>

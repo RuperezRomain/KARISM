@@ -268,7 +268,8 @@ class AdminController extends Controller {
         $styleForm->setName($nom);
         $em->persist($styleForm);
         $em->flush();
-        return $this->redirect($this->generateUrl('getStyleAdmin'));
+        echo $nom;
+//        return $this->redirect($this->generateUrl('getStyleAdmin'));
         
     }
     
