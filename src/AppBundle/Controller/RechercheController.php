@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\City;
+use AppBundle\Entity\Exposition;
 use AppBundle\Entity\Place;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -61,12 +62,12 @@ class RechercheController extends Controller {
         return new JsonResponse($places);
     }
     
-//    /**
-//     * @Route("/expos")
-//     * @Method({"GET"})
-//     */
-//    public function getExpos() {
-//        $expos = $this->getDoctrine()->getRepository(\AppBundle\Entity\Exposition::class)->findbyValidate(1);
-//        return new JsonResponse($expos);
-//    }
+    /**
+     * @Route("/expos")
+     * @Method({"GET"})
+     */
+    public function getExpos() {
+        $expos = $this->getDoctrine()->getRepository(Exposition::class)->findByStatus(null);
+        return new JsonResponse($expos);
+    }
 }
