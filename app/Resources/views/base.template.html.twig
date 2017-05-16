@@ -14,6 +14,9 @@
     </head>
     <body>
         {#        {% if is_granted("ROLE_USER") %}#}
+         {% block nav %}
+
+                        
         <div class="container-fluid">       
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -78,6 +81,7 @@
                                         <p class="text-center" ><a href="{{ path('login') }}">Se connecter</a></p>
                                         {% endif %}
                                         </div>
+                                        
                                         <nav class="">
                                             <button class="btn-nav navbar-toggler  btn-warning navbar-toggle-left" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                                 <i class="fa fa-bars" aria-hidden="true"></i>
@@ -87,21 +91,23 @@
                                             <div class="collapse navbar-collapse" id="navbarNav">
                                                 <div class="navbar-nav">
                                                     {% if is_granted("ROLE_USER") %}
-                                                        {% if not is_granted("ROLE_ARTISTE")%}
-                                                            <li class="nav-item ">
-                                                                <a class="text-warning" href="{{ path('requestArtiste') }}">Devenir Artiste</a>
-                                                            </li>                         
+                                                        {% if  is_granted("ROLE_ARTISTE")%}
                                                             <li class="nav-item ">
                                                                 <a class="text-warning" href="{{ path('getSeriesUser') }}">Mes séries</a>
                                                             </li>
                                                             <li class="nav-item ">
                                                                 <a class="text-warning" href="">Mes exops</a>
                                                             </li>
+                                                        {% else%}
+                                                            <li class="nav-item ">
+                                                                <a class="text-warning" href="{{ path('requestArtiste') }}">Devenir Artiste</a>
+                                                            </li>     
                                                         {% endif %}
                                                         {% if not is_granted("ROLE_HOTE")%}
                                                             <li class="nav-item active">
                                                                 <a class="text-warning" href="{{path('requestHote')}}">Devenir Hôte</a>
                                                             </li>      
+                                                        {%else%}
                                                             <li class="nav-item ">
                                                                 <a class="text-warning" href="{{ path('hotePlaces') }}">Mes lieux</a>
                                                             </li>
@@ -113,64 +119,65 @@
                                                             <li class="nav-item ">
                                                                 <a class="text-warning" href="{{ path('profilEdit') }}">Editer mon Profil</a>
                                                             </li>
-                                                            
+
                                                         {% endif %}
-                                                        {% endif %}
-                                                        <li class="nav-item ">
-                                                            <a class="text-warning" href="/recherche">Recherche</a>
-                                                        </li>
-                                                        
-                                                        {#                                            <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class="  text-center"><a class="text-warning" href="">Rechercher</a></h4></div>#}
+                                                    {% endif %}
+                                                    <li class="nav-item ">
+                                                        <a class="text-warning" href="/recherche">Recherche</a>
+                                                    </li>
+
+                                                    {#                                            <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class="  text-center"><a class="text-warning" href="">Rechercher</a></h4></div>#}
                                                 </div>
-                                                </div>
-                                            </nav>
-                                        </div>
+                                            </div>
+                                        </nav>
                                     </div>
                                 </div>
-                            {% block body %}{% endblock %}
+                            </div>
+                                                {% endblock %}
+                        {% block body %}{% endblock %}
 
-                            <footer class="panel-footer footerColor footerText"> 
+                        <footer class="panel-footer footerColor footerText"> 
 
-                                <div class="container-fluid">
-                                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                        <h5><strong>A propos</strong></h5>
-                                        <p>Les EXPOS à la MAISON est une plateforme de mise en relation entre artistes et particuliers qui s’articule autour d’une galerie d’art en ligne.
-                                            Ce projet d’art, fondé par Sellah Alidor (collectif FROM PARIS) et Thibault Chazal</p>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                                        <h5><strong>En savoir plus</strong></h5> 
-                                        <p><a class="footerText" href="{{path('charteTest')}}">Charte</a></p>
-                                        <p><a class="footerText" href="{{path('interrogationTest')}}">FAQ</a></p>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                                        <h5><strong>Contact</strong></h5>
-                                        <p><i class="fa fa-mobile" aria-hidden="true"></i> 07 81 02 72 15</p>
-                                        <p><i class="fa fa-envelope-o" aria-hidden="true"></i> contact@karism.fr</p>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                                        <div class="text-center">
-                                            <img src="/web/images/logo karism.png">
-                                            
-                                            <p><i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
-                                                <i class="fa fa-instagram fa-2x" aria-hidden="true"></i> 
-                                                <i class="fa fa-twitter fa-2x" aria-hidden="true"></i></p>
-                                        </div>
+                            <div class="container-fluid">
+                                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                    <h5><strong>A propos</strong></h5>
+                                    <p>Les EXPOS à la MAISON est une plateforme de mise en relation entre artistes et particuliers qui s’articule autour d’une galerie d’art en ligne.
+                                        Ce projet d’art, fondé par Sellah Alidor (collectif FROM PARIS) et Thibault Chazal</p>
+                                </div>
+                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                                    <h5><strong>En savoir plus</strong></h5> 
+                                    <p><a class="footerText" href="{{path('charteTest')}}">Charte</a></p>
+                                    <p><a class="footerText" href="{{path('interrogationTest')}}">FAQ</a></p>
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                    <h5><strong>Contact</strong></h5>
+                                    <p><i class="fa fa-mobile" aria-hidden="true"></i> 07 81 02 72 15</p>
+                                    <p><i class="fa fa-envelope-o" aria-hidden="true"></i> contact@karism.fr</p>
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                    <div class="text-center">
+                                        <img src="/web/images/logo karism.png">
+
+                                        <p><i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
+                                            <i class="fa fa-instagram fa-2x" aria-hidden="true"></i> 
+                                            <i class="fa fa-twitter fa-2x" aria-hidden="true"></i></p>
                                     </div>
                                 </div>
-                            </footer>
+                            </div>
+                        </footer>
 
 
 
 
 
 
-                            {% block javascripts %}        
-                                <script src="{{ asset('script/jquery/jquery.js') }}"></script>
-                                <script src="{{ asset('script/js/bootstrap.js') }}"></script>
-                                <script src="{{ asset('script/js/angular.min.js') }}"></script>
-                            {% endblock %}
-                            {% block footer %}
+                        {% block javascripts %}        
+                            <script src="{{ asset('script/jquery/jquery.js') }}"></script>
+                            <script src="{{ asset('script/js/bootstrap.js') }}"></script>
+                            <script src="{{ asset('script/js/angular.min.js') }}"></script>
+                        {% endblock %}
+                        {% block footer %}
 
-                            {% endblock %}
-                    </body>
-                </html>
+                        {% endblock %}
+                </body>
+            </html>
