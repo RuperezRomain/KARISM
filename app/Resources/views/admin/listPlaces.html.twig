@@ -51,7 +51,9 @@
                         <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Gestion Forms</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" style="height: 0px;">
                             <li><a href="{{path('getStyleAdmin')}}">Style</a></li>
-                            
+                            <li><a href="{{path('getTechAdmin')}}">Technique</a></li>
+                            <li><a href="{{path('getGenreAdmin')}}">Genre</a></li>
+
                         </ul>
                     </li>
                 </ul>
@@ -250,7 +252,7 @@
 {% endblock %}
 {% block javascripts %}  
     {{ parent() }}
-        <script src="{{asset('script/js/jsAdmin/admin.js')}}"></script>
+    <script src="{{asset('script/js/jsAdmin/admin.js')}}"></script>
     <!-- Mainly scripts -->
     <script src="{{asset('script/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
     <script src="{{asset('script/js/plugins/slimscroll/jquery.slimscroll.js')}}"></script>
