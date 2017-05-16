@@ -48,18 +48,7 @@ class UserType extends AbstractType {
                     'multiple' => true,
                     'expanded' => true,
                     ))
-                ->add('genres', EntityType::class, array(
-                    'class' => 'AppBundle:Genre',
-                    'choice_label' => 'name',
-                    'multiple' => true,
-                    'expanded' => true,
-                    ))
-                ->add('techniques', EntityType::class, array(
-                    'class' => 'AppBundle:Technique',
-                    'choice_label' => 'name',
-                    'multiple' => true,
-                    'expanded' => true,
-                    ))
+                
                 ->add('adress', TextType::class, array('required' => false))
 
         ;
