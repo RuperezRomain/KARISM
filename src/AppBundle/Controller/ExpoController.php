@@ -50,8 +50,9 @@ class ExpoController extends Controller {
         return $this->redirect($this->generateUrl('login'));
     }
 
-    /////Initialisation formEvent 
+   
     /**
+     * Initialisation formEvent
      * @Route("user/create/expo")
      */
     public function infoExpo(Request $request) {
