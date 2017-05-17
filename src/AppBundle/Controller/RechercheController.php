@@ -6,6 +6,7 @@ use AppBundle\Entity\City;
 use AppBundle\Entity\Exposition;
 use AppBundle\Entity\Place;
 use AppBundle\Entity\User;
+use AppBundle\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -36,14 +37,19 @@ class RechercheController extends Controller {
      * @Method({"GET"})
      */
     public function getGuests() {
-        $guests = $this->getDoctrine()->getRepository(User::class)->findBy(array(
-            'hoteValidate' => 0 OR null,
-            'artistValidate' => 0 OR null
-        ));
-
+         $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+                        'SELECT a
+        FROM AppBundle:User a 
+        WHERE (a.hoteValidate = :hoteValidate OR a.hoteValidate IS NULL) AND (a.artistValidate = :artistValidate OR a.artistValidate IS NULL)'
+                )->setParameters(array(
+            'hoteValidate'=> 0,
+            'artistValidate'=> 0,
+                    ));
+        $guests = $query->getResult();
         return new JsonResponse($guests);
     }
-    
+
     /**
      * @Route("/cities")
      * @Method({"GET"})
@@ -52,7 +58,7 @@ class RechercheController extends Controller {
         $cities = $this->getDoctrine()->getRepository(City::class)->findAll();
         return new JsonResponse($cities);
     }
-    
+
     /**
      * @Route("/places")
      * @Method({"GET"})
@@ -61,7 +67,7 @@ class RechercheController extends Controller {
         $places = $this->getDoctrine()->getRepository(Place::class)->findAll();
         return new JsonResponse($places);
     }
-    
+
     /**
      * @Route("/expos")
      * @Method({"GET"})
@@ -70,4 +76,5 @@ class RechercheController extends Controller {
         $expos = $this->getDoctrine()->getRepository(Exposition::class)->findByStatus(null);
         return new JsonResponse($expos);
     }
+
 }
