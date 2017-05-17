@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Exposition;
 use AppBundle\Entity\Place;
 use AppBundle\Entity\Serie;
+use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,11 +23,11 @@ class ExpoController extends Controller {
      */
     public function getExpos() {
         $em = $this->getDoctrine()->getManager();
-        if($this->getUser()){
-        $expos = $em->getRepository(Exposition::class)->findBy(array('fk_UserArtiste' => $this->getUser()));
-        return $this->render("expo/listeExpos.html.twig", array('expos' => $expos));
+        if ($this->getUser()) {
+            $expos = $em->getRepository(Exposition::class)->findBy(array('fk_UserArtiste' => $this->getUser()));
+            return $this->render("expo/listeExpos.html.twig", array('expos' => $expos));
         }
-        
+
         return $this->redirect($this->generateUrl('login'));
     }
 
@@ -64,6 +65,9 @@ class ExpoController extends Controller {
         if ($f->isSubmitted() && $f->isValid()) {
 
             $expo->setFk_UserArtiste($this->getUser());
+            $expo->setArtisteValid(0);
+            $expo->setHoteValid(0);
+
 
             $this->get('session')->remove('expoSession');
             $this->get('session')->set('expoSession', $expo);
@@ -199,12 +203,41 @@ class ExpoController extends Controller {
         return $this->render("expo/detailleExpo.html.twig", array("expo" => $ExpoDefault));
     }
 
-    // validation expo
     /**
-     * @Route("")
+     * Validation expo
+     * @Route("/remote/expo/valid",name="validActeurExpo")
      */
     public function updateExpoStatueValidate() {
+        $em = $this->getDoctrine()->getManager();
+        $idExpo = $this->get('session')->get('expoSession')->getId();
+        $ExpoDefault = $em->getRepository(Exposition::class)->find($idExpo);
+
+        $UserDefault = $em->getRepository(User::class)->find($this->getUser()->getId());
+
+        if ($ExpoDefault->getFk_UserArtiste() == $UserDefault) {
+            
+            if ($ExpoDefault->getArtisteValid() != true) {
+                $ExpoDefault->setArtisteValid(1);
+            }else{
+                $ExpoDefault->setArtisteValid(0);
+            }
+        }
         
+        if ($ExpoDefault->getfk_UserHote() == $UserDefault) {
+            
+            if ($ExpoDefault->getHoteValid() != true) {
+                $ExpoDefault->setHoteValid(1);
+            }else{
+                $ExpoDefault->setHoteValid(0);
+            }
+        }
+        
+        $em->merge($ExpoDefault);
+        
+        $em->flush();
+        
+        
+                return $this->redirect($this->generateUrl('selcetionExpo',array('id' => $ExpoDefault->getId())));
     }
 
 }
