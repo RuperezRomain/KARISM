@@ -15,30 +15,40 @@ use Symfony\Component\HttpFoundation\Request;
  * 
  */
 class ExpoController extends Controller {
-    
-   
+
+    /**
+     * Selection de tout les expos d'un artiste
+     * @Route("/artiste/get/expos",name="selcetionListeExpo")
+     */
+    public function getExpos() {
+        $em = $this->getDoctrine()->getManager();
+        if($this->getUser()){
+        $expos = $em->getRepository(Exposition::class)->findBy(array('fk_UserArtiste' => $this->getUser()));
+        return $this->render("expo/listeExpos.html.twig", array('expos' => $expos));
+        }
+        
+        return $this->redirect($this->generateUrl('login'));
+    }
+
     /**
      * Selection d'une expo 
      * @Route("/user/get/expo/{id}",name="selcetionExpo")
      */
-    public function getExpo($id){
-         $em = $this->getDoctrine()->getManager();
-         
-       $expo =  $em->getRepository(Exposition::class)->find($id);
-       
-       if($expo->getfk_UserArtiste()->getId() == $this->getUser()->getId()) {
-          
-       $this->get('session')->remove('expoSession');
-       $this->get('session')->set('expoSession', $expo); 
-       return $this->redirect($this->generateUrl('detailleExpo'));
-           
-       }
-       
-     return $this->redirect($this->generateUrl('login'));
+    public function getExpo($id) {
+        $em = $this->getDoctrine()->getManager();
 
-       
+        $expo = $em->getRepository(Exposition::class)->find($id);
+
+        if ($expo->getfk_UserArtiste()->getId() == $this->getUser()->getId()) {
+
+            $this->get('session')->remove('expoSession');
+            $this->get('session')->set('expoSession', $expo);
+            return $this->redirect($this->generateUrl('detailleExpo'));
+        }
+
+        return $this->redirect($this->generateUrl('login'));
     }
-    
+
     /////Initialisation formEvent 
     /**
      * @Route("user/create/expo")
@@ -66,9 +76,9 @@ class ExpoController extends Controller {
 
         return $this->render("expo/infoExpo.html.twig", array("formInfoExpo" => $f->createView()));
     }
-   ////////////// Selection serie
 
- 
+    ////////////// Selection serie
+
     /**
      * Vue des series de l'expo
      * @Route("get/expo/serie",name="expoSerie")
@@ -78,8 +88,6 @@ class ExpoController extends Controller {
         $expoListeSerie = $expo->getFkserie();
         return $this->render("expo/gestionSeriesExpo.html.twig", array("listesSerieExpo" => $expoListeSerie));
     }
-
- 
 
     /**
      * Ajout de serie a l'exposition sous session 
@@ -111,7 +119,7 @@ class ExpoController extends Controller {
         $em->flush();
         ///redirection liste hote
         $this->redirect($this->generateUrl('expoSerie'));
-        
+
         return new JsonResponse($listeSeries);
     }
 
@@ -142,7 +150,7 @@ class ExpoController extends Controller {
     }
 
     //////// Trouver hote
-    
+
     /**
      * Vue de recherche d'hote
      * @Route("artiste/get/lieux",name="listePlace")
@@ -150,14 +158,13 @@ class ExpoController extends Controller {
     public function getExpoLieux() {
         return $this->render("expo/gestionLieux.html.twig");
     }
-    
-    
+
     /**
      * Demande a un hote pour une expo 
      * @Route("/edit/expo/messageHote/{id}",name="envoiMessage")
      */
-    public function editeExpoLieux(Request $request,$id) {
-         $em = $this->getDoctrine()->getManager();
+    public function editeExpoLieux(Request $request, $id) {
+        $em = $this->getDoctrine()->getManager();
         ///Recuperation expo
         $idExpo = $this->get('session')->get('expoSession')->getId();
         $ExpoDefault = $em->getRepository(Exposition::class)->find($idExpo);
@@ -167,20 +174,18 @@ class ExpoController extends Controller {
         $hote = $place->getFkUserid();
         /// Recuperation message 
         $messageHote = $request->get('choixHoteExpo');
-       
+
         $ExpoDefault->setFk_Place($place);
         $ExpoDefault->setFk_UserHote($hote);
         $ExpoDefault->setMessageHote($messageHote);
-        
+
         $em->merge($ExpoDefault);
-        
+
         $em->flush();
-        
-       return $this->redirect($this->generateUrl('detailleExpo'));
+
+        return $this->redirect($this->generateUrl('detailleExpo'));
     }
-    
-    
-    
+
     /**
      * Detaille Expo
      * @Route("/user/get/expo",name="detailleExpo")
@@ -190,11 +195,10 @@ class ExpoController extends Controller {
         ///Recuperation expo
         $idExpo = $this->get('session')->get('expoSession')->getId();
         $ExpoDefault = $em->getRepository(Exposition::class)->find($idExpo);
-        
-        return $this->render("expo/detailleExpo.html.twig",array("expo" => $ExpoDefault));
+
+        return $this->render("expo/detailleExpo.html.twig", array("expo" => $ExpoDefault));
     }
-    
-    
+
     // validation expo
     /**
      * @Route("")
@@ -202,6 +206,5 @@ class ExpoController extends Controller {
     public function updateExpoStatueValidate() {
         
     }
-
 
 }

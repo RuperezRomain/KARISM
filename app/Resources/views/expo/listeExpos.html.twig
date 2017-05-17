@@ -1,0 +1,84 @@
+{% extends "admin/adminTemplate.html.twig" %}
+
+
+
+{% block body %}
+    <div class="container-fluid">
+        <h1 class="">Mes expos</h1>
+        {% for expo in expos %}
+
+            <div class="col-lg-12">
+
+
+                <div class="ibox float-e-margins">
+                   
+                        <div class="ibox-title">
+                             <a href="{{path('selcetionExpo',{'id': expo.id}) }}">
+<i class="fa fa-pencil-square-o fa-3" aria-hidden="true">  Editer Expo</i>
+                               </a>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+
+
+                            </div>
+                        </div>
+                 
+                    <div class="ibox-content">
+                        <div class="container">
+
+
+                            <div class="col-lg-4">
+                                <h2>Rappel des informations</h2>
+                                <div> Date: {{expo.date|date("j F à g:i")}}</div>
+                                <div> Ville: {{expo.fkville }}</div>
+                                <div>Description: {{expo.description }}</div>
+
+
+                            </div>
+                            <div class="col-lg-3">
+                                <h2>
+                                    Apropo de l'hote<br>
+                                </h2>
+                                {% if expo.fk_place != null %}
+                                    {% if expo.messageHote != null %}
+                                        <div>En atente de validation de l'hote:|</div>
+                                        <img class=" img-thumbnail " src="/web/images/placePictures/{{expo.fk_place.img}}" >     
+                                        <div>{{expo.fk_place.name}}</div>
+                                    {% else %}
+                                        <div>L'hote a validée la demande ! :)</div>
+                                        <img class=" img-thumbnail " src="/web/images/placePictures/{{expo.fk_place.img}}" >     
+                                        <div>{{expo.fk_place.name}}</div>
+                                    {% endif %}
+                                {% else %}
+                                    <div> Il n'y a pas demande d'hote ou la dernier demande a etait refuser :(</div>
+                                {% endif %}
+
+                            </div>
+                            <div class="col-lg-5">
+                                <h2>
+                                    Mes series <br>
+                                </h2>
+                                <div class="container">
+                                    {% if expo.fkserie != null %}
+                                        {% for serieExpo in expo.fkserie %}
+                                            <img src="web/images/oeuvrePictures/{{serieExpo.img}}"> 
+                                        {% endfor %}
+                                    {% endif %} 
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox-footer">
+                        <span class="pull-right">
+                            The righ side of the footer
+                        </span>
+                        This is simple footer example
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock%}

@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use JsonSerializable;
 use Symfony\Component\Security\Core\User\User;
 
 /**
@@ -13,7 +14,7 @@ use Symfony\Component\Security\Core\User\User;
  * @ORM\Table(name="wishlist")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\WishlistRepository")
  */
-class Wishlist
+class Wishlist implements JsonSerializable
 {
     /**
      * @var int
@@ -37,6 +38,10 @@ class Wishlist
     private $usermain;
 
 
+    
+    public function __toString() {
+    return $this->artiste->getUsername().$this->artiste->getprofilPicture();
+}
     /**
      * Get id
      *
@@ -94,5 +99,12 @@ class Wishlist
     {
         return $this->usermain;
     }
+
+    public function jsonSerialize() {
+                        return array(
+            "id" => $this->id
+        );
+    }
+
 }
 
