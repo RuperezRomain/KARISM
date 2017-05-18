@@ -14,40 +14,40 @@
 {% endblock %}
 
 {% block nav %}
-    
-        <div class="row step">
 
-            <a href="">
-                <div class="col-md-3">
+    <div class="row step">
+
+        <a href="{{path('editeInfoExpo')}}">
+            <div class="col-md-3">
                 <span class="fa fa-pencil-square-o"></span>
                 <p>Generale</p>
             </div>
-            </a>
-            <a href="{{path('listePlace')}}">
+        </a>
+        <a href="{{path('listePlace')}}">
             <div class="col-md-3 activestep">
                 <span class="fa fa-home"></span>
                 <p>Lieux</p>
             </div>
-            </a>
-            <a href="{{path('expoSerie')}}">
+        </a>
+        <a href="{{path('expoSerie')}}">
             <div class="col-md-3">
                 <span class="fa fa-picture-o"></span>
                 <p>Série</p>
             </div>
-            </a>
-            <a href="{{path('detailleExpo')}}">
+        </a>
+        <a href="{{path('detailleExpo')}}">
             <div id="last" class="col-md-3 ">
                 <span class="fa fa-id-card"></span>
                 <p>Récap</p>
             </div>
-            </a>
-        </div>
+        </a>
+    </div>
 
-        {% endblock%}
-        
+{% endblock%}
+
 {% block body %}
 
-                    
+
     <div id="searchBar"  class="ibox-title"> 
         <h1>RECHERCHE</h1>
         <select id="searchWhat" class="inputHiden">
@@ -62,10 +62,15 @@
         </select>
         <button id="searchBtn" >rechercher d'hote</button>
     </div>
-            
-            <div id="results-container" class="container">
+
+    <div id="results-container" class="container">
 
     </div>
+             <div class="ibox-footer"> 
+                <a href="{{path('selcetionListeExpo')}}"><input type="submit" value="Retour liste série " class=" btn btn-danger" ></a>
+
+
+            </div>
 {% endblock %}
 {% block javascripts %}  
     {{ parent() }}

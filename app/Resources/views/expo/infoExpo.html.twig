@@ -1,4 +1,40 @@
 {% extends "admin/adminTemplate.html.twig" %}
+
+{% if app.session.get('expoSession') is defined %}
+
+    {% block nav %}
+        <div class="row step">
+
+            <a href="{{path('editeInfoExpo')}}">
+                <div class="col-md-3 activesteps">
+                    <span class="fa fa-pencil-square-o"></span>
+                    <p>Generale</p>
+                </div>
+            </a>
+            <a href="{{path('listePlace')}}">
+                <div class="col-md-3 ">
+                    <span class="fa fa-home"></span>
+                    <p>Lieux</p>
+                </div>
+            </a>
+            <a href="{{path('expoSerie')}}">
+                <div class="col-md-3">
+                    <span class="fa fa-picture-o"></span>
+                    <p>Série</p>
+                </div>
+            </a>
+            <a href="{{path('detailleExpo')}}">
+                <div id="last" class="col-md-3 ">
+                    <span class="fa fa-id-card"></span>
+                    <p>Récap</p>
+                </div>
+            </a>
+        </div>
+
+    {% endblock%}
+{% endif %}
+
+
 {% block body %}
 
     <div class="container-fluid " >
@@ -10,13 +46,13 @@
 
                     </div>
                     {{form_start(formInfoExpo)}}
-                    
-                        
-                        <div class=" col-lg-offset-1 col-lg-1 ">Lieux:{{ form_widget(formInfoExpo.fk_ville, { 'attr': {'class': 'form-control'}})}}</div>
-                    
+
+
+                    <div class=" col-lg-offset-1 col-lg-1 ">Lieux:{{ form_widget(formInfoExpo.fk_ville, { 'attr': {'class': 'form-control'}})}}</div>
+
                     <div class="row">
                         <div class="col-lg-offset-2 col-lg-8 " id="appbundle_exposition_date"><p> Date</p><p> Heurs</p></div>
-                    <div class="col-lg-offset-2 col-lg-8 ">{{ form_widget(formInfoExpo.date)}}</div>
+                        <div class="col-lg-offset-2 col-lg-8 ">{{ form_widget(formInfoExpo.date)}}</div>
                     </div>
                     <div class="container-fluid ">
 
@@ -26,12 +62,17 @@
                     </div>
                     <div class="container-fluid">
                         <div class="col-lg-offset-4 col-lg-4" >Description:{{ form_widget(formInfoExpo.description, { 'attr': {'class': 'form-control'}})}}</div>
-                  
-                    </div>
-                        <input type="submit" class="btn btn-primary" value="Etape Suivent !">                                
-                        {{form_end(formInfoExpo)}}
-                </div>
 
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Validation !" >
+
+                    {{form_end(formInfoExpo)}}
+               
+
+                    <a href="{{path('selcetionListeExpo')}}"><input type="submit" value="Retour liste série " class=" btn btn-danger" ></a>
+
+                
+                </div>
             </div>
         </div>
     </div>

@@ -32,6 +32,25 @@ class ExpoController extends Controller {
     }
 
     /**
+     * @Route("user/edite/expo",name="editeInfoExpo")
+     */
+    public function userEditeExpo(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $expo = $em->getRepository(Exposition::class)->find($this->get('session')->get('expoSession')->getId());
+        $f = $this->createForm('AppBundle\Form\ExpositionType', $expo);
+        $f->handleRequest($request);
+
+        if ($f->isSubmitted() && $f->isValid()) {
+            $em->merge($expo);
+            $em->flush();
+
+            return $this->render("expo/infoExpo.html.twig", array("formInfoExpo" => $f->createView()));
+        }
+            return $this->render("expo/infoExpo.html.twig", array("formInfoExpo" => $f->createView()));
+    }
+
+    /**
      * Selection d'une expo 
      * @Route("/user/get/expo/{id}",name="selcetionExpo")
      */
@@ -50,7 +69,6 @@ class ExpoController extends Controller {
         return $this->redirect($this->generateUrl('login'));
     }
 
-   
     /**
      * Initialisation formEvent
      * @Route("user/create/expo")
@@ -216,29 +234,29 @@ class ExpoController extends Controller {
         $UserDefault = $em->getRepository(User::class)->find($this->getUser()->getId());
 
         if ($ExpoDefault->getFk_UserArtiste() == $UserDefault) {
-            
+
             if ($ExpoDefault->getArtisteValid() != true) {
                 $ExpoDefault->setArtisteValid(1);
-            }else{
+            } else {
                 $ExpoDefault->setArtisteValid(0);
             }
         }
-        
+
         if ($ExpoDefault->getfk_UserHote() == $UserDefault) {
-            
+
             if ($ExpoDefault->getHoteValid() != true) {
                 $ExpoDefault->setHoteValid(1);
-            }else{
+            } else {
                 $ExpoDefault->setHoteValid(0);
             }
         }
-        
+
         $em->merge($ExpoDefault);
-        
+
         $em->flush();
-        
-        
-                return $this->redirect($this->generateUrl('selcetionExpo',array('id' => $ExpoDefault->getId())));
+
+
+        return $this->redirect($this->generateUrl('selcetionExpo', array('id' => $ExpoDefault->getId())));
     }
 
 }
