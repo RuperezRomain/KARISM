@@ -91,10 +91,10 @@
                                                         {% if is_granted("ROLE_USER") %}
                                                             {% if  is_granted("ROLE_ARTISTE")%}
                                                                 <li class="nav-item ">
-                                                                    <a class="text-warning" href="{{ path('getSeriesUser') }}">Mes séries</a>
+                                                                    <a class="text-warning" href="{{ path('selcetionListeExpo')}}">Mes exops artiste</a>
                                                                 </li>
                                                                 <li class="nav-item ">
-                                                                    <a class="text-warning" href="{{ path('selcetionListeExpo')}}">Mes exops artiste</a>
+                                                                    <a class="text-warning" href="{{ path('getSeriesUser') }}">Mes séries</a>
                                                                 </li>
                                                                 
                                                             {% else%}

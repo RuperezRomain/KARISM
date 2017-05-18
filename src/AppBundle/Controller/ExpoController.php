@@ -62,7 +62,7 @@ class ExpoController extends Controller {
 
         $expo = $em->getRepository(Exposition::class)->find($id);
 
-        if ($expo->getfk_UserArtiste()->getId() == $this->getUser()->getId()) {
+        if ($expo->getfk_UserArtiste()->getId() == $this->getUser()->getId()  || $expo->getfk_UserHote()->getId() == $this->getUser()->getId() ) {
 
             $this->get('session')->remove('expoSession');
             $this->get('session')->set('expoSession', $expo);
