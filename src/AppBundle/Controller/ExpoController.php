@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Exposition;
 use AppBundle\Entity\Place;
 use AppBundle\Entity\Serie;
+use AppBundle\Entity\Status;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -24,6 +25,8 @@ class ExpoController extends Controller {
     public function getExpos() {
         $em = $this->getDoctrine()->getManager();
         if ($this->getUser()) {
+            $this->get('session')->remove('expoSession');
+
             $expos = $em->getRepository(Exposition::class)->findBy(array('fk_UserArtiste' => $this->getUser()));
             return $this->render("expo/listeExpos.html.twig", array('expos' => $expos));
         }
@@ -34,7 +37,7 @@ class ExpoController extends Controller {
     /**
      * @Route("user/edite/expo",name="editeInfoExpo")
      */
-    public function userEditeExpo(Request $request) {
+    public function userEditeInfoExpo(Request $request) {
         $em = $this->getDoctrine()->getManager();
 
         $expo = $em->getRepository(Exposition::class)->find($this->get('session')->get('expoSession')->getId());
@@ -47,7 +50,7 @@ class ExpoController extends Controller {
 
             return $this->render("expo/infoExpo.html.twig", array("formInfoExpo" => $f->createView()));
         }
-            return $this->render("expo/infoExpo.html.twig", array("formInfoExpo" => $f->createView()));
+        return $this->render("expo/infoExpo.html.twig", array("formInfoExpo" => $f->createView()));
     }
 
     /**
@@ -71,7 +74,7 @@ class ExpoController extends Controller {
 
     /**
      * Initialisation formEvent
-     * @Route("user/create/expo")
+     * @Route("user/create/expo",name="createExpo")
      */
     public function infoExpo(Request $request) {
         $em = $this->getDoctrine()->getManager();
@@ -83,9 +86,13 @@ class ExpoController extends Controller {
         $f->handleRequest($request);
         if ($f->isSubmitted() && $f->isValid()) {
 
+            $statueNonValide = $em->getRepository(Status::class)->findOneBy(array('nom' => 'NON_VALIDE'));
+
+
             $expo->setFk_UserArtiste($this->getUser());
             $expo->setArtisteValid(0);
             $expo->setHoteValid(0);
+            $expo->setStatus($statueNonValide);
 
 
             $this->get('session')->remove('expoSession');
@@ -257,6 +264,27 @@ class ExpoController extends Controller {
 
 
         return $this->redirect($this->generateUrl('selcetionExpo', array('id' => $ExpoDefault->getId())));
+    }
+
+    /**
+     * @Route("user/edite/expo/statue/valide",name="valideExpo")
+     */
+    public function editeExpoStatueValide() {
+
+        $em = $this->getDoctrine()->getManager();
+        $idExpo = $this->get('session')->get('expoSession')->getId();
+        $ExpoDefault = $em->getRepository(Exposition::class)->find($idExpo);
+
+        if ($ExpoDefault->getArtisteValid() and $ExpoDefault->getArtisteValid() == true) {
+            $statueValide = $em->getRepository(Status::class)->findOneBy(array('nom' => 'VALIDE'));
+
+            $ExpoDefault->setStatus($statueValide);
+
+            $em->merge($ExpoDefault);
+
+            $em->flush();
+            return $this->redirect($this->generateUrl('listePlace'));
+        }
     }
 
 }

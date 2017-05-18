@@ -113,10 +113,9 @@
 
 
                 {% if expo.artisteValid == true and expo.hoteValid == true %}
-                    <a href=""><input type="submit" value="Validation expo"  class=" btn btn-success" ></a>
+                    <a href="{{path('valideExpo')}}"><input type="submit" value="Validation expo"  class=" btn btn-success" ></a>
 
                 {% else %}
-                    <a href=""><input type="submit" value="Validation expo" disabled="true" class=" btn btn-success" ></a>
 
                 {% endif %}
             </div>
