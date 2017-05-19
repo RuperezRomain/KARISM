@@ -1,0 +1,292 @@
+{% extends "base.template.html.twig" %}
+
+{% block stylesheets %}
+    {{parent()}} 
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('/script/css/templateInspinia.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/script/js/plugins/sweetalert/sweetalert_1.css') }}" />
+
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+{% endblock %}
+
+{% block title %}
+    {{parent()}}
+    Accueil
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid white-bg">
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="col-lg-12">
+                <div class="text-center m-t-lg">
+                    <h1>
+                        Gestion d'invitations
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h3 class="text-center">En attente</h3>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+
+                            <div class="table-responsive">
+                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                    <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 162px;">
+                                                    Exposition
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">
+                                                    Profil Artiste
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 182px;">
+                                                    Profil Hote
+                                                </th>                 
+                                                <th class="sorting text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="2" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">
+                                                    Actions
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="contentArtisteRequest">
+                                            {% for checkDemandes in checkDemande %}
+                                                {% if checkDemandes.validate == 0 %}
+
+                                                    <tr class=' gradeA odd'  id="{{checkDemandes.expo.id}}" role='row'>
+                                                        <td class=' hote-clickable-row sorting_1' data-href="./get/serie/default/user/">{{checkDemandes.expo.description}}</td>
+                                                        <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserArtiste.id}}" class='btn btn-outline btn-primary btn-info btn-block btn-lg'><i class='fa fa-user-circle-o'></i> {{checkDemandes.expo.Fk_UserArtiste.username}}</a></td>
+                                                        <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserHote.id}}" class='btn btn-outline btn-info btn-block btn-lg'><i class='fa fa-user-circle-o'></i> {{checkDemandes.expo.Fk_UserHote.username}}</a></td>
+                                                        <td class="acceptInvite">                                                                
+                                                            <button class='btn btn-outline btn-primary btn-block' type='button'>
+                                                                <i class='fa fa-check-circle fa-2x'></i>
+                                                            </button>
+                                                        </td>
+                                                        <td class="declineInvite">
+                                                            <button class='btn btn-outline btn-danger btn-block' type='button'>
+                                                                <i class='fa fa-times-circle fa-2x'></i></button>
+                                                        </td>
+
+                                                    </tr>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 162px;">
+                                                    Exposition
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">
+                                                    Profil Artiste
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 182px;">
+                                                    Profil Hote
+                                                </th>                 
+                                                <th class="sorting text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="2" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">
+                                                    Actions
+                                                </th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--HOTE VALIDATE-->
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h3 class="text-center">Invitations acceptées</h3>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="ibox-content">
+
+                            <div class="table-responsive">
+
+                                <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">
+                                    <thead>
+                                        <tr>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 162px;">
+                                                Exposition
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">
+                                                Profil Artiste
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 182px;">
+                                                Profil Hote
+                                            </th>                 
+                                            <th class="sorting text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="2" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">
+                                                Switch
+                                            </th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="contentArtisteRequest">
+                                        {% for checkDemandes in checkDemande %}
+                                            {% if checkDemandes.validate == 1 %}
+
+                                                <tr id="{{checkDemandes.expo.id}}" role='row'>
+                                                    <td class=' hote-clickable-row sorting_1' data-href="./get/serie/default/user/">{{checkDemandes.expo.description}}</td>
+                                                    <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserArtiste.id}}" class='btn btn-outline btn-primary btn-info btn-block btn-lg'><i class='fa fa-user-circle-o'></i> {{checkDemandes.expo.Fk_UserArtiste.username}}</a></td>
+                                                    <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserHote.id}}" class='btn btn-outline btn-info btn-block btn-lg'><i class='fa fa-user-circle-o'></i> {{checkDemandes.expo.Fk_UserHote.username}}</a></td>
+                                                    <td class="switchInvite">                                                                
+                                                        <button class='btn btn-outline btn-warning btn-block' type='button'>
+                                                            <i class='fa fa-exchange fa-2x'></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+{% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 162px;">
+                                                Exposition
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">
+                                                Profil Artiste
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 182px;">
+                                                Profil Hote
+                                            </th>                 
+                                            <th class="sorting text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="2" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">
+                                                Switch
+                                            </th>
+                                        </tr>
+
+                                    </tfoot>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h3 class="text-center">Invitations refusées</h3>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="ibox-content">
+
+                            <div class="table-responsive">
+
+                                <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">
+                                    <thead>
+                                        <tr>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 162px;">
+                                                Exposition
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">
+                                                Profil Artiste
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 182px;">
+                                                Profil Hote
+                                            </th>                 
+                                            <th class="sorting text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="2" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">
+                                                Switch
+                                            </th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="contentArtisteRequest">
+                                        {% for checkDemandes in checkDemande %}
+                                            {% if checkDemandes.validate == 2 %}
+
+                                                <tr id="{{checkDemandes.expo.id}}" role='row'>
+                                                    <td class=' hote-clickable-row sorting_1' data-href="./get/serie/default/user/">{{checkDemandes.expo.description}}</td>
+                                                    <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserArtiste.id}}" class='btn btn-outline btn-primary btn-info btn-block btn-lg'><i class='fa fa-user-circle-o'></i> {{checkDemandes.expo.Fk_UserArtiste.username}}</a></td>
+                                                    <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserHote.id}}" class='btn btn-outline btn-info btn-block btn-lg'><i class='fa fa-user-circle-o'></i> {{checkDemandes.expo.Fk_UserHote.username}}</a></td>
+                                                    <td class="switchInvite">                                                                
+                                                        <button class='btn btn-outline btn-warning btn-block' type='button'>
+                                                            <i class='fa fa-exchange fa-2x'></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 162px;">
+                                        Exposition
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">
+                                        Profil Artiste
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 182px;">
+                                        Profil Hote
+                                    </th>                 
+                                    <th class="sorting text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="2" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">
+                                        Switch
+                                    </th>
+
+                                    </tfoot>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+{% endblock %}
+{% block javascripts %}  
+    {{ parent() }}
+    <script src="{{asset('script/js/inspinia.js')}}"></script>
+    <script src="{{ asset('script/js/jsExpo/userDemande.js') }}"></script>
+    <script src="{{asset('script/slickCarousel/slick.js') }}"></script>
+    <script src="{{asset('script/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
+
+    <script src="{{asset('script/js/home.js')}}"></script>
+{% endblock %}
