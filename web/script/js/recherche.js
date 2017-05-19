@@ -24,7 +24,7 @@ $("#searchBtn").click(function () {
 //        searchExpos();
 //    }
     if ($("#citiesList").val() === "city") {
-//        alert("Veuillez choisir une ville");
+        alert("Veuillez choisir une ville");
     }
 
 });
@@ -148,6 +148,7 @@ function searchGuests() {
         datatype: "json",
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
+                
                 var guest = document.createElement("div");
                 guest.className = "member";
 
@@ -292,6 +293,7 @@ function getCities() {
         success: function (data) {
             var citiesList = $("#citiesList");
             $("#citiesList").append('<option value= city>Ville</option>');
+            $("#citiesList").append('<option disabled></option>');
             for (var i = 0; i < data.length; i++) {
                 var citiesOptions = document.createElement("option");
                 var cityName = document.createTextNode(data[i].city);
