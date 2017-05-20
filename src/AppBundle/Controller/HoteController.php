@@ -268,22 +268,5 @@ class HoteController extends Controller {
         return $this->redirect($this->generateUrl('createPicPlace'));
     }
 
-    /**
-     * @Route("/hote/get/expo/message",name="DemandeExpos")
-     */
-    
-    public function getExpoMessage(){
-        
-         $em = $this->getDoctrine()->getManager();
-        if ($this->getUser()) {
-            $this->get('session')->remove('expoSession');
-
-            $expos = $em->getRepository(Exposition::class)->findBy(array('fk_UserHote' => $this->getUser()));
-            return $this->render("hote/listeDemandeExpo.html.twig", array('expos' => $expos));
-        }
-
-        return $this->redirect($this->generateUrl('login'));
-        
-    }
-    
+  
 }

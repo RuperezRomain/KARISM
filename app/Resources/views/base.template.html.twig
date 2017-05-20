@@ -110,7 +110,7 @@
                                                             {%else%}
                                                                 {% if not is_granted("ROLE_ARTISTE")%}
                                                                 <li class="nav-item ">
-                                                                    <a class="text-warning" href="">Mes exops Hote</a>
+                                                                    <a class="text-warning" href="{{path('demandeExpos')}}">Mes exops Hote</a>
                                                                 </li>
                                                                 {% endif %}
                                                                 <li class="nav-item ">

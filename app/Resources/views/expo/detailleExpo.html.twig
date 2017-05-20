@@ -109,7 +109,18 @@
 
             </div>
             <div class="ibox-footer"> 
-                <a href="{{path('selcetionListeExpo')}}"><input type="submit" value="Retour liste série " class=" btn btn-danger" ></a>
+
+                {% if  is_granted("ROLE_ARTISTE")%}
+                    <a href="{{path('selcetionListeExpo')}}"><input type="submit" value="Retour liste série artiste " class=" btn btn-danger" ></a>
+
+                {% endif %}
+                {% if  is_granted("ROLE_HOTE") %}
+                    {% if not is_granted("ROLE_ARTISTE") %}
+                        <a href="{{path('demandeExpos')}}"><input type="submit" value="Retour liste série hote " class=" btn btn-danger" ></a>
+                        {% endif %}
+                    {% endif %}
+
+
 
 
                 {% if expo.artisteValid == true and expo.hoteValid == true %}
