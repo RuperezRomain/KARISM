@@ -50,7 +50,6 @@ class DemandeInviteController extends Controller {
      */
     public function getDemandeFromExpo() {
 
-
         $em = $this->getDoctrine()->getManager();
         $userId = $this->getUser()->getId();
 
@@ -65,7 +64,6 @@ class DemandeInviteController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
         $userId = $this->getUser()->getId();
-
 
         $guest = $em->getRepository(User::class)->find($userId);
         $expos = $em->getRepository(Exposition::class)->find($id);
@@ -114,7 +112,6 @@ class DemandeInviteController extends Controller {
 
         $check = array("guest" => $guest, "expo" => $expos);
         $inviteExpo = $em->getRepository(Demande_expo::class)->findOneBy($check);
-
         
         $checkValidate = $inviteExpo->getValidate();
         
@@ -132,7 +129,6 @@ class DemandeInviteController extends Controller {
         $em->flush($inviteExpo);
         return new Response('switch to 1');
         }
-
         return new Response('ok');
     }
 
@@ -144,9 +140,6 @@ class DemandeInviteController extends Controller {
         $this->get('session')->remove('expoSession');
         $em = $this->getDoctrine()->getManager();
         $userId = $this->getUser()->getId();
-//        echo($userId);
-        $checkHote = array('fk_UserHote' => $userId);
-        $checkArtiste = array('fk_UserArtiste' => $userId);
         $expo = $em->getRepository(Exposition::class)->find($id);
         $expoArtiste = $expo->getfk_UserArtiste()->getId();
         $expoHote = $expo->getfk_UserHote()->getId();
@@ -162,15 +155,12 @@ class DemandeInviteController extends Controller {
             return $this->redirectToRoute('accueilTest');
 
         }
-        
-        
-        
 
         return $this->render("expo/invitation.html.twig", array("listesSerieExpo" => $expo));
     }
 
     
-        /**
+     /**
      * Retourne le Nombre de nouvelles invite
      * @Route("/get/new/invite")
      */
@@ -185,6 +175,36 @@ class DemandeInviteController extends Controller {
         }
 
         return new JsonResponse($nbr);
+    }
+    
+    
+    /**
+     * @Route("/join/expo/{id}")
+     */
+    public function joinExpo($id){
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $expo = $em->getRepository(Exposition::class)->find($id);
+        
+
+        $guest = $em->getRepository(User::class)->find($user);
+
+        $check = array("guest" => $guest, "expo" => $expo);
+        $checkDemande = $em->getRepository(Demande_expo::class)->findBy($check);
+
+        if ($checkDemande == null) {
+            $demande = new Demande_expo();
+            $demande->setExpo($expo);
+            $demande->setGuest($guest);
+            $demande->setValidate(3);
+
+            $em->persist($demande);
+            $em->flush($demande);
+        } else {
+
+            return new Response('Déjà invité');
+        }
+        return new Response('ok');
     }
     
 }
