@@ -58,12 +58,23 @@
     list-style-type: none;
     margin-left:15px;
     margin-right: 15px;
+    > a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        line-height: 37px;
+        font-size: 15px;
+    }
 }
+
+
 
 @media screen and (max-width: 770px) {
     .retourAccueil{
         visibility:hidden;
+
     }
+
+
 }
 
 @media screen and (min-width: 765px) {
