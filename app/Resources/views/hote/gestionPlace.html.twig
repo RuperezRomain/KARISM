@@ -3,29 +3,39 @@
 
 {% block body %}
 
-    <form action="{{ path('valideNomLieux')}}" method="post">
-        <input type="text" name="nomSerie"  placeholder="Nom de la nouvelle serie">
-        <input type="submit">
-    </form>
-           <div class="container-fluid">
-    {% for place in places %}
-      
-          
-        <div class="col-sm-6 col-md-2">
-            <div class="thumbnail">
-            <a href="/hote/get/lieu/{{place.id}}">
-               <p> 
-                    {{place.name}}
-               </p>
-               </a>
-               <img class="img-thumbnail" src="/web/images/placePictures/{{place.img}}">
-               <a href="/hote/remove/place/{{place.id}}"><i class=" fa fa-trash fa-6" aria-hidden="true"></i></a>
-            </div>
-         
-        </div>
-     
 
-    {% endfor %}
+    <div class="container">
+        <div class=" row ibox-content">
+            <div class="ibox-title">
+
+                <form action="{{ path('valideNomLieux')}}" method="post">
+                    <h2>Saisire le nom de la nouvelle serie pour la crées ou saisire le nom dune serie existante pour pour l"editer</h2> <br>
+
+                    <input type="text" name="nomSerie"  placeholder="Nom du lieux">
+                    <input type="submit" class="btn btn-success">
+                </form>
+
+                <td><hr class="hr-line-solid"></td>
             </div>
+            {% for place in places %}
+
+
+                <div class="col-sm-6 col-md-2">
+                    <div class="thumbnail">
+                        <a href="/hote/get/lieu/{{place.id}}">
+                            <p> 
+                                {{place.name}}
+                            </p>
+                        </a>
+                        <img class="img-thumbnail" src="/web/images/placePictures/{{place.img}}">
+                        <a href="/hote/remove/place/{{place.id}}"><i class=" fa fa-trash fa-6" aria-hidden="true"></i></a>
+                    </div>
+
+                </div>
+
+
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}

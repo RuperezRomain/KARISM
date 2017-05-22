@@ -1,42 +1,57 @@
 {% extends "admin/adminTemplate.html.twig" %}
 
-
+{% if app.session.get('expoSession') != true %}
+    {% block nav %} {%endblock%}
+        {% endif %}
 
 {% block body %}
-{% if app.session.get('expoSession') != true %}
-    <form action="{{ path('valideNomSerie')}}" method="post">
-        <input type="text" name="nomSerie"  placeholder="Nom de la nouvelle serie">
-        <input type="submit">
-    </form>
-        {% endif %}
-    <div class="container-fluid">
-        {% for serie in series %}
-            <div class="col-sm-6 col-md-2">
-                <div class="thumbnail">
-                    <a href="/edit/picture/serie/{{serie.id}}">
-                        <img class="img-thumbnail" src="/web/images/oeuvrePictures/{{serie.img}}" >
-                    </a>    
-                    <div>
-                        <p>{{serie.name}}</p>
-                        {% if app.session.get('expoSession') == true %}
-                            <input class="seriesCheckbox" name="cheeck" id="{{serie.id}}" type="checkbox">
 
-                        {% else %}
-                            <a href="/artiste/remove/serie/{{serie.id}}"><i class="  fa fa-trash fa-6" aria-hidden="true"></i></a>
-
-                        {% endif %}
-                    </div>
-                </div>
-
-            </div>
-
-
-        {% endfor %}
-        {% if app.session.get('expoSession') is defined %}
+    <div class="container">
+        <div class=" row ibox-content">
+        <div class="ibox-title">
+           
+            {% if app.session.get('expoSession') != true %}
+                <form class=""action="{{ path('valideNomSerie')}}" method="post">
+                    <h2>Saisire le nom de la nouvelle serie pour la crées ou saisire le nom dune serie existante pour pour l"editer</h2> <br>
+                    <input type="text" name="nomSerie"  placeholder="Nom de la serie">
+                    <input type="submit" class="btn btn-success">
+                </form>
+            {% else %}
+                
+                {% if app.session.get('expoSession') == true %}
+                                   <h2>Sélection des series pour l'exposition</h2> <br>
             <a href="{{path('expoSerie')}}">
-                <input type="submit" id="validSerieExpo" value="Valider serie" class="btn btn-default" >
+ <input type="submit" id="validSerieExpo" value="Valider serie" class="btn navy-bg" >
             </a>
         {% endif %}
+            {% endif %}
+                
+                    <td><hr class="hr-line-solid"></td>
+        </div>
+            {% for serie in series %}
+                <div class="col-sm-6 col-md-2">
+                    <div class="thumbnail">
+                        <a href="/edit/picture/serie/{{serie.id}}">
+                            <img class="img-thumbnail" src="/web/images/oeuvrePictures/{{serie.img}}" >
+                        </a>    
+                        <div>
+                            <p>{{serie.name}}</p>
+                            {% if app.session.get('expoSession') == true %}
+                                <input class="seriesCheckbox" name="cheeck" id="{{serie.id}}" type="checkbox">
+
+                            {% else %}
+                                <a href="/artiste/remove/serie/{{serie.id}}"><i class="  fa fa-trash fa-6" aria-hidden="true"></i></a>
+
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+
+
+            {% endfor %}
+        </div>
+        
     </div>
 {% endblock %}
 
