@@ -148,24 +148,13 @@ class DemandeInviteController extends Controller {
         $checkHote = array('fk_UserHote' => $userId);
         $checkArtiste = array('fk_UserArtiste' => $userId);
         $expo = $em->getRepository(Exposition::class)->find($id);
-        $expoHote = $em->getRepository(Exposition::class)->findBy($checkHote);
-        $expoArtiste = $em->getRepository(Exposition::class)->findBy($checkArtiste);
+        $expoArtiste = $expo->getfk_UserArtiste()->getId();
+        $expoHote = $expo->getfk_UserHote()->getId();
 
-        if ($expoArtiste != null && $expoHote == null){
+        if ($expoArtiste == $userId or $expoHote == $userId){
         $this->get('session')->remove('expoSession');
         $this->get('session')->set('expoSession', $expo);
-            echo("arti");
             
-        }
-        else if ($expoArtiste == null && $expoHote != null){
-        $this->get('session')->remove('expoSession');
-        $this->get('session')->set('expoSession', $expo);
-            echo("hote");
-        }
-        else if ($expoArtiste != null && $expoHote != null){
-                   $this->get('session')->remove('expoSession');
-        $this->get('session')->set('expoSession', $expo);
-            echo("hote2"); 
         }
         else {
         $this->get('session')->remove('expoSession');
