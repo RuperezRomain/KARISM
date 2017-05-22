@@ -23,7 +23,7 @@
                         <div class="row navigation">
                             <div class="col-xs-2 col-sm-4 col-md-5 col-lg-5 ">
                                 
-                                <a href=""><img src="/web/images/source/logoKarism.png" height="42" width="130"></a></div>
+                                <a href="{{path('accueilTest')}}"><img src="/web/images/source/logoKarism.png" height="42" width="130"></a></div>
                                     {% if is_granted("ROLE_ARTISTE") 
                                     or is_granted('ROLE_USER')
                                     or is_granted('ROLE_ADMIN')
@@ -68,7 +68,7 @@
 
                                         {% if is_granted("ROLE_ADMIN") %}
 
-                                            <button class="btn btn-w-m btn-warning"><a href="{{ path('admin') }}">Panneaux d'administration</a></button>
+                                           <a href="{{ path('admin') }}"> <button class="btn btn-w-m btn-warning">Panneaux d'administration</button></a>
 
 
                                         {% endif %}
@@ -132,7 +132,6 @@
                                                             <a class="text-warning" href="/recherche">Recherche</a>
                                                         </li>
 
-                                                        {#                                            <div class=" col-xs-1 col-sm-2 col-md-2 col-lg-2 "><h4 class="  text-center"><a class="text-warning" href="">Rechercher</a></h4></div>#}
                                                     </div>
                                                 </div>
                                             </nav>
