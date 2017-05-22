@@ -5,6 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Exposition;
 use AppBundle\Entity\Place;
 use AppBundle\Entity\Serie;
+use AppBundle\Entity\Status;
+use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,12 +24,33 @@ class ExpoController extends Controller {
      */
     public function getExpos() {
         $em = $this->getDoctrine()->getManager();
-        if($this->getUser()){
-        $expos = $em->getRepository(Exposition::class)->findBy(array('fk_UserArtiste' => $this->getUser()));
-        return $this->render("expo/listeExpos.html.twig", array('expos' => $expos));
+        if ($this->getUser()) {
+            $this->get('session')->remove('expoSession');
+
+            $expos = $em->getRepository(Exposition::class)->findBy(array('fk_UserArtiste' => $this->getUser()),array('id' => 'desc'));
+            return $this->render("expo/listeExpos.html.twig", array('expos' => $expos));
         }
-        
+
         return $this->redirect($this->generateUrl('login'));
+    }
+
+    /**
+     * @Route("user/edite/expo",name="editeInfoExpo")
+     */
+    public function userEditeInfoExpo(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $expo = $em->getRepository(Exposition::class)->find($this->get('session')->get('expoSession')->getId());
+        $f = $this->createForm('AppBundle\Form\ExpositionType', $expo);
+        $f->handleRequest($request);
+
+        if ($f->isSubmitted() && $f->isValid()) {
+            $em->merge($expo);
+            $em->flush();
+
+            return $this->render("expo/infoExpo.html.twig", array("formInfoExpo" => $f->createView()));
+        }
+        return $this->render("expo/infoExpo.html.twig", array("formInfoExpo" => $f->createView()));
     }
 
     /**
@@ -39,7 +62,7 @@ class ExpoController extends Controller {
 
         $expo = $em->getRepository(Exposition::class)->find($id);
 
-        if ($expo->getfk_UserArtiste()->getId() == $this->getUser()->getId()) {
+        if ($expo->getfk_UserArtiste()->getId() == $this->getUser()->getId() || $expo->getfk_UserHote()->getId() == $this->getUser()->getId()) {
 
             $this->get('session')->remove('expoSession');
             $this->get('session')->set('expoSession', $expo);
@@ -49,9 +72,9 @@ class ExpoController extends Controller {
         return $this->redirect($this->generateUrl('login'));
     }
 
-    /////Initialisation formEvent 
     /**
-     * @Route("user/create/expo")
+     * Initialisation formEvent
+     * @Route("user/create/expo",name="createExpo")
      */
     public function infoExpo(Request $request) {
         $em = $this->getDoctrine()->getManager();
@@ -63,7 +86,14 @@ class ExpoController extends Controller {
         $f->handleRequest($request);
         if ($f->isSubmitted() && $f->isValid()) {
 
+            $statueNonValide = $em->getRepository(Status::class)->findOneBy(array('nom' => 'NON_VALIDE'));
+
+
             $expo->setFk_UserArtiste($this->getUser());
+            $expo->setArtisteValid(0);
+            $expo->setHoteValid(0);
+            $expo->setStatus($statueNonValide);
+
 
             $this->get('session')->remove('expoSession');
             $this->get('session')->set('expoSession', $expo);
@@ -199,12 +229,108 @@ class ExpoController extends Controller {
         return $this->render("expo/detailleExpo.html.twig", array("expo" => $ExpoDefault));
     }
 
-    // validation expo
     /**
-     * @Route("")
+     * Validation expo
+     * @Route("/remote/expo/valid",name="validActeurExpo")
      */
     public function updateExpoStatueValidate() {
-        
+        $em = $this->getDoctrine()->getManager();
+        $idExpo = $this->get('session')->get('expoSession')->getId();
+        $ExpoDefault = $em->getRepository(Exposition::class)->find($idExpo);
+
+        $UserDefault = $em->getRepository(User::class)->find($this->getUser()->getId());
+
+        if ($ExpoDefault->getFk_UserArtiste() == $UserDefault) {
+
+            if ($ExpoDefault->getArtisteValid() != true) {
+                $ExpoDefault->setArtisteValid(1);
+            } else {
+                $ExpoDefault->setArtisteValid(0);
+            }
+        }
+
+        if ($ExpoDefault->getfk_UserHote() == $UserDefault) {
+
+            if ($ExpoDefault->getHoteValid() != true) {
+                $ExpoDefault->setHoteValid(1);
+            } else {
+                $ExpoDefault->setHoteValid(0);
+            }
+        }
+
+        $em->merge($ExpoDefault);
+
+        $em->flush();
+
+
+        return $this->redirect($this->generateUrl('selcetionExpo', array('id' => $ExpoDefault->getId())));
     }
 
+    /**
+     * @Route("user/edite/expo/statue/valide",name="valideExpo")
+     */
+    public function editeExpoStatueValide() {
+
+        $em = $this->getDoctrine()->getManager();
+        $idExpo = $this->get('session')->get('expoSession')->getId();
+        $ExpoDefault = $em->getRepository(Exposition::class)->find($idExpo);
+
+        if ($ExpoDefault->getArtisteValid() and $ExpoDefault->getArtisteValid() == true) {
+            $statueValide = $em->getRepository(Status::class)->findOneBy(array('nom' => 'VALIDE'));
+
+            $ExpoDefault->setStatus($statueValide);
+
+            $em->merge($ExpoDefault);
+
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('listePlace'));
+        }
+    }
+
+    ///////////////Partie Hote///////////////////////
+
+    /**
+     * liste des demandes d'expo pour un hote
+     * @Route("/hote/get/expo/message",name="demandeExpos")
+     */
+    public function getExpoMessage() {
+
+        $em = $this->getDoctrine()->getManager();
+        if ($this->getUser()) {
+            $this->get('session')->remove('expoSession');
+
+            $expos = $em->getRepository(Exposition::class)->findBy(array('fk_UserHote' => $this->getUser()),array('id' => 'desc'));
+            return $this->render("hote/listeDemandeExpo.html.twig", array('expos' => $expos));
+        }
+
+        return $this->redirect($this->generateUrl('login'));
+    }
+    
+    
+    /**
+     * @Route("/hote/remote/expo/{id}/valide", name="hoteValide")
+     */
+    public function remoteExpoValide($id){
+         $em = $this->getDoctrine()->getManager();
+         $expo = $em->getRepository(Exposition::class)->find($id);
+         
+         if($expo->getfk_UserHote() == $this->getUser()){
+            $expo->setMessageHote(null);
+            
+            $em->merge($expo);
+            $em->flush();
+            
+            return $this->redirect($this->generateUrl('demandeExpos'));
+         }
+         
+         return $this->redirect($this->generateUrl('login'));
+    }
+    
+    /**
+     * @Route("/hote/remote/expo/{id}/refue")
+     */
+    public function remoteExpoRefue(){
+       
+    }
 }

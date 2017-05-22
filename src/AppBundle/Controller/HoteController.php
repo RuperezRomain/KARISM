@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Exposition;
 use AppBundle\Entity\ImagesPlaces;
 use AppBundle\Entity\Place;
 use AppBundle\Entity\User;
@@ -267,4 +268,5 @@ class HoteController extends Controller {
         return $this->redirect($this->generateUrl('createPicPlace'));
     }
 
+  
 }

@@ -13,10 +13,41 @@
     Accueil
 {% endblock %}
 
+{% block nav %}
+
+    <div class="row step">
+
+        <a href="{{path('editeInfoExpo')}}">
+            <div class="col-md-3">
+                <span class="fa fa-pencil-square-o"></span>
+                <p>Generale</p>
+            </div>
+        </a>
+        <a href="{{path('listePlace')}}">
+            <div class="col-md-3 activestep">
+                <span class="fa fa-home"></span>
+                <p>Lieux</p>
+            </div>
+        </a>
+        <a href="{{path('expoSerie')}}">
+            <div class="col-md-3">
+                <span class="fa fa-picture-o"></span>
+                <p>Série</p>
+            </div>
+        </a>
+        <a href="{{path('detailleExpo')}}">
+            <div id="last" class="col-md-3 ">
+                <span class="fa fa-id-card"></span>
+                <p>Récap</p>
+            </div>
+        </a>
+    </div>
+
+{% endblock%}
+
 {% block body %}
 
-                    <a href="{{path('expoSerie')}}"><input type="submit" value="liste serie" class="btn btn-default" ></a>
-                    <a href="{{path('detailleExpo')}}"><input type="submit" value="Detaille expo" class="btn btn-default" ></a>
+
     <div id="searchBar"  class="ibox-title"> 
         <h1>RECHERCHE</h1>
         <select id="searchWhat" class="inputHiden">
@@ -31,10 +62,19 @@
         </select>
         <button id="searchBtn" >rechercher d'hote</button>
     </div>
-            
-            <div id="results-container" class="container">
+
+    <div id="results-container" class="container">
 
     </div>
+            {% if  is_granted("ROLE_ARTISTE")%}
+                <a href="{{path('selcetionListeExpo')}}"><input type="submit" value="Retour liste série artiste " class=" btn btn-danger" ></a>
+
+            {% endif %}
+            {% if  is_granted("ROLE_HOTE") %}
+                {% if not is_granted("ROLE_ARTISTE") %}
+                    <a href="{{path('demandeExpos')}}"><input type="submit" value="Retour liste série hote " class=" btn btn-danger" ></a>
+                {% endif %}
+            {% endif %}
 {% endblock %}
 {% block javascripts %}  
     {{ parent() }}
