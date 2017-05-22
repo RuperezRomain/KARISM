@@ -1,0 +1,93 @@
+{% extends "admin/adminTemplate.html.twig" %}
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="{{ asset('/script/css/font-awesome-animated.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/script/js/plugins/sweetalert/sweetalert_1.css')}}"/>
+{% endblock %}
+{% block body %}
+
+
+    <div class="container">
+        <div class="row">
+            <div class="middle-box text-center">
+                <h2>Exposition</h2>
+                <p>Proposé par <a href="profil/{{expo.fk_UserArtiste.id}}"> {{expo.fk_UserArtiste.username}}</a> et <a href="profil/{{expo.fk_UserHote.id}}">{{expo.fk_UserHote.username}}</a></p>
+                <h3>Rappel des informations</h3>
+                <p>Date: {{expo.date|date("j F à g:i")}}</p>
+                <p>Ville: {{expo.fkville }}</p>
+                <p>Description: {{expo.description}}</p>
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <div class="middle-box text-center">
+                    <h3>Series exposées</h3>
+                    {% for serieExpo in expo.fkserie|slice(1) %}
+                        <p><a href="/serie/{{serieExpo.id}}" target="_blank"><img class="col-sm-6 img-responsive" src="/web/images/oeuvrePictures/{{serieExpo.img}}"></a></p>
+                            {% endfor %}
+                </div>
+            </div><div class="col-lg-5">
+                <div class="middle-box text-center">
+                    <h3>Lieu</h3>
+                    <p><a href="/lieu/{{expo.fk_place.id}}" target="_blank"><img class="col-sm-6 img-responsive " src="/web/images/placePictures/{{expo.fk_place.img}}"></a></p>     
+                    <p>{{expo.fk_place.name}}</p>
+                </div>
+            </div>
+            <div class="container-fluid">
+
+
+                {% if expo.fk_place != null %}
+                    {% if expo.messageHote == null %}
+                        <div class="middle-box">
+                            <div class=" col-sm-3">
+                                <h3>Artiste</h3>
+                                {% if expo.artisteValid != true %}
+                                    <div  class="widget red-bg reponseBlock">. . .</div>
+                                {% else %}
+                                    <div  class="widget navy-bg  reponseBlock">OK !</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-3">
+                                <h3>Hote</h3>
+                                {% if expo.hoteValid != true %}
+                                    <div  class="widget red-bg reponseBlock">. . .</div>
+                                {% else %}
+                                    <div  class="widget navy-bg reponseBlock">OK !</div>
+                                {% endif %}
+                            </div>
+
+
+
+                            <div class="middle-box">
+                                <a href="{{path('validActeurExpo')}}"><input  type="submit" value="Changer d'etat  "  class="btn btn-success" ></a>
+                            </div>
+
+                        </div>
+
+                    {% endif %}
+                {% endif %}
+
+
+            </div>
+            <div class="ibox-footer text-center" id="{{expo.id}}"> 
+                {% if demande is not empty %}
+                    {%for demandes in demande %}
+                        {% if demandes.validate == 1 %}
+                            <button type="button" class=" btn btn-lg btn-w-m btn-primary btn-outline faa-parent animated-hover "><i class="fa fa-check-square-o fa-2x faa-burst" aria-hidden="true"></i><p>Vous êtes inscrit à l'exposition</p></button>
+                                {% elseif demandes.validate == 2 %}
+                            <button type="button" id="join" class=" btn btn-lg btn-w-m btn-warning btn-outline faa-parent animated-hover "><i class="fa fa-sign-in fa-2x faa-pulse" aria-hidden="true"></i><p>Participer à cette exposition</p></button>
+                                {% endif %}
+                                    {% endfor %}
+                                        {% else %}
+                                    <button type="button" id="join" class=" btn btn-lg btn-w-m btn-warning btn-outline faa-parent animated-hover "><i class="fa fa-sign-in fa-2x faa-pulse" aria-hidden="true"></i><p>Participer à cette exposition</p></button>
+                                            {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            {% endblock %}
+                                {% block javascripts %}  
+                                    {{ parent() }}
+                                    <script src="{{ asset('script/js/jsExpo/userJoin.js') }}"></script>
+                                    <script src="{{asset('script/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
+                                {% endblock %}

@@ -112,22 +112,21 @@ class DemandeInviteController extends Controller {
 
         $check = array("guest" => $guest, "expo" => $expos);
         $inviteExpo = $em->getRepository(Demande_expo::class)->findOneBy($check);
-        
+
         $checkValidate = $inviteExpo->getValidate();
-        
-        if ($checkValidate === 1){
-            
-        $inviteExpo->setValidate(2);
-        $em->merge($inviteExpo);
-        $em->flush($inviteExpo);
-        return new Response('switch to 2');
-        
-        }else if ($checkValidate === 2){
-            
-        $inviteExpo->setValidate(1);
-        $em->merge($inviteExpo);
-        $em->flush($inviteExpo);
-        return new Response('switch to 1');
+
+        if ($checkValidate === 1) {
+
+            $inviteExpo->setValidate(2);
+            $em->merge($inviteExpo);
+            $em->flush($inviteExpo);
+            return new Response('switch to 2');
+        } else if ($checkValidate === 2) {
+
+            $inviteExpo->setValidate(1);
+            $em->merge($inviteExpo);
+            $em->flush($inviteExpo);
+            return new Response('switch to 1');
         }
         return new Response('ok');
     }
@@ -144,23 +143,19 @@ class DemandeInviteController extends Controller {
         $expoArtiste = $expo->getfk_UserArtiste()->getId();
         $expoHote = $expo->getfk_UserHote()->getId();
 
-        if ($expoArtiste == $userId or $expoHote == $userId){
-        $this->get('session')->remove('expoSession');
-        $this->get('session')->set('expoSession', $expo);
-            
-        }
-        else {
-        $this->get('session')->remove('expoSession');
+        if ($expoArtiste == $userId or $expoHote == $userId) {
+            $this->get('session')->remove('expoSession');
+            $this->get('session')->set('expoSession', $expo);
+        } else {
+            $this->get('session')->remove('expoSession');
             echo("non");
             return $this->redirectToRoute('accueilTest');
-
         }
 
         return $this->render("expo/invitation.html.twig", array("listesSerieExpo" => $expo));
     }
 
-    
-     /**
+    /**
      * Retourne le Nombre de nouvelles invite
      * @Route("/get/new/invite")
      */
@@ -176,16 +171,15 @@ class DemandeInviteController extends Controller {
 
         return new JsonResponse($nbr);
     }
-    
-    
+
     /**
      * @Route("/join/expo/{id}")
      */
-    public function joinExpo($id){
+    public function joinExpo($id) {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $expo = $em->getRepository(Exposition::class)->find($id);
-        
+
 
         $guest = $em->getRepository(User::class)->find($user);
 
@@ -196,15 +190,18 @@ class DemandeInviteController extends Controller {
             $demande = new Demande_expo();
             $demande->setExpo($expo);
             $demande->setGuest($guest);
-            $demande->setValidate(3);
+            $demande->setValidate(1);
 
             $em->persist($demande);
             $em->flush($demande);
+            return new Response("Nouvelle demande");
         } else {
-
-            return new Response('Déjà invité');
+            $demandeM = $em->getRepository(Demande_expo::class)->findOneBy($check);
+            $demandeM->setValidate(1);
+            $em->merge($demandeM);
+            $em->flush($demandeM);
+            return new Response("Déjà dans la liste d'invité");
         }
-        return new Response('ok');
     }
-    
+
 }
