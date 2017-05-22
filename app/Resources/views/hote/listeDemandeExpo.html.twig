@@ -6,15 +6,16 @@
     <div class="container-fluid">
         <h1 class="">Mes expos</h1>
         {% for expo in expos %}
+           
 
-            <div class="col-md-12">
+            <div class="col-lg-12">
 
 
                 <div class="ibox float-e-margins">
 
                     <div class="ibox-title">
                         <a href="{{path('selcetionExpo',{'id': expo.id}) }}">
-                            <i class="fa fa-pencil-square-o fa-3" aria-hidden="true">  Editer Expo</i>
+                            <i class="fa fa-pencil-square-o fa-3" aria-hidden="true">Voir +</i>
                         </a>
                         <div class="ibox-tools">
                             <a class="collapse-link">
@@ -24,12 +25,32 @@
 
                         </div>
                     </div>
-
                     <div class="ibox-content">
+ {% if expo.messageHote != null%}
                         <div class="container">
+                            <div class="col-lg-6">
+                                <div class="middle-box">
+                                    {{expo.messageHote}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+
+                                <a><div  class="col-sm-2 widget red-bg reponseBlock">Refuser</div></a>
+
+                                <a href="{{path('hoteValide',{'id':expo.id})}}"><div  class="col-sm-offset-1 col-sm-2 col-sm-offset-1 widget navy-bg reponseBlock">Accepter</div></a>
 
 
-                            <div class="col-md-4">
+                            </div>
+
+
+                        </div>
+                                
+                                {% else %}
+                                
+                      <div class="container">
+
+
+                            <div class="col-lg-4">
                                 <h2>Rappel des informations</h2>
                                 <div> Date: {{expo.date|date("j F à g:i")}}</div>
                                 <div> Ville: {{expo.fkville }}</div>
@@ -37,7 +58,7 @@
 
 
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-lg-3">
                                 <h2>
                                     Apropo de l'hote<br>
                                 </h2>
@@ -56,34 +77,34 @@
                                 {% endif %}
 
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-lg-5">
                                 <h2>
                                     Mes series <br>
                                 </h2>
                                 <div class="container">
                                     {% if expo.fkserie != null %}
-                                            <div class="container">
                                         {% for serieExpo in expo.fkserie %}
-                                            <div class="col-md-1">
-                                                <img class=" img-thumbnail " src="/web/images/oeuvrePictures/{{serieExpo.img}}"> 
-                                            </div>
-
+                                            <img class=" img-thumbnail " src="/web/images/oeuvrePictures/{{serieExpo.img}}"> 
                                         {% endfor %}
-                                            </div>
                                     {% endif %} 
 
                                 </div>
                             </div>
                         </div>
+                                    
+                                 {% endif %}
                     </div>
                     <div class="ibox-footer">
                         <span class="pull-right">
-                        <button type="button" class="btn btn-outline btn-primary">Inviter des membres</button>
+                            The righ side of the footer
                         </span>
-                        <button type="button" class="btn btn-outline btn-primary">Inviterdd des membres</button>
+                        This is simple footer example
                     </div>
                 </div>
             </div>
+       
         {% endfor %}
-    </div>
-{% endblock%}
+
+
+        </div>
+        {% endblock%}

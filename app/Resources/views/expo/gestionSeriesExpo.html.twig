@@ -1,25 +1,73 @@
 {% extends "admin/adminTemplate.html.twig" %}
 
+{% block nav %}
+
+    <div class="row step">
+
+        <a href="{{path('editeInfoExpo')}}">
+            <div class="col-md-3">
+                <span class="fa fa-pencil-square-o"></span>
+                <p>Generale</p>
+            </div>
+        </a>
+        <a href="{{path('listePlace')}}">
+            <div class="col-md-3 ">
+                <span class="fa fa-home"></span>
+                <p>Lieux</p>
+            </div>
+        </a>
+        <a href="{{path('expoSerie')}}">
+            <div class="col-md-3 activestep">
+                <span class="fa fa-picture-o"></span>
+                <p>Série</p>
+            </div>
+        </a>
+        <a href="{{path('detailleExpo')}}">
+            <div id="last" class="col-md-3 ">
+                <span class="fa fa-id-card"></span>
+                <p>Récap</p>
+            </div>
+        </a>
+    </div>
+
+{% endblock%}
 
 {% block body %}
-    <a href="{{path('getSeriesUser')}}"><input type="submit" value="Ajouts serie" class="btn btn-default" ></a>
-    <div class="container">
-        <div class="col-sm-6 col-md-2">
 
-            {% for serieExpo in listesSerieExpo %}
-                <div class="thumbnail">
-                    <p>{{serieExpo.name}}</p>
-                    <a href="/edit/picture/serie/{{serieExpo.id}}">
-                        <img class="img-responsive" src="/web/images/oeuvrePictures/{{serieExpo.img}}" >
-                    </a>
-                    <a href="{{path('suprSerieExpo',{'id': serieExpo.id }) }}">
-                        <i class="  fa fa-trash fa-6" aria-hidden="true"></i>
-                    </a>
-                    
-                </div>
-            {% endfor %}
+
+    <div class="container">
+        <div class="row">
+<div class="ibox-footer"> 
+        <a href="{{path('getSeriesUser')}}"><input type="submit" value="Ajouts serie" class="btn btn-default" ></a>
+            {% if  is_granted("ROLE_ARTISTE")%}
+            <a href="{{path('selcetionListeExpo')}}"><input type="submit" value="Retour liste série artiste " class=" btn btn-danger" ></a>
+
+        {% endif %}
+        {% if  is_granted("ROLE_HOTE") %}
+            {% if not is_granted("ROLE_ARTISTE") %}
+                <a href="{{path('demandeExpos')}}"><input type="submit" value="Retour liste série hote " class=" btn btn-danger" ></a>
+                {% endif %}
+            {% endif %}
+
+</div>
+            <div class="">
+                {% for serieExpo in listesSerieExpo %}
+                    <div class="thumbnail col-lg-4">
+                        <p>{{serieExpo.name}}</p>
+                        <a href="/edit/picture/serie/{{serieExpo.id}}">
+                            <img class="img-responsive" src="/web/images/oeuvrePictures/{{serieExpo.img}}" >
+                        </a>
+                        <a href="{{path('suprSerieExpo',{'id': serieExpo.id }) }}">
+                            <i class="  fa fa-trash fa-6" aria-hidden="true"></i>
+                        </a>                   
+                    </div>
+                {% endfor %}
+            </div>
+
+
+
 
         </div>
     </div>
-     <a href="{{path('listePlace')}}"><input type="submit" value="Choix de l'hote" class="btn btn-default" ></a>
+     
 {% endblock %}

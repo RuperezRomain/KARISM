@@ -134,6 +134,21 @@ class Exposition implements JsonSerializable {
     private $messageHote;
     
     
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="artisteValid", type="boolean", nullable=true)
+     */
+    private $artisteValid;
+    
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="hoteValid", type="boolean", nullable=true)
+     */
+    private $hoteValid;
+    
+    
     function getId() {
         return $this->id;
     }
@@ -255,7 +270,23 @@ class Exposition implements JsonSerializable {
         $this->messageHote = $messageHote;
     }
 
-        
+    function getArtisteValid() {
+        return $this->artisteValid;
+    }
+
+    function getHoteValid() {
+        return $this->hoteValid;
+    }
+
+    function setArtisteValid($artisteValid) {
+        $this->artisteValid = $artisteValid;
+    }
+
+    function setHoteValid($hoteValid) {
+        $this->hoteValid = $hoteValid;
+    }
+
+            
     public function jsonSerialize() {
         return array(
             "id" => $this->id,

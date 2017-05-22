@@ -1,11 +1,14 @@
 {% extends "admin/adminTemplate.html.twig" %}
 
-{% block body %}
 
+
+{% block body %}
+{% if app.session.get('expoSession') != true %}
     <form action="{{ path('valideNomSerie')}}" method="post">
         <input type="text" name="nomSerie"  placeholder="Nom de la nouvelle serie">
         <input type="submit">
     </form>
+        {% endif %}
     <div class="container-fluid">
         {% for serie in series %}
             <div class="col-sm-6 col-md-2">
@@ -14,12 +17,13 @@
                         <img class="img-thumbnail" src="/web/images/oeuvrePictures/{{serie.img}}" >
                     </a>    
                     <div>
-                        {% if app.session.get('expoSession') is not defined %}
-                            <a href="/artiste/remove/serie/{{serie.id}}"><i class="  fa fa-trash fa-6" aria-hidden="true"></i></a>
-                            {% endif %}
                         <p>{{serie.name}}</p>
-                        {% if app.session.get('expoSession') is defined %}
+                        {% if app.session.get('expoSession') == true %}
                             <input class="seriesCheckbox" name="cheeck" id="{{serie.id}}" type="checkbox">
+
+                        {% else %}
+                            <a href="/artiste/remove/serie/{{serie.id}}"><i class="  fa fa-trash fa-6" aria-hidden="true"></i></a>
+
                         {% endif %}
                     </div>
                 </div>
