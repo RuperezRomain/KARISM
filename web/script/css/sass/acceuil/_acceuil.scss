@@ -46,3 +46,47 @@
 iframe{
     border: none;
 }
+
+.titled{
+   font-weight: 800;
+    text-shadow: 0 0 3px #000;
+   font-size: 50px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left:0;
+    right:0;
+    bottom:0;
+    color:#fff;
+    height:100px;
+}
+
+.subTitle{
+     font-weight: 600;
+    text-shadow: 0 0 3px #000;
+   font-size: 25px;
+    position: relative;
+    margin: auto;
+    top: 50px;
+    left:0;
+    right:0;
+    bottom:0;
+    color:#fff;
+}
+
+.titleSection{
+     font-weight: 400;
+    text-shadow: 0 0 1px #fff;
+   font-size: 20px;
+    position: relative;
+    margin: auto;
+    top: 0;
+    left:0;
+    right:0;
+    bottom:0;
+    color:black;  
+}
+
+.backgroundBlue{
+    background-color:$blue;
+}

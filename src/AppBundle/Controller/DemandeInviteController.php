@@ -46,7 +46,7 @@ class DemandeInviteController extends Controller {
     }
 
     /**
-     * @Route("/get/demande")
+     * @Route("/get/demande", name="getDemande")
      */
     public function getDemandeFromExpo() {
 
