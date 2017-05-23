@@ -27,7 +27,7 @@ class ExpoController extends Controller {
         if ($this->getUser()) {
             $this->get('session')->remove('expoSession');
 
-            $expos = $em->getRepository(Exposition::class)->findBy(array('fk_UserArtiste' => $this->getUser()),array('id' => 'desc'));
+            $expos = $em->getRepository(Exposition::class)->findBy(array('fk_UserArtiste' => $this->getUser()), array('id' => 'desc'));
             return $this->render("expo/listeExpos.html.twig", array('expos' => $expos));
         }
 
@@ -44,7 +44,21 @@ class ExpoController extends Controller {
         $f = $this->createForm('AppBundle\Form\ExpositionType', $expo);
         $f->handleRequest($request);
 
+        $expoPicture = $expo->getImg();
+   
+
+
+
         if ($f->isSubmitted() && $f->isValid()) {
+
+            if ($f->get('img')->getData() !== null) {
+                $nomDuFichier = md5(uniqid()) . "." . $expo->getImg()->getClientOriginalExtension();
+                $expo->getImg()->move('images/expoPictures', $nomDuFichier);
+                $expo->setImg($nomDuFichier);
+            } else {
+                $expo->setImg($expoPicture);
+            }
+
             $em->merge($expo);
             $em->flush();
 
@@ -94,6 +108,9 @@ class ExpoController extends Controller {
             $expo->setHoteValid(0);
             $expo->setStatus($statueNonValide);
 
+            $nomDuFichier = md5(uniqid()) . '.' . $expo->getImg()->getClientOriginalExtension();
+            $expo->getImg()->move('../web/images/expoPictures', $nomDuFichier);
+            $expo->setImg($nomDuFichier);
 
             $this->get('session')->remove('expoSession');
             $this->get('session')->set('expoSession', $expo);
@@ -300,51 +317,50 @@ class ExpoController extends Controller {
         if ($this->getUser()) {
             $this->get('session')->remove('expoSession');
 
-            $expos = $em->getRepository(Exposition::class)->findBy(array('fk_UserHote' => $this->getUser()),array('id' => 'desc'));
+            $expos = $em->getRepository(Exposition::class)->findBy(array('fk_UserHote' => $this->getUser()), array('id' => 'desc'));
             return $this->render("hote/listeDemandeExpo.html.twig", array('expos' => $expos));
         }
 
         return $this->redirect($this->generateUrl('login'));
     }
-    
-    
+
     /**
      * @Route("/hote/remote/expo/{id}/valide", name="hoteValide")
      */
-    public function remoteExpoValide($id){
-         $em = $this->getDoctrine()->getManager();
-         $expo = $em->getRepository(Exposition::class)->find($id);
-         
-         if($expo->getfk_UserHote() == $this->getUser()){
+    public function remoteExpoValide($id) {
+        $em = $this->getDoctrine()->getManager();
+        $expo = $em->getRepository(Exposition::class)->find($id);
+
+        if ($expo->getfk_UserHote() == $this->getUser()) {
             $expo->setMessageHote(null);
             $em->merge($expo);
             $em->flush();
-            
+
             return $this->redirect($this->generateUrl('demandeExpos'));
-         }
-         
-         return $this->redirect($this->generateUrl('login'));
+        }
+
+        return $this->redirect($this->generateUrl('login'));
     }
-    
-    
-    
+
     /**
      * @Route("/hote/remote/expo/{id}/refue", name="hoteRefuse")
      */
-    public function remoteExpoRefue($id){
+    public function remoteExpoRefue($id) {
         $em = $this->getDoctrine()->getManager();
-         $expo = $em->getRepository(Exposition::class)->find($id);
-         
-         if($expo->getfk_UserHote() == $this->getUser()){
+        $expo = $em->getRepository(Exposition::class)->find($id);
+
+        if ($expo->getfk_UserHote() == $this->getUser()) {
             $expo->setMessageHote(null);
             $expo->setfk_UserHote(null);
-            
+            $expo->setHoteValid(null);
+
             $em->merge($expo);
             $em->flush();
-            
+
             return $this->redirect($this->generateUrl('demandeExpos'));
-         }
-         
-         return $this->redirect($this->generateUrl('login'));
+        }
+
+        return $this->redirect($this->generateUrl('login'));
     }
+
 }
