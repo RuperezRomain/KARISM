@@ -317,7 +317,6 @@ class ExpoController extends Controller {
          
          if($expo->getfk_UserHote() == $this->getUser()){
             $expo->setMessageHote(null);
-            
             $em->merge($expo);
             $em->flush();
             
@@ -327,10 +326,25 @@ class ExpoController extends Controller {
          return $this->redirect($this->generateUrl('login'));
     }
     
+    
+    
     /**
-     * @Route("/hote/remote/expo/{id}/refue")
+     * @Route("/hote/remote/expo/{id}/refue", name="hoteRefuse")
      */
-    public function remoteExpoRefue(){
-       
+    public function remoteExpoRefue($id){
+        $em = $this->getDoctrine()->getManager();
+         $expo = $em->getRepository(Exposition::class)->find($id);
+         
+         if($expo->getfk_UserHote() == $this->getUser()){
+            $expo->setMessageHote(null);
+            $expo->setfk_UserHote(null);
+            
+            $em->merge($expo);
+            $em->flush();
+            
+            return $this->redirect($this->generateUrl('demandeExpos'));
+         }
+         
+         return $this->redirect($this->generateUrl('login'));
     }
 }
