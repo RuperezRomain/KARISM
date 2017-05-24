@@ -46,7 +46,21 @@ class ExpoController extends Controller {
         $f = $this->createForm('AppBundle\Form\ExpositionType', $expo);
         $f->handleRequest($request);
 
+        $expoPicture = $expo->getImg();
+   
+
+
+
         if ($f->isSubmitted() && $f->isValid()) {
+
+            if ($f->get('img')->getData() !== null) {
+                $nomDuFichier = md5(uniqid()) . "." . $expo->getImg()->getClientOriginalExtension();
+                $expo->getImg()->move('images/expoPictures', $nomDuFichier);
+                $expo->setImg($nomDuFichier);
+            } else {
+                $expo->setImg($expoPicture);
+            }
+
             $em->merge($expo);
             $em->flush();
 
@@ -96,6 +110,9 @@ class ExpoController extends Controller {
             $expo->setHoteValid(0);
             $expo->setStatus($statueNonValide);
 
+            $nomDuFichier = md5(uniqid()) . '.' . $expo->getImg()->getClientOriginalExtension();
+            $expo->getImg()->move('../web/images/expoPictures', $nomDuFichier);
+            $expo->setImg($nomDuFichier);
 
             $this->get('session')->remove('expoSession');
             $this->get('session')->set('expoSession', $expo);
@@ -318,7 +335,6 @@ class ExpoController extends Controller {
 
         if ($expo->getfk_UserHote() == $this->getUser()) {
             $expo->setMessageHote(null);
-
             $em->merge($expo);
             $em->flush();
 
@@ -329,29 +345,20 @@ class ExpoController extends Controller {
     }
 
     /**
-     * @Route("/hote/remote/expo/{id}/refue")
+     * @Route("/hote/remote/expo/{id}/refue", name="hoteRefuse")
      */
-    public function remoteExpoRefue() {
-        
-    }
-
-    /**
-     * Detail expo id
-     * @Route("/get/expo/{id}")
-     */
-    public function getExpoDetail($id) {
+    public function remoteExpoRefue($id) {
         $em = $this->getDoctrine()->getManager();
-        ///Recuperation expo
         $expo = $em->getRepository(Exposition::class)->find($id);
-        $checkValidate = $expo->getStatus()->getNom();
-        $user = $this->getUser();
-        $demande = $em->getRepository(Demande_expo::class)->findBy(array("guest" => $user, "expo" => $expo));
-
-        if ($checkValidate === "VALIDE") {
-            return $this->render("expo/detailExpoId.html.twig", array("expo" => $expo, "demande" => $demande));
-        } else {
-            return $this->redirectToRoute('accueilTest');
+        if ($expo->getfk_UserHote() == $this->getUser()) {
+            $expo->setMessageHote(null);
+            $expo->setfk_UserHote(null);
+            $expo->setHoteValid(null);
+            $em->merge($expo);
+            $em->flush();
+            return $this->redirect($this->generateUrl('demandeExpos'));
         }
+        return $this->redirect($this->generateUrl('login'));
     }
 
 }
