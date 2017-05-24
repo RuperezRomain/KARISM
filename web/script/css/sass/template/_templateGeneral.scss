@@ -92,6 +92,11 @@
     width: auto;
 }
 
+.footerissticky{
+  position: fixed;
+  bottom: 0px;
+  width: 870px;
+}
 
 @media screen and (max-width: 770px) {
     .retourAccueil{

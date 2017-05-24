@@ -81,12 +81,12 @@
                                         {% endif %}
                                         </div>
                                     </div>
-                                    <button style="z-index:1000;"class="btn-nav navbar-toggler  btn-warning navbar-toggle-left" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+                                    {% if is_granted('ROLE_USER') is not empty %}
+                                    <button style="z-index:1000;"class=" btn btn-primary btn-nav navbar-toggler navbar-toggle-left" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                         <i class="fa fa-bars" aria-hidden="true"></i>
 
                                     </button>
-
-                                    {% if is_granted('ROLE_USER') is not empty %}
                                         <div class="collapse navbar-collapse" id="navbarNav">
                                             <div  class="navbar-nav col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                                 <div class="col-xs-0 col-sm-0 col-md-0 col-lg-2"></div>
@@ -202,7 +202,7 @@
                             {% endblock %}
                             {% block body %}{% endblock %}
 
-                            <footer class="panel-footer footerColor footerText"> 
+                            <footer id="footer" class="panel-footer footerColor footerText"> 
                                 <div class="container-fluid">
                                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                         <h5><strong>A propos</strong></h5>
@@ -240,6 +240,7 @@
                                 <script src="{{ asset('script/jquery/jquery.js') }}"></script>
                                 <script src="{{ asset('script/js/bootstrap.js') }}"></script>
                                 <script src="{{ asset('script/js/angular.min.js') }}"></script>
+                                <script src="{{ asset('script/js/footer.js') }}"></script>
                             {% endblock %}
                             {% block footer %}
 
