@@ -1,8 +1,8 @@
 {% extends "admin/adminTemplate.html.twig" %}
-
-{% if app.session.get('expoSession') is defined %}
-
     {% block nav %}
+{% if app.session.get('expoSession')  == true %}
+
+
         <div class="row step">
 
             <a href="{{path('editeInfoExpo')}}">
@@ -31,9 +31,12 @@
             </a>
         </div>
 
-    {% endblock%}
+            {%else%}
+                
+                 {{parent()}}
+    
 {% endif %}
-
+{% endblock%}
 
 {% block body %}
 
@@ -46,25 +49,35 @@
 
                     </div>
                     {{form_start(formInfoExpo)}}
+                    <div>
+                        {{ form_errors(formInfoExpo.date)}}
+                    </div>
 
-
-                    <div class=" col-lg-offset-1 col-lg-1 ">Lieux:{{ form_widget(formInfoExpo.fk_ville, { 'attr': {'class': 'form-control'}})}}</div>
+                    <div class=" ">Lieux:{{ form_widget(formInfoExpo.fk_ville, { 'attr': {'class': 'form-control'}})}}</div>
+                    
 
                     <div class="row">
                         <div class="col-lg-offset-2 col-lg-8 " id="appbundle_exposition_date"><p> Date</p><p> Heurs</p></div>
-                        <div class="col-lg-offset-2 col-lg-8 ">{{ form_widget(formInfoExpo.date)}}</div>
+                        <div class="col-lg-offset-2 col-lg-8 ">{{ form_widget(formInfoExpo.date)}}
                     </div>
                     <div class="container-fluid ">
 
-                        <div  class=" col-lg-offset-3 col-lg-1 "> Surface:{{ form_widget(formInfoExpo.surfaceRquirements, { 'attr': {'class': 'form-control'}})}}</div>
+                        <div  class=" col-lg-offset-2 col-lg-2 "> Surface:{{ form_widget(formInfoExpo.surfaceRquirements, { 'attr': {'class': 'form-control'}})}}</div>
 
-                        <div class=" col-lg-offset-4 col-lg-1"> Place:{{ form_widget(formInfoExpo.inviteRquirements, { 'attr': {'class': 'form-control'}})}} </div>
+                        <div class=" col-lg-offset-4 col-lg-2"> Place:{{ form_widget(formInfoExpo.inviteRquirements, { 'attr': {'class': 'form-control'}})}} </div>
                     </div>
                     <div class="container-fluid">
                         <div class="col-lg-offset-4 col-lg-4" >Description:{{ form_widget(formInfoExpo.description, { 'attr': {'class': 'form-control'}})}}</div>
 
                     </div>
-                    <input type="submit" class="btn btn-primary" value="Validation !" >
+                   
+                        <div class="col-lg-4 col-lg-offset-8" >Image (png ou jpeg):{{ form_widget(formInfoExpo.img, { 'attr': {'class': 'form-control'}})}}</div>
+              
+                    
+                </div>
+            </div>
+                        <div class="ibox-footer">
+                            <input type="submit" class="btn btn-primary" value="Validation !" >
 
                     {{form_end(formInfoExpo)}}
                
@@ -78,8 +91,7 @@
                             <a href="{{path('demandeExpos')}}"><input type="submit" value="Retour liste série hote " class=" btn btn-danger" ></a>
                         {% endif %}
                     {% endif %}
-                </div>
-            </div>
+                        </div>
         </div>
     </div>
     <style>

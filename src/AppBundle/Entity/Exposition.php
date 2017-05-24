@@ -2,12 +2,14 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use JsonSerializable;
+use Symfony\Component\Validator\Constraints\File;
 
 /**
  * Exposition
@@ -25,15 +27,14 @@ class Exposition implements JsonSerializable {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
-    
+
     /**
      * Many Users have One Address.
      * @ManyToOne(targetEntity="Place")
      * @JoinColumn(name="fk_Place", referencedColumnName="id",nullable=true)
      */
     private $fk_Place;
-    
+
     /**
      * @var array
      *
@@ -43,7 +44,7 @@ class Exposition implements JsonSerializable {
      *      inverseJoinColumns={@ORM\JoinColumn(name="fk_Serie",referencedColumnName="id")})
      */
     private $fk_Serie;
-    
+
     /**
      * 
      * @ManyToOne(targetEntity="User")
@@ -59,9 +60,15 @@ class Exposition implements JsonSerializable {
     private $fk_UserArtiste;
 
     /**
-     * @var DateTime
-     *
-     * @ORM\Column(name="date", type="datetime")
+     * 
+     * @Assert\Range(
+     *              min = "now",
+     *              minMessage = "La date n'est pas valide",
+     *              )
+     * @ORM\Column(
+     *             name="date",
+     *             type="datetime"
+     *             )
      */
     private $date;
 
@@ -75,36 +82,35 @@ class Exposition implements JsonSerializable {
      */
     private $listinvite;
 
-    
     /**
      * Many Place have One fk_place_type.
      * @ManyToOne(targetEntity="City")
      * @JoinColumn(name="fk_ville", referencedColumnName="id")
      */
     private $fk_ville;
-    
+
     /**
      * @var int
      *
      * @ORM\Column(name="surfaceRquirements", type="integer")
      */
     private $surfaceRquirements;
-    
+
     /**
      * @var int
      *
      * @ORM\Column(name="inviteRquirements", type="integer")
      */
     private $inviteRquirements;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="string")
      */
     private $description;
-    
-     /**
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="artistviewed", type="boolean", nullable=true)
@@ -117,7 +123,7 @@ class Exposition implements JsonSerializable {
      * @ORM\Column(name="hoteviewed", type="boolean",nullable=true)
      */
     private $hoteviewed;
-    
+
     /**
      * Many Users have One Address.
      * @ManyToOne(targetEntity="Status")
@@ -125,43 +131,52 @@ class Exposition implements JsonSerializable {
      */
     private $status;
 
-    
     /**
      * @var string
      *
      * @ORM\Column(name="messageHote", type="string", nullable=true)
      */
     private $messageHote;
-    
-    
+
     /**
      * @var bool
      *
      * @ORM\Column(name="artisteValid", type="boolean", nullable=true)
      */
     private $artisteValid;
-    
+
     /**
      * @var bool
      *
      * @ORM\Column(name="hoteValid", type="boolean", nullable=true)
      */
     private $hoteValid;
-    
-    
+
+    /**
+     * @ORM\Column(name="img", type="string", nullable=true)
+     * @Assert\File(
+     * maxSize = "1024k",
+     * 
+     * mimeTypes={"image/png",
+     *            "image/jpeg",
+     *            "application/pdf",
+     *           }
+     * )
+     */
+    private $img;
+
     function getId() {
         return $this->id;
     }
 
-        
     function getFk_Place() {
         return $this->fk_Place;
     }
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->fk_Serie = new ArrayCollection();
     }
+
     function getFkserie() {
         return $this->fk_Serie->toArray();
     }
@@ -261,7 +276,7 @@ class Exposition implements JsonSerializable {
     function setStatus($status) {
         $this->status = $status;
     }
-    
+
     function getMessageHote() {
         return $this->messageHote;
     }
@@ -286,7 +301,14 @@ class Exposition implements JsonSerializable {
         $this->hoteValid = $hoteValid;
     }
 
-            
+    function getImg() {
+        return $this->img;
+    }
+
+    function setImg($img) {
+        $this->img = $img;
+    }
+
     public function jsonSerialize() {
         return array(
             "id" => $this->id,
@@ -297,8 +319,5 @@ class Exposition implements JsonSerializable {
             "serie" => $this->fk_Serie,
         );
     }
-    
 
-   
 }
-
