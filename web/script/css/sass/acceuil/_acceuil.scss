@@ -1,5 +1,6 @@
 
 .sizeScreen{
+    max-height: 5600px;
     background-color: $colorMid ;
     background-image: url('https://lh3.google.com/u/0/d/0B7a-buqq3ksYcWp5YXkxbXVKT3c=w1301-h678-iv1');
     background-position: center;
@@ -37,7 +38,7 @@
 }
 
 .colorText{
-    color: #fff;
+    color: $blue;
 }
 
 .thumbnail{

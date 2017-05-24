@@ -20,75 +20,76 @@
 
 
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div  id="navBar" class="row navigation">
-                    <div class="col-xs-2 col-sm-4 col-md-5 col-lg-5 ">
+                <div id="navBar" class="testkk ">
+                    <div  class="row navigation">
+                        <div class="col-xs-2 col-sm-4 col-md-5 col-lg-5 ">
 
-                        <a href="{{path('accueilTest')}}"><img src="/web/images/source/logoKarism.png" height="42" width="130"></a></div>
-                            {% if is_granted("ROLE_ARTISTE") 
+                            <a href="{{path('accueilTest')}}"><img src="/web/images/source/logoKarism.png" height="42" width="130"></a></div>
+                                {% if is_granted("ROLE_ARTISTE") 
                                     or is_granted('ROLE_USER')
                                     or is_granted('ROLE_ADMIN')
                                     or is_granted('ROLE_ARTISTE')
                                     or is_granted('ROLE_HOTE') %}
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-5"data-animation="flash"><h4><a class="retourAccueil text-warning" href="{{ path('accueilTest') }}">Bonjour {{ app.user.username|upper}}</a></h4></div>
-                                {%else%}
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-5 "><h4><a class="text-warning retourAccueil" href="{{ path('accueilTest') }}">Bienvenue sur KARISM</a></h4></div>
-                                    {% endif %}
-                                        {% if is_granted("ROLE_ARTISTE") 
+                        <div style="top:5px;"class="col-xs-4 col-sm-4 col-md-4 col-lg-5"data-animation="flash"><h4><a class="retourAccueil text-warning" href="{{ path('accueilTest') }}">Bonjour {{ app.user.username|upper}}</a></h4></div>
+                                    {%else%}
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-5 "><h4><a class="text-warning retourAccueil" href="{{ path('accueilTest') }}">Bienvenue sur KARISM</a></h4></div>
+                                        {% endif %}
+                                            {% if is_granted("ROLE_ARTISTE") 
                                     or is_granted('ROLE_USER')
                                     or is_granted('ROLE_ADMIN')
                                     or is_granted('ROLE_ARTISTE')
                                     or is_granted('ROLE_HOTE') %}
-                                        {% if is_granted('ROLE_USER') is not empty %}
-                                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 dropdown"><a href="http://placehold.it"><img class="roundedimg" src="/web/images/profilPictures/{{app.user.profilPicture}}"></a>
+                                            {% if is_granted('ROLE_USER') is not empty %}
+                                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 dropdown"><a href="http://placehold.it"><img class="roundedimg" src="/web/images/profilPictures/{{app.user.profilPicture}}"></a>
 
-                                    <button class="btn btn-default dropdown-toggle btn btn-link text-left " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        {{ app.user.username }}<span class="caret"> </span>
-                                    </button>
-                                    <ul class="dropdown-menu text-warning" aria-labelledby="dropdownMenu1">
-                                        <li><a href="/profil/{{app.user.id}}">Profil</a></li>
-                                            {% if is_granted("ROLE_ADMIN") %}
-                                            <li><a href="{{ path('admin') }}">Panneaux d'administration</a></li>
-                                            {% endif %}
-                                            {% if is_granted("ROLE_HOTE") %}
-                                            <li><a href="{{ path('hotePlaces') }}">Mes lieux</a></li>
-                                            <li><a href="">Mes expos</a></li>
-                                            {% else %}
-                                            <li><a href="{{path('requestHote')}}">Devenir Hote</a></li>
-                                            {% endif %}
-                                            {% if not is_granted("ROLE_ARTISTE")%}
-                                            <li><a href="{{ path('requestArtiste') }}">Devenir Artiste</a></li>
-                                            {% endif %}
-                                            {% if is_granted("ROLE_ARTISTE") %}
-                                            <li><a href="{{ path('getSeriesUser') }}">Mes séries</a></li>
-                                            {% endif %}
+                                        <button class="btn btn-default dropdown-toggle btn btn-link text-left " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            {{ app.user.username }}<span class="caret"> </span>
+                                        </button>
+                                        <ul class="dropdown-menu text-warning" aria-labelledby="dropdownMenu1">
+                                            <li><a href="/profil/{{app.user.id}}">Profil</a></li>
+                                                {% if is_granted("ROLE_ADMIN") %}
+                                                <li><a href="{{ path('admin') }}">Panneaux d'administration</a></li>
+                                                {% endif %}
+                                                {% if is_granted("ROLE_HOTE") %}
+                                                <li><a href="{{ path('hotePlaces') }}">Mes lieux</a></li>
+                                                <li><a href="">Mes expos</a></li>
+                                                {% else %}
+                                                <li><a href="{{path('requestHote')}}">Devenir Hote</a></li>
+                                                {% endif %}
+                                                {% if not is_granted("ROLE_ARTISTE")%}
+                                                <li><a href="{{ path('requestArtiste') }}">Devenir Artiste</a></li>
+                                                {% endif %}
+                                                {% if is_granted("ROLE_ARTISTE") %}
+                                                <li><a href="{{ path('getSeriesUser') }}">Mes séries</a></li>
+                                                {% endif %}
 
-                                        <li class="bg-warning"><a href="{{ path('logout') }}">Déconnexion</a></li>
-                                    </ul>
-                                {% endif %}
-
-                                {% if is_granted("ROLE_ADMIN") %}
-
-                                    <a href="{{ path('admin') }}"> <button class="btn btn-w-m btn-warning">Panneaux d'administration</button></a>
-
-
-                                {% endif %}
-
-
-                                {%else%}
-                                    <p class="text-center" ><a href="{{ path('register') }}">S'inscrire</a></p>
-                                    <p class="text-center" ><a href="{{ path('login') }}">Se connecter</a></p>
+                                            <li class="bg-warning"><a href="{{ path('logout') }}">Déconnexion</a></li>
+                                        </ul>
                                     {% endif %}
+
+                                    {% if is_granted("ROLE_ADMIN") %}
+
+                                        <a href="{{ path('admin') }}"> <button class="btn btn-w-m btn-warning">Panneaux d'administration</button></a>
+
+
+                                    {% endif %}
+
+
+                                    {%else%}
+                                        <p class="text-center" ><a href="{{ path('register') }}">S'inscrire</a></p>
+                                        <p class="text-center" ><a href="{{ path('login') }}">Se connecter</a></p>
+                                        {% endif %}
+                                        </div>
                                     </div>
-
                                     <button style="z-index:1000;"class="btn-nav navbar-toggler  btn-warning navbar-toggle-left" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                         <i class="fa fa-bars" aria-hidden="true"></i>
 
                                     </button>
 
-                                    <div class="collapse navbar-collapse" id="navbarNav">
-                                        <div  class="navbar-nav col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                            <div class="col-xs-0 col-sm-0 col-md-0 col-lg-2"></div>
-                                            {% if is_granted('ROLE_USER') is not empty %}
+                                    {% if is_granted('ROLE_USER') is not empty %}
+                                        <div class="collapse navbar-collapse" id="navbarNav">
+                                            <div  class="navbar-nav col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                                <div class="col-xs-0 col-sm-0 col-md-0 col-lg-2"></div>
                                                 <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 dropdown text-warning">
 
                                                     <button class="btn btn-outline dropdown-toggle btn-link text-left faa-parent animated-hover" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -102,41 +103,54 @@
                                                             <li><a href="{{ path('demandeExpos') }}">Expo Hote</a></li>
                                                             {% endif %}
                                                         <li><a href="{{ path('getDemande') }}">Gestionnaire d'invitation</a></li>
-                                                        {% endif %}
 
-                                            </div>
-                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 dropdown text-warning">
+                                                </div>
 
-                                                <button class="btn btn-outline dropdown-toggle btn-link text-left faa-parent animated-hover " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                    <i class="fa fa-picture-o fa-2x faa-float" aria-hidden="true"></i><div id="show"><p>Contenu <span class="caret"></span></p></div>
-                                                </button>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                    {% if is_granted("ROLE_ARTISTE") %}
-                                                        <li><a href="{{ path('getSeriesUser')}}">Mes séries</a></li>
-                                                        {% endif %}
-                                                        {% if is_granted("ROLE_HOTE") %}
-                                                        <li><a href="{{ path('hotePlaces') }}">Mes Lieux</a></li>
-                                                        {% endif %}
+                                                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 dropdown text-warning">
 
-                                            </div>
-                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 dropdown text-warning">
+                                                    <button class="btn btn-outline dropdown-toggle btn btn-link text-left faa-parent animated-hover " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                        <i class="fa fa-user-o fa-2x faa-float" aria-hidden="true"></i><div id="show"><p>Profil <span class="caret"> </span></p></div>
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                        {% if is_granted("ROLE_USER") %}
+                                                            <li><a href="/profil/{{app.user.id}}">Mon profil</a></li>
+                                                            <li><a href="{{ path('profilEdit') }}">Editer mon profil</a></li>
+                                                            {% endif %}
 
-                                                <button class="btn btn-outline dropdown-toggle btn btn-link text-left faa-parent animated-hover " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                    <i class="fa fa-user-o fa-2x faa-float" aria-hidden="true"></i><div id="show"><p>Profil <span class="caret"> </span></p></div>
-                                                </button>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                    {% if is_granted("ROLE_USER") %}
-                                                        <li><a href="/profil/{{app.user.id}}">Mon profil</a></li>
-                                                        <li><a href="{{ path('profilEdit') }}">Editer mon profil</a></li>
-                                                        {% endif %}
+                                                </div>
+                                                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 dropdown text-warning">
+                                                    <button class="btn btn-outline btn btn-link text-left  " >
+                                                        <a class="text-warning faa-parent animated-hover " href="/recherche"><i class="fa fa-search fa-2x faa-float" aria-hidden="true"></i><div id="show"><p>Rechercher</p></div></a>
+                                                    </button>
+                                                </div>
+                                                {% if is_granted("ROLE_ARTISTE") or is_granted("ROLE_HOTE")%}
+                                                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 dropdown text-warning">
 
-                                            </div>
-                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 dropdown text-warning">
-                                                <button class="btn btn-outline btn btn-link text-left  " >
-                                                    <a class="text-warning faa-parent animated-hover " href="/recherche"><i class="fa fa-search fa-2x faa-float" aria-hidden="true"></i><div id="show"><p>Rechercher</p></div></a>
-                                                </button>
-                                            </div>
-                                            <div class="col-xs-0 col-sm-0 col-md-0 col-lg-1"></div>
+                                                        <button class="btn btn-outline dropdown-toggle btn-link text-left faa-parent animated-hover " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                            <i class="fa fa-picture-o fa-2x faa-float" aria-hidden="true"></i><div id="show"><p>Contenu <span class="caret"></span></p></div>
+                                                        </button>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                            {% if is_granted("ROLE_ARTISTE") %}
+                                                                <li><a href="{{ path('getSeriesUser')}}">Mes séries</a></li>
+                                                                {% endif %}
+                                                                {% if is_granted("ROLE_HOTE") %}
+                                                                <li><a href="{{ path('hotePlaces') }}">Mes Lieux</a></li>
+                                                                {% endif %}
+                                                                {% if not is_granted("ROLE_HOTE")%}    
+                                                            {%endif%} 
+
+                                                    </div>
+                                                {%endif%}
+                                                                                                    {% if not is_granted("ROLE_ARTISTE") %}
+                                                    <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2  text-warning">
+                                                        <button type="button" class="btn btn-block btn-outline btn-primary faa-parent animated-hover"><i class="fa fa-picture-o faa-burst" aria-hidden="true"></i><h4>Devenir Artiste</h4></button>
+                                                    </div>{% endif %}
+                                                {% if not is_granted("ROLE_HOTE") %}
+                                                    <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2 dropdown text-warning">
+                                                        <a class="text-warning" href="{{path('requestHote')}}"><button type="button" class="btn btn-block btn-outline btn-warning faa-parent animated-hover"><i class="fa fa-home faa-burst" aria-hidden="true"></i><h4>Devenir Hôte</h4></button></a>
+                                                    </div>{% endif %}
+                                                <div class="col-xs-0 col-sm-0 col-md-0 col-lg-1"></div>
+                                            {% endif %}
                                             {#{% if is_granted("ROLE_USER") %}
 
                                                 {% if  is_granted("ROLE_ARTISTE")%}
@@ -207,7 +221,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                                         <div class="text-center">
-                                            <img src="/web/images/logo karism.png">
+                                            <a style="background:orange;" href="{{path('accueilTest')}}"><img src="/web/images/source/logoKarism.png" width="130"></a>
 
                                             <p><i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
                                                 <i class="fa fa-instagram fa-2x" aria-hidden="true"></i> 
