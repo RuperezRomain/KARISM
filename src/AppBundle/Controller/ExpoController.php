@@ -7,6 +7,7 @@ use AppBundle\Entity\Exposition;
 use AppBundle\Entity\Place;
 use AppBundle\Entity\Serie;
 use AppBundle\Entity\Status;
+use AppBundle\Entity\Style;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -47,7 +48,7 @@ class ExpoController extends Controller {
         $f->handleRequest($request);
 
         $expoPicture = $expo->getImg();
-   
+
 
 
 
@@ -361,4 +362,80 @@ class ExpoController extends Controller {
         return $this->redirect($this->generateUrl('login'));
     }
 
+    ////////////////Retourne Exposition  dans le Home 
+
+    /**
+     * Retourne Exposition pour user non logé
+     * @Route("/get/expos/valide/",name="getExpos")
+     * 
+     */
+    function getExposValid() {
+
+        if (count($listeExpos) < 7) {
+            $widthExpos = 7 - count($listeExpos);
+            $expos = $em->getRepository(Exposition::class)->findByStatus(2);
+            for ($i = 0; $i < $widthExpos; $i++) {
+                array_push($listeExpos, $expos[array_rand($expos)]);
+            }
+        }
+        return $this->render("default/accueil.html.twig", array('listeExpos' => $listeExpos));
+    }
+
+    /**
+     * Retourne Exposition pour user logé
+     * @Route("/get/expo/valide/style",name="getExposByStyle")
+     */
+    function getExposValidByStyle() {
+
+        $em = $this->getDoctrine()->getManager();
+
+
+        $stylesUser = $this->getUser()->getStyle();
+
+        $listeExpos = array();
+        $listeStyles = array();
+
+//Recup les style de luser
+        for ($i = 0; $i < count($stylesUser); $i++) {
+            $style = $em->getRepository(Style::class)->find($stylesUser[$i]->getId());
+            array_push($listeStyles, $style);
+        }
+
+//recup les expo qui on des serie dont les images coresponde au style le l'user        
+        $expos = $em->getRepository(Exposition::class)->findBy(array('status' => 2));
+
+        for ($i = 0; $i < count($listeStyles); $i++) {
+            for ($j = 0; $j < count($expos); $j++) {
+                $series = $expos[$j]->getFkSerie();
+                foreach ($series as $serie) {
+                    $pictures = $serie->getFk_picture();
+                    foreach ($pictures as $picture) {
+
+                        $stylePicture = $picture->getStyle();
+
+                        if ($stylePicture[1] == $listeStyles[$i]) {
+
+                            array_push($listeExpos, $expos[$j]);
+                        }
+                    }
+                }
+            }
+        }
+
+///Si il y a moin de 7 expo avec le style de l'user 
+// alors on vas chercher d'autre expo 
+
+        if (count($listeExpos) < 7) {
+            $widthExpos = 7 - count($listeExpos);
+            $expos = $em->getRepository(Exposition::class)->findByStatus(2);
+            for ($i = 0; $i < $widthExpos; $i++) {
+                array_push($listeExpos, $expos[array_rand($expos)]);
+            }
+        }
+
+
+        return $this->render("default/accueil.html.twig", array('listeExpos' => $listeExpos));
+    }
+
+    
 }
