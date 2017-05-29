@@ -1,10 +1,11 @@
-{% extends "base.template.html.twig" %}
+{% extends "admin/adminTemplate.html.twig" %}
 
 {% block stylesheets %}
     {{parent()}} 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{#    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">#}
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('/script/css/templateInspinia.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/script/css/font-awesome-animated.css') }}" />
     <link rel="stylesheet" href="{{ asset('/script/js/plugins/sweetalert/sweetalert_1.css') }}" />
 
     <meta name="viewport" content="width=device-width, user-scalable=no">
@@ -68,17 +69,17 @@
                                                 {% if checkDemandes.validate == 0 %}
 
                                                     <tr class=' gradeA odd'  id="{{checkDemandes.expo.id}}" role='row'>
-                                                        <td class=' hote-clickable-row sorting_1' data-href="./get/serie/default/user/">{{checkDemandes.expo.description}}</td>
-                                                        <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserArtiste.id}}" class='btn btn-outline btn-primary btn-info btn-block btn-lg'><i class='fa fa-user-circle-o'></i> {{checkDemandes.expo.Fk_UserArtiste.username}}</a></td>
-                                                        <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserHote.id}}" class='btn btn-outline btn-info btn-block btn-lg'><i class='fa fa-user-circle-o'></i> {{checkDemandes.expo.Fk_UserHote.username}}</a></td>
+                                                        <td class=' hote-clickable-row sorting_1'><a href="/get/expo/{{checkDemandes.expo.id}}" target="_blank" class='btn btn-outline btn-primary btn-info btn-block btn-lg faa-parent animated-hover'><i class='fa fa-eye faa-pulse'></i> Visiter</a></td>
+                                                        <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserArtiste.id}}" target="_blank" class='btn btn-outline btn-primary btn-info btn-block btn-lg faa-parent animated-hover'><i class='fa fa-user-circle-o faa-pulse'></i> {{checkDemandes.expo.Fk_UserArtiste.username}}</a></td>
+                                                        <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserHote.id}}" target="_blank" class='btn btn-outline btn-info btn-block btn-lg faa-parent animated-hover'><i class='fa fa-user-circle-o faa-pulse'></i> {{checkDemandes.expo.Fk_UserHote.username}}</a></td>
                                                         <td class="acceptInvite">                                                                
-                                                            <button class='btn btn-outline btn-primary btn-block' type='button'>
-                                                                <i class='fa fa-check-circle fa-2x'></i>
+                                                            <button class='btn btn-outline btn-primary btn-block faa-parent animated-hover' type='button'>
+                                                                <i class='fa fa-check-circle fa-2x  faa-flash animated-hover'></i>
                                                             </button>
                                                         </td>
                                                         <td class="declineInvite">
-                                                            <button class='btn btn-outline btn-danger btn-block' type='button'>
-                                                                <i class='fa fa-times-circle fa-2x'></i></button>
+                                                            <button class='btn btn-outline btn-danger btn-block faa-parent animated-hover' type='button'>
+                                                                <i class='fa fa-times-circle fa-2x  faa-flash animated-hover'></i></button>
                                                         </td>
 
                                                     </tr>
@@ -155,16 +156,16 @@
                                             {% if checkDemandes.validate == 1 %}
 
                                                 <tr id="{{checkDemandes.expo.id}}" role='row'>
-                                                    <td class=' hote-clickable-row sorting_1' data-href="./get/serie/default/user/">{{checkDemandes.expo.description}}</td>
-                                                    <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserArtiste.id}}" class='btn btn-outline btn-primary btn-info btn-block btn-lg'><i class='fa fa-user-circle-o'></i> {{checkDemandes.expo.Fk_UserArtiste.username}}</a></td>
-                                                    <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserHote.id}}" class='btn btn-outline btn-info btn-block btn-lg'><i class='fa fa-user-circle-o'></i> {{checkDemandes.expo.Fk_UserHote.username}}</a></td>
+                                                    <td class=' hote-clickable-row sorting_1'><a href="/get/expo/{{checkDemandes.expo.id}}" target="_blank" class='btn btn-outline btn-primary btn-info btn-block btn-lg faa-parent animated-hover'><i class='fa fa-eye faa-pulse'></i> Visiter</a></td>
+                                                    <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserArtiste.id}}" target="_blank" class='btn btn-outline btn-primary btn-info btn-block btn-lg faa-parent animated-hover'><i class='fa fa-user-circle-o faa-pulse'></i> {{checkDemandes.expo.Fk_UserArtiste.username}}</a></td>
+                                                    <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserHote.id}}" target="_blank" class='btn btn-outline btn-info btn-block btn-lg faa-parent animated-hover'><i class='fa fa-user-circle-o faa-pulse'></i> {{checkDemandes.expo.Fk_UserHote.username}}</a></td>
                                                     <td class="switchInvite">                                                                
-                                                        <button class='btn btn-outline btn-warning btn-block' type='button'>
-                                                            <i class='fa fa-exchange fa-2x'></i>
+                                                        <button class='btn btn-outline btn-warning btn-block faa-parent animated-hover' type='button'>
+                                                            <i class='fa fa-exchange fa-2x  faa-passing animated-hover'></i>
                                                         </button>
                                                     </td>
                                                 </tr>
-{% endif %}
+                                            {% endif %}
                                         {% endfor %}
                                     </tbody>
                                     <tfoot>
@@ -204,14 +205,9 @@
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
                                 </a>
-
-
-
                             </div>
                         </div>
-
                         <div class="ibox-content">
-
                             <div class="table-responsive">
 
                                 <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">
@@ -237,12 +233,12 @@
                                             {% if checkDemandes.validate == 2 %}
 
                                                 <tr id="{{checkDemandes.expo.id}}" role='row'>
-                                                    <td class=' hote-clickable-row sorting_1' data-href="./get/serie/default/user/">{{checkDemandes.expo.description}}</td>
-                                                    <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserArtiste.id}}" class='btn btn-outline btn-primary btn-info btn-block btn-lg'><i class='fa fa-user-circle-o'></i> {{checkDemandes.expo.Fk_UserArtiste.username}}</a></td>
-                                                    <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserHote.id}}" class='btn btn-outline btn-info btn-block btn-lg'><i class='fa fa-user-circle-o'></i> {{checkDemandes.expo.Fk_UserHote.username}}</a></td>
+                                                    <td class=' hote-clickable-row sorting_1'><a href="/get/expo/{{checkDemandes.expo.id}}" target="_blank" class='btn btn-outline btn-primary btn-info btn-block btn-lg  faa-parent animated-hover faa-parent animated-hover'><i class='fa fa-eye faa-pulse'></i> Visiter l'expo</a></td>
+                                                    <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserArtiste.id}}" target="_blank" class='btn btn-outline btn-primary btn-info btn-block btn-lg faa-parent animated-hover'><i class='fa fa-user-circle-o faa-pulse'></i> {{checkDemandes.expo.Fk_UserArtiste.username}}</a></td>
+                                                    <td class=' hote-clickable-row'><a href="/profil/{{checkDemandes.expo.Fk_UserHote.id}}" target="_blank" class='btn btn-outline btn-info btn-block btn-lg faa-parent animated-hover'><i class='fa fa-user-circle-o faa-pulse'></i> {{checkDemandes.expo.Fk_UserHote.username}}</a></td>
                                                     <td class="switchInvite">                                                                
-                                                        <button class='btn btn-outline btn-warning btn-block' type='button'>
-                                                            <i class='fa fa-exchange fa-2x'></i>
+                                                        <button class='btn btn-outline btn-warning btn-block faa-parent animated-hover' type='button'>
+                                                            <i class='fa fa-exchange fa-2x  faa-passing animated-hover'></i>
                                                         </button>
                                                     </td>
                                                 </tr>
@@ -287,6 +283,5 @@
     <script src="{{ asset('script/js/jsExpo/userDemande.js') }}"></script>
     <script src="{{asset('script/slickCarousel/slick.js') }}"></script>
     <script src="{{asset('script/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
-
     <script src="{{asset('script/js/home.js')}}"></script>
 {% endblock %}

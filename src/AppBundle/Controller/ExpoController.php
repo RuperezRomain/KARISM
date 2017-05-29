@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Demande_expo;
 use AppBundle\Entity\Exposition;
 use AppBundle\Entity\Place;
 use AppBundle\Entity\Serie;
@@ -24,6 +25,7 @@ class ExpoController extends Controller {
      * @Route("/artiste/get/expos",name="selcetionListeExpo")
      */
     public function getExpos() {
+        $this->get('session')->remove('serieDefault');
         $em = $this->getDoctrine()->getManager();
         if ($this->getUser()) {
             $this->get('session')->remove('expoSession');
@@ -310,10 +312,10 @@ class ExpoController extends Controller {
 
     /**
      * liste des demandes d'expo pour un hote
-     * @Route("/hote/get/expo/message",name="demandeExpos")
+     * @Route("/hote/get/expos/message",name="demandeExpos")
      */
     public function getExpoMessage() {
-
+        $this->get('session')->remove('serieDefault');
         $em = $this->getDoctrine()->getManager();
         if ($this->getUser()) {
             $this->get('session')->remove('expoSession');
@@ -349,18 +351,14 @@ class ExpoController extends Controller {
     public function remoteExpoRefue($id) {
         $em = $this->getDoctrine()->getManager();
         $expo = $em->getRepository(Exposition::class)->find($id);
-
         if ($expo->getfk_UserHote() == $this->getUser()) {
             $expo->setMessageHote(null);
             $expo->setfk_UserHote(null);
             $expo->setHoteValid(null);
-
             $em->merge($expo);
             $em->flush();
-
             return $this->redirect($this->generateUrl('demandeExpos'));
         }
-
         return $this->redirect($this->generateUrl('login'));
     }
 
