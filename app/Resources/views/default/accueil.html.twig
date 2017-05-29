@@ -53,51 +53,52 @@
         <article>
             <h3 class="titleSection"><strong>Les rendez-vous de la semaine</strong></h3>
             <div style="padding-left:50px;padding-right:50px;"class="your-class">
-{% for expo in listeExpos %}
-                <div class="">
-                    <img class="profil img-thumbnail" src="images/expoPictures/{{expo.img}}"/>
-                </div>
-{% endfor %}
-              {#  <div class="profil">
-
-                </div>
-                <div class="profil">
-
-                </div>
-                <div class="profil">
-
-                </div>
-                <div class="profil">
-
-                </div>
-                <div class="profil">
-
-                </div>
-                <div class="profil">
-
-                </div>
-                <div class="profil">
-
-                </div>
-                <div class="profil">
-
-                </div>
-                <div class="profil">
-
-                </div>
-                <div class="profil">
-
-                </div>
-                <div class="profil">
-
-                </div>
-                <div class="profil">
-
-                </div>
-                <div class="profil">
-
-                </div>
-#}
+                {% for expo in listeExpos %}
+                    <div>
+                        <img style="background:url('/images/expoPictures/{{expo.img}}');" class="profil img-thumbnail"/>
+                    </div>
+                    
+                {% endfor %}
+                {#  <div class="profil">
+  
+                  </div>
+                  <div class="profil">
+  
+                  </div>
+                  <div class="profil">
+  
+                  </div>
+                  <div class="profil">
+  
+                  </div>
+                  <div class="profil">
+  
+                  </div>
+                  <div class="profil">
+  
+                  </div>
+                  <div class="profil">
+  
+                  </div>
+                  <div class="profil">
+  
+                  </div>
+                  <div class="profil">
+  
+                  </div>
+                  <div class="profil">
+  
+                  </div>
+                  <div class="profil">
+  
+                  </div>
+                  <div class="profil">
+  
+                  </div>
+                  <div class="profil">
+  
+                  </div>
+  #}
 
             </div>
         </article>
@@ -184,24 +185,24 @@
         </div>
     </section>
     <div style="padding:50px;"class="container">
-            <div class="col-md-offset-1 col-lg-5">
-                <div class="cl-effect-orange"><a href="recherche"><button id="orangeTag" style="padding:45px;" class="btn btn-block btn-warning faa-parent animated-hover" type="button">
-                                    <div  style="line-height:15px;">
-                                    <strong><p>Je veux
-                                    <p style="font-size: 37px;">EXPOSER</p>
-                                    mes œuvres</p></strong></div>
-                        </button></a></div>
-            </div>
-            <div class="col-lg-5">
-                             <div class="cl-effect-blue"><a href="recherche"><button id="blueTag" style="padding:45px;"class="btn btn-block btn-primary faa-parent animated-hover" type="button">
-                                    <div style="line-height:15px;">
-                                    <strong><p>J'aimerais 
-                                    <p style="font-size: 37px;">RECEVOIR </p>
-                                    un artiste</p></strong></div>
+        <div class="col-md-offset-1 col-lg-5">
+            <div class="cl-effect-orange"><a href="recherche"><button id="orangeTag" style="padding:45px;" class="btn btn-block btn-warning faa-parent animated-hover" type="button">
+                        <div  style="line-height:15px;">
+                            <strong><p>Je veux
+                                <p style="font-size: 37px;">EXPOSER</p>
+                                mes œuvres</p></strong></div>
+                    </button></a></div>
+        </div>
+        <div class="col-lg-5">
+            <div class="cl-effect-blue"><a href="recherche"><button id="blueTag" style="padding:45px;"class="btn btn-block btn-primary faa-parent animated-hover" type="button">
+                        <div style="line-height:15px;">
+                            <strong><p>J'aimerais 
+                                <p style="font-size: 37px;">RECEVOIR </p>
+                                un artiste</p></strong></div>
                     </button></a></div></div>
-            
+
     </div>
-    
+
 {% endblock %}
 {% block javascripts %}  
     {{ parent() }}

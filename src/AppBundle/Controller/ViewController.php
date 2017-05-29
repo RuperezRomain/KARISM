@@ -20,11 +20,13 @@ class ViewController extends Controller {
         $expos = $em->getRepository(Exposition::class)->findByStatus(2);
 
         shuffle($expos);
-
-        for($i=0;$i < 8 ;$i++){
-            array_push($exposRender, $expos[$i]);
+        if (count($expos) >= 8) {
+            for ($i = 0; $i < 8; $i++) {
+                array_push($exposRender, $expos[$i]);
+            }
+        } else {
+            $exposRender = $expos ;
         }
-
         return $this->render("default/accueil.html.twig", array('listeExpos' => $exposRender));
     }
 

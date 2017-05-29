@@ -19,9 +19,11 @@
 .profil{
     height: 200px !important;
     /*width: 200px !important;*/
-    background-position: center;
+    background-position: center !important;
     background-repeat: no-repeat;
+    background-size: cover !important;
     /*padding: 10px;*/
+    border: none;
 }
 //Fleche carousel//
 .slick-prev {
