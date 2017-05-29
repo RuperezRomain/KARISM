@@ -30,7 +30,7 @@
                                     or is_granted('ROLE_ADMIN')
                                     or is_granted('ROLE_ARTISTE')
                                     or is_granted('ROLE_HOTE') %}
-                        <div style="top:5px;"class="col-xs-4 col-sm-4 col-md-4 col-lg-5"data-animation="flash"><h4><a class="retourAccueil text-warning" href="{{ path('accueilTest') }}">Bonjour {{ app.user.username|upper}}</a></h4></div>
+                        <div style="top:5px;"class="col-xs-4 col-sm-4 col-md-4 col-lg-5"data-animation="flash"><h4><a class="retourAccueil text-primary" href="{{ path('accueilTest') }}">Bonjour {{ app.user.username|upper}}</a></h4></div>
                                     {%else%}
                             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-5 "><h4><a class="text-warning retourAccueil" href="{{ path('accueilTest') }}">Bienvenue sur KARISM</a></h4></div>
                                         {% endif %}
@@ -40,7 +40,7 @@
                                     or is_granted('ROLE_ARTISTE')
                                     or is_granted('ROLE_HOTE') %}
                                             {% if is_granted('ROLE_USER') is not empty %}
-                                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 dropdown"><a href="http://placehold.it"><img class="roundedimg" src="/web/images/profilPictures/{{app.user.profilPicture}}"></a>
+                                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 dropdown"><a href="/profil/{{app.user.id}}"><img class="roundedimg" src="/web/images/profilPictures/{{app.user.profilPicture}}"></a>
 
                                         <button class="btn btn-default dropdown-toggle btn btn-link text-left " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                             {{ app.user.username }}<span class="caret"> </span>
@@ -201,8 +201,8 @@
                             </div>
                             {% endblock %}
                             {% block body %}{% endblock %}
-
-                            <footer id="footer" class="panel-footer footerColor footerText"> 
+{% block footer %}
+                            <footer id="footer" class="panel-footer footerColor footerText footerissticky"> 
                                 <div class="container-fluid">
                                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                         <h5><strong>A propos</strong></h5>
@@ -230,7 +230,7 @@
                                     </div>
                                 </div>
                             </footer>
-
+{% endblock %}
 
 
 
@@ -241,9 +241,6 @@
                                 <script src="{{ asset('script/js/bootstrap.js') }}"></script>
                                 <script src="{{ asset('script/js/angular.min.js') }}"></script>
                                 <script src="{{ asset('script/js/footer.js') }}"></script>
-                            {% endblock %}
-                            {% block footer %}
-
                             {% endblock %}
                         </body>
                     </html>

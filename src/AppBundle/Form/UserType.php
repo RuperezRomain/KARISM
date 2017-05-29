@@ -38,6 +38,7 @@ class UserType extends AbstractType {
                     'placeholder' => 'Choose your gender',
                     'empty_data' => null
                 ))
+                ->add('fk_city')
                 ->add('firstname', TextType::class, array('required' => false))
                 ->add('lastname', TextType::class, array('required' => false))
                 ->add('phone', IntegerType::class, array('required' => false))

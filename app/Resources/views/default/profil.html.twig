@@ -100,20 +100,20 @@
 
                 <div class="tabs-container col-lg-12">
 
-                    <div class="tabs-left">
+                    <div style="background-color:#f5f5f5; border-radius: 4px;">
                         <ul class="nav nav-tabs">
                             {%if user.artistValidate == 1 %}
                                 {% if series is not empty %}
-                                    <li class="active"><a data-toggle="tab" href="#series"><h4>Séries</h4></a></li>
+                                    <li class="active col-lg-4"><a data-toggle="tab" href="#series"><h4 class="text-center" style="color:#0F335C">Séries</h4></a></li>
                                     {% endif %}
                                 {% endif %}
                                 {%if user.hoteValidate == 1 %}
                                     {% if places is not empty %}
-                                    <li class=""><a data-toggle="tab" href="#lieux"><h4>Lieux</h4></a></li>
+                                    <li class="col-lg-4"><a data-toggle="tab" href="#lieux"><h4 class="text-center" style="color:#0F335C">Lieux</h4></a></li>
                                     {% endif %}
                                 {% endif %}
                                 {% if wishlistArtiste is not empty %}
-                                <li class=""><a data-toggle="tab" href="#wish"><h4>Wishlist</h4></a></li>
+                                <li class="col-lg-4"><a data-toggle="tab" href="#wish"><h4 class="text-center" style="color:#0F335C">Wishlist</h4></a></li>
                                 {% endif %}
                         </ul>
                         <div class="tab-content">
@@ -123,7 +123,7 @@
                                         {% if series is not empty %}              
                                             <div class="container-fluid">
                                                 <div class="row">
-                                                    <div class="col-md-12">
+                                                    <div  class="col-md-12">
                                                         <h2 class="text-center">Ses séries</h2>
                                                         {% for serie in series %}
                                                             <div class="text-center ibox-content">
@@ -132,7 +132,7 @@
                                                                         <img class="img-thumbnail" src="/web/images/oeuvrePictures/{{serie.img}}" >
                                                                     </a>
                                                                 </div>
-                                                                <div class="col-md-5">
+                                                                <div class="col-md-5 ">
                                                                     <h2>{{serie.name}}</h2>
                                                                 </div>
                                                             </div>

@@ -3,7 +3,8 @@ $(document).ready(function(){
   function putFooter(){
     var wh = $(window).height();
     var dh = $('body').height();
-    if(dh < wh - 104) { /*104: #thefooter height in px*/
+//    alert(dh);
+    if(dh < wh) { /*104: #thefooter height in px*/
       $("#footer").addClass("footerissticky");
       }
     else {

@@ -65,10 +65,15 @@ class LoginController extends Controller
             //Recupertation de l'object role 
             $em = $this->getDoctrine()->getManager();
             $roleUser = $em->getRepository("AppBundle:Role")->findByRole("ROLE_USER");
-
+if ($form->get('profilPicture')->getData() !== null) {
             $nomDuFichier = md5(uniqid()) . '.' . $user->getProfilPicture()->getClientOriginalExtension();
             $user->getProfilPicture()->move('../web/images/profilPictures', $nomDuFichier);
             $user->setProfilPicture($nomDuFichier);
+                } else {
+                    $placeholder = 'placeholder.png';
+                    $user->setProfilPicture($placeholder);
+                }
+
             
             //Encode the password
             $password = $this->get('security.password_encoder')
