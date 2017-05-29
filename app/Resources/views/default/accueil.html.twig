@@ -49,15 +49,19 @@
     </div>
     {#    Section catousel#}
     <section class="container-fluid">
+        <h3 class="titleSection"><strong>Les rendez-vous de la semaine</strong></h3>
+    </section>
+    <section class="container-fluid">
 
         <article>
-            <h3 class="titleSection"><strong>Les rendez-vous de la semaine</strong></h3>
             <div style="padding-left:50px;padding-right:50px;"class="your-class">
                 {% for expo in listeExpos %}
-                    <div>
-                        <img style="background:url('/images/expoPictures/{{expo.img}}');" class="profil img-thumbnail"/>
-                    </div>
-                    
+                    <a href="{{path('getExpoValid',{'id':expo.id})}}">
+                        <div class="contentSerie">
+                            <img style="background:url('/images/expoPictures/{{expo.img}}');" class="profil img-thumbnail"/>
+                        </div>
+                    </a>
+
                 {% endfor %}
                 {#  <div class="profil">
   

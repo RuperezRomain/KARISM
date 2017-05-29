@@ -362,6 +362,27 @@ class ExpoController extends Controller {
         return $this->redirect($this->generateUrl('login'));
     }
 
+    ////Detail expo 
+    
+        /**
+     * Detail expo id
+     * @Route("/get/expo/{id}",name="getExpoValid")
+     */
+    public function getExpoDetail($id) {
+        $em = $this->getDoctrine()->getManager();
+        ///Recuperation expo
+        $expo = $em->getRepository(Exposition::class)->find($id);
+        $checkValidate = $expo->getStatus()->getNom();
+        $user = $this->getUser();
+        $demande = $em->getRepository(Demande_expo::class)->findBy(array("guest" => $user, "expo" => $expo));
+        if ($checkValidate === "VALIDE") {
+            return $this->render("expo/detailExpoId.html.twig", array("expo" => $expo, "demande" => $demande));
+        } else {
+            return $this->redirectToRoute('accueilTest');
+        }
+    }
+    
+    
     ////////////////Retourne Exposition  dans le Home 
 
    
