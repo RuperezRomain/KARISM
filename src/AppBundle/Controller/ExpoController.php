@@ -364,23 +364,7 @@ class ExpoController extends Controller {
 
     ////////////////Retourne Exposition  dans le Home 
 
-    /**
-     * Retourne Exposition pour user non logé
-     * @Route("/get/expos/valide/",name="getExpos")
-     * 
-     */
-    function getExposValid() {
-
-        if (count($listeExpos) < 7) {
-            $widthExpos = 7 - count($listeExpos);
-            $expos = $em->getRepository(Exposition::class)->findByStatus(2);
-            for ($i = 0; $i < $widthExpos; $i++) {
-                array_push($listeExpos, $expos[array_rand($expos)]);
-            }
-        }
-        return $this->render("default/accueil.html.twig", array('listeExpos' => $listeExpos));
-    }
-
+   
     /**
      * Retourne Exposition pour user logé
      * @Route("/get/expo/valide/style",name="getExposByStyle")
@@ -426,15 +410,21 @@ class ExpoController extends Controller {
 // alors on vas chercher d'autre expo 
 
         if (count($listeExpos) < 7) {
-            $widthExpos = 7 - count($listeExpos);
-            $expos = $em->getRepository(Exposition::class)->findByStatus(2);
-            for ($i = 0; $i < $widthExpos; $i++) {
-                array_push($listeExpos, $expos[array_rand($expos)]);
-            }
+          
+            $exposRender = array();
+            
+        $listeExpos = $em->getRepository(Exposition::class)->findByStatus(2);
+        
+        shuffle($listeExpos);
+
+        for($i=0;$i < 8 ;$i++){
+            array_push($exposRender, $listeExpos[$i]);
+        }
+        
         }
 
 
-        return $this->render("default/accueil.html.twig", array('listeExpos' => $listeExpos));
+        return $this->render("default/accueil.html.twig", array('listeExpos' => $exposRender));
     }
 
     

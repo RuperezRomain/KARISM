@@ -53,8 +53,12 @@
         <article>
             <h3 class="titleSection"><strong>Les rendez-vous de la semaine</strong></h3>
             <div style="padding-left:50px;padding-right:50px;"class="your-class">
-
-                <div class="profil">
+{% for expo in listeExpos %}
+                <div class="">
+                    <img class="profil img-thumbnail" src="images/expoPictures/{{expo.img}}"/>
+                </div>
+{% endfor %}
+              {#  <div class="profil">
 
                 </div>
                 <div class="profil">
@@ -93,10 +97,7 @@
                 <div class="profil">
 
                 </div>
-                <div class="profil">
-
-                </div>
-
+#}
 
             </div>
         </article>
