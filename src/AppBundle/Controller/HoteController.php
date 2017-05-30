@@ -8,7 +8,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Exposition;
 use AppBundle\Entity\ImagesPlaces;
 use AppBundle\Entity\Place;
 use AppBundle\Entity\User;
@@ -115,9 +114,9 @@ class HoteController extends Controller {
         $lieuDefault = $em->getRepository(Place::class)->find($id);
         $arrayImg = $lieuDefault->getFk_ImagesPlace();
         $picture = array();
-        for($i=0; $i< count($arrayImg); $i++){
+        for ($i = 0; $i < count($arrayImg); $i++) {
             array_push($picture, $arrayImg[$i]);
-        } 
+        }
         return $this->render('hote/contentPlace.html.twig', array("place" => $lieuDefault, "pictures" => $picture));
     }
 
@@ -156,15 +155,26 @@ class HoteController extends Controller {
     public function creatPlace(Request $request) {
         $nomLieu = $request->get('nomSerie');
         $em = $this->getDoctrine()->getManager();
-        $lieuDefault = $this->SelectePlace($nomLieu);
+        $lieuDefault = new Place;
+
+
+
+        $lieuDefault->setName($nomLieu);
         $f = $this->createForm('AppBundle\Form\PlaceFormType', $lieuDefault);
         // et on retourne le formulaire dans notre vue
         $f->handleRequest($request);
         if ($f->isSubmitted() && $f->isValid()) {
+            
+            $nomDuFichier = md5(uniqid()) . "." . $lieuDefault->getImg()->getClientOriginalExtension();
+            $lieuDefault->getImg()->move('images/placePictures', $nomDuFichier);
+            $lieuDefault->setImg($nomDuFichier);
+            
+            $lieuDefault->setUserid($this->getUser());
+
 
             $em->persist($lieuDefault);
             $em->flush($lieuDefault);
-            return $this->redirectToRoute('accueilTest');
+            return $this->redirectToRoute('hotePlaces');
         }
         $listImg = $lieuDefault->getFk_ImagesPlace();
         return $this->render('hote/formCreatePlace.html.twig', array("PlaceType" => $f->createView(), "pictures" => $listImg));
@@ -268,5 +278,4 @@ class HoteController extends Controller {
         return $this->redirect($this->generateUrl('createPicPlace'));
     }
 
-  
 }
