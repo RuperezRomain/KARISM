@@ -4,44 +4,45 @@
 
 {% block body %}
 
-    
+
     <div class="container">
         <div class=" row ibox-content">
-        <div class="ibox-title">
-           
-            {% if app.session.get('expoSession') != true %}
-                <form class=""action="{{ path('valideNomSerie')}}" method="post">
-                    <h2>Saisire le nom de la nouvelle serie pour la crées ou saisire le nom dune serie existante pour pour l"editer</h2> <br>
-                    <input type="text" name="nomSerie"  placeholder="Nom de la serie">
-                    <input type="submit" class="btn btn-success">
-                </form>
-            {% else %}
-                
-                {% if app.session.get('expoSession') == true %}
-                                   <h2>Sélection des series pour l'exposition</h2> <br>
-            <a href="{{path('expoSerie')}}">
- <input type="submit" id="validSerieExpo" value="Valider serie" class="btn navy-bg" >
-            </a>
-        {% endif %}
-            {% endif %}
-                
-                    <td><hr class="hr-line-solid"></td>
-        </div>
+            <div class="ibox-title">
+
+                {% if app.session.get('expoSession') != true %}
+                    <form class=""action="{{ path('valideNomSerie')}}" method="post">
+                        <h2><p>Saisissez un nom pour crée une nouvelle série</p>
+                            <p>Ou saisissez le nom d'une série existante pour l'éditer</p></h2> <br>
+                        <input type="text" name="nomSerie"  placeholder="Nom de la serie">
+                        <input value="Créer / Éditer" type="submit" class="btn btn-success">
+                    </form>
+                {% else %}
+
+                    {% if app.session.get('expoSession') == true %}
+                        <h2>Sélection des series pour l'exposition</h2> <br>
+                        <a href="{{path('expoSerie')}}">
+                            <input type="submit" id="validSerieExpo" value="Valider serie" class="btn navy-bg" >
+                        </a>
+                    {% endif %}
+                {% endif %}
+
+                <td><hr class="hr-line-solid"></td>
+            </div>
             {% for serie in series %}
                 <div class="col-sm-6 col-md-2">
                     <div class="thumbnail">
                         <a href="/edit/picture/serie/{{serie.id}}">
                             <img class="img-thumbnail" src="/web/images/oeuvrePictures/{{serie.img}}" >
                         </a>    
-                        <div>
+                        <div id="{{serie.id}}" class="text-center">
                             <p>{{serie.name}}</p>
                             {% if app.session.get('expoSession') == true %}
                                 <input class="seriesCheckbox" name="cheeck" id="{{serie.id}}" type="checkbox">
 
                             {% else %}
-                                <a href="/artiste/remove/serie/{{serie.id}}"><i class="  fa fa-trash fa-6" aria-hidden="true"></i></a>
-
-                            {% endif %}
+                                <a><button id="removeSerie" class="btn btn-outline btn-warning btn-block faa-parent animated-hover"><i class="fa fa-trash faa-wrench" aria-hidden="true"></i></button></a>
+                                        {# href="/artiste/remove/serie/{{serie.id}}#}
+                                    {% endif %}
                         </div>
                     </div>
 
@@ -50,11 +51,13 @@
 
             {% endfor %}
         </div>
-        
+
     </div>
 {% endblock %}
-
+{% block footer %}
+{% endblock %}
 {% block javascripts %}
     {{parent()}}
     <script src="{{asset('/script/js/jsExpo/expo.js')}}"></script>
+    <script src="{{asset('/script/js/gestionPlaceSerie.js')}}"></script>
 {% endblock %}
