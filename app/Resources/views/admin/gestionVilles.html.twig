@@ -15,7 +15,7 @@
 
 
 {% block nav %}
-    
+
 {% endblock %}
 
 {% block body %}
@@ -43,15 +43,15 @@
                     <li>
                         <a href="{{ path('adminDemande')}}"  id="nbRequestUser"><i class="fa fa-edit" ></i><span class="nav-label">Demande de validation</span></a>
                     </li>
-                    {#<li>
-                        <a href="{{ path('adminListUsers')}}"><i class="fa fa-users"></i> <span class="nav-label">Liste des membres</span> </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('adminListSeries')}}"><i class="fa fa-picture-o"></i> <span class="nav-label">Liste des séries</span> </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('adminListPlaces')}}"><i class="fa fa-map-marker"></i> <span class="nav-label">Liste des lieux</span> </a>
-                    </li>#}
+                    {# <li>
+                         <a href="{{ path('adminListUsers')}}"><i class="fa fa-users"></i> <span class="nav-label">Liste des membres</span> </a>
+                     </li>
+                     <li>
+                         <a href="{{ path('adminListSeries')}}"><i class="fa fa-picture-o"></i> <span class="nav-label">Liste des séries</span> </a>
+                     </li>
+                     <li>
+                         <a href="{{ path('adminListPlaces')}}"><i class="fa fa-map-marker"></i> <span class="nav-label">Liste des lieux</span> </a>
+                     </li>#}
 
 
 
@@ -104,7 +104,7 @@
                         <div class="col-lg-12">
                             <div class="text-center m-t-lg">
                                 <h1>
-                                    Gestion des genres
+                                    Gestion des Villes
                                 </h1>
 
                             </div>
@@ -115,37 +115,25 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-2">
-                            <form action="{{ path('createGenreAdmin')}}" method="post" >
-                                <input type="text"  name="nomGenre"  placeholder="Nom Genre" >
-                                <button class="validPicture btn btn-primary block full-width m-b" >Ajouter Genre</button>
+                            <form action="{{ path('createVillesAdmin')}}" method="post" >
+                                <input type="text"  name="nomVilles"  placeholder="Nom Ville" >
+                                <button class="validPicture btn btn-primary block full-width m-b" >Ajouter Villes</button>
                             </form>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-offset-2 col-md-10 listGenre b-r">
+                        <div class="col-md-offset-2 col-md-10 listTech b-r">
 
 
-                            <div class="listGenre">
-                                {% for genre in genres %}
-                                    <p class="col-lg-3"><a href="{{ path('removeGenreAdmin',{'id': genre.id})}}"><i class="  fa fa-trash fa-6" aria-hidden="true"></i></a> {{genre.name}} </p>
+                            <div class="listTech">
+                                {% for ville in villes %}
+                                    <p class="col-lg-3"><a href="{{ path('removeVillesAdmin',{'id':ville.id})}}"><i class="  fa fa-trash fa-6" aria-hidden="true"></i></a> {{ville.city}} </p>
                                         {% endfor %}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="ibox-content">
-                    <div class="row">
-                        <h2>Suggestion de genres</h2>
-                        <div  class="col-md-offset-2 col-md-10 listGenre b-r">
-                            
-                            <div id="suggestGenreList" class="listGenre">
-                                
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
+ 
             </div>
 
         </div>
@@ -174,4 +162,3 @@
     <script src="{{asset('script/js/inspinia.js')}}"></script>
     <script src="{{asset('script/js/plugins/pace/pace.min.js')}}"></script>
 {% endblock %}
-

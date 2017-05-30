@@ -363,8 +363,8 @@ class ExpoController extends Controller {
     }
 
     ////Detail expo 
-    
-        /**
+
+    /**
      * Detail expo id
      * @Route("/get/expo/{id}",name="getExpoValid")
      */
@@ -381,11 +381,9 @@ class ExpoController extends Controller {
             return $this->redirectToRoute('accueilTest');
         }
     }
-    
-    
-    ////////////////Retourne Exposition  dans le Home 
 
-   
+    ////////////////Retourne Exposition dans le Home 
+
     /**
      * Retourne Exposition pour user logé
      * @Route("/get/expo/valide/style",name="getExposByStyle")
@@ -431,22 +429,50 @@ class ExpoController extends Controller {
 // alors on vas chercher d'autre expo 
 
         if (count($listeExpos) < 7) {
-          
+
             $exposRender = array();
-            
-        $listeExpos = $em->getRepository(Exposition::class)->findByStatus(2);
-        
-        shuffle($listeExpos);
 
-        for($i=0;$i < 8 ;$i++){
-            array_push($exposRender, $listeExpos[$i]);
+            $listeExpos = $em->getRepository(Exposition::class)->findByStatus(2);
+
+            shuffle($listeExpos);
+
+            for ($i = 0; $i < 8; $i++) {
+                array_push($exposRender, $listeExpos[$i]);
+            }
         }
-        
-        }
 
 
-        return $this->render("default/accueil.html.twig", array('listeExpos' => $exposRender));
+        $artistesRender = $this->getArtisteHome($listeStyles);
+
+
+        return $this->render("default/accueil.html.twig", array('listeExpos' => $exposRender, 'listeArtistes' => $artistesRender));
     }
 
-    
+    ////Retourne tbl d'artiste qui on le style le l'user 
+    public function getArtisteHome($listeStylesUser) {
+        $em = $this->getDoctrine()->getManager();
+        $listeArtiste = array();
+        $artistesRender = array();
+        $artistes = $em->getRepository(User::class)->findBy(array('artistValidate' => 1));
+        shuffle($artistes);
+
+
+        foreach ($artistes as $artiste) {
+
+            $listeStyleArtiste = $artiste->getStyle();
+            foreach ($listeStyleArtiste as $styleArtiste) {
+                for($i=0;$i<count($listeStylesUser);$i++) {
+                    if ($styleArtiste == $listeStylesUser[$i]) {
+                        array_push($artistesRender, $artiste);
+                    }
+                }
+            }
+        }
+
+
+
+
+        return $artistesRender;
+    }
+
 }
