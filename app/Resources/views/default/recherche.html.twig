@@ -2,10 +2,7 @@
 
 {% block stylesheets %}
     {{parent()}} 
-    {#    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">#}
-    {#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>#}
     <link rel="stylesheet" href="{{ asset('/script/css/recherche.css') }}" />
-    {#    <meta name="viewport" content="width=device-width, user-scalable=no">#}
 
 {% endblock %}
 
@@ -46,7 +43,6 @@
     <script src="{{ asset('script/jquery/jquery.js') }}"></script>
     <script src="{{ asset('script/js/bootstrap.js') }}"></script>
     <script src="{{ asset('script/js/angular.min.js') }}"></script>
-{#    <script src="{{ asset('script/js/footer.js') }}"></script>#}
     <script src="{{ asset('script/js/recherche.js') }}"></script>
     <script src="{{asset('script/slickCarousel/slick.js') }}"></script>
     <script src="{{asset('script/js/home.js')}}"></script>

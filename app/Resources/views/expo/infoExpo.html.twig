@@ -1,6 +1,10 @@
 {% extends "admin/adminTemplate.html.twig" %}
-    {% block nav %}
-{% if app.session.get('expoSession')  == true %}
+{% block title %}
+    {{parent()}}
+    - Exposition
+{% endblock %}
+{% block nav %}
+    {% if app.session.get('expoSession')  == true %}
 
 
         <div class="row step">
@@ -31,11 +35,11 @@
             </a>
         </div>
 
-            {%else%}
-                
-                 {{parent()}}
-    
-{% endif %}
+    {%else%}
+
+        {{parent()}}
+
+    {% endif %}
 {% endblock%}
 
 {% block body %}
@@ -54,33 +58,33 @@
                     </div>
 
                     <div class=" ">Lieux:{{ form_widget(formInfoExpo.fk_ville, { 'attr': {'class': 'form-control'}})}}</div>
-                    
+
 
                     <div class="row">
                         <div class="col-lg-offset-2 col-lg-8 " id="appbundle_exposition_date"><p> Date</p><p> Heurs</p></div>
                         <div class="col-lg-offset-2 col-lg-8 ">{{ form_widget(formInfoExpo.date)}}
-                    </div>
-                    <div class="container-fluid ">
+                        </div>
+                        <div class="container-fluid ">
 
-                        <div  class=" col-lg-offset-2 col-lg-2 "> Surface:{{ form_widget(formInfoExpo.surfaceRquirements, { 'attr': {'class': 'form-control'}})}}</div>
+                            <div  class=" col-lg-offset-2 col-lg-2 "> Surface:{{ form_widget(formInfoExpo.surfaceRquirements, { 'attr': {'class': 'form-control'}})}}</div>
 
-                        <div class=" col-lg-offset-4 col-lg-2"> Place:{{ form_widget(formInfoExpo.inviteRquirements, { 'attr': {'class': 'form-control'}})}} </div>
-                    </div>
-                    <div class="container-fluid">
-                        <div class="col-lg-offset-4 col-lg-4" >Description:{{ form_widget(formInfoExpo.description, { 'attr': {'class': 'form-control'}})}}</div>
+                            <div class=" col-lg-offset-4 col-lg-2"> Place:{{ form_widget(formInfoExpo.inviteRquirements, { 'attr': {'class': 'form-control'}})}} </div>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="col-lg-offset-4 col-lg-4" >Description:{{ form_widget(formInfoExpo.description, { 'attr': {'class': 'form-control'}})}}</div>
 
-                    </div>
-                   
+                        </div>
+
                         <div class="col-lg-4 col-lg-offset-8" >Image (png ou jpeg):{{ form_widget(formInfoExpo.img, { 'attr': {'class': 'form-control'}})}}</div>
-              
-                    
+
+
+                    </div>
                 </div>
-            </div>
-                        <div class="ibox-footer">
-                            <input type="submit" class="btn btn-primary" value="Validation !" >
+                <div class="ibox-footer">
+                    <input type="submit" class="btn btn-primary" value="Validation !" >
 
                     {{form_end(formInfoExpo)}}
-               
+
 
                     {% if  is_granted("ROLE_ARTISTE")%}
                         <a href="{{path('selcetionListeExpo')}}"><input type="submit" value="Retour liste série artiste " class=" btn btn-danger" ></a>
@@ -89,15 +93,15 @@
                     {% if  is_granted("ROLE_HOTE") %}
                         {% if not is_granted("ROLE_ARTISTE") %}
                             <a href="{{path('demandeExpos')}}"><input type="submit" value="Retour liste série hote " class=" btn btn-danger" ></a>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
-                        </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <style>
-        #appbundle_exposition_date {
-            display: flex;
-            justify-content: space-around;
-        }
-    </style>
-{% endblock %}
+        <style>
+            #appbundle_exposition_date {
+                display: flex;
+                justify-content: space-around;
+            }
+        </style>
+    {% endblock %}
