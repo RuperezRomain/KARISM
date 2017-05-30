@@ -110,17 +110,14 @@
         <article>
             <h3 class="titleSection"><strong>Des artistes à découvrir</strong></h3>
             <div style="padding-left:50px;padding-right:50px;" class="your-class">
-
-                <div class="profil">
-
-                </div>
-                <div class="profil">
-
-                </div>
-                <div class="profil">
-
-                </div>
-                <div class="profil">
+                {%for artiste in listeArtistes %}
+                    <a href="{{path('profilPublic',{'id':artiste.id})}}">
+                        <div class="profil">
+                            <img style="background:url('/images/profilPicture/{{artiste.profilpicture}}');" class="profil img-thumbnail"/>
+                        </div>
+                    </a>
+                {%endfor%}
+                {#<div class="profil">
 
                 </div>
                 <div class="profil">
@@ -141,6 +138,12 @@
                 <div class="profil">
 
                 </div>
+                <div class="profil">
+
+                </div>
+                <div class="profil">
+
+                </div>#}
 
 
             </div>

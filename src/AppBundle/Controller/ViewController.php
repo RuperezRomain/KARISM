@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Exposition;
+use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -15,10 +16,11 @@ class ViewController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
         $exposRender = array();
+        $artistesRender = array();
 
 
         $expos = $em->getRepository(Exposition::class)->findByStatus(2);
-
+        
         shuffle($expos);
         if (count($expos) >= 8) {
             for ($i = 0; $i < 8; $i++) {
@@ -27,7 +29,18 @@ class ViewController extends Controller {
         } else {
             $exposRender = $expos ;
         }
-        return $this->render("default/accueil.html.twig", array('listeExpos' => $exposRender));
+        
+        $artistes = $em->getRepository(User::class)->findBy(array('artistValidate' => 1));
+        
+        shuffle($artistes);
+        if (count($artistes) >= 8) {
+            for ($i = 0; $i < 8; $i++) {
+                array_push($artistesRender, $artistes[$i]);
+            }
+        } else {
+            $artistesRender = $artistes ;
+        }
+        return $this->render("default/accueil.html.twig", array('listeExpos' => $exposRender,'listeArtistes'=>$artistesRender));
     }
 
     /**
