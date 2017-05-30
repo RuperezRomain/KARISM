@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\City;
 use AppBundle\Entity\Genre;
 use AppBundle\Entity\Place;
 use AppBundle\Entity\Role;
@@ -378,4 +379,48 @@ class AdminController extends Controller {
         return $this->redirect($this->generateUrl('getGenreAdmin'));
     }
 
+     ///////Gestion des villes
+    
+    /**
+     * Affiche tous les genres 
+     * @Route("/get/villes",name="getVillesAdmin")
+     */
+    public function getCity() {
+
+        $villes = $this->getDoctrine()->getRepository(City::class)->findAll();
+
+
+        return $this->render('admin/gestionVilles.html.twig', array("villes" => $villes));
+    }
+
+    /**
+     * @Route("/create/ville",name="createVillesAdmin")
+     */
+    public function createCity(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $nom = $request->get('nomVilles');
+
+        $villeForm = new City();
+        $villeForm->setCity($nom);
+        $em->persist($villeForm);
+        $em->flush();
+        return $this->redirect($this->generateUrl('getVillesAdmin'));
+    }
+
+    /**
+     * @Route("remove/ville/{id}",name="removeVillesAdmin")
+     */
+    public function removeCity($id) {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $ville = $em->getRepository(City::class)->find($id);
+
+        $em->merge($ville);
+
+        $em->remove($ville);
+        $em->flush();
+        return $this->redirect($this->generateUrl('getVillesAdmin'));
+    }
+    
 }
