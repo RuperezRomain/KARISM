@@ -35,38 +35,6 @@
             <div class="container-fluid">
 
 
-                {% if expo.fk_place != null %}
-                    {% if expo.messageHote == null %}
-                        <div class="middle-box">
-                            <div class=" col-sm-3">
-                                <h3>Artiste</h3>
-                                {% if expo.artisteValid != true %}
-                                    <div  class="widget red-bg reponseBlock">. . .</div>
-                                {% else %}
-                                    <div  class="widget navy-bg  reponseBlock">OK !</div>
-                                {% endif %}
-                            </div>
-                            <div class="col-sm-3">
-                                <h3>Hote</h3>
-                                {% if expo.hoteValid != true %}
-                                    <div  class="widget red-bg reponseBlock">. . .</div>
-                                {% else %}
-                                    <div  class="widget navy-bg reponseBlock">OK !</div>
-                                {% endif %}
-                            </div>
-
-
-
-                            <div class="middle-box">
-                                <a href="{{path('validActeurExpo')}}"><input  type="submit" value="Changer d'etat  "  class="btn btn-success" ></a>
-                            </div>
-
-                        </div>
-
-                    {% endif %}
-                {% endif %}
-
-
             </div>
             <div class="ibox-footer text-center" id="{{expo.id}}"> 
                 {% if demande is not empty %}
