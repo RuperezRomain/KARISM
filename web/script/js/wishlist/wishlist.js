@@ -4,21 +4,38 @@ var id = $("#addWish").parent().attr("id");
 
 $(document).ready(function () {
     checkWish(id);
-        getWishNbrArtiste(id);
+    getWishNbrArtiste(id);
 
 
     $("#addWish").click(function () {
+        swal("Wishlist mise à jour", "L'artiste a été ajouté à votre wishlist", "success");
         addInWish(id);
         getWishNbrArtiste(id);
         checkWish(id);
     });
 
 
-$("#deleteWishlisted").click(function (){
-    deleteWishlistArtiste(id);
-        getWishNbrArtiste(id);
-    checkWish(id);
-});
+    $("#deleteWishlisted").click(function () {
+
+
+        swal({
+            title: "Voulez-vous supprimer cet artiste de votre wishlist ?",
+            type: "warning",
+            showCancelButton: true,
+            showLoaderOnConfirm: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Oui, je veux le supprimer !",
+            closeOnConfirm: false
+        },
+                function () {
+                    swal("Wishlist mise à jour :)", "", "success");
+                    deleteWishlistArtiste(id);
+                    getWishNbrArtiste(id);
+                    checkWish(id);
+                });
+
+
+    });
 });
 
 function addInWish(id) {
@@ -50,13 +67,13 @@ function checkWish(id) {
 //                $("#addWish").text("");
 //                $("#addWish").append("<i class='fa fa-star '></i> " + "L'artiste est dans ta wishlist");
                 $("#deleteWishlisted").empty();
-                $("#isWishlisted").text("");               
+                $("#isWishlisted").text("");
                 $("#isWishlisted").addClass("hidden");
                 $("#addWish").removeClass("hidden");
                 $("#addWish").addClass("btn btn-block btn-danger dim btn-outline");
-                $("#addWish").text("");               
-                $("#addWish").append("<i class='fa fa-star'></i>" + " Ajouter en favori");               
-                $("#addWish").attr("id","addWish");
+                $("#addWish").text("");
+                $("#addWish").append("<i class='fa fa-star'></i>" + " Ajouter en favori");
+                $("#addWish").attr("id", "addWish");
             } else {
                 flag = false;
                 $("#addWish").addClass("hidden");
@@ -77,28 +94,29 @@ function getWish(id) {
         dataType: "json",
         async: true,
         success: function (data) {
-            alert(id);
+//            alert(id);
         }
     });
 }
 
 // Retourne le nbr de fois que l'artiste a été wishlisté    
 function getWishNbrArtiste(id) {
-$.ajax({
-    url: "/get/wish/nbr/artiste/" + id,
-    type: "GET",
-    dataType: "json",
-    async: false,
-    success: function (data) {
-        $data = data;
-        if ($data > 0) {
-            $("#countWishlisted").text("Cet artiste a été wishlisté " + $data + " fois");
-        }else if ($data === 0){
-           $("#countWishlisted").empty(); 
-        }
+    $.ajax({
+        url: "/get/wish/nbr/artiste/" + id,
+        type: "GET",
+        dataType: "json",
+        async: false,
+        success: function (data) {
+            $data = data;
+            if ($data > 0) {
+                $("#countWishlisted").text("Cet artiste a été wishlisté " + $data + " fois");
+            } else if ($data === 0) {
+                $("#countWishlisted").empty();
+            }
 
-    }
-});}
+        }
+    });
+}
 
 // Retourne le nbr d'artiste dans la wishlist de l'user ciblé   
 
@@ -117,14 +135,16 @@ $.ajax({
 });
 
 function deleteWishlistArtiste(id) {
-$.ajax({
-    url: "/delete/wish/artiste/" + id,
-    type: "DELETE",
-    async: true,
-    success: function (data) {
+    $.ajax({
+        url: "/delete/wish/artiste/" + id,
+        type: "DELETE",
+        async: true,
+        success: function (data) {
         }
     }
-);};
+    );
+}
+;
 
 
 
