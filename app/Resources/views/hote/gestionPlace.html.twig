@@ -9,10 +9,10 @@
             <div class="ibox-title">
 
                 <form action="{{ path('valideNomLieux')}}" method="post">
-                    <h2>Saisire le nom de la nouvelle serie pour la crées ou saisire le nom dune serie existante pour pour l"editer</h2> <br>
-
+                    <h2><p>Saisissez un nom pour crée un nouveau lieu</p>
+                        <p>Ou saisissez le nom d'un lieu existant pour l'éditer</p></h2> <br>
                     <input type="text" name="nomSerie"  placeholder="Nom du lieux">
-                    <input type="submit" class="btn btn-success">
+                    <input value="Créer / Éditer" type="submit" class="btn btn-success">
                 </form>
 
                 <td><hr class="hr-line-solid"></td>
@@ -20,15 +20,17 @@
             {% for place in places %}
 
 
-                <div class="col-sm-6 col-md-2">
+                <div class="text-center col-sm-6 col-md-2">
                     <div class="thumbnail">
                         <a href="/hote/get/lieu/{{place.id}}">
                             <p> 
                                 {{place.name}}
                             </p>
                         </a>
-                        <img class="img-thumbnail" src="/web/images/placePictures/{{place.img}}">
-                        <a href="/hote/remove/place/{{place.id}}"><i class=" fa fa-trash fa-6" aria-hidden="true"></i></a>
+                        <div id="{{place.id}}">
+                            <img class="img-thumbnail" src="/web/images/placePictures/{{place.img}}">
+                            <button class=" removePlace btn btn-outline btn-warning btn-block faa-parent animated-hover"><i class="fa fa-trash faa-wrench" aria-hidden="true"></i></button>
+                        </div>
                     </div>
 
                 </div>
@@ -38,4 +40,8 @@
         </div>
     </div>
 
+{% endblock %}
+{% block javascripts %}
+    {{parent()}}
+    <script src="{{asset('/script/js/gestionPlaceSerie.js')}}"></script>
 {% endblock %}

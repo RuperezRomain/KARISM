@@ -57,7 +57,7 @@ function getPicture() {
 
            
                     $($listePic).each(function () {
-                        alert(this.nom);
+//                        alert(this.nom);
                 //Parse mes object picture
                 $("#contentPicture").append("\
                     <div class='col-lg-4'>\n\

@@ -29,19 +29,20 @@
                 <td><hr class="hr-line-solid"></td>
             </div>
             {% for serie in series %}
-                <div class="col-sm-6 col-md-2">
+                <div class="col-sm-6 col-md-2 text-center">
                     <div class="thumbnail">
+                        <a href="/edit/picture/serie/{{serie.id}}">
+                            <p>{{serie.name}}</p>
+                        </a>
                         <a href="/edit/picture/serie/{{serie.id}}">
                             <img class="img-thumbnail" src="/web/images/oeuvrePictures/{{serie.img}}" >
                         </a>    
-                        <div id="{{serie.id}}" class="text-center">
-                            <p>{{serie.name}}</p>
+                        <div id="{{serie.id}}">
                             {% if app.session.get('expoSession') == true %}
                                 <input class="seriesCheckbox" name="cheeck" id="{{serie.id}}" type="checkbox">
 
                             {% else %}
-                                <a><button id="removeSerie" class="btn btn-outline btn-warning btn-block faa-parent animated-hover"><i class="fa fa-trash faa-wrench" aria-hidden="true"></i></button></a>
-                                        {# href="/artiste/remove/serie/{{serie.id}}#}
+                                <button class="removeSerie btn btn-outline btn-warning btn-block faa-parent animated-hover"><i class="fa fa-trash faa-wrench" aria-hidden="true"></i></button></a>
                                     {% endif %}
                         </div>
                     </div>
