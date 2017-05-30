@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container-fluid">
-        <h1 class="">Mes expos</h1>
+        <h1 class="">Mes expos en tant qu'artiste</h1>
         {% for expo in expos %}
 
             <div class="col-md-12">
@@ -14,7 +14,11 @@
 
                     <div class="ibox-title">
                         <a href="{{path('selcetionExpo',{'id': expo.id}) }}">
-                            <i class="fa fa-pencil-square-o fa-3" aria-hidden="true">  Editer Expo</i>
+                            <button class="btn btn-info btn-outline">
+                            <i class="fa fa-pencil-square-o fa-3" aria-hidden="true">
+                                Editer l'Exposition
+                            </i>
+                            </button>
                         </a>
                         <div class="ibox-tools">
                             <a class="collapse-link">
@@ -31,59 +35,64 @@
 
                             <div class="col-md-4">
                                 <h2>Rappel des informations</h2>
-                                <div> Date: {{expo.date|date("j F à g:i")}}</div>
-                                <div> Ville: {{expo.fkville }}</div>
-                                <div>Description: {{expo.description }}</div>
+                                <div>Date: <strong>{{expo.date|date("j F à g:i")}}</strong></div>
+                                <div>Ville: <strong>{{expo.fkville }}</strong></div>
+                                <div>Description: <strong>{{expo.description }}</strong></div>
+{#                               <div class="text-center "><img width="75px"class="img-circle" src="/images/expoPictures/{{expo.img }}"/></div>#}
 
+                                    <div style="padding-top:30px;"class="text-center">
+                                        <a href="/get/expo/{{expo.id}}/invite">
+                                            <button type="button" id="join" class="btn btn-primary btn-outline faa-parent animated-hover ">
+                                                <i class="fa fa-user-plus fa-2x faa-pulse" aria-hidden="true"></i>
+                                                <p>Gestion d'invités</p>
+                                            </button>
+                                        </a>
+                                    </div>
 
                             </div>
                             <div class="col-md-3">
                                 <h2>
-                                    Apropo de l'hote<br>
+                                    À propos de l'hôte<br>
                                 </h2>
                                 {% if expo.fk_place != null %}
                                     {% if expo.messageHote != null %}
-                                        <div>En atente de validation de l'hote:|</div>
+                                        <div><strong>En attente de la validation de l'hote ...</strong></div>
                                         <img class=" img-thumbnail " src="/web/images/placePictures/{{expo.fk_place.img}}" >     
-                                        <div>{{expo.fk_place.name}}</div>
-                                    {% else %}
-                                        <div>L'hote a validée la demande ! :)</div>
-                                        <img class=" img-thumbnail " src="/web/images/placePictures/{{expo.fk_place.img}}" >     
-                                        <div>{{expo.fk_place.name}}</div>
+                                    {% else %}<div class="col-md-12">
+                                        <strong>L'hote a validée la demande ! :)</strong>
+                                        <img class=" img-thumbnail " src="/web/images/placePictures/{{expo.fk_place.img}}" >  </div>   
                                     {% endif %}
                                 {% else %}
-                                    <div> Il n'y a pas demande d'hote ou la dernier demande a etait refuser :(</div>
+                                    <div> Il n'y a pas demande d'hote ou la dernière demande a été reusée :(</div>
                                 {% endif %}
-
                             </div>
                             <div class="col-md-5">
                                 <h2>
-                                    Mes series <br>
+                                    Mes séries <br>
                                 </h2>
                                 <div class="container">
                                     {% if expo.fkserie != null %}
-                                            <div class="container">
-                                        {% for serieExpo in expo.fkserie %}
-                                            <div class="col-md-1">
-                                                <img class=" img-thumbnail " src="/web/images/oeuvrePictures/{{serieExpo.img}}"> 
-                                            </div>
+                                        <div class="container">
+                                            {% for serieExpo in expo.fkserie %}
+                                                <div class="col-md-12">
+                                                    <img class=" img-thumbnail " src="/web/images/oeuvrePictures/{{serieExpo.img}}"> 
+                                                </div>
 
-                                        {% endfor %}
-                                            </div>
+                                            {% endfor %}
+                                        </div>
                                     {% endif %} 
 
                                 </div>
+
                             </div>
                         </div>
                     </div>
-                    <div class="ibox-footer">
-                        <span class="pull-right">
-                        <button type="button" class="btn btn-outline btn-primary">Inviter des membres</button>
-                        </span>
-                        <button type="button" class="btn btn-outline btn-primary">Inviterdd des membres</button>
+                    <div class="ibox-footer text-center">
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
 {% endblock%}
+{% block footer %}
+    {% endblock %}

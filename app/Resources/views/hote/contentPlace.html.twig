@@ -2,6 +2,7 @@
 {% block stylesheets %}
     {{parent()}} 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+{#    <link rel="stylesheet" href="{{ asset('/script/css/acceuil.css') }}" />#}
     <link rel="stylesheet" href="{{ asset('/script/css/templateInspinia.css') }}" />
     <meta name="viewport" content="width=device-width, user-scalable=no">
 
@@ -11,8 +12,47 @@
     {{parent()}}
     - {{place.name}}
 {% endblock %}
+    {% block nav %}
+{% if app.session.get('expoSession')  == true %}
+
+
+        <div class="row step">
+
+            <a href="{{path('editeInfoExpo')}}">
+                <div class="col-md-3 activesteps">
+                    <span class="fa fa-pencil-square-o"></span>
+                    <p>Generale</p>
+                </div>
+            </a>
+            <a href="{{path('listePlace')}}">
+                <div class="col-md-3 ">
+                    <span class="fa fa-home"></span>
+                    <p>Lieux</p>
+                </div>
+            </a>
+            <a href="{{path('expoSerie')}}">
+                <div class="col-md-3">
+                    <span class="fa fa-picture-o"></span>
+                    <p>Série</p>
+                </div>
+            </a>
+            <a href="{{path('detailleExpo')}}">
+                <div id="last" class="col-md-3 ">
+                    <span class="fa fa-id-card"></span>
+                    <p>Récap</p>
+                </div>
+            </a>
+        </div>
+
+            {%else%}
+                
+                 {{parent()}}
+    
+{% endif %}
+{% endblock%}
 
 {% block body %}
+    {% if app.session.get('expoSession')  == true %}
     <div id="choixHoteExpo">
         <form action="{{ path('envoiMessage',{'id': place.id })}}">
             <input type="text"  name="choixHoteExpo" required>
@@ -21,8 +61,11 @@
         </form>
             <a href="{{ path('listePlace') }}"><button class="btn btn-danger " >retour</button></a>
     </div>
+    {% endif %}
     <div class="text-center ibox-content container-fluid">
-        <input type="submit" value="choix hote" name="selectHote" class=" btn-warning">
+        {% if app.session.get('expoSession')  == true %}
+            <input type="submit" value="Choisir en tant qu'hôte" name="selectHote" class="btn btn-lg btn-warning">
+            {% endif %}
         <div class="col-md-6">
             <img class="img-thumbnail" width="300px" height="200px" src="/web/images/placePictures/{{place.img}}" >
         </div>
@@ -50,7 +93,8 @@
     {% endif %}
 
 {% endblock %}
-
+{% block footer %}
+{% endblock %}
 {% block javascripts %}
     {{parent()}}
     <script src="{{asset('/script/js/jsExpo/expo.js')}}"></script>

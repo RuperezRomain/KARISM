@@ -134,3 +134,9 @@ body {
 .inputHiden{
     display: none
 }
+
+.fixBot{
+    position: absolute;
+    width:auto;
+    bottom: 5px;
+}

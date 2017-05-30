@@ -57,8 +57,8 @@ function searchGuests() {
                 var id = data[i].id;
 
                 var guest = document.createElement("div");
-                guest.className = "member";
-
+                guest.className = "member col-xs-12 col-sm-4 col-md-3 col-lg-2";
+                
                 var guestImg = document.createElement("img");
                 guestImg.src = "/web/images/profilPictures/" + data[i].user_profilPicture;
 
@@ -67,7 +67,7 @@ function searchGuests() {
 
                 var guestURLInvite = document.createElement("a");
 //                guestURLInvite.href = "/expo/invite/user/" + data[i].id;
-                guestURLInvite.className = "btn btn-outline btn-primary btn-block";
+                guestURLInvite.className = "btn btn-warning btn-outline btn-block fixBot";
                 guestURLInvite.setAttribute("id", "invitation");
 
 
@@ -87,12 +87,12 @@ function searchGuests() {
                 guestURL.appendChild(guestImg);
                 guest.appendChild(guestURL);
                 guestName.appendChild(nameText);
-                guestStyle.appendChild(styleText);
-                guestBio.appendChild(bioText);
+//                guestStyle.appendChild(styleText);
+//                guestBio.appendChild(bioText);
                 guestURLInvite.appendChild(buttonText);
                 guest.appendChild(guestName);
-                guest.appendChild(guestStyle);
-                guest.appendChild(guestBio);
+//                guest.appendChild(guestStyle);
+//                guest.appendChild(guestBio);
                 guest.appendChild(guestURLInvite);
 
                 $(guestURLInvite).click(function () {
