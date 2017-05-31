@@ -30,7 +30,7 @@
                                 {{ form_widget(formPicture.nom, { 'attr': {'class': 'form-control','placeholder':'Votre nom'}})}}
                                 {{ form_widget(formPicture.size, { 'attr': {'class': 'form-control','placeholder':'Taille'}})}}
                                 {{ form_widget(formPicture.prix, { 'attr': {'class': 'form-control','placeholder':'Prix'}})}}
-                                {{ form_widget(formPicture.expos, { 'attr': {'class': 'form-control'} })}}
+{#                                {{ form_widget(formPicture.expos, { 'attr': {'class': 'form-control'} })}}#}
                                 {{ form_widget(formPicture.commentaire, { 'attr': {'class': 'form-control','placeholder':'Commentaire'} })}}
                                 <div class="col-md-4" >
                                     <h4 class="headerStyle">Style</h4>
@@ -83,7 +83,8 @@
 
 
 {% endblock %}
-
+{% block footer %}
+    {% endblock %}
 {% block javascripts %}
     {{parent()}}
     <script src="{{asset('script/js/artiste.js')}}"></script>

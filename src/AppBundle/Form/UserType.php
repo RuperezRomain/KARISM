@@ -50,6 +50,9 @@ class UserType extends AbstractType {
                     'expanded' => true,
                     ))
                 ->add('adress', TextType::class, array('required' => false))
+                ->add('linkFacebook', TextType::class, array('required' => false))
+                ->add('linkInstagram', TextType::class, array('required' => false))
+                ->add('linkTwitter', TextType::class, array('required' => false))
 
         ;
     }

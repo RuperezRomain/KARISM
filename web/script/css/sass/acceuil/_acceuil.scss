@@ -28,7 +28,12 @@
         background-size: cover !important;
         /*padding: 10px;*/
         border: none;
+        transition : 1.5s;
 
+    }
+    
+    .profil:hover{
+border: 1px solid $blue;
     }
 
 //Fleche carousel//

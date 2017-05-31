@@ -37,7 +37,7 @@ class PictureType extends AbstractType {
                     ))
                 ->add('size')
                 ->add('prix')
-                ->add('expos')
+//                ->add('expos')
                 ->add('commentaire', TextareaType::class);
     }
 

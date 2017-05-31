@@ -51,7 +51,7 @@ function searchArtists() {
                 artistURL.href = URL + "profil/" + data[i].id;
 
                 var artistName = document.createElement("h2");
-                var nameText = document.createTextNode(data[i].lastname);
+                var nameText = document.createTextNode(data[i].username);
 
                 var artistStyle = document.createElement("p");
                 artistStyle.className = "who";
@@ -104,7 +104,7 @@ function searchHosts() {
                 hostURL.href = URL + "profil/" + data[i].id;
 
                 var hostName = document.createElement("h2");
-                var nameText = document.createTextNode(data[i].lastname);
+                var nameText = document.createTextNode(data[i].username);
 
                 var hostStyle = document.createElement("p");
                 hostStyle.className = "who";
@@ -159,7 +159,7 @@ function searchGuests() {
                 guestURL.href = URL + "profil/" + data[i].id;
 
                 var guestName = document.createElement("h2");
-                var nameText = document.createTextNode(data[i].lastname);
+                var nameText = document.createTextNode(data[i].username);
 
                 var guestStyle = document.createElement("p");
                 guestStyle.className = "who";

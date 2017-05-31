@@ -7,6 +7,13 @@
 
 {% block body %}
     <div class="container-fluid">
+        <a href="{{path('createExpo') }}">
+            <button class="btn btn-success btn-outline ">
+                <i class="fa fa-pencil-square-o fa-3" aria-hidden="true">
+                    Création Exposition 
+                </i>
+            </button>
+        </a>
         <h1 class="">Mes expos en tant qu'artiste</h1>
         {% for expo in expos %}
 
@@ -18,9 +25,9 @@
                     <div class="ibox-title">
                         <a href="{{path('selcetionExpo',{'id': expo.id}) }}">
                             <button class="btn btn-info btn-outline">
-                            <i class="fa fa-pencil-square-o fa-3" aria-hidden="true">
-                                Editer l'Exposition
-                            </i>
+                                <i class="fa fa-pencil-square-o fa-3" aria-hidden="true">
+                                    Editer l'Exposition
+                                </i>
                             </button>
                         </a>
                         <div class="ibox-tools">
@@ -41,16 +48,16 @@
                                 <div>Date: <strong>{{expo.date|date("j F à g:i")}}</strong></div>
                                 <div>Ville: <strong>{{expo.fkville }}</strong></div>
                                 <div>Description: <strong>{{expo.description }}</strong></div>
-{#                               <div class="text-center "><img width="75px"class="img-circle" src="/images/expoPictures/{{expo.img }}"/></div>#}
+                                {#                               <div class="text-center "><img width="75px"class="img-circle" src="/images/expoPictures/{{expo.img }}"/></div>#}
 
-                                    <div style="padding-top:30px;"class="text-center">
-                                        <a href="/get/expo/{{expo.id}}/invite">
-                                            <button type="button" id="join" class="btn btn-primary btn-outline faa-parent animated-hover ">
-                                                <i class="fa fa-user-plus fa-2x faa-pulse" aria-hidden="true"></i>
-                                                <p>Gestion d'invités</p>
-                                            </button>
-                                        </a>
-                                    </div>
+                                <div style="padding-top:30px;"class="text-center">
+                                    <a href="/get/expo/{{expo.id}}/invite">
+                                        <button type="button" id="join" class="btn btn-primary btn-outline faa-parent animated-hover ">
+                                            <i class="fa fa-user-plus fa-2x faa-pulse" aria-hidden="true"></i>
+                                            <p>Gestion d'invités</p>
+                                        </button>
+                                    </a>
+                                </div>
 
                             </div>
                             <div class="col-md-3">
@@ -62,10 +69,10 @@
                                         <div><strong>En attente de la validation de l'hote ...</strong></div>
                                         <img class=" img-thumbnail " src="/web/images/placePictures/{{expo.fk_place.img}}" >     
                                     {% else %}<div class="col-md-12">
-                                        <strong>L'hote a validée la demande ! :)</strong>
-                                        <img class=" img-thumbnail " src="/web/images/placePictures/{{expo.fk_place.img}}" >  </div>   
-                                    {% endif %}
-                                {% else %}
+                                            <strong>L'hote a validée la demande ! :)</strong>
+                                            <img class=" img-thumbnail " src="/web/images/placePictures/{{expo.fk_place.img}}" >  </div>   
+                                        {% endif %}
+                                    {% else %}
                                     <div> Il n'y a pas demande d'hote ou la dernière demande a été reusée :(</div>
                                 {% endif %}
                             </div>
@@ -98,4 +105,4 @@
     </div>
 {% endblock%}
 {% block footer %}
-    {% endblock %}
+{% endblock %}

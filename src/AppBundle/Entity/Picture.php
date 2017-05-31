@@ -82,7 +82,7 @@ class Picture implements \JsonSerializable{
     /**
      * @var int
      *
-     * @ORM\Column(name="expos", type="integer")
+     * @ORM\Column(name="expos", type="integer", nullable=true)
      */
     private $expos;
     ///Le champ -commentaire correspond a la description de l'oeuvre

@@ -53,55 +53,44 @@
 
                     </div>
                     {{form_start(formInfoExpo)}}
-                    <div>
-                        {{ form_errors(formInfoExpo.date)}}
-                    </div>
-
-                    <div class=" ">Lieux:{{ form_widget(formInfoExpo.fk_ville, { 'attr': {'class': 'form-control'}})}}</div>
-
-
-                    <div class="row">
-                        <div class="col-lg-offset-2 col-lg-8 " id="appbundle_exposition_date"><p> Date</p><p> Heurs</p></div>
-                        <div class="col-lg-offset-2 col-lg-8 ">{{ form_widget(formInfoExpo.date)}}
-                        </div>
-                        <div class="container-fluid ">
-
-                            <div  class=" col-lg-offset-2 col-lg-2 "> Surface:{{ form_widget(formInfoExpo.surfaceRquirements, { 'attr': {'class': 'form-control'}})}}</div>
-
-                            <div class=" col-lg-offset-4 col-lg-2"> Place:{{ form_widget(formInfoExpo.inviteRquirements, { 'attr': {'class': 'form-control'}})}} </div>
-                        </div>
-                        <div class="container-fluid">
-                            <div class="col-lg-offset-4 col-lg-4" >Description:{{ form_widget(formInfoExpo.description, { 'attr': {'class': 'form-control'}})}}</div>
-
-                        </div>
-
-                        <div class="col-lg-4 col-lg-offset-8" >Image (png ou jpeg):{{ form_widget(formInfoExpo.img, { 'attr': {'class': 'form-control'}})}}</div>
-
-
-                    </div>
+                    {{ form_errors(formInfoExpo.date)}}
                 </div>
-                <div class="ibox-footer">
-                    <input type="submit" class="btn btn-primary" value="Validation !" >
 
-                    {{form_end(formInfoExpo)}}
+                <div class=" col-lg-6"><p>Lieux:{{ form_widget(formInfoExpo.fk_ville, { 'attr': {'class': 'form-control'}})}}</p>
+                    <p> Surface en Mètres carré :{{ form_widget(formInfoExpo.surfaceRquirements, { 'attr': {'class': 'form-control'}})}}</p>
+                    <div id="appbundle_exposition_date">
+                        <p> Date :{{ form_widget(formInfoExpo.date)}}</p></div>
+                </div>
 
 
-                    {% if  is_granted("ROLE_ARTISTE")%}
-                        <a href="{{path('selcetionListeExpo')}}"><input type="submit" value="Retour liste série artiste " class=" btn btn-danger" ></a>
-
-                    {% endif %}
-                    {% if  is_granted("ROLE_HOTE") %}
-                        {% if not is_granted("ROLE_ARTISTE") %}
-                            <a href="{{path('demandeExpos')}}"><input type="submit" value="Retour liste série hote " class=" btn btn-danger" ></a>
-                            {% endif %}
-                        {% endif %}
+                <div class="col-lg-6">
+                    <p>Place:{{ form_widget(formInfoExpo.inviteRquirements, { 'attr': {'class': 'form-control'}})}}</p>
+                    <p>Description:{{ form_widget(formInfoExpo.description, { 'attr': {'class': 'form-control'}})}}</p>
+                    <p>Image (png ou jpeg):{{ form_widget(formInfoExpo.img, { 'attr': {'class': 'form-control'}})}}</p>
                 </div>
             </div>
+            <div class="ibox-footer">
+                <input type="submit" class="btn btn-primary" value="Validation !" >
+
+                {{form_end(formInfoExpo)}}
+
+
+                {% if  is_granted("ROLE_ARTISTE")%}
+                    <a href="{{path('selcetionListeExpo')}}"><input type="submit" value="Retour liste série artiste " class=" btn btn-danger" ></a>
+
+                {% endif %}
+                {% if  is_granted("ROLE_HOTE") %}
+                    {% if not is_granted("ROLE_ARTISTE") %}
+                        <a href="{{path('demandeExpos')}}"><input type="submit" value="Retour liste série hote " class=" btn btn-danger" ></a>
+                        {% endif %}
+                    {% endif %}
+            </div>
         </div>
-        <style>
-            #appbundle_exposition_date {
-                display: flex;
-                justify-content: space-around;
-            }
-        </style>
-    {% endblock %}
+    </div>
+    <style>
+        #appbundle_exposition_date {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+{% endblock %}
