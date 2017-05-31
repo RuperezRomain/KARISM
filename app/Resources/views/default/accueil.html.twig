@@ -88,11 +88,11 @@
     </section>
     {#   Dernier Section:  Les expo selon nous  #}
     <section>
-        <h3 class="titleSection2"><strong>Les expo selon nous</strong></h3>
+        <h3 class="titleSection2"><strong>Les expos selon nous</strong></h3>
         <div class="container-fluid">
             <div class="containerThumb">
                 <div class="thumbnail  col-md-4">
-                    <img src="https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97250&w=200&h=250" alt="...">
+                    <img src="/images/source/1.jpg" height="250px" width="250px">
                     <div class="caption">
                         <h4 class="colorText">Transformez votre salon en gallerie éphémère</h4>
                         <p class="colorText">Ni clous, ni vis, les artistes scénographient leurs expos sans toucher à vos murs</p>
@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <div class="thumbnail  col-md-4">
-                    <img src="https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97250&w=200&h=250" alt="...">
+                    <img src="/images/source/2.jpg" height="250px" width="250px">
                     <div class="caption">
                         <h4 class="colorText">Faites des rencontres</h4>
                         <p class="colorText">C'est le moment idéal pour pour faire des rencontres et parler de vos passions.</p>
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div class="thumbnail  col-md-4">
-                    <img src="https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97250&w=200&h=250" alt="...">
+                    <img src="/images/source/3.jpg" height="250px" width="250px">
                     <div class="caption">
                         <h4 class="colorText">Vivez un moment hors du temps</h4>
                         <p class="colorText">Pas besoin d'avion pour voyager, laissez-vous surprendre à deux pas de chez vous</p>
@@ -120,7 +120,7 @@
     </section>
     <div style="padding:50px;"class="container">
         <div class="col-md-offset-1 col-lg-5">
-            <div class="cl-effect-orange"><a href="recherche"><button id="orangeTag" style="padding:45px;" class="btn btn-block btn-warning faa-parent animated-hover" type="button">
+            <div class="cl-effect-orange"><a {% if is_granted("ROLE_USER") %}href="{{path('requestHote')}}"{% else %}href="{{path('login')}}"{% endif %}><button id="orangeTag" style="padding:45px;" class="btn btn-block btn-warning faa-parent animated-hover" type="button">
                         <div  style="line-height:15px;">
                             <strong><p>Je veux
                                 <p style="font-size: 37px;">EXPOSER</p>
@@ -128,7 +128,8 @@
                     </button></a></div>
         </div>
         <div class="col-lg-5">
-            <div class="cl-effect-blue"><a href="recherche"><button id="blueTag" style="padding:45px;"class="btn btn-block btn-primary faa-parent animated-hover" type="button">
+            
+            <div class="cl-effect-blue"><a {% if is_granted("ROLE_USER") %}href="{{path('requestArtiste')}}"{% else %}href="{{path('login')}}"{% endif %}><button id="blueTag" style="padding:45px;"class="btn btn-block btn-primary faa-parent animated-hover" type="button">
                         <div style="line-height:15px;">
                             <strong><p>J'aimerais 
                                 <p style="font-size: 37px;">RECEVOIR </p>
